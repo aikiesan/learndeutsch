@@ -51,13 +51,65 @@ class LearnDeutschApp {
     }
 
     setupEventListeners() {
-        // Navigation buttons
+        // Top Navigation buttons
         document.querySelectorAll('.nav-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const section = e.target.dataset.section;
                 if (section) {
                     this.navigateToSection(section);
                 }
+            });
+        });
+
+        // Bottom Navigation (mobile)
+        document.querySelectorAll('.bottom-nav .nav-item').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const section = e.currentTarget.dataset.section;
+                if (section) {
+                    window.soundManager?.play('click');
+                    this.navigateToSection(section);
+                }
+            });
+        });
+
+        // Nav Quiz button (center button in bottom nav)
+        document.getElementById('nav-quiz-btn')?.addEventListener('click', () => {
+            window.soundManager?.play('click');
+            this.navigateToSection('practice');
+            setTimeout(() => window.interactiveExercises?.startQuiz(), 300);
+        });
+
+        // Main CTA - Start Learning button
+        document.getElementById('start-main-quiz')?.addEventListener('click', () => {
+            window.soundManager?.play('whoosh');
+            this.navigateToSection('practice');
+            setTimeout(() => window.interactiveExercises?.startQuiz(), 300);
+        });
+
+        // Back buttons
+        document.querySelectorAll('.back-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const section = e.target.dataset.section;
+                if (section) {
+                    window.soundManager?.play('click');
+                    this.navigateToSection(section);
+                }
+            });
+        });
+
+        // Category pills
+        document.querySelectorAll('.category-pill').forEach(pill => {
+            pill.addEventListener('click', (e) => {
+                const category = e.currentTarget.dataset.category;
+
+                // Update active state
+                document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
+                e.currentTarget.classList.add('active');
+
+                window.soundManager?.play('select');
+
+                // Store selected category
+                this.selectedCategory = category;
             });
         });
 
@@ -77,8 +129,10 @@ class LearnDeutschApp {
         });
 
         document.getElementById('quick-quiz')?.addEventListener('click', () => {
+            window.soundManager?.play('whoosh');
             this.navigateToSection('practice');
-            setTimeout(() => window.interactiveExercises?.startQuiz(), 300);
+            const category = this.selectedCategory || 'all';
+            setTimeout(() => window.interactiveExercises?.startQuiz(category), 300);
         });
 
         document.getElementById('typing-practice')?.addEventListener('click', () => {
@@ -158,6 +212,7 @@ class LearnDeutschApp {
         // Sound effects toggle
         document.getElementById('sound-effects')?.addEventListener('change', (e) => {
             this.updateSetting('soundEffects', e.target.checked);
+            window.soundManager?.toggle(e.target.checked);
         });
 
         // Export progress
@@ -196,7 +251,7 @@ class LearnDeutschApp {
             targetSection.classList.add('active');
         }
 
-        // Update nav buttons
+        // Update top nav buttons
         document.querySelectorAll('.nav-btn').forEach(btn => {
             btn.classList.remove('active');
             if (btn.dataset.section === sectionId) {
@@ -204,7 +259,18 @@ class LearnDeutschApp {
             }
         });
 
+        // Update bottom nav buttons
+        document.querySelectorAll('.bottom-nav .nav-item').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.dataset.section === sectionId) {
+                btn.classList.add('active');
+            }
+        });
+
         this.currentSection = sectionId;
+
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
 
         // Section-specific initialization
         switch (sectionId) {
@@ -280,6 +346,33 @@ class LearnDeutschApp {
 
         // Update recent achievements
         this.updateRecentAchievements();
+
+        // Update progress summary
+        this.updateProgressSummary();
+    }
+
+    updateProgressSummary() {
+        const userData = window.storageManager?.getUserData();
+        if (!userData) return;
+
+        // Words mastered
+        const wordsEl = document.getElementById('words-mastered');
+        if (wordsEl) wordsEl.textContent = userData.statistics?.totalWordsLearned || 0;
+
+        // Total quizzes
+        const quizzesEl = document.getElementById('total-quizzes');
+        if (quizzesEl) quizzesEl.textContent = userData.exercisesCompleted || 0;
+
+        // Accuracy
+        const accuracyEl = document.getElementById('accuracy-display');
+        if (accuracyEl) {
+            const accuracy = userData.statistics?.averageAccuracy || 0;
+            accuracyEl.textContent = `${Math.round(accuracy)}%`;
+        }
+
+        // Current level
+        const levelEl = document.getElementById('current-level-display');
+        if (levelEl) levelEl.textContent = userData.currentCEFRLevel || 'A1';
     }
 
     updateDailyChallenge() {
@@ -520,12 +613,14 @@ class LearnDeutschApp {
         if (isCorrect) {
             btn.classList.add('correct');
             this.articlePractice.score++;
+            window.soundManager?.play('correct');
             if (window.interactiveExercises) {
                 const rect = btn.getBoundingClientRect();
                 window.interactiveExercises.showXPPopup(8, rect.left + rect.width / 2, rect.top);
             }
         } else {
             btn.classList.add('wrong');
+            window.soundManager?.play('wrong');
         }
 
         // Show feedback

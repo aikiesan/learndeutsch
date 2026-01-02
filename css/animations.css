@@ -99,18 +99,20 @@
     transform: scale(0.98);
 }
 
-.quiz-option .option-number {
+.quiz-option .option-number,
+.quiz-option .option-letter {
     background: var(--border-light);
     color: var(--text-secondary);
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: var(--font-weight-bold);
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-base);
     flex-shrink: 0;
+    transition: all 0.2s ease;
 }
 
 .quiz-option .option-text {
@@ -128,7 +130,8 @@
     animation: correctBounce 0.5s ease-out;
 }
 
-.quiz-option.correct .option-number {
+.quiz-option.correct .option-number,
+.quiz-option.correct .option-letter {
     background: var(--success);
     color: white;
 }
@@ -139,7 +142,8 @@
     animation: wrongShake 0.5s ease-out;
 }
 
-.quiz-option.wrong .option-number {
+.quiz-option.wrong .option-number,
+.quiz-option.wrong .option-letter {
     background: var(--error);
     color: white;
 }

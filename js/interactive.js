@@ -141,10 +141,13 @@ class InteractiveExercises {
 
         optionsEl.innerHTML = options.map((option, index) => `
             <button class="quiz-option btn-playful" data-answer="${option}" data-index="${index}">
-                <span class="option-number">${index + 1}</span>
+                <span class="option-letter">${['A', 'B', 'C', 'D'][index]}</span>
                 <span class="option-text">${option}</span>
             </button>
         `).join('');
+
+        // Play whoosh sound for new question
+        window.soundManager?.play('whoosh');
 
         // Add click listeners
         optionsEl.querySelectorAll('.quiz-option').forEach(btn => {
@@ -168,10 +171,10 @@ class InteractiveExercises {
             .filter(w => w.id !== correctWord.id && w.translation !== correctAnswer)
             .map(w => w.translation);
 
-        // Shuffle and take 2
-        wrongAnswers = this.shuffleArray(wrongAnswers).slice(0, 2);
+        // Shuffle and take 3 (for 4 total options)
+        wrongAnswers = this.shuffleArray(wrongAnswers).slice(0, 3);
 
-        // Combine and shuffle all 3 options
+        // Combine and shuffle all 4 options
         return this.shuffleArray([correctAnswer, ...wrongAnswers]);
     }
 
@@ -179,6 +182,9 @@ class InteractiveExercises {
         const btn = event.currentTarget;
         const selectedAnswer = btn.dataset.answer;
         const isCorrect = selectedAnswer === word.translation;
+
+        // Play select sound immediately
+        window.soundManager?.play('select');
 
         // Disable all buttons
         document.querySelectorAll('.quiz-option').forEach(b => {
@@ -193,17 +199,21 @@ class InteractiveExercises {
             this.currentQuiz.score++;
             this.streakCount++;
 
+            // Play correct sound
+            setTimeout(() => window.soundManager?.play('correct'), 100);
+
             // Update streak display
             const streakEl = document.getElementById('quiz-streak');
             streakEl.querySelector('.streak-number').textContent = this.streakCount;
             if (this.streakCount >= 3) {
                 streakEl.classList.add('streak-milestone');
+                window.soundManager?.play('streak');
                 setTimeout(() => streakEl.classList.remove('streak-milestone'), 600);
             }
 
             // XP popup
             const rect = btn.getBoundingClientRect();
-            this.showXPPopup(8, rect.left + rect.width / 2, rect.top);
+            this.showXPPopup(10, rect.left + rect.width / 2, rect.top);
 
             // Show mnemonic if available
             if (word.mnemonic) {
@@ -213,6 +223,9 @@ class InteractiveExercises {
             btn.classList.add('wrong');
             this.streakCount = 0;
             document.getElementById('quiz-streak').querySelector('.streak-number').textContent = 0;
+
+            // Play wrong sound
+            setTimeout(() => window.soundManager?.play('wrong'), 100);
 
             // Show correct answer with mnemonic
             this.showQuizFeedback(false, `${word.translation} - ${word.mnemonic || ''}`);
@@ -268,8 +281,8 @@ class InteractiveExercises {
         const accuracy = Math.round((this.currentQuiz.score / this.currentQuiz.words.length) * 100);
 
         // Award XP
-        const baseXP = this.currentQuiz.score * 8;
-        const bonusXP = accuracy >= 80 ? 20 : (accuracy >= 60 ? 10 : 0);
+        const baseXP = this.currentQuiz.score * 10;
+        const bonusXP = accuracy >= 80 ? 25 : (accuracy >= 60 ? 15 : 0);
         const totalXP = baseXP + bonusXP;
 
         // Record exercise completion
@@ -280,9 +293,13 @@ class InteractiveExercises {
             this.currentQuiz.words.map(w => w.id)
         );
 
-        // Show celebration
+        // Show celebration with sounds
         if (accuracy >= 80) {
             this.createConfetti(80);
+            window.soundManager?.play('celebration');
+            window.soundManager?.play('levelUp');
+        } else if (accuracy >= 50) {
+            window.soundManager?.play('correct');
         }
 
         const container = document.getElementById('writing-exercise');
@@ -495,6 +512,9 @@ class InteractiveExercises {
             this.currentTyping.score++;
             document.getElementById('typing-score-display').textContent = this.currentTyping.score;
 
+            // Play correct sound
+            window.soundManager?.play('correct');
+
             // Show success feedback
             this.showTypingFeedback(true, `✅ Correct! ${word.mnemonic || ''}`);
 
@@ -517,6 +537,7 @@ class InteractiveExercises {
 
         } else if (isAlmostCorrect) {
             input.className = 'typing-input almost-correct';
+            window.soundManager?.play('pop');
             this.showTypingFeedback(false, `Almost! The answer is: ${word.word}`, 'hint');
 
             // Let them try again or continue
@@ -526,6 +547,7 @@ class InteractiveExercises {
 
         } else {
             input.className = 'typing-input incorrect';
+            window.soundManager?.play('wrong');
             this.showTypingFeedback(false, `The correct answer is: ${word.word}`);
 
             // Update progress dot

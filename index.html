@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LearnDeutsch - Interactive German Learning Platform</title>
-    <meta name="description" content="Learn German from A1 to C2 with gamified lessons, vocabulary practice, and interactive exercises">
+    <title>LearnDeutsch - Master German Vocabulary</title>
+    <meta name="description" content="Learn German vocabulary the fun way with interactive quizzes, typing practice, and gamified lessons">
 
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/themes.css">
     <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/landing.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="app">
-        <!-- Header -->
-        <header class="header">
+        <!-- Compact Header -->
+        <header class="header compact-header">
             <div class="container">
                 <div class="header-content">
                     <div class="logo">
@@ -27,18 +28,18 @@
                     </div>
 
                     <div class="user-stats">
-                        <div class="stat">
-                            <span class="stat-label">Level</span>
+                        <div class="stat stat-level">
+                            <span class="stat-icon">⭐</span>
                             <span class="stat-value" id="user-level">1</span>
                         </div>
-                        <div class="stat">
-                            <span class="stat-label">XP</span>
+                        <div class="stat stat-xp">
+                            <span class="stat-icon">✨</span>
                             <span class="stat-value" id="user-xp">0</span>
+                            <span class="stat-label">XP</span>
                         </div>
-                        <div class="stat">
-                            <span class="stat-label">Streak</span>
+                        <div class="stat stat-streak">
+                            <span class="streak-fire" id="streak-fire">🔥</span>
                             <span class="stat-value" id="user-streak">0</span>
-                            <span class="streak-icon">🔥</span>
                         </div>
                     </div>
                 </div>
@@ -49,122 +50,171 @@
             </div>
         </header>
 
-        <!-- Navigation -->
-        <nav class="nav">
-            <div class="container">
-                <ul class="nav-list">
-                    <li><button class="nav-btn active" data-section="dashboard">Dashboard</button></li>
-                    <li><button class="nav-btn" data-section="vocabulary">Vocabulary</button></li>
-                    <li><button class="nav-btn" data-section="practice">Practice</button></li>
-                    <li><button class="nav-btn" data-section="grammar">Grammar</button></li>
-                    <li><button class="nav-btn" data-section="progress">Progress</button></li>
-                    <li><button class="nav-btn" data-section="settings">Settings</button></li>
-                </ul>
-            </div>
-        </nav>
-
         <!-- Main Content -->
         <main class="main">
             <div class="container">
 
-                <!-- Dashboard Section -->
+                <!-- Landing / Dashboard Section -->
                 <section id="dashboard" class="section active">
-                    <div class="welcome-card">
-                        <h2>Welcome back to LearnDeutsch!</h2>
-                        <p>Continue your German learning journey. Choose your current level to get started.</p>
+
+                    <!-- Hero Section -->
+                    <div class="hero-section">
+                        <div class="hero-content">
+                            <h2 class="hero-title">
+                                <span class="hero-wave">👋</span>
+                                Ready to learn German?
+                            </h2>
+                            <p class="hero-subtitle">Build your vocabulary one word at a time</p>
+                        </div>
+
+                        <!-- Main CTA - Start Quiz -->
+                        <div class="main-cta">
+                            <button class="cta-button pulse-glow" id="start-main-quiz">
+                                <span class="cta-icon">🎯</span>
+                                <span class="cta-text">
+                                    <span class="cta-title">Start Learning</span>
+                                    <span class="cta-desc">Quick vocabulary quiz</span>
+                                </span>
+                                <span class="cta-arrow">→</span>
+                            </button>
+                        </div>
                     </div>
 
-                    <div class="level-selector">
-                        <h3>Choose Your Level</h3>
-                        <div class="level-grid">
-                            <button class="level-card" data-level="A1">
-                                <div class="level-badge">A1</div>
-                                <h4>Beginner</h4>
-                                <p>Basic greetings, numbers, family</p>
-                                <div class="level-progress">
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 0%"></div>
-                                    </div>
-                                    <span class="progress-text">0/150 words</span>
+                    <!-- Learning Paths -->
+                    <div class="learning-paths">
+                        <h3 class="paths-title">Choose How to Study</h3>
+
+                        <div class="paths-grid">
+                            <!-- Quick Quiz -->
+                            <button class="path-card featured" id="quick-quiz">
+                                <div class="path-icon-wrap">
+                                    <span class="path-icon">🎯</span>
+                                    <span class="path-badge">Popular</span>
+                                </div>
+                                <h4 class="path-title">Quick Quiz</h4>
+                                <p class="path-desc">Tap the correct answer from 4 options</p>
+                                <div class="path-meta">
+                                    <span class="path-time">⚡ 2-3 min</span>
+                                    <span class="path-xp">+80 XP</span>
                                 </div>
                             </button>
 
-                            <button class="level-card" data-level="A2">
-                                <div class="level-badge">A2</div>
-                                <h4>Elementary</h4>
-                                <p>Daily activities, simple conversations</p>
-                                <div class="level-progress">
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 0%"></div>
-                                    </div>
-                                    <span class="progress-text">0/200 words</span>
+                            <!-- Typing Practice -->
+                            <button class="path-card" id="typing-practice">
+                                <div class="path-icon-wrap">
+                                    <span class="path-icon">⌨️</span>
+                                </div>
+                                <h4 class="path-title">Typing Practice</h4>
+                                <p class="path-desc">Type German words from English</p>
+                                <div class="path-meta">
+                                    <span class="path-time">⏱️ 5 min</span>
+                                    <span class="path-xp">+120 XP</span>
                                 </div>
                             </button>
 
-                            <button class="level-card disabled" data-level="B1">
-                                <div class="level-badge">B1</div>
-                                <h4>Intermediate</h4>
-                                <p>Work, travel, opinions</p>
-                                <div class="level-progress">
-                                    <span class="progress-text">Coming Soon</span>
+                            <!-- Flashcards -->
+                            <button class="path-card" id="review-vocabulary">
+                                <div class="path-icon-wrap">
+                                    <span class="path-icon">📚</span>
+                                </div>
+                                <h4 class="path-title">Flashcards</h4>
+                                <p class="path-desc">Review with spaced repetition</p>
+                                <div class="path-meta">
+                                    <span class="path-time">⏱️ 3-5 min</span>
+                                    <span class="path-xp">+60 XP</span>
+                                </div>
+                            </button>
+
+                            <!-- Grammar -->
+                            <button class="path-card" id="grammar-practice">
+                                <div class="path-icon-wrap">
+                                    <span class="path-icon">📝</span>
+                                </div>
+                                <h4 class="path-title">Grammar</h4>
+                                <p class="path-desc">Master der, die, das articles</p>
+                                <div class="path-meta">
+                                    <span class="path-time">⏱️ 3 min</span>
+                                    <span class="path-xp">+50 XP</span>
                                 </div>
                             </button>
                         </div>
                     </div>
 
-                    <div class="quick-actions">
-                        <h3>Continue Learning</h3>
-                        <div class="action-grid">
-                            <button class="action-card daily-challenge-highlight" id="daily-challenge">
-                                <div class="action-icon">🏆</div>
-                                <h4>Daily Challenge</h4>
-                                <p>Earn bonus XP today!</p>
+                    <!-- Daily Challenge Banner -->
+                    <div class="daily-banner" id="daily-challenge-banner">
+                        <div class="daily-content">
+                            <div class="daily-icon">🏆</div>
+                            <div class="daily-info">
+                                <h4 class="daily-title">Daily Challenge</h4>
+                                <p class="daily-desc" id="daily-challenge-desc">Complete today's challenge for bonus XP!</p>
+                            </div>
+                            <button class="daily-btn" id="daily-challenge">
+                                Start <span class="daily-reward">+50 XP</span>
                             </button>
+                        </div>
+                        <div class="daily-progress-bar">
+                            <div class="daily-progress-fill" id="daily-progress-fill"></div>
+                        </div>
+                    </div>
 
-                            <button class="action-card" id="quick-quiz">
-                                <div class="action-icon">🎯</div>
-                                <h4>Quick Quiz</h4>
-                                <p>Tap-to-answer vocabulary</p>
+                    <!-- Your Progress Summary -->
+                    <div class="progress-summary">
+                        <h3 class="summary-title">Your Progress</h3>
+                        <div class="summary-grid">
+                            <div class="summary-card">
+                                <div class="summary-number" id="words-mastered">0</div>
+                                <div class="summary-label">Words Learned</div>
+                            </div>
+                            <div class="summary-card">
+                                <div class="summary-number" id="total-quizzes">0</div>
+                                <div class="summary-label">Quizzes Done</div>
+                            </div>
+                            <div class="summary-card">
+                                <div class="summary-number" id="accuracy-display">0%</div>
+                                <div class="summary-label">Accuracy</div>
+                            </div>
+                            <div class="summary-card">
+                                <div class="summary-number" id="current-level-display">A1</div>
+                                <div class="summary-label">Level</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category Selection -->
+                    <div class="category-section">
+                        <h3 class="category-title">Practice by Category</h3>
+                        <div class="category-grid">
+                            <button class="category-pill" data-category="greetings">
+                                <span>👋</span> Greetings
                             </button>
-
-                            <button class="action-card" id="typing-practice">
-                                <div class="action-icon">⌨️</div>
-                                <h4>Typing Practice</h4>
-                                <p>Type German words</p>
+                            <button class="category-pill" data-category="numbers">
+                                <span>🔢</span> Numbers
                             </button>
-
-                            <button class="action-card" id="review-vocabulary">
-                                <div class="action-icon">📚</div>
-                                <h4>Flashcards</h4>
-                                <p>Review vocabulary</p>
+                            <button class="category-pill" data-category="colors">
+                                <span>🎨</span> Colors
                             </button>
-
-                            <button class="action-card" id="grammar-practice">
-                                <div class="action-icon">📝</div>
-                                <h4>Grammar</h4>
-                                <p>Learn der/die/das</p>
+                            <button class="category-pill" data-category="family">
+                                <span>👨‍👩‍👧</span> Family
                             </button>
-
-                            <button class="action-card" id="sentence-building">
-                                <div class="action-icon">🧩</div>
-                                <h4>Sentence Building</h4>
-                                <p>Build German sentences</p>
+                            <button class="category-pill" data-category="food">
+                                <span>🍎</span> Food
+                            </button>
+                            <button class="category-pill" data-category="verbs">
+                                <span>🏃</span> Verbs
+                            </button>
+                            <button class="category-pill active" data-category="all">
+                                <span>📖</span> All Words
                             </button>
                         </div>
                     </div>
 
-                    <div class="recent-achievements">
-                        <h3>Recent Achievements</h3>
-                        <div class="achievement-list" id="recent-achievements">
-                            <!-- Achievements will be populated by JavaScript -->
-                        </div>
-                    </div>
                 </section>
 
                 <!-- Vocabulary Section -->
                 <section id="vocabulary" class="section">
                     <div class="section-header">
-                        <h2>Vocabulary Learning</h2>
+                        <button class="back-btn" data-section="dashboard">← Back</button>
+                        <h2>Vocabulary</h2>
                         <div class="section-controls">
                             <select id="vocabulary-category">
                                 <option value="all">All Categories</option>
@@ -172,6 +222,7 @@
                                 <option value="numbers">Numbers</option>
                                 <option value="colors">Colors</option>
                                 <option value="family">Family</option>
+                                <option value="food">Food</option>
                                 <option value="verbs">Basic Verbs</option>
                             </select>
                             <button class="btn btn-primary" id="start-flashcards">Start Flashcards</button>
@@ -226,11 +277,11 @@
                     </div>
                 </section>
 
-                <!-- Practice Section -->
+                <!-- Practice Section (Quiz happens here) -->
                 <section id="practice" class="section">
-                    <div class="section-header">
-                        <h2>Practice Exercises</h2>
-                        <p style="color: var(--text-muted);">Interactive exercises to boost your German skills</p>
+                    <div class="section-header practice-header">
+                        <button class="back-btn" data-section="dashboard">← Back</button>
+                        <h2>Practice</h2>
                     </div>
 
                     <div class="writing-exercise" id="writing-exercise">
@@ -241,71 +292,68 @@
                 <!-- Grammar Section -->
                 <section id="grammar" class="section">
                     <div class="section-header">
+                        <button class="back-btn" data-section="dashboard">← Back</button>
                         <h2>German Grammar</h2>
-                        <p style="color: var(--text-muted);">Master the building blocks of German</p>
                     </div>
 
                     <div class="grammar-lessons" id="grammar-content">
                         <!-- Grammar Overview Card -->
-                        <div class="grammar-intro" style="background: var(--bg-card); padding: 1.5rem; border-radius: var(--border-radius-lg); margin-bottom: 2rem; border-left: 4px solid var(--accent-color);">
-                            <h3 style="margin-bottom: 0.5rem;">Understanding German Articles</h3>
-                            <p style="color: var(--text-secondary);">German has three genders for nouns. Learning the article with each word is essential!</p>
+                        <div class="grammar-intro">
+                            <h3>Understanding German Articles</h3>
+                            <p>German has three genders for nouns. Learning the article with each word is essential!</p>
                         </div>
 
                         <!-- Article Cards -->
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
-                            <div class="grammar-card" style="background: var(--bg-card); border-radius: var(--border-radius-lg); padding: 1.5rem; border: 3px solid #2563EB;">
-                                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                        <div class="article-cards">
+                            <div class="grammar-card der-card">
+                                <div class="article-header">
                                     <span class="article-badge der">der</span>
-                                    <h4 style="margin: 0;">Masculine</h4>
+                                    <h4>Masculine</h4>
                                 </div>
-                                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">Used for male people, many professions, days, months, seasons</p>
-                                <div style="font-size: 0.9rem;">
-                                    <strong>Examples:</strong><br>
-                                    <span style="color: #2563EB;">der</span> Mann (man) 👨<br>
-                                    <span style="color: #2563EB;">der</span> Vater (father) 👨<br>
-                                    <span style="color: #2563EB;">der</span> Tisch (table) 🪑
+                                <p class="article-hint">Male people, professions, days, months, seasons</p>
+                                <div class="article-examples">
+                                    <span><b class="der-text">der</b> Mann (man) 👨</span>
+                                    <span><b class="der-text">der</b> Vater (father) 👨</span>
+                                    <span><b class="der-text">der</b> Tisch (table) 🪑</span>
                                 </div>
                             </div>
 
-                            <div class="grammar-card" style="background: var(--bg-card); border-radius: var(--border-radius-lg); padding: 1.5rem; border: 3px solid #DB2777;">
-                                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <div class="grammar-card die-card">
+                                <div class="article-header">
                                     <span class="article-badge die">die</span>
-                                    <h4 style="margin: 0;">Feminine</h4>
+                                    <h4>Feminine</h4>
                                 </div>
-                                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">Used for female people, many -ung, -heit, -keit endings</p>
-                                <div style="font-size: 0.9rem;">
-                                    <strong>Examples:</strong><br>
-                                    <span style="color: #DB2777;">die</span> Frau (woman) 👩<br>
-                                    <span style="color: #DB2777;">die</span> Mutter (mother) 👩<br>
-                                    <span style="color: #DB2777;">die</span> Lampe (lamp) 💡
+                                <p class="article-hint">Female people, -ung, -heit, -keit endings</p>
+                                <div class="article-examples">
+                                    <span><b class="die-text">die</b> Frau (woman) 👩</span>
+                                    <span><b class="die-text">die</b> Mutter (mother) 👩</span>
+                                    <span><b class="die-text">die</b> Lampe (lamp) 💡</span>
                                 </div>
                             </div>
 
-                            <div class="grammar-card" style="background: var(--bg-card); border-radius: var(--border-radius-lg); padding: 1.5rem; border: 3px solid #059669;">
-                                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <div class="grammar-card das-card">
+                                <div class="article-header">
                                     <span class="article-badge das">das</span>
-                                    <h4 style="margin: 0;">Neuter</h4>
+                                    <h4>Neuter</h4>
                                 </div>
-                                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">Used for -chen, -lein diminutives, many -um, -ment endings</p>
-                                <div style="font-size: 0.9rem;">
-                                    <strong>Examples:</strong><br>
-                                    <span style="color: #059669;">das</span> Kind (child) 🧒<br>
-                                    <span style="color: #059669;">das</span> Haus (house) 🏠<br>
-                                    <span style="color: #059669;">das</span> Buch (book) 📚
+                                <p class="article-hint">-chen, -lein diminutives, -um, -ment endings</p>
+                                <div class="article-examples">
+                                    <span><b class="das-text">das</b> Kind (child) 🧒</span>
+                                    <span><b class="das-text">das</b> Haus (house) 🏠</span>
+                                    <span><b class="das-text">das</b> Buch (book) 📚</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Grammar Practice Button -->
-                        <div style="text-align: center;">
-                            <button class="btn btn-primary btn-playful" id="start-article-practice" style="font-size: 1.1rem; padding: 1rem 2rem;">
+                        <div class="grammar-cta">
+                            <button class="btn btn-primary btn-playful btn-lg" id="start-article-practice">
                                 🎯 Practice Articles (der/die/das)
                             </button>
                         </div>
 
                         <!-- Article Practice Container -->
-                        <div id="article-practice-container" class="hidden" style="margin-top: 2rem;">
+                        <div id="article-practice-container" class="hidden">
                             <!-- Will be populated by JavaScript -->
                         </div>
                     </div>
@@ -314,6 +362,7 @@
                 <!-- Progress Section -->
                 <section id="progress" class="section">
                     <div class="section-header">
+                        <button class="back-btn" data-section="dashboard">← Back</button>
                         <h2>Your Progress</h2>
                     </div>
 
@@ -327,7 +376,7 @@
                                 </div>
                                 <div class="stat-item">
                                     <span class="stat-value" id="exercises-completed">0</span>
-                                    <span class="stat-label">Exercises Completed</span>
+                                    <span class="stat-label">Exercises Done</span>
                                 </div>
                                 <div class="stat-item">
                                     <span class="stat-value" id="current-streak-display">0</span>
@@ -335,7 +384,7 @@
                                 </div>
                                 <div class="stat-item">
                                     <span class="stat-value" id="longest-streak">0</span>
-                                    <span class="stat-label">Longest Streak</span>
+                                    <span class="stat-label">Best Streak</span>
                                 </div>
                             </div>
                         </div>
@@ -346,25 +395,19 @@
                                 <!-- Achievements will be populated by JavaScript -->
                             </div>
                         </div>
-
-                        <div class="study-calendar">
-                            <h3>Study Calendar</h3>
-                            <div class="calendar-heatmap" id="study-heatmap">
-                                <!-- Calendar will be populated by JavaScript -->
-                            </div>
-                        </div>
                     </div>
                 </section>
 
                 <!-- Settings Section -->
                 <section id="settings" class="section">
                     <div class="section-header">
+                        <button class="back-btn" data-section="dashboard">← Back</button>
                         <h2>Settings</h2>
                     </div>
 
                     <div class="settings-grid">
                         <div class="setting-card">
-                            <h3>Learning Preferences</h3>
+                            <h3>Learning</h3>
                             <div class="setting-item">
                                 <label for="daily-goal">Daily Word Goal</label>
                                 <select id="daily-goal">
@@ -374,26 +417,20 @@
                                     <option value="20">20 words</option>
                                 </select>
                             </div>
-                            <div class="setting-item">
-                                <label for="difficulty-preference">Difficulty Preference</label>
-                                <select id="difficulty-preference">
-                                    <option value="easy">Easy</option>
-                                    <option value="balanced" selected>Balanced</option>
-                                    <option value="challenging">Challenging</option>
-                                </select>
-                            </div>
                         </div>
 
                         <div class="setting-card">
-                            <h3>Interface</h3>
+                            <h3>Sound & Display</h3>
                             <div class="setting-item">
-                                <label>
-                                    <input type="checkbox" id="dark-mode"> Dark Mode
+                                <label class="toggle-label">
+                                    <input type="checkbox" id="sound-effects" checked>
+                                    <span class="toggle-text">Sound Effects</span>
                                 </label>
                             </div>
                             <div class="setting-item">
-                                <label>
-                                    <input type="checkbox" id="sound-effects" checked> Sound Effects
+                                <label class="toggle-label">
+                                    <input type="checkbox" id="dark-mode">
+                                    <span class="toggle-text">Dark Mode</span>
                                 </label>
                             </div>
                         </div>
@@ -405,11 +442,36 @@
                         </div>
                     </div>
                 </section>
+
             </div>
         </main>
 
-        <!-- Footer -->
-        <footer class="footer">
+        <!-- Bottom Navigation (Mobile-friendly) -->
+        <nav class="bottom-nav">
+            <button class="nav-item active" data-section="dashboard">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-label">Home</span>
+            </button>
+            <button class="nav-item" data-section="vocabulary">
+                <span class="nav-icon">📚</span>
+                <span class="nav-label">Words</span>
+            </button>
+            <button class="nav-item nav-quiz" id="nav-quiz-btn">
+                <span class="nav-icon">🎯</span>
+                <span class="nav-label">Quiz</span>
+            </button>
+            <button class="nav-item" data-section="progress">
+                <span class="nav-icon">📊</span>
+                <span class="nav-label">Stats</span>
+            </button>
+            <button class="nav-item" data-section="settings">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-label">Settings</span>
+            </button>
+        </nav>
+
+        <!-- Footer (hidden on mobile) -->
+        <footer class="footer desktop-only">
             <div class="container">
                 <p>&copy; 2026 LearnDeutsch. Built for German language learners worldwide.</p>
             </div>
@@ -422,7 +484,7 @@
         <p>Loading...</p>
     </div>
 
-    <!-- Modal for achievements -->
+    <!-- Achievement Modal -->
     <div class="modal hidden" id="achievement-modal">
         <div class="modal-content">
             <button class="modal-close" id="modal-close">&times;</button>
@@ -439,6 +501,7 @@
     <script src="js/gamification.js"></script>
     <script src="js/vocabulary.js"></script>
     <script src="js/exercises.js"></script>
+    <script src="js/sounds.js"></script>
     <script src="js/interactive.js"></script>
     <script src="js/progress.js"></script>
     <script src="js/app.js"></script>
