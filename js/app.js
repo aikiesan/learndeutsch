@@ -76,12 +76,32 @@ class LearnDeutschApp {
             this.startVocabularyReview();
         });
 
-        document.getElementById('writing-exercise')?.addEventListener('click', () => {
-            this.startWritingExercise();
+        document.getElementById('quick-quiz')?.addEventListener('click', () => {
+            this.navigateToSection('practice');
+            setTimeout(() => window.interactiveExercises?.startQuiz(), 300);
+        });
+
+        document.getElementById('typing-practice')?.addEventListener('click', () => {
+            this.navigateToSection('practice');
+            setTimeout(() => window.interactiveExercises?.startTyping(), 300);
+        });
+
+        document.getElementById('grammar-practice')?.addEventListener('click', () => {
+            this.navigateToSection('grammar');
+        });
+
+        document.getElementById('sentence-building')?.addEventListener('click', () => {
+            this.navigateToSection('practice');
+            setTimeout(() => window.exerciseManager?.startExercise('sentenceConstruction'), 300);
         });
 
         document.getElementById('daily-challenge')?.addEventListener('click', () => {
             this.startDailyChallenge();
+        });
+
+        // Grammar article practice
+        document.getElementById('start-article-practice')?.addEventListener('click', () => {
+            this.startArticlePractice();
         });
 
         // Vocabulary controls
@@ -191,8 +211,11 @@ class LearnDeutschApp {
             case 'vocabulary':
                 this.initVocabularySection();
                 break;
-            case 'writing':
-                this.initWritingSection();
+            case 'practice':
+                this.initPracticeSection();
+                break;
+            case 'grammar':
+                this.initGrammarSection();
                 break;
             case 'progress':
                 this.initProgressSection();
@@ -352,21 +375,28 @@ class LearnDeutschApp {
     }
 
     startDailyChallenge() {
-        const challenge = window.gamificationSystem?.getDailyChallenge();
+        // Use the interactive daily challenge system
+        if (window.interactiveExercises) {
+            this.navigateToSection('practice');
+            setTimeout(() => {
+                window.interactiveExercises.startDailyChallenge();
+            }, 300);
+        } else {
+            // Fallback to old system
+            const challenge = window.gamificationSystem?.getDailyChallenge();
+            if (!challenge) return;
 
-        if (!challenge) return;
-
-        switch (challenge.id) {
-            case 'vocab_review':
-                this.startVocabularyReview();
-                break;
-            case 'perfect_accuracy':
-                this.showNotification('Complete any exercise with 100% accuracy to complete this challenge!', 'info');
-                this.navigateToSection('vocabulary');
-                break;
-            case 'study_time':
-                this.showNotification('Study for 30 minutes today to complete this challenge!', 'info');
-                break;
+            switch (challenge.id) {
+                case 'vocab_review':
+                    this.startVocabularyReview();
+                    break;
+                case 'perfect_accuracy':
+                    this.showNotification('Complete any exercise with 100% accuracy!', 'info');
+                    this.navigateToSection('vocabulary');
+                    break;
+                default:
+                    this.navigateToSection('vocabulary');
+            }
         }
     }
 
@@ -383,11 +413,180 @@ class LearnDeutschApp {
         if (vocabularyList) vocabularyList.style.display = 'grid';
     }
 
-    initWritingSection() {
-        // Show exercise selection if no exercise is active
-        if (!window.exerciseManager?.currentExercise) {
-            window.exerciseManager?.showExerciseSelection();
+    initPracticeSection() {
+        // Show exercise selection
+        if (window.interactiveExercises) {
+            window.interactiveExercises.showExerciseSelector();
         }
+    }
+
+    initGrammarSection() {
+        // Grammar section is pre-rendered in HTML
+        // Just ensure article practice button is set up
+        const practiceBtn = document.getElementById('start-article-practice');
+        if (practiceBtn && !practiceBtn.hasAttribute('data-initialized')) {
+            practiceBtn.setAttribute('data-initialized', 'true');
+        }
+    }
+
+    startArticlePractice() {
+        const container = document.getElementById('article-practice-container');
+        if (!container) return;
+
+        container.classList.remove('hidden');
+
+        // Get nouns with articles from vocabulary
+        const words = window.vocabularyManager?.getAllWords() || [];
+        const nouns = words.filter(w => w.article && ['der', 'die', 'das'].includes(w.article));
+
+        if (nouns.length < 5) {
+            container.innerHTML = '<p>Not enough nouns available for practice.</p>';
+            return;
+        }
+
+        // Shuffle and take 10
+        const practiceWords = this.shuffleArray(nouns).slice(0, 10);
+
+        this.articlePractice = {
+            words: practiceWords,
+            currentIndex: 0,
+            score: 0
+        };
+
+        this.showArticleQuestion();
+    }
+
+    showArticleQuestion() {
+        const container = document.getElementById('article-practice-container');
+        if (!container || this.articlePractice.currentIndex >= this.articlePractice.words.length) {
+            this.endArticlePractice();
+            return;
+        }
+
+        const word = this.articlePractice.words[this.articlePractice.currentIndex];
+        // Remove article from word display
+        const wordOnly = word.word.replace(/^(der|die|das)\s+/i, '');
+
+        container.innerHTML = `
+            <div class="quiz-container" style="max-width: 500px; margin: 0 auto;">
+                <div class="quiz-progress" style="margin-bottom: 1.5rem;">
+                    <span>${this.articlePractice.currentIndex + 1} / ${this.articlePractice.words.length}</span>
+                    <span>Score: ${this.articlePractice.score}</span>
+                </div>
+
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">${word.emoji || '📦'}</div>
+                    <div style="font-size: 0.9rem; color: var(--text-muted);">What article goes with...</div>
+                    <div style="font-size: 2rem; font-weight: bold; margin: 0.5rem 0;">___ ${wordOnly}</div>
+                    <div style="color: var(--text-secondary);">(${word.translation})</div>
+                </div>
+
+                <div style="display: flex; gap: 1rem; justify-content: center;">
+                    <button class="quiz-option btn-playful" data-article="der" style="flex: 1; max-width: 120px;">
+                        <span class="article-badge der" style="font-size: 1.2rem;">der</span>
+                    </button>
+                    <button class="quiz-option btn-playful" data-article="die" style="flex: 1; max-width: 120px;">
+                        <span class="article-badge die" style="font-size: 1.2rem;">die</span>
+                    </button>
+                    <button class="quiz-option btn-playful" data-article="das" style="flex: 1; max-width: 120px;">
+                        <span class="article-badge das" style="font-size: 1.2rem;">das</span>
+                    </button>
+                </div>
+
+                <div id="article-feedback" class="hidden" style="margin-top: 1.5rem; padding: 1rem; border-radius: 0.5rem; text-align: center;"></div>
+            </div>
+        `;
+
+        // Add click listeners
+        container.querySelectorAll('.quiz-option').forEach(btn => {
+            btn.addEventListener('click', (e) => this.handleArticleAnswer(e, word));
+        });
+    }
+
+    handleArticleAnswer(event, word) {
+        const btn = event.currentTarget;
+        const selected = btn.dataset.article;
+        const correct = word.article;
+        const isCorrect = selected === correct;
+
+        // Disable buttons
+        document.querySelectorAll('.quiz-option').forEach(b => {
+            b.classList.add('disabled');
+            if (b.dataset.article === correct) {
+                b.classList.add('correct');
+            }
+        });
+
+        if (isCorrect) {
+            btn.classList.add('correct');
+            this.articlePractice.score++;
+            if (window.interactiveExercises) {
+                const rect = btn.getBoundingClientRect();
+                window.interactiveExercises.showXPPopup(8, rect.left + rect.width / 2, rect.top);
+            }
+        } else {
+            btn.classList.add('wrong');
+        }
+
+        // Show feedback
+        const feedback = document.getElementById('article-feedback');
+        feedback.className = isCorrect ? 'correct' : 'incorrect';
+        feedback.style.background = isCorrect ? 'rgba(16, 185, 129, 0.1)' : 'rgba(239, 68, 68, 0.1)';
+        feedback.style.border = `1px solid ${isCorrect ? 'var(--success)' : 'var(--error)'}`;
+        feedback.innerHTML = isCorrect ?
+            `✅ Correct! <strong>${word.word}</strong>` :
+            `❌ It's <strong>${word.word}</strong> ${word.mnemonic ? `<br><small>${word.mnemonic}</small>` : ''}`;
+        feedback.classList.remove('hidden');
+
+        // Next question
+        setTimeout(() => {
+            this.articlePractice.currentIndex++;
+            this.showArticleQuestion();
+        }, isCorrect ? 1200 : 2000);
+    }
+
+    endArticlePractice() {
+        const container = document.getElementById('article-practice-container');
+        const accuracy = Math.round((this.articlePractice.score / this.articlePractice.words.length) * 100);
+
+        // Award XP
+        const xp = this.articlePractice.score * 8;
+        window.gamificationSystem?.addXP(xp);
+
+        if (accuracy >= 80 && window.interactiveExercises) {
+            window.interactiveExercises.createConfetti(50);
+        }
+
+        container.innerHTML = `
+            <div class="celebration-content" style="margin: 0 auto; max-width: 400px; text-align: center;">
+                <div style="font-size: 4rem;">${accuracy >= 80 ? '🎉' : accuracy >= 50 ? '👍' : '💪'}</div>
+                <h2 style="color: var(--success); margin: 1rem 0;">${accuracy >= 80 ? 'Wunderbar!' : 'Good effort!'}</h2>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
+                    <div>
+                        <div style="font-size: 2rem; font-weight: bold;">${accuracy}%</div>
+                        <div style="color: var(--text-muted);">Accuracy</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--xp-color);">+${xp}</div>
+                        <div style="color: var(--text-muted);">XP</div>
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-playful" onclick="window.learnDeutschApp.startArticlePractice()">
+                    Practice Again
+                </button>
+            </div>
+        `;
+
+        window.gamificationSystem?.updateUI();
+    }
+
+    shuffleArray(array) {
+        const shuffled = [...array];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
     }
 
     initProgressSection() {

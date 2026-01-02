@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/animations.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,7 +55,8 @@
                 <ul class="nav-list">
                     <li><button class="nav-btn active" data-section="dashboard">Dashboard</button></li>
                     <li><button class="nav-btn" data-section="vocabulary">Vocabulary</button></li>
-                    <li><button class="nav-btn" data-section="writing">Writing</button></li>
+                    <li><button class="nav-btn" data-section="practice">Practice</button></li>
+                    <li><button class="nav-btn" data-section="grammar">Grammar</button></li>
                     <li><button class="nav-btn" data-section="progress">Progress</button></li>
                     <li><button class="nav-btn" data-section="settings">Settings</button></li>
                 </ul>
@@ -113,22 +115,40 @@
                     <div class="quick-actions">
                         <h3>Continue Learning</h3>
                         <div class="action-grid">
-                            <button class="action-card" id="review-vocabulary">
-                                <div class="action-icon">📚</div>
-                                <h4>Review Vocabulary</h4>
-                                <p>Practice your flashcards</p>
-                            </button>
-
-                            <button class="action-card" id="writing-exercise">
-                                <div class="action-icon">✏️</div>
-                                <h4>Writing Practice</h4>
-                                <p>Complete sentences and translations</p>
-                            </button>
-
-                            <button class="action-card" id="daily-challenge">
+                            <button class="action-card daily-challenge-highlight" id="daily-challenge">
                                 <div class="action-icon">🏆</div>
                                 <h4>Daily Challenge</h4>
-                                <p>Earn bonus XP today</p>
+                                <p>Earn bonus XP today!</p>
+                            </button>
+
+                            <button class="action-card" id="quick-quiz">
+                                <div class="action-icon">🎯</div>
+                                <h4>Quick Quiz</h4>
+                                <p>Tap-to-answer vocabulary</p>
+                            </button>
+
+                            <button class="action-card" id="typing-practice">
+                                <div class="action-icon">⌨️</div>
+                                <h4>Typing Practice</h4>
+                                <p>Type German words</p>
+                            </button>
+
+                            <button class="action-card" id="review-vocabulary">
+                                <div class="action-icon">📚</div>
+                                <h4>Flashcards</h4>
+                                <p>Review vocabulary</p>
+                            </button>
+
+                            <button class="action-card" id="grammar-practice">
+                                <div class="action-icon">📝</div>
+                                <h4>Grammar</h4>
+                                <p>Learn der/die/das</p>
+                            </button>
+
+                            <button class="action-card" id="sentence-building">
+                                <div class="action-icon">🧩</div>
+                                <h4>Sentence Building</h4>
+                                <p>Build German sentences</p>
                             </button>
                         </div>
                     </div>
@@ -206,21 +226,88 @@
                     </div>
                 </section>
 
-                <!-- Writing Section -->
-                <section id="writing" class="section">
+                <!-- Practice Section -->
+                <section id="practice" class="section">
                     <div class="section-header">
-                        <h2>Writing Practice</h2>
-                        <div class="section-controls">
-                            <select id="writing-type">
-                                <option value="sentence-construction">Sentence Construction</option>
-                                <option value="translation">Translation</option>
-                                <option value="free-writing">Free Writing</option>
-                            </select>
-                        </div>
+                        <h2>Practice Exercises</h2>
+                        <p style="color: var(--text-muted);">Interactive exercises to boost your German skills</p>
                     </div>
 
                     <div class="writing-exercise" id="writing-exercise">
                         <!-- Exercise content will be populated by JavaScript -->
+                    </div>
+                </section>
+
+                <!-- Grammar Section -->
+                <section id="grammar" class="section">
+                    <div class="section-header">
+                        <h2>German Grammar</h2>
+                        <p style="color: var(--text-muted);">Master the building blocks of German</p>
+                    </div>
+
+                    <div class="grammar-lessons" id="grammar-content">
+                        <!-- Grammar Overview Card -->
+                        <div class="grammar-intro" style="background: var(--bg-card); padding: 1.5rem; border-radius: var(--border-radius-lg); margin-bottom: 2rem; border-left: 4px solid var(--accent-color);">
+                            <h3 style="margin-bottom: 0.5rem;">Understanding German Articles</h3>
+                            <p style="color: var(--text-secondary);">German has three genders for nouns. Learning the article with each word is essential!</p>
+                        </div>
+
+                        <!-- Article Cards -->
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                            <div class="grammar-card" style="background: var(--bg-card); border-radius: var(--border-radius-lg); padding: 1.5rem; border: 3px solid #2563EB;">
+                                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                                    <span class="article-badge der">der</span>
+                                    <h4 style="margin: 0;">Masculine</h4>
+                                </div>
+                                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">Used for male people, many professions, days, months, seasons</p>
+                                <div style="font-size: 0.9rem;">
+                                    <strong>Examples:</strong><br>
+                                    <span style="color: #2563EB;">der</span> Mann (man) 👨<br>
+                                    <span style="color: #2563EB;">der</span> Vater (father) 👨<br>
+                                    <span style="color: #2563EB;">der</span> Tisch (table) 🪑
+                                </div>
+                            </div>
+
+                            <div class="grammar-card" style="background: var(--bg-card); border-radius: var(--border-radius-lg); padding: 1.5rem; border: 3px solid #DB2777;">
+                                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                                    <span class="article-badge die">die</span>
+                                    <h4 style="margin: 0;">Feminine</h4>
+                                </div>
+                                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">Used for female people, many -ung, -heit, -keit endings</p>
+                                <div style="font-size: 0.9rem;">
+                                    <strong>Examples:</strong><br>
+                                    <span style="color: #DB2777;">die</span> Frau (woman) 👩<br>
+                                    <span style="color: #DB2777;">die</span> Mutter (mother) 👩<br>
+                                    <span style="color: #DB2777;">die</span> Lampe (lamp) 💡
+                                </div>
+                            </div>
+
+                            <div class="grammar-card" style="background: var(--bg-card); border-radius: var(--border-radius-lg); padding: 1.5rem; border: 3px solid #059669;">
+                                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                                    <span class="article-badge das">das</span>
+                                    <h4 style="margin: 0;">Neuter</h4>
+                                </div>
+                                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">Used for -chen, -lein diminutives, many -um, -ment endings</p>
+                                <div style="font-size: 0.9rem;">
+                                    <strong>Examples:</strong><br>
+                                    <span style="color: #059669;">das</span> Kind (child) 🧒<br>
+                                    <span style="color: #059669;">das</span> Haus (house) 🏠<br>
+                                    <span style="color: #059669;">das</span> Buch (book) 📚
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Grammar Practice Button -->
+                        <div style="text-align: center;">
+                            <button class="btn btn-primary btn-playful" id="start-article-practice" style="font-size: 1.1rem; padding: 1rem 2rem;">
+                                🎯 Practice Articles (der/die/das)
+                            </button>
+                        </div>
+
+                        <!-- Article Practice Container -->
+                        <div id="article-practice-container" class="hidden" style="margin-top: 2rem;">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
                     </div>
                 </section>
 
@@ -352,6 +439,7 @@
     <script src="js/gamification.js"></script>
     <script src="js/vocabulary.js"></script>
     <script src="js/exercises.js"></script>
+    <script src="js/interactive.js"></script>
     <script src="js/progress.js"></script>
     <script src="js/app.js"></script>
 </body>
