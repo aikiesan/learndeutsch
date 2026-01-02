@@ -28,7 +28,8 @@ class InteractiveExercises {
         container.className = 'confetti-container';
         document.body.appendChild(container);
 
-        const colors = ['#DD0000', '#FFCC00', '#10B981', '#3B82F6', '#8B5CF6', '#EC4899'];
+        // Cozy pastel confetti colors
+        const colors = ['#FFDAB3', '#E8D5E8', '#C8E6C9', '#B3D9E8', '#F5C6CB', '#FFD54F', '#FFAB91', '#B39DDB'];
         const shapes = ['circle', 'square', 'triangle'];
 
         for (let i = 0; i < count; i++) {
