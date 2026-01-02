@@ -1,17 +1,38 @@
-// Interactive Exercises - Quiz, Typing, Daily Challenges
+// Interactive Exercises - Quiz, Typing, Challenge Modes
 
 class InteractiveExercises {
     constructor() {
         this.currentQuiz = null;
         this.currentTyping = null;
-        this.dailyChallenge = null;
         this.streakCount = 0;
+        this.currentLevel = 'A1';
+
+        // Session timer
+        this.sessionStartTime = Date.now();
+        this.sessionTimerInterval = null;
+
+        // Bonus tracking
+        this.bonuses = {
+            speed: { threshold: 3000, xp: 5, name: 'Speed Bonus' },
+            streak: { thresholds: [3, 5, 10], xp: [10, 25, 50], name: 'Streak Bonus' },
+            accuracy: { threshold: 100, xp: 30, name: 'Perfect Score' },
+            completion: { xp: 20, name: 'Completion Bonus' },
+            combo: { threshold: 2, xp: 15, name: 'Combo Bonus' }
+        };
+        this.exerciseTypesCompleted = new Set();
+
         this.init();
     }
 
     init() {
         // Wait for vocabulary manager to load
         this.waitForVocabulary();
+        // Start session timer
+        this.startSessionTimer();
+        // Setup challenge mode listeners
+        this.setupChallengeModeListeners();
+        // Setup level selector
+        this.setupLevelSelector();
     }
 
     waitForVocabulary() {
@@ -20,6 +41,207 @@ class InteractiveExercises {
         } else {
             setTimeout(() => this.waitForVocabulary(), 100);
         }
+    }
+
+    // ==================== SESSION TIMER ====================
+    startSessionTimer() {
+        this.sessionStartTime = Date.now();
+        this.updateSessionTimerDisplay();
+
+        this.sessionTimerInterval = setInterval(() => {
+            this.updateSessionTimerDisplay();
+        }, 1000);
+    }
+
+    updateSessionTimerDisplay() {
+        const elapsed = Math.floor((Date.now() - this.sessionStartTime) / 1000);
+        const hours = Math.floor(elapsed / 3600);
+        const minutes = Math.floor((elapsed % 3600) / 60);
+        const seconds = elapsed % 60;
+
+        let display;
+        if (hours > 0) {
+            display = `${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        } else {
+            display = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        const timerEl = document.getElementById('session-timer');
+        if (timerEl) {
+            timerEl.textContent = display;
+        }
+    }
+
+    // ==================== LEVEL SELECTOR ====================
+    setupLevelSelector() {
+        document.addEventListener('click', (e) => {
+            const levelBtn = e.target.closest('.level-btn');
+            if (levelBtn) {
+                const level = levelBtn.dataset.level;
+                this.setLevel(level);
+            }
+        });
+    }
+
+    setLevel(level) {
+        this.currentLevel = level;
+
+        // Update UI
+        document.querySelectorAll('.level-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.level === level);
+        });
+
+        // Update vocabulary manager level
+        if (window.vocabularyManager) {
+            window.vocabularyManager.setLevel(level);
+        }
+
+        // Update category grid based on level
+        this.updateCategoryGrid(level);
+    }
+
+    updateCategoryGrid(level) {
+        const grid = document.getElementById('category-grid');
+        if (!grid) return;
+
+        // A2 has different/additional categories
+        const a2Categories = `
+            <button class="category-pill" data-category="travel">
+                <span>✈️</span> Travel
+            </button>
+            <button class="category-pill" data-category="work">
+                <span>💼</span> Work
+            </button>
+            <button class="category-pill" data-category="city">
+                <span>🏙️</span> City Life
+            </button>
+            <button class="category-pill" data-category="transport">
+                <span>🚇</span> Transport
+            </button>
+            <button class="category-pill" data-category="health">
+                <span>🏥</span> Health
+            </button>
+            <button class="category-pill" data-category="shopping">
+                <span>🛒</span> Shopping
+            </button>
+            <button class="category-pill" data-category="restaurant">
+                <span>🍽️</span> Restaurant
+            </button>
+            <button class="category-pill" data-category="accommodation">
+                <span>🏨</span> Accommodation
+            </button>
+            <button class="category-pill active" data-category="all">
+                <span>📖</span> All Words
+            </button>
+        `;
+
+        const a1Categories = `
+            <button class="category-pill" data-category="greetings">
+                <span>👋</span> Greetings
+            </button>
+            <button class="category-pill" data-category="numbers">
+                <span>🔢</span> Numbers
+            </button>
+            <button class="category-pill" data-category="colors">
+                <span>🎨</span> Colors
+            </button>
+            <button class="category-pill" data-category="family">
+                <span>👨‍👩‍👧</span> Family
+            </button>
+            <button class="category-pill" data-category="food">
+                <span>🍎</span> Food
+            </button>
+            <button class="category-pill" data-category="verbs">
+                <span>🏃</span> Verbs
+            </button>
+            <button class="category-pill active" data-category="all">
+                <span>📖</span> All Words
+            </button>
+        `;
+
+        grid.innerHTML = level === 'A2' ? a2Categories : a1Categories;
+    }
+
+    // ==================== CHALLENGE MODE LISTENERS ====================
+    setupChallengeModeListeners() {
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('#timed-challenge')) {
+                this.startTimedChallenge();
+            } else if (e.target.closest('#survival-mode')) {
+                this.startSurvivalMode();
+            } else if (e.target.closest('#reverse-quiz')) {
+                this.startReverseQuiz();
+            }
+        });
+    }
+
+    // ==================== BONUS SYSTEM ====================
+    showBonusPopup(bonusType, amount, icon = '🎁') {
+        const popup = document.createElement('div');
+        popup.className = 'bonus-popup';
+        popup.innerHTML = `
+            <div class="bonus-icon">${icon}</div>
+            <div class="bonus-title">${bonusType}</div>
+            <div class="bonus-amount">+${amount} XP</div>
+        `;
+        document.body.appendChild(popup);
+
+        window.soundManager?.play('celebration');
+
+        setTimeout(() => {
+            popup.style.animation = 'bonusPopOut 0.3s ease-out forwards';
+            setTimeout(() => popup.remove(), 300);
+        }, 1500);
+    }
+
+    calculateBonuses(quizResult) {
+        const bonuses = [];
+
+        // Speed bonus (if answered quickly)
+        if (quizResult.avgTimePerQuestion && quizResult.avgTimePerQuestion < this.bonuses.speed.threshold) {
+            bonuses.push({ type: 'speed', xp: this.bonuses.speed.xp, icon: '⚡' });
+        }
+
+        // Streak bonus
+        if (this.streakCount >= 10) {
+            bonuses.push({ type: 'streak', xp: this.bonuses.streak.xp[2], icon: '🔥' });
+        } else if (this.streakCount >= 5) {
+            bonuses.push({ type: 'streak', xp: this.bonuses.streak.xp[1], icon: '🔥' });
+        } else if (this.streakCount >= 3) {
+            bonuses.push({ type: 'streak', xp: this.bonuses.streak.xp[0], icon: '🔥' });
+        }
+
+        // Accuracy bonus (perfect score)
+        if (quizResult.accuracy === 100) {
+            bonuses.push({ type: 'accuracy', xp: this.bonuses.accuracy.xp, icon: '💯' });
+        }
+
+        // Completion bonus
+        bonuses.push({ type: 'completion', xp: this.bonuses.completion.xp, icon: '✅' });
+
+        // Combo bonus (multiple exercise types in session)
+        this.exerciseTypesCompleted.add(quizResult.type);
+        if (this.exerciseTypesCompleted.size >= this.bonuses.combo.threshold) {
+            bonuses.push({ type: 'combo', xp: this.bonuses.combo.xp, icon: '🎯' });
+        }
+
+        return bonuses;
+    }
+
+    awardBonuses(bonuses) {
+        let totalBonus = 0;
+        bonuses.forEach((bonus, index) => {
+            totalBonus += bonus.xp;
+            setTimeout(() => {
+                this.showBonusPopup(this.bonuses[bonus.type].name, bonus.xp, bonus.icon);
+            }, index * 800);
+        });
+
+        if (totalBonus > 0) {
+            window.gamificationSystem.addXP(totalBonus);
+        }
+
+        return totalBonus;
     }
 
     // ==================== CONFETTI SYSTEM ====================
@@ -677,130 +899,619 @@ class InteractiveExercises {
         window.gamificationSystem.updateUI();
     }
 
-    // ==================== DAILY CHALLENGE ====================
-    generateDailyChallenge() {
-        const today = new Date().toDateString();
-        const savedChallenge = localStorage.getItem('dailyChallenge');
+    // ==================== TIMED CHALLENGE MODE ====================
+    startTimedChallenge(category = 'all', questionCount = 10, timeLimit = 60) {
+        const words = window.vocabularyManager.getWordsForStudy(category, questionCount * 2);
 
-        if (savedChallenge) {
-            const parsed = JSON.parse(savedChallenge);
-            if (parsed.date === today && !parsed.completed) {
-                return parsed;
-            }
-        }
-
-        // Generate new challenge
-        const challenges = [
-            { type: 'quiz', name: 'Quick Quiz Master', desc: 'Complete a 10-word quiz with 80%+ accuracy', target: 80, reward: 50 },
-            { type: 'typing', name: 'Typing Champion', desc: 'Type 10 words correctly', target: 10, reward: 60 },
-            { type: 'flashcards', name: 'Flashcard Pro', desc: 'Review 15 flashcards', target: 15, reward: 40 },
-            { type: 'mixed', name: 'All-Rounder', desc: 'Complete 3 different exercise types', target: 3, reward: 75 },
-            { type: 'streak', name: 'Perfect Streak', desc: 'Get 5 correct answers in a row', target: 5, reward: 45 }
-        ];
-
-        const challenge = challenges[Math.floor(Math.random() * challenges.length)];
-        const dailyChallenge = {
-            ...challenge,
-            date: today,
-            progress: 0,
-            completed: false
-        };
-
-        localStorage.setItem('dailyChallenge', JSON.stringify(dailyChallenge));
-        return dailyChallenge;
-    }
-
-    startDailyChallenge() {
-        const challenge = this.generateDailyChallenge();
-
-        if (challenge.completed) {
-            alert('You\'ve already completed today\'s challenge! Come back tomorrow for a new one.');
+        if (words.length < 4) {
+            alert('Not enough words available. Please try a different category.');
             return;
         }
 
-        this.dailyChallenge = challenge;
+        // Navigate to practice section
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.getElementById('practice')?.classList.add('active');
 
-        switch (challenge.type) {
-            case 'quiz':
-                this.startQuiz('all', 10);
-                break;
-            case 'typing':
-                this.startTyping('all', 10, 2);
-                break;
-            case 'flashcards':
-                window.vocabularyManager.startFlashcardSession('all', 15);
-                break;
-            case 'mixed':
-                this.showMixedChallengeSelector();
-                break;
-            case 'streak':
-                this.startQuiz('all', 10);
-                break;
+        this.currentQuiz = {
+            words: words.slice(0, questionCount),
+            allWords: window.vocabularyManager.getAllWords(),
+            currentIndex: 0,
+            score: 0,
+            answers: [],
+            startTime: Date.now(),
+            category: category,
+            mode: 'timed',
+            timeLimit: timeLimit,
+            questionStartTime: Date.now()
+        };
+
+        this.streakCount = 0;
+        this.showTimedQuizInterface();
+        this.startTimedCountdown();
+        this.showQuizQuestion();
+    }
+
+    showTimedQuizInterface() {
+        const container = document.getElementById('writing-exercise');
+        if (!container) return;
+
+        container.innerHTML = `
+            <div class="quiz-container quiz-fullscreen">
+                <div class="quiz-progress">
+                    <div class="streak-counter" id="quiz-streak">
+                        <span class="streak-fire">🔥</span>
+                        <span class="streak-number">0</span>
+                    </div>
+                    <div class="progress-dots" id="progress-dots"></div>
+                    <div class="quiz-score">
+                        <span id="quiz-score-display">0</span> / <span id="quiz-total">${this.currentQuiz.words.length}</span>
+                    </div>
+                </div>
+
+                <div class="quiz-question" id="quiz-question">
+                    <!-- Question content -->
+                </div>
+
+                <div class="quiz-options quiz-grid-4" id="quiz-options">
+                    <!-- Answer options -->
+                </div>
+
+                <div class="quiz-feedback hidden" id="quiz-feedback"></div>
+            </div>
+        `;
+
+        // Add timed overlay
+        const timedOverlay = document.createElement('div');
+        timedOverlay.className = 'timed-overlay';
+        timedOverlay.id = 'timed-overlay';
+        timedOverlay.textContent = this.currentQuiz.timeLimit;
+        document.body.appendChild(timedOverlay);
+
+        // Create progress dots
+        const dotsContainer = document.getElementById('progress-dots');
+        for (let i = 0; i < this.currentQuiz.words.length; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'progress-dot';
+            if (i === 0) dot.classList.add('current');
+            dotsContainer.appendChild(dot);
         }
     }
 
-    showMixedChallengeSelector() {
+    startTimedCountdown() {
+        const overlay = document.getElementById('timed-overlay');
+        let remaining = this.currentQuiz.timeLimit;
+
+        this.timedInterval = setInterval(() => {
+            remaining--;
+            if (overlay) {
+                overlay.textContent = remaining;
+                if (remaining <= 10) {
+                    overlay.classList.add('warning');
+                }
+            }
+
+            if (remaining <= 0) {
+                clearInterval(this.timedInterval);
+                this.endTimedChallenge();
+            }
+        }, 1000);
+    }
+
+    endTimedChallenge() {
+        clearInterval(this.timedInterval);
+        document.getElementById('timed-overlay')?.remove();
+
+        const totalTime = Math.floor((Date.now() - this.currentQuiz.startTime) / 1000);
+        const accuracy = Math.round((this.currentQuiz.score / this.currentQuiz.words.length) * 100);
+
+        // Calculate bonuses
+        const bonuses = this.calculateBonuses({
+            type: 'timed_challenge',
+            accuracy: accuracy,
+            avgTimePerQuestion: totalTime / this.currentQuiz.currentIndex
+        });
+
+        const baseXP = this.currentQuiz.score * 12; // Higher XP for timed
+        const bonusXP = this.awardBonuses(bonuses);
+        const totalXP = baseXP + bonusXP;
+
+        window.gamificationSystem.simulateExerciseCompletion(
+            'timed_challenge',
+            accuracy,
+            totalTime,
+            this.currentQuiz.words.map(w => w.id)
+        );
+
+        if (accuracy >= 80) {
+            this.createConfetti(80);
+            window.soundManager?.play('celebration');
+        }
+
         const container = document.getElementById('writing-exercise');
         container.innerHTML = `
-            <div class="daily-challenge-card" style="max-width: 500px; margin: 0 auto;">
-                <div class="challenge-icon">🏆</div>
-                <div class="challenge-title">Daily Challenge: All-Rounder</div>
-                <div class="challenge-desc">Complete 3 different exercise types</div>
-                <div class="challenge-reward">🎁 +75 XP Bonus</div>
-            </div>
-            <div style="margin-top: 2rem;">
-                <h3>Choose your exercises:</h3>
-                <div style="display: grid; gap: 1rem; margin-top: 1rem;">
-                    <button class="btn btn-primary btn-playful" onclick="window.interactiveExercises.startQuiz()">
-                        🎯 Tap-to-Answer Quiz
+            <div class="celebration-content" style="margin: 0 auto; max-width: 400px;">
+                <div class="celebration-emoji">${accuracy >= 80 ? '⏱️🎉' : accuracy >= 50 ? '⏱️👍' : '⏱️💪'}</div>
+                <h2 class="celebration-title">Timed Challenge ${accuracy >= 80 ? 'Complete!' : 'Over!'}</h2>
+                <div class="results-stats" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.5rem 0;">
+                    <div class="result-stat" style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--success);">${accuracy}%</div>
+                        <div style="color: var(--text-muted);">Accuracy</div>
+                    </div>
+                    <div class="result-stat" style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--primary-color);">${this.currentQuiz.score}/${this.currentQuiz.words.length}</div>
+                        <div style="color: var(--text-muted);">Correct</div>
+                    </div>
+                    <div class="result-stat" style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--info);">${totalTime}s</div>
+                        <div style="color: var(--text-muted);">Time Used</div>
+                    </div>
+                    <div class="result-stat" style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--xp-color);">+${baseXP}</div>
+                        <div style="color: var(--text-muted);">XP Earned</div>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem;">
+                    <button class="btn btn-primary btn-playful" onclick="window.interactiveExercises.startTimedChallenge()">
+                        Try Again
                     </button>
-                    <button class="btn btn-primary btn-playful" onclick="window.interactiveExercises.startTyping()">
-                        ⌨️ Typing Practice
-                    </button>
-                    <button class="btn btn-primary btn-playful" onclick="window.vocabularyManager.startFlashcardSession()">
-                        📚 Flashcards
+                    <button class="btn btn-outline" onclick="window.interactiveExercises.showExerciseSelector()">
+                        Back
                     </button>
                 </div>
             </div>
         `;
+
+        window.gamificationSystem.updateUI();
     }
 
-    checkDailyChallengeProgress(type, score) {
-        if (!this.dailyChallenge || this.dailyChallenge.completed) return;
+    // ==================== SURVIVAL MODE ====================
+    startSurvivalMode(category = 'all') {
+        const words = window.vocabularyManager.getAllWords(category);
 
-        let completed = false;
-
-        switch (this.dailyChallenge.type) {
-            case 'quiz':
-                if (type === 'quiz' && score >= 80) completed = true;
-                break;
-            case 'typing':
-                this.dailyChallenge.progress += score;
-                if (this.dailyChallenge.progress >= 10) completed = true;
-                break;
-            case 'streak':
-                if (this.streakCount >= 5) completed = true;
-                break;
+        if (words.length < 4) {
+            alert('Not enough words available. Please try a different category.');
+            return;
         }
 
-        if (completed) {
-            this.completeDailyChallenge();
-        }
+        // Navigate to practice section
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.getElementById('practice')?.classList.add('active');
+
+        this.currentQuiz = {
+            words: this.shuffleArray([...words]),
+            allWords: words,
+            currentIndex: 0,
+            score: 0,
+            answers: [],
+            startTime: Date.now(),
+            category: category,
+            mode: 'survival',
+            lives: 3,
+            maxLives: 3,
+            questionStartTime: Date.now()
+        };
+
+        this.streakCount = 0;
+        this.showSurvivalInterface();
+        this.showSurvivalQuestion();
     }
 
-    completeDailyChallenge() {
-        this.dailyChallenge.completed = true;
-        localStorage.setItem('dailyChallenge', JSON.stringify(this.dailyChallenge));
+    showSurvivalInterface() {
+        const container = document.getElementById('writing-exercise');
+        if (!container) return;
 
-        // Award bonus XP
-        window.gamificationSystem.addXP(this.dailyChallenge.reward);
+        container.innerHTML = `
+            <div class="quiz-container quiz-fullscreen">
+                <div class="quiz-progress">
+                    <div class="lives-display" id="lives-display">
+                        ${'<span class="life-heart">❤️</span>'.repeat(this.currentQuiz.maxLives)}
+                    </div>
+                    <div class="streak-counter" id="quiz-streak">
+                        <span class="streak-fire">🔥</span>
+                        <span class="streak-number">0</span>
+                    </div>
+                    <div class="quiz-score">
+                        Score: <span id="quiz-score-display">0</span>
+                    </div>
+                </div>
 
-        // Celebration
-        this.createConfetti(100);
+                <div class="quiz-question" id="quiz-question">
+                    <!-- Question content -->
+                </div>
+
+                <div class="quiz-options quiz-grid-4" id="quiz-options">
+                    <!-- Answer options -->
+                </div>
+
+                <div class="quiz-feedback hidden" id="quiz-feedback"></div>
+            </div>
+        `;
+    }
+
+    showSurvivalQuestion() {
+        if (this.currentQuiz.lives <= 0 || this.currentQuiz.currentIndex >= this.currentQuiz.words.length) {
+            this.endSurvivalMode();
+            return;
+        }
+
+        const word = this.currentQuiz.words[this.currentQuiz.currentIndex];
+        const questionEl = document.getElementById('quiz-question');
+        const optionsEl = document.getElementById('quiz-options');
+
+        const options = this.generateQuizOptions(word);
+
+        questionEl.innerHTML = `
+            <div class="question-emoji">${word.emoji || '📚'}</div>
+            <div class="question-text">What does this mean?</div>
+            <div class="question-word">${word.word}</div>
+        `;
+
+        optionsEl.innerHTML = options.map((option, index) => `
+            <button class="quiz-option btn-playful" data-answer="${option}" data-index="${index}">
+                <span class="option-letter">${['A', 'B', 'C', 'D'][index]}</span>
+                <span class="option-text">${option}</span>
+            </button>
+        `).join('');
+
+        window.soundManager?.play('whoosh');
+        this.currentQuiz.questionStartTime = Date.now();
+
+        optionsEl.querySelectorAll('.quiz-option').forEach(btn => {
+            btn.addEventListener('click', (e) => this.handleSurvivalAnswer(e, word));
+        });
+    }
+
+    handleSurvivalAnswer(event, word) {
+        const btn = event.currentTarget;
+        const selectedAnswer = btn.dataset.answer;
+        const isCorrect = selectedAnswer === word.translation;
+        const answerTime = Date.now() - this.currentQuiz.questionStartTime;
+
+        window.soundManager?.play('select');
+
+        document.querySelectorAll('.quiz-option').forEach(b => {
+            b.classList.add('disabled');
+            if (b.dataset.answer === word.translation) {
+                b.classList.add('correct');
+            }
+        });
+
+        if (isCorrect) {
+            btn.classList.add('correct');
+            this.currentQuiz.score++;
+            this.streakCount++;
+
+            setTimeout(() => window.soundManager?.play('correct'), 100);
+
+            // Update streak display
+            const streakEl = document.getElementById('quiz-streak');
+            streakEl.querySelector('.streak-number').textContent = this.streakCount;
+            if (this.streakCount >= 3) {
+                streakEl.classList.add('streak-milestone');
+                window.soundManager?.play('streak');
+                setTimeout(() => streakEl.classList.remove('streak-milestone'), 600);
+            }
+
+            // Speed bonus check
+            if (answerTime < 3000) {
+                const rect = btn.getBoundingClientRect();
+                this.showXPPopup(15, rect.left + rect.width / 2, rect.top);
+            } else {
+                const rect = btn.getBoundingClientRect();
+                this.showXPPopup(10, rect.left + rect.width / 2, rect.top);
+            }
+        } else {
+            btn.classList.add('wrong');
+            this.currentQuiz.lives--;
+            this.streakCount = 0;
+
+            setTimeout(() => window.soundManager?.play('wrong'), 100);
+
+            // Update lives display
+            const livesContainer = document.getElementById('lives-display');
+            const hearts = livesContainer.querySelectorAll('.life-heart');
+            hearts[this.currentQuiz.maxLives - this.currentQuiz.lives - 1]?.classList.add('lost');
+
+            document.getElementById('quiz-streak').querySelector('.streak-number').textContent = 0;
+        }
+
+        document.getElementById('quiz-score-display').textContent = this.currentQuiz.score;
+
+        window.storageManager.addVocabularyProgress(
+            word.id,
+            word.category,
+            word.difficulty,
+            isCorrect
+        );
 
         setTimeout(() => {
-            alert(`🎉 Daily Challenge Complete!\n+${this.dailyChallenge.reward} Bonus XP!`);
-        }, 500);
+            this.currentQuiz.currentIndex++;
+            this.showSurvivalQuestion();
+        }, isCorrect ? 800 : 1500);
+    }
+
+    endSurvivalMode() {
+        const totalTime = Math.floor((Date.now() - this.currentQuiz.startTime) / 1000);
+        const questionsAnswered = this.currentQuiz.currentIndex;
+        const accuracy = questionsAnswered > 0 ? Math.round((this.currentQuiz.score / questionsAnswered) * 100) : 0;
+
+        const bonuses = this.calculateBonuses({
+            type: 'survival',
+            accuracy: accuracy,
+            avgTimePerQuestion: totalTime / questionsAnswered
+        });
+
+        const baseXP = this.currentQuiz.score * 15; // Higher XP for survival
+        const bonusXP = this.awardBonuses(bonuses);
+
+        window.gamificationSystem.simulateExerciseCompletion(
+            'survival',
+            accuracy,
+            totalTime,
+            []
+        );
+
+        if (this.currentQuiz.score >= 10) {
+            this.createConfetti(100);
+            window.soundManager?.play('celebration');
+        }
+
+        const container = document.getElementById('writing-exercise');
+        container.innerHTML = `
+            <div class="celebration-content" style="margin: 0 auto; max-width: 400px;">
+                <div class="celebration-emoji">${this.currentQuiz.lives > 0 ? '🏆' : '💀'}</div>
+                <h2 class="celebration-title">${this.currentQuiz.lives > 0 ? 'You Survived!' : 'Game Over!'}</h2>
+                <div class="results-stats" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.5rem 0;">
+                    <div class="result-stat" style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--primary-color);">${this.currentQuiz.score}</div>
+                        <div style="color: var(--text-muted);">Final Score</div>
+                    </div>
+                    <div class="result-stat" style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--success);">${accuracy}%</div>
+                        <div style="color: var(--text-muted);">Accuracy</div>
+                    </div>
+                    <div class="result-stat" style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--error);">${'❤️'.repeat(this.currentQuiz.lives)}${'🖤'.repeat(this.currentQuiz.maxLives - this.currentQuiz.lives)}</div>
+                        <div style="color: var(--text-muted);">Lives Left</div>
+                    </div>
+                    <div class="result-stat" style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--xp-color);">+${baseXP}</div>
+                        <div style="color: var(--text-muted);">XP Earned</div>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem;">
+                    <button class="btn btn-primary btn-playful" onclick="window.interactiveExercises.startSurvivalMode()">
+                        Try Again
+                    </button>
+                    <button class="btn btn-outline" onclick="window.interactiveExercises.showExerciseSelector()">
+                        Back
+                    </button>
+                </div>
+            </div>
+        `;
+
+        window.gamificationSystem.updateUI();
+    }
+
+    // ==================== REVERSE QUIZ (German → English) ====================
+    startReverseQuiz(category = 'all', questionCount = 10) {
+        const words = window.vocabularyManager.getWordsForStudy(category, questionCount * 2);
+
+        if (words.length < 4) {
+            alert('Not enough words available. Please try a different category.');
+            return;
+        }
+
+        // Navigate to practice section
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.getElementById('practice')?.classList.add('active');
+
+        this.currentQuiz = {
+            words: words.slice(0, questionCount),
+            allWords: window.vocabularyManager.getAllWords(),
+            currentIndex: 0,
+            score: 0,
+            answers: [],
+            startTime: Date.now(),
+            category: category,
+            mode: 'reverse',
+            questionStartTime: Date.now()
+        };
+
+        this.streakCount = 0;
+        this.showQuizInterface();
+        this.showReverseQuizQuestion();
+    }
+
+    showReverseQuizQuestion() {
+        if (this.currentQuiz.currentIndex >= this.currentQuiz.words.length) {
+            this.endReverseQuiz();
+            return;
+        }
+
+        const word = this.currentQuiz.words[this.currentQuiz.currentIndex];
+        const questionEl = document.getElementById('quiz-question');
+        const optionsEl = document.getElementById('quiz-options');
+
+        // Generate options from German words
+        const options = this.generateReverseQuizOptions(word);
+
+        questionEl.innerHTML = `
+            <div class="question-emoji">${word.emoji || '📚'}</div>
+            <div class="question-text">How do you say this in German?</div>
+            <div class="question-word">${word.translation}</div>
+        `;
+
+        optionsEl.innerHTML = options.map((option, index) => `
+            <button class="quiz-option btn-playful" data-answer="${option}" data-index="${index}">
+                <span class="option-letter">${['A', 'B', 'C', 'D'][index]}</span>
+                <span class="option-text">${option}</span>
+            </button>
+        `).join('');
+
+        window.soundManager?.play('whoosh');
+        this.currentQuiz.questionStartTime = Date.now();
+
+        optionsEl.querySelectorAll('.quiz-option').forEach(btn => {
+            btn.addEventListener('click', (e) => this.handleReverseQuizAnswer(e, word));
+        });
+
+        // Update progress dots
+        const dots = document.querySelectorAll('.progress-dot');
+        dots.forEach((dot, i) => {
+            dot.classList.remove('current');
+            if (i === this.currentQuiz.currentIndex) dot.classList.add('current');
+        });
+    }
+
+    generateReverseQuizOptions(correctWord) {
+        const correctAnswer = correctWord.word;
+        const allWords = this.currentQuiz.allWords;
+
+        let wrongAnswers = allWords
+            .filter(w => w.id !== correctWord.id && w.word !== correctAnswer)
+            .map(w => w.word);
+
+        wrongAnswers = this.shuffleArray(wrongAnswers).slice(0, 3);
+
+        return this.shuffleArray([correctAnswer, ...wrongAnswers]);
+    }
+
+    handleReverseQuizAnswer(event, word) {
+        const btn = event.currentTarget;
+        const selectedAnswer = btn.dataset.answer;
+        const isCorrect = selectedAnswer === word.word;
+        const answerTime = Date.now() - this.currentQuiz.questionStartTime;
+
+        window.soundManager?.play('select');
+
+        document.querySelectorAll('.quiz-option').forEach(b => {
+            b.classList.add('disabled');
+            if (b.dataset.answer === word.word) {
+                b.classList.add('correct');
+            }
+        });
+
+        if (isCorrect) {
+            btn.classList.add('correct');
+            this.currentQuiz.score++;
+            this.streakCount++;
+
+            setTimeout(() => window.soundManager?.play('correct'), 100);
+
+            const streakEl = document.getElementById('quiz-streak');
+            streakEl.querySelector('.streak-number').textContent = this.streakCount;
+            if (this.streakCount >= 3) {
+                streakEl.classList.add('streak-milestone');
+                window.soundManager?.play('streak');
+                setTimeout(() => streakEl.classList.remove('streak-milestone'), 600);
+            }
+
+            const xpAmount = answerTime < 3000 ? 15 : 10;
+            const rect = btn.getBoundingClientRect();
+            this.showXPPopup(xpAmount, rect.left + rect.width / 2, rect.top);
+
+            if (word.mnemonic) {
+                this.showQuizFeedback(true, word.mnemonic);
+            }
+        } else {
+            btn.classList.add('wrong');
+            this.streakCount = 0;
+            document.getElementById('quiz-streak').querySelector('.streak-number').textContent = 0;
+
+            setTimeout(() => window.soundManager?.play('wrong'), 100);
+            this.showQuizFeedback(false, `${word.word} - ${word.mnemonic || ''}`);
+        }
+
+        document.getElementById('quiz-score-display').textContent = this.currentQuiz.score;
+
+        const dots = document.querySelectorAll('.progress-dot');
+        dots[this.currentQuiz.currentIndex].classList.add(isCorrect ? 'correct' : 'wrong');
+
+        this.currentQuiz.answers.push({
+            word: word,
+            selected: selectedAnswer,
+            correct: isCorrect
+        });
+
+        window.storageManager.addVocabularyProgress(
+            word.id,
+            word.category,
+            word.difficulty,
+            isCorrect
+        );
+
+        setTimeout(() => {
+            this.currentQuiz.currentIndex++;
+            this.hideQuizFeedback();
+            this.showReverseQuizQuestion();
+        }, isCorrect ? 1000 : 2000);
+    }
+
+    endReverseQuiz() {
+        const totalTime = Math.floor((Date.now() - this.currentQuiz.startTime) / 1000);
+        const accuracy = Math.round((this.currentQuiz.score / this.currentQuiz.words.length) * 100);
+
+        const bonuses = this.calculateBonuses({
+            type: 'reverse_quiz',
+            accuracy: accuracy,
+            avgTimePerQuestion: totalTime / this.currentQuiz.words.length
+        });
+
+        const baseXP = this.currentQuiz.score * 12;
+        const bonusXP = accuracy >= 80 ? 25 : (accuracy >= 60 ? 15 : 0);
+        const totalXP = baseXP + bonusXP;
+
+        window.gamificationSystem.simulateExerciseCompletion(
+            'reverse_quiz',
+            accuracy,
+            totalTime,
+            this.currentQuiz.words.map(w => w.id)
+        );
+
+        this.awardBonuses(bonuses);
+
+        if (accuracy >= 80) {
+            this.createConfetti(80);
+            window.soundManager?.play('celebration');
+        }
+
+        const container = document.getElementById('writing-exercise');
+        container.innerHTML = `
+            <div class="celebration-content" style="margin: 0 auto; max-width: 400px;">
+                <div class="celebration-emoji">${accuracy >= 80 ? '🔄🎉' : accuracy >= 50 ? '🔄👍' : '🔄💪'}</div>
+                <h2 class="celebration-title">${accuracy >= 80 ? 'Excellent!' : accuracy >= 50 ? 'Good job!' : 'Keep practicing!'}</h2>
+                <p style="text-align: center; color: var(--text-muted);">Reverse Quiz Complete</p>
+                <div class="results-stats" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.5rem 0;">
+                    <div class="result-stat" style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--success);">${accuracy}%</div>
+                        <div style="color: var(--text-muted);">Accuracy</div>
+                    </div>
+                    <div class="result-stat" style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--primary-color);">${this.currentQuiz.score}/${this.currentQuiz.words.length}</div>
+                        <div style="color: var(--text-muted);">Correct</div>
+                    </div>
+                    <div class="result-stat" style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--info);">${Math.floor(totalTime / 60)}:${(totalTime % 60).toString().padStart(2, '0')}</div>
+                        <div style="color: var(--text-muted);">Time</div>
+                    </div>
+                    <div class="result-stat" style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--xp-color);">+${totalXP}</div>
+                        <div style="color: var(--text-muted);">XP Earned</div>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem;">
+                    <button class="btn btn-primary btn-playful" onclick="window.interactiveExercises.startReverseQuiz()">
+                        Play Again
+                    </button>
+                    <button class="btn btn-outline" onclick="window.interactiveExercises.showExerciseSelector()">
+                        Back
+                    </button>
+                </div>
+            </div>
+        `;
+
+        window.gamificationSystem.updateUI();
     }
 
     // ==================== EXERCISE SELECTOR ====================
@@ -808,22 +1519,31 @@ class InteractiveExercises {
         const container = document.getElementById('writing-exercise');
         if (!container) return;
 
-        const challenge = this.generateDailyChallenge();
-
         container.innerHTML = `
             <div class="exercise-selection">
-                ${!challenge.completed ? `
-                    <div class="daily-challenge-card" style="margin-bottom: 2rem; cursor: pointer;" onclick="window.interactiveExercises.startDailyChallenge()">
-                        <div class="challenge-icon">🏆</div>
-                        <div class="challenge-title">${challenge.name}</div>
-                        <div class="challenge-desc">${challenge.desc}</div>
-                        <div class="challenge-reward">🎁 +${challenge.reward} XP Bonus</div>
+                <!-- Challenge Modes Section -->
+                <div style="margin-bottom: 2rem;">
+                    <h3 style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span>🎮</span> Challenge Modes
+                    </h3>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem;">
+                        <button class="exercise-type-card" onclick="window.interactiveExercises.startTimedChallenge()" style="padding: 1rem; text-align: center; border: 2px solid var(--border-light); border-radius: var(--border-radius-lg); background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), var(--bg-card)); cursor: pointer; transition: all 0.2s;">
+                            <div style="font-size: 2rem;">⏱️</div>
+                            <div style="font-weight: 600; font-size: 0.85rem;">Timed</div>
+                            <div style="font-size: 0.7rem; color: var(--text-muted);">60 seconds</div>
+                        </button>
+                        <button class="exercise-type-card" onclick="window.interactiveExercises.startSurvivalMode()" style="padding: 1rem; text-align: center; border: 2px solid var(--border-light); border-radius: var(--border-radius-lg); background: linear-gradient(135deg, rgba(255, 87, 51, 0.1), var(--bg-card)); cursor: pointer; transition: all 0.2s;">
+                            <div style="font-size: 2rem;">💀</div>
+                            <div style="font-weight: 600; font-size: 0.85rem;">Survival</div>
+                            <div style="font-size: 0.7rem; color: var(--text-muted);">3 lives</div>
+                        </button>
+                        <button class="exercise-type-card" onclick="window.interactiveExercises.startReverseQuiz()" style="padding: 1rem; text-align: center; border: 2px solid var(--border-light); border-radius: var(--border-radius-lg); background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), var(--bg-card)); cursor: pointer; transition: all 0.2s;">
+                            <div style="font-size: 2rem;">🔄</div>
+                            <div style="font-weight: 600; font-size: 0.85rem;">Reverse</div>
+                            <div style="font-size: 0.7rem; color: var(--text-muted);">EN → DE</div>
+                        </button>
                     </div>
-                ` : `
-                    <div style="background: var(--success); color: white; padding: 1rem; border-radius: var(--border-radius-lg); margin-bottom: 2rem; text-align: center;">
-                        ✅ Daily Challenge Complete! Come back tomorrow.
-                    </div>
-                `}
+                </div>
 
                 <h3 style="margin-bottom: 1rem;">Choose an Exercise</h3>
                 <div class="exercise-types" style="display: grid; gap: 1rem;">
@@ -832,7 +1552,7 @@ class InteractiveExercises {
                             <div style="font-size: 2.5rem;">🎯</div>
                             <div>
                                 <h4 style="margin: 0 0 0.25rem 0;">Tap-to-Answer Quiz</h4>
-                                <p style="margin: 0; color: var(--text-muted); font-size: 0.9rem;">Fast vocabulary practice with 3 options</p>
+                                <p style="margin: 0; color: var(--text-muted); font-size: 0.9rem;">Fast vocabulary practice with 4 options</p>
                             </div>
                         </div>
                     </button>

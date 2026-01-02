@@ -1,22 +1,61 @@
 class VocabularyManager {
     constructor() {
         this.vocabularyData = null;
+        this.allLevelsData = {};
+        this.currentLevel = 'A1';
         this.currentSession = null;
         this.sessionWords = [];
         this.currentWordIndex = 0;
-        this.loadVocabularyData();
+        this.loadAllVocabularyData();
     }
 
-    async loadVocabularyData() {
+    async loadAllVocabularyData() {
         try {
-            const response = await fetch('data/vocabulary/a1.json');
-            this.vocabularyData = await response.json();
+            // Load all available levels
+            const levels = ['a1', 'a2'];
+            const promises = levels.map(level =>
+                fetch(`data/vocabulary/${level}.json`)
+                    .then(response => response.json())
+                    .then(data => ({ level: level.toUpperCase(), data }))
+                    .catch(() => null) // Ignore failed loads
+            );
+
+            const results = await Promise.all(promises);
+
+            results.forEach(result => {
+                if (result) {
+                    this.allLevelsData[result.level] = result.data;
+                }
+            });
+
+            // Set initial vocabulary data
+            this.vocabularyData = this.allLevelsData[this.currentLevel] || this.allLevelsData['A1'];
+
             this.displayVocabularyStats();
             this.populateVocabularyList();
+            console.log('Vocabulary loaded:', Object.keys(this.allLevelsData).join(', '));
         } catch (error) {
             console.error('Error loading vocabulary data:', error);
             this.showError('Failed to load vocabulary data');
         }
+    }
+
+    setLevel(level) {
+        if (this.allLevelsData[level]) {
+            this.currentLevel = level;
+            this.vocabularyData = this.allLevelsData[level];
+            this.displayVocabularyStats();
+            this.populateVocabularyList();
+            console.log('Switched to level:', level);
+        } else {
+            console.warn('Level not available:', level);
+        }
+    }
+
+    async loadVocabularyData() {
+        // For backward compatibility - now just uses allLevelsData
+        if (this.vocabularyData) return;
+        await this.loadAllVocabularyData();
     }
 
     getAllWords(categoryFilter = 'all') {
