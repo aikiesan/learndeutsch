@@ -40,6 +40,10 @@
                     </div>
 
                     <div class="user-stats">
+                        <div class="stat stat-timer" id="session-timer-stat">
+                            <span class="stat-icon">⏱️</span>
+                            <span class="stat-value" id="session-timer">00:00</span>
+                        </div>
                         <div class="stat stat-level">
                             <span class="stat-icon">⭐</span>
                             <span class="stat-value" id="user-level">1</span>
@@ -152,20 +156,25 @@
                         </div>
                     </div>
 
-                    <!-- Daily Challenge Banner -->
-                    <div class="daily-banner" id="daily-challenge-banner">
-                        <div class="daily-content">
-                            <div class="daily-icon">🏆</div>
-                            <div class="daily-info">
-                                <h4 class="daily-title">Daily Challenge</h4>
-                                <p class="daily-desc" id="daily-challenge-desc">Complete today's challenge for bonus XP!</p>
-                            </div>
-                            <button class="daily-btn" id="daily-challenge">
-                                Start <span class="daily-reward">+50 XP</span>
+                    <!-- Challenge Modes Banner -->
+                    <div class="challenge-modes-banner" id="challenge-modes-banner">
+                        <h3 class="challenge-title">🎮 Challenge Modes</h3>
+                        <div class="challenge-modes-grid">
+                            <button class="challenge-mode-card" id="timed-challenge">
+                                <span class="challenge-icon">⏱️</span>
+                                <span class="challenge-name">Timed Challenge</span>
+                                <span class="challenge-desc">10 questions in 60s</span>
                             </button>
-                        </div>
-                        <div class="daily-progress-bar">
-                            <div class="daily-progress-fill" id="daily-progress-fill"></div>
+                            <button class="challenge-mode-card" id="survival-mode">
+                                <span class="challenge-icon">💀</span>
+                                <span class="challenge-name">Survival Mode</span>
+                                <span class="challenge-desc">3 strikes and out!</span>
+                            </button>
+                            <button class="challenge-mode-card" id="reverse-quiz">
+                                <span class="challenge-icon">🔄</span>
+                                <span class="challenge-name">Reverse Quiz</span>
+                                <span class="challenge-desc">German → English</span>
+                            </button>
                         </div>
                     </div>
 
@@ -192,10 +201,27 @@
                         </div>
                     </div>
 
+                    <!-- Level Selection -->
+                    <div class="level-section">
+                        <h3 class="level-title">CEFR Level</h3>
+                        <div class="level-selector">
+                            <button class="level-btn active" data-level="A1">
+                                <span class="level-badge">A1</span>
+                                <span class="level-name">Beginner</span>
+                                <span class="level-words">115 words</span>
+                            </button>
+                            <button class="level-btn" data-level="A2">
+                                <span class="level-badge">A2</span>
+                                <span class="level-name">Elementary</span>
+                                <span class="level-words">200+ words</span>
+                            </button>
+                        </div>
+                    </div>
+
                     <!-- Category Selection -->
                     <div class="category-section">
                         <h3 class="category-title">Practice by Category</h3>
-                        <div class="category-grid">
+                        <div class="category-grid" id="category-grid">
                             <button class="category-pill" data-category="greetings">
                                 <span>👋</span> Greetings
                             </button>
