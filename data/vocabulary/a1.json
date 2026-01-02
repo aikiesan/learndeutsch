@@ -5,6 +5,7 @@
     "greetings": {
       "name": "Greetings & Introductions",
       "description": "Basic greetings and introduction phrases",
+      "icon": "👋",
       "words": [
         {
           "id": "a1_greet_001",
@@ -14,6 +15,10 @@
           "example": "Hallo! Wie geht es dir?",
           "exampleTranslation": "Hello! How are you?",
           "difficulty": 1,
+          "emoji": "👋",
+          "mnemonic": "Sounds just like 'Hello' - wave and say it!",
+          "cognate": true,
+          "cognateNote": "Almost identical to English 'Hello'",
           "audioUrl": null
         },
         {
@@ -24,6 +29,10 @@
           "example": "Guten Morgen, Frau Müller!",
           "exampleTranslation": "Good morning, Mrs. Müller!",
           "difficulty": 1,
+          "emoji": "🌅",
+          "mnemonic": "'Morgen' sounds like 'morning' - greet the sunrise!",
+          "cognate": true,
+          "cognateNote": "'Morgen' = 'morning' (same root)",
           "audioUrl": null
         },
         {
@@ -34,6 +43,10 @@
           "example": "Guten Tag! Schön, Sie zu sehen.",
           "exampleTranslation": "Hello! Nice to see you.",
           "difficulty": 1,
+          "emoji": "☀️",
+          "mnemonic": "'Tag' sounds like 'day' - say it during daytime!",
+          "cognate": true,
+          "cognateNote": "'Tag' = 'day' (cognate)",
           "audioUrl": null
         },
         {
@@ -44,6 +57,10 @@
           "example": "Guten Abend, Familie Schmidt!",
           "exampleTranslation": "Good evening, Schmidt family!",
           "difficulty": 1,
+          "emoji": "🌆",
+          "mnemonic": "'Abend' sounds like 'evening' - the end of day!",
+          "cognate": true,
+          "cognateNote": "'Abend' related to 'eve/evening'",
           "audioUrl": null
         },
         {
@@ -54,6 +71,10 @@
           "example": "Gute Nacht und süße Träume!",
           "exampleTranslation": "Good night and sweet dreams!",
           "difficulty": 1,
+          "emoji": "🌙",
+          "mnemonic": "'Nacht' = 'night' - same sound, sleepy time!",
+          "cognate": true,
+          "cognateNote": "'Nacht' = 'night' (same Germanic root)",
           "audioUrl": null
         },
         {
@@ -64,6 +85,10 @@
           "example": "Auf Wiedersehen! Bis morgen!",
           "exampleTranslation": "Goodbye! See you tomorrow!",
           "difficulty": 2,
+          "emoji": "👋",
+          "mnemonic": "'Wieder-sehen' = 'again-see' = until we see each other again!",
+          "cognate": false,
+          "cognateNote": null,
           "audioUrl": null
         },
         {
@@ -74,6 +99,10 @@
           "example": "Tschüss, Anna! Bis später!",
           "exampleTranslation": "Bye, Anna! See you later!",
           "difficulty": 1,
+          "emoji": "✌️",
+          "mnemonic": "Like 'choose' to leave - casual goodbye!",
+          "cognate": false,
+          "cognateNote": null,
           "audioUrl": null
         },
         {
@@ -84,6 +113,10 @@
           "example": "Hallo! Wie heißt du denn?",
           "exampleTranslation": "Hello! What's your name?",
           "difficulty": 2,
+          "emoji": "🏷️",
+          "mnemonic": "'Heißt' = 'is called' - 'How are you called?'",
+          "cognate": false,
+          "cognateNote": null,
           "audioUrl": null
         },
         {
@@ -94,6 +127,10 @@
           "example": "Entschuldigung, wie heißen Sie?",
           "exampleTranslation": "Excuse me, what's your name?",
           "difficulty": 3,
+          "emoji": "🎩",
+          "mnemonic": "'Sie' = formal 'you' - be polite with strangers!",
+          "cognate": false,
+          "cognateNote": null,
           "audioUrl": null
         },
         {
@@ -104,6 +141,10 @@
           "example": "Ich heiße Maria. Und du?",
           "exampleTranslation": "My name is Maria. And you?",
           "difficulty": 2,
+          "emoji": "👤",
+          "mnemonic": "'Ich heiße' = 'I am called' - introduce yourself!",
+          "cognate": false,
+          "cognateNote": null,
           "audioUrl": null
         },
         {
@@ -114,6 +155,10 @@
           "example": "Hi Tom! Wie geht es dir heute?",
           "exampleTranslation": "Hi Tom! How are you today?",
           "difficulty": 3,
+          "emoji": "💬",
+          "mnemonic": "'Geht' = 'goes' - 'How goes it for you?'",
+          "cognate": false,
+          "cognateNote": null,
           "audioUrl": null
         },
         {
@@ -124,6 +169,10 @@
           "example": "Guten Morgen! Wie geht es Ihnen?",
           "exampleTranslation": "Good morning! How are you?",
           "difficulty": 3,
+          "emoji": "🤝",
+          "mnemonic": "'Ihnen' = formal 'you' - polite way to ask!",
+          "cognate": false,
+          "cognateNote": null,
           "audioUrl": null
         },
         {
@@ -134,6 +183,10 @@
           "example": "Danke! Mir geht es sehr gut.",
           "exampleTranslation": "Thanks! I'm doing very well.",
           "difficulty": 3,
+          "emoji": "😊",
+          "mnemonic": "'Gut' = 'good' - 'It goes good for me!'",
+          "cognate": true,
+          "cognateNote": "'Gut' = 'good' (same root)",
           "audioUrl": null
         },
         {
@@ -144,6 +197,10 @@
           "example": "Danke für deine Hilfe!",
           "exampleTranslation": "Thank you for your help!",
           "difficulty": 1,
+          "emoji": "🙏",
+          "mnemonic": "Think 'dunk a' cookie = thank you! 🍪",
+          "cognate": true,
+          "cognateNote": "Related to 'think' - expressing grateful thoughts",
           "audioUrl": null
         },
         {
@@ -154,6 +211,10 @@
           "example": "Bitte, gern geschehen!",
           "exampleTranslation": "You're welcome!",
           "difficulty": 2,
+          "emoji": "🙂",
+          "mnemonic": "Think 'bit of' politeness - please!",
+          "cognate": false,
+          "cognateNote": null,
           "audioUrl": null
         }
       ]
@@ -161,6 +222,7 @@
     "numbers": {
       "name": "Numbers 0-100",
       "description": "Cardinal numbers from zero to one hundred",
+      "icon": "🔢",
       "words": [
         {
           "id": "a1_num_001",
@@ -170,6 +232,10 @@
           "example": "Null plus eins ist eins.",
           "exampleTranslation": "Zero plus one is one.",
           "difficulty": 1,
+          "emoji": "0️⃣",
+          "mnemonic": "'Null' in programming means nothing - zero!",
+          "cognate": true,
+          "cognateNote": "Same as programming 'null' = nothing",
           "audioUrl": null
         },
         {
@@ -180,6 +246,10 @@
           "example": "Ich habe einen Apfel.",
           "exampleTranslation": "I have one apple.",
           "difficulty": 1,
+          "emoji": "1️⃣",
+          "mnemonic": "'Eins' sounds like 'ace' - number one!",
+          "cognate": true,
+          "cognateNote": "'Ein' = 'one/a/an' in English",
           "audioUrl": null
         },
         {
@@ -190,6 +260,10 @@
           "example": "Zwei plus zwei ist vier.",
           "exampleTranslation": "Two plus two is four.",
           "difficulty": 1,
+          "emoji": "2️⃣",
+          "mnemonic": "'Zwei' sounds like 'sway' - two people dancing!",
+          "cognate": true,
+          "cognateNote": "'Zwei' = 'two/twin' (same root)",
           "audioUrl": null
         },
         {
@@ -200,6 +274,10 @@
           "example": "Ich habe drei Katzen.",
           "exampleTranslation": "I have three cats.",
           "difficulty": 1,
+          "emoji": "3️⃣",
+          "mnemonic": "'Drei' sounds like 'dry' - three suns = very dry!",
+          "cognate": true,
+          "cognateNote": "'Drei' = 'three' (same Germanic root)",
           "audioUrl": null
         },
         {
@@ -210,6 +288,10 @@
           "example": "Der Tisch hat vier Beine.",
           "exampleTranslation": "The table has four legs.",
           "difficulty": 1,
+          "emoji": "4️⃣",
+          "mnemonic": "'Vier' sounds like 'fear' - four scary things!",
+          "cognate": true,
+          "cognateNote": "'Vier' = 'four' (same root)",
           "audioUrl": null
         },
         {
@@ -220,6 +302,10 @@
           "example": "Ich arbeite fünf Tage pro Woche.",
           "exampleTranslation": "I work five days per week.",
           "difficulty": 1,
+          "emoji": "5️⃣",
+          "mnemonic": "'Fünf' = five fingers on your hand! ✋",
+          "cognate": true,
+          "cognateNote": "'Fünf' = 'five' (same root)",
           "audioUrl": null
         },
         {
@@ -230,6 +316,10 @@
           "example": "Es ist sechs Uhr morgens.",
           "exampleTranslation": "It's six o'clock in the morning.",
           "difficulty": 2,
+          "emoji": "6️⃣",
+          "mnemonic": "'Sechs' = 'six' - just sounds similar!",
+          "cognate": true,
+          "cognateNote": "'Sechs' = 'six' (same Latin root)",
           "audioUrl": null
         },
         {
@@ -240,6 +330,10 @@
           "example": "Eine Woche hat sieben Tage.",
           "exampleTranslation": "A week has seven days.",
           "difficulty": 2,
+          "emoji": "7️⃣",
+          "mnemonic": "'Sieben' = 'seven' - almost the same!",
+          "cognate": true,
+          "cognateNote": "'Sieben' = 'seven' (same root)",
           "audioUrl": null
         },
         {
@@ -250,6 +344,10 @@
           "example": "Acht mal acht ist vierundsechzig.",
           "exampleTranslation": "Eight times eight is sixty-four.",
           "difficulty": 2,
+          "emoji": "8️⃣",
+          "mnemonic": "'Acht' sounds like 'oct' (octopus has 8 legs)! 🐙",
+          "cognate": true,
+          "cognateNote": "'Acht' = 'eight' (same root as 'octo')",
           "audioUrl": null
         },
         {
@@ -260,6 +358,10 @@
           "example": "Ich gehe um neun Uhr ins Bett.",
           "exampleTranslation": "I go to bed at nine o'clock.",
           "difficulty": 2,
+          "emoji": "9️⃣",
+          "mnemonic": "'Neun' = 'nine' - sounds like 'noon minus three'!",
+          "cognate": true,
+          "cognateNote": "'Neun' = 'nine' (same root)",
           "audioUrl": null
         },
         {
@@ -270,6 +372,10 @@
           "example": "Zehn minus drei ist sieben.",
           "exampleTranslation": "Ten minus three is seven.",
           "difficulty": 1,
+          "emoji": "🔟",
+          "mnemonic": "'Zehn' = 'ten' - all ten fingers! 🙌",
+          "cognate": true,
+          "cognateNote": "'Zehn' = 'ten' (same root)",
           "audioUrl": null
         },
         {
@@ -280,6 +386,10 @@
           "example": "Ich bin zwanzig Jahre alt.",
           "exampleTranslation": "I am twenty years old.",
           "difficulty": 2,
+          "emoji": "2️⃣0️⃣",
+          "mnemonic": "'Zwan-zig' = 'two-tens' = twenty!",
+          "cognate": true,
+          "cognateNote": "'Zwanzig' = 'twenty' (two-ten)",
           "audioUrl": null
         },
         {
@@ -290,6 +400,10 @@
           "example": "Der Bus kommt in dreißig Minuten.",
           "exampleTranslation": "The bus comes in thirty minutes.",
           "difficulty": 2,
+          "emoji": "3️⃣0️⃣",
+          "mnemonic": "'Drei-ßig' = 'three-tens' = thirty!",
+          "cognate": true,
+          "cognateNote": "'Dreißig' = 'thirty' (three-ten)",
           "audioUrl": null
         },
         {
@@ -300,6 +414,10 @@
           "example": "Mein Vater ist vierzig Jahre alt.",
           "exampleTranslation": "My father is forty years old.",
           "difficulty": 2,
+          "emoji": "4️⃣0️⃣",
+          "mnemonic": "'Vier-zig' = 'four-tens' = forty!",
+          "cognate": true,
+          "cognateNote": "'Vierzig' = 'forty' (four-ten)",
           "audioUrl": null
         },
         {
@@ -310,6 +428,10 @@
           "example": "Das Buch hat hundert Seiten.",
           "exampleTranslation": "The book has one hundred pages.",
           "difficulty": 2,
+          "emoji": "💯",
+          "mnemonic": "'Hundert' = 'hundred' - exactly the same!",
+          "cognate": true,
+          "cognateNote": "'Hundert' = 'hundred' (identical)",
           "audioUrl": null
         }
       ]
@@ -317,6 +439,7 @@
     "colors": {
       "name": "Colors (Farben)",
       "description": "Basic color names in German",
+      "icon": "🎨",
       "words": [
         {
           "id": "a1_color_001",
@@ -326,6 +449,10 @@
           "example": "Der Apfel ist rot.",
           "exampleTranslation": "The apple is red.",
           "difficulty": 1,
+          "emoji": "🔴",
+          "mnemonic": "'Rot' rhymes with 'hot' - red is a hot color! 🔥",
+          "cognate": true,
+          "cognateNote": "'Rot' = 'red' (same Germanic root)",
           "audioUrl": null
         },
         {
@@ -336,6 +463,10 @@
           "example": "Der Himmel ist blau.",
           "exampleTranslation": "The sky is blue.",
           "difficulty": 1,
+          "emoji": "🔵",
+          "mnemonic": "'Blau' = 'blue' - sounds similar!",
+          "cognate": true,
+          "cognateNote": "'Blau' = 'blue' (same root)",
           "audioUrl": null
         },
         {
@@ -346,6 +477,10 @@
           "example": "Das Gras ist grün.",
           "exampleTranslation": "The grass is green.",
           "difficulty": 1,
+          "emoji": "🟢",
+          "mnemonic": "'Grün' = 'green' - starts the same!",
+          "cognate": true,
+          "cognateNote": "'Grün' = 'green' (same root)",
           "audioUrl": null
         },
         {
@@ -356,6 +491,10 @@
           "example": "Die Sonne ist gelb.",
           "exampleTranslation": "The sun is yellow.",
           "difficulty": 1,
+          "emoji": "🟡",
+          "mnemonic": "'Gelb' sounds like 'gold' - yellow gold!",
+          "cognate": true,
+          "cognateNote": "'Gelb' related to 'gold/yellow'",
           "audioUrl": null
         },
         {
@@ -366,6 +505,10 @@
           "example": "Die Katze ist schwarz.",
           "exampleTranslation": "The cat is black.",
           "difficulty": 1,
+          "emoji": "⚫",
+          "mnemonic": "'Schwarz' = 'swarthy' (dark-skinned in English)",
+          "cognate": true,
+          "cognateNote": "Related to 'swarthy' (dark)",
           "audioUrl": null
         },
         {
@@ -376,6 +519,10 @@
           "example": "Der Schnee ist weiß.",
           "exampleTranslation": "The snow is white.",
           "difficulty": 1,
+          "emoji": "⚪",
+          "mnemonic": "'Weiß' = 'white' - same 'w' sound!",
+          "cognate": true,
+          "cognateNote": "'Weiß' = 'white' (same root)",
           "audioUrl": null
         },
         {
@@ -386,6 +533,10 @@
           "example": "Die Orange ist orange.",
           "exampleTranslation": "The orange is orange.",
           "difficulty": 1,
+          "emoji": "🟠",
+          "mnemonic": "'Orange' is the same in both languages! 🍊",
+          "cognate": true,
+          "cognateNote": "Identical word!",
           "audioUrl": null
         },
         {
@@ -396,6 +547,10 @@
           "example": "Ihre Bluse ist lila.",
           "exampleTranslation": "Her blouse is purple.",
           "difficulty": 2,
+          "emoji": "🟣",
+          "mnemonic": "Think of 'lilac' flowers - they're purple!",
+          "cognate": true,
+          "cognateNote": "'Lila' = 'lilac' (purple flower)",
           "audioUrl": null
         },
         {
@@ -406,6 +561,10 @@
           "example": "Das Baby trägt rosa Schuhe.",
           "exampleTranslation": "The baby wears pink shoes.",
           "difficulty": 1,
+          "emoji": "🩷",
+          "mnemonic": "'Rosa' = 'rose' color - pink rose! 🌹",
+          "cognate": true,
+          "cognateNote": "'Rosa' = 'rose' (pink color)",
           "audioUrl": null
         },
         {
@@ -416,6 +575,10 @@
           "example": "Der Hund ist braun.",
           "exampleTranslation": "The dog is brown.",
           "difficulty": 1,
+          "emoji": "🟤",
+          "mnemonic": "'Braun' = 'brown' - almost identical!",
+          "cognate": true,
+          "cognateNote": "'Braun' = 'brown' (same root)",
           "audioUrl": null
         },
         {
@@ -426,6 +589,10 @@
           "example": "Das Auto ist grau.",
           "exampleTranslation": "The car is gray.",
           "difficulty": 1,
+          "emoji": "🩶",
+          "mnemonic": "'Grau' = 'gray' - just switch the vowels!",
+          "cognate": true,
+          "cognateNote": "'Grau' = 'gray' (same root)",
           "audioUrl": null
         }
       ]
@@ -433,15 +600,23 @@
     "family": {
       "name": "Family Members (Familie)",
       "description": "Family relationship terms",
+      "icon": "👨‍👩‍👧‍👦",
+      "grammarNote": "German nouns have genders! 'der' = masculine, 'die' = feminine, 'das' = neuter",
       "words": [
         {
           "id": "a1_family_001",
           "word": "die Familie",
           "translation": "the family",
           "partOfSpeech": "noun",
+          "gender": "feminine",
+          "article": "die",
           "example": "Meine Familie ist sehr groß.",
           "exampleTranslation": "My family is very big.",
           "difficulty": 1,
+          "emoji": "👨‍👩‍👧‍👦",
+          "mnemonic": "'Familie' = 'family' - same word!",
+          "cognate": true,
+          "cognateNote": "Identical to 'family'",
           "audioUrl": null
         },
         {
@@ -449,9 +624,15 @@
           "word": "die Mutter",
           "translation": "the mother",
           "partOfSpeech": "noun",
+          "gender": "feminine",
+          "article": "die",
           "example": "Meine Mutter ist Lehrerin.",
           "exampleTranslation": "My mother is a teacher.",
           "difficulty": 1,
+          "emoji": "👩",
+          "mnemonic": "'Mutter' = 'mother' - sounds the same!",
+          "cognate": true,
+          "cognateNote": "'Mutter' = 'mother' (same root)",
           "audioUrl": null
         },
         {
@@ -459,9 +640,15 @@
           "word": "der Vater",
           "translation": "the father",
           "partOfSpeech": "noun",
+          "gender": "masculine",
+          "article": "der",
           "example": "Mein Vater arbeitet im Büro.",
           "exampleTranslation": "My father works in the office.",
           "difficulty": 1,
+          "emoji": "👨",
+          "mnemonic": "'Vater' = 'father' - V sounds like F!",
+          "cognate": true,
+          "cognateNote": "'Vater' = 'father' (same root)",
           "audioUrl": null
         },
         {
@@ -469,9 +656,15 @@
           "word": "die Eltern",
           "translation": "the parents",
           "partOfSpeech": "noun",
+          "gender": "plural",
+          "article": "die",
           "example": "Meine Eltern kommen aus Berlin.",
           "exampleTranslation": "My parents come from Berlin.",
           "difficulty": 2,
+          "emoji": "👫",
+          "mnemonic": "'Eltern' sounds like 'elders' - your parents!",
+          "cognate": true,
+          "cognateNote": "Related to 'elders/older'",
           "audioUrl": null
         },
         {
@@ -479,9 +672,15 @@
           "word": "der Sohn",
           "translation": "the son",
           "partOfSpeech": "noun",
+          "gender": "masculine",
+          "article": "der",
           "example": "Ihr Sohn ist zehn Jahre alt.",
           "exampleTranslation": "Her son is ten years old.",
           "difficulty": 1,
+          "emoji": "👦",
+          "mnemonic": "'Sohn' = 'son' - exactly the same sound!",
+          "cognate": true,
+          "cognateNote": "'Sohn' = 'son' (identical)",
           "audioUrl": null
         },
         {
@@ -489,9 +688,15 @@
           "word": "die Tochter",
           "translation": "the daughter",
           "partOfSpeech": "noun",
+          "gender": "feminine",
+          "article": "die",
           "example": "Unsere Tochter spielt Klavier.",
           "exampleTranslation": "Our daughter plays piano.",
           "difficulty": 1,
+          "emoji": "👧",
+          "mnemonic": "'Tochter' = 'daughter' - same root!",
+          "cognate": true,
+          "cognateNote": "'Tochter' = 'daughter' (same Germanic root)",
           "audioUrl": null
         },
         {
@@ -499,9 +704,15 @@
           "word": "die Kinder",
           "translation": "the children",
           "partOfSpeech": "noun",
+          "gender": "plural",
+          "article": "die",
           "example": "Die Kinder spielen im Park.",
           "exampleTranslation": "The children play in the park.",
           "difficulty": 1,
+          "emoji": "🧒",
+          "mnemonic": "Think 'kindergarten' - place for Kinder!",
+          "cognate": true,
+          "cognateNote": "'Kinder' = 'children' (as in kindergarten)",
           "audioUrl": null
         },
         {
@@ -509,9 +720,15 @@
           "word": "der Bruder",
           "translation": "the brother",
           "partOfSpeech": "noun",
+          "gender": "masculine",
+          "article": "der",
           "example": "Mein Bruder studiert Medizin.",
           "exampleTranslation": "My brother studies medicine.",
           "difficulty": 1,
+          "emoji": "👦",
+          "mnemonic": "'Bruder' = 'brother' - same word!",
+          "cognate": true,
+          "cognateNote": "'Bruder' = 'brother' (identical root)",
           "audioUrl": null
         },
         {
@@ -519,9 +736,15 @@
           "word": "die Schwester",
           "translation": "the sister",
           "partOfSpeech": "noun",
+          "gender": "feminine",
+          "article": "die",
           "example": "Meine Schwester wohnt in München.",
           "exampleTranslation": "My sister lives in Munich.",
           "difficulty": 1,
+          "emoji": "👧",
+          "mnemonic": "'Schwester' = 'sister' - same root!",
+          "cognate": true,
+          "cognateNote": "'Schwester' = 'sister' (same root)",
           "audioUrl": null
         },
         {
@@ -529,9 +752,15 @@
           "word": "die Großmutter",
           "translation": "the grandmother",
           "partOfSpeech": "noun",
+          "gender": "feminine",
+          "article": "die",
           "example": "Meine Großmutter kocht sehr gut.",
           "exampleTranslation": "My grandmother cooks very well.",
           "difficulty": 2,
+          "emoji": "👵",
+          "mnemonic": "'Groß' = 'great/grand' + 'Mutter' = grandmother!",
+          "cognate": true,
+          "cognateNote": "'Großmutter' = 'grand-mother'",
           "audioUrl": null
         },
         {
@@ -539,9 +768,15 @@
           "word": "der Großvater",
           "translation": "the grandfather",
           "partOfSpeech": "noun",
+          "gender": "masculine",
+          "article": "der",
           "example": "Mein Großvater liest gerne Zeitung.",
           "exampleTranslation": "My grandfather likes to read the newspaper.",
           "difficulty": 2,
+          "emoji": "👴",
+          "mnemonic": "'Groß' = 'great/grand' + 'Vater' = grandfather!",
+          "cognate": true,
+          "cognateNote": "'Großvater' = 'grand-father'",
           "audioUrl": null
         },
         {
@@ -549,9 +784,15 @@
           "word": "die Großeltern",
           "translation": "the grandparents",
           "partOfSpeech": "noun",
+          "gender": "plural",
+          "article": "die",
           "example": "Wir besuchen unsere Großeltern am Sonntag.",
           "exampleTranslation": "We visit our grandparents on Sunday.",
           "difficulty": 2,
+          "emoji": "👴👵",
+          "mnemonic": "'Großeltern' = 'grand-parents' - same structure!",
+          "cognate": true,
+          "cognateNote": "'Großeltern' = 'grand-parents'",
           "audioUrl": null
         }
       ]
@@ -559,6 +800,8 @@
     "verbs": {
       "name": "Basic Verbs (Grundverben)",
       "description": "Essential German verbs for beginners",
+      "icon": "🏃",
+      "grammarNote": "German verbs change their endings based on the subject. This is called 'conjugation'.",
       "words": [
         {
           "id": "a1_verb_001",
@@ -568,6 +811,18 @@
           "example": "Ich bin müde.",
           "exampleTranslation": "I am tired.",
           "difficulty": 3,
+          "emoji": "✨",
+          "mnemonic": "The most important verb - you 'be' who you are!",
+          "cognate": false,
+          "cognateNote": null,
+          "conjugation": {
+            "ich": "bin",
+            "du": "bist",
+            "er/sie/es": "ist",
+            "wir": "sind",
+            "ihr": "seid",
+            "sie/Sie": "sind"
+          },
           "audioUrl": null
         },
         {
@@ -578,6 +833,18 @@
           "example": "Ich habe einen Hund.",
           "exampleTranslation": "I have a dog.",
           "difficulty": 3,
+          "emoji": "🤲",
+          "mnemonic": "'Haben' = 'have' - sounds similar!",
+          "cognate": true,
+          "cognateNote": "'Haben' = 'have' (same root)",
+          "conjugation": {
+            "ich": "habe",
+            "du": "hast",
+            "er/sie/es": "hat",
+            "wir": "haben",
+            "ihr": "habt",
+            "sie/Sie": "haben"
+          },
           "audioUrl": null
         },
         {
@@ -588,6 +855,18 @@
           "example": "Ich gehe zur Schule.",
           "exampleTranslation": "I go to school.",
           "difficulty": 2,
+          "emoji": "🚶",
+          "mnemonic": "'Gehen' = 'go' - starts with G!",
+          "cognate": true,
+          "cognateNote": "'Gehen' = 'go' (same root)",
+          "conjugation": {
+            "ich": "gehe",
+            "du": "gehst",
+            "er/sie/es": "geht",
+            "wir": "gehen",
+            "ihr": "geht",
+            "sie/Sie": "gehen"
+          },
           "audioUrl": null
         },
         {
@@ -598,6 +877,18 @@
           "example": "Kommst du mit mir?",
           "exampleTranslation": "Are you coming with me?",
           "difficulty": 2,
+          "emoji": "👋",
+          "mnemonic": "'Kommen' = 'come' - sounds the same!",
+          "cognate": true,
+          "cognateNote": "'Kommen' = 'come' (same root)",
+          "conjugation": {
+            "ich": "komme",
+            "du": "kommst",
+            "er/sie/es": "kommt",
+            "wir": "kommen",
+            "ihr": "kommt",
+            "sie/Sie": "kommen"
+          },
           "audioUrl": null
         },
         {
@@ -608,6 +899,18 @@
           "example": "Was machst du heute?",
           "exampleTranslation": "What are you doing today?",
           "difficulty": 2,
+          "emoji": "🛠️",
+          "mnemonic": "'Machen' = 'make' - same first letters!",
+          "cognate": true,
+          "cognateNote": "'Machen' = 'make' (same root)",
+          "conjugation": {
+            "ich": "mache",
+            "du": "machst",
+            "er/sie/es": "macht",
+            "wir": "machen",
+            "ihr": "macht",
+            "sie/Sie": "machen"
+          },
           "audioUrl": null
         },
         {
@@ -618,16 +921,40 @@
           "example": "Ich sehe einen Vogel.",
           "exampleTranslation": "I see a bird.",
           "difficulty": 2,
+          "emoji": "👀",
+          "mnemonic": "'Sehen' = 'see' - same first letters!",
+          "cognate": true,
+          "cognateNote": "'Sehen' = 'see' (same root)",
+          "conjugation": {
+            "ich": "sehe",
+            "du": "siehst",
+            "er/sie/es": "sieht",
+            "wir": "sehen",
+            "ihr": "seht",
+            "sie/Sie": "sehen"
+          },
           "audioUrl": null
         },
         {
           "id": "a1_verb_007",
           "word": "wohnen",
-          "translation": "to live",
+          "translation": "to live (reside)",
           "partOfSpeech": "verb",
           "example": "Wo wohnst du?",
           "exampleTranslation": "Where do you live?",
           "difficulty": 2,
+          "emoji": "🏠",
+          "mnemonic": "'Wohnen' = where you 'own' your home!",
+          "cognate": false,
+          "cognateNote": null,
+          "conjugation": {
+            "ich": "wohne",
+            "du": "wohnst",
+            "er/sie/es": "wohnt",
+            "wir": "wohnen",
+            "ihr": "wohnt",
+            "sie/Sie": "wohnen"
+          },
           "audioUrl": null
         },
         {
@@ -638,6 +965,18 @@
           "example": "Ich arbeite in einem Büro.",
           "exampleTranslation": "I work in an office.",
           "difficulty": 2,
+          "emoji": "💼",
+          "mnemonic": "Think 'labor' - 'Arbeit' is work!",
+          "cognate": false,
+          "cognateNote": null,
+          "conjugation": {
+            "ich": "arbeite",
+            "du": "arbeitest",
+            "er/sie/es": "arbeitet",
+            "wir": "arbeiten",
+            "ihr": "arbeitet",
+            "sie/Sie": "arbeiten"
+          },
           "audioUrl": null
         },
         {
@@ -648,6 +987,18 @@
           "example": "Ich lerne Deutsch.",
           "exampleTranslation": "I learn German.",
           "difficulty": 2,
+          "emoji": "📚",
+          "mnemonic": "'Lernen' = 'learn' - same word!",
+          "cognate": true,
+          "cognateNote": "'Lernen' = 'learn' (same root)",
+          "conjugation": {
+            "ich": "lerne",
+            "du": "lernst",
+            "er/sie/es": "lernt",
+            "wir": "lernen",
+            "ihr": "lernt",
+            "sie/Sie": "lernen"
+          },
           "audioUrl": null
         },
         {
@@ -658,6 +1009,18 @@
           "example": "Sprichst du Englisch?",
           "exampleTranslation": "Do you speak English?",
           "difficulty": 3,
+          "emoji": "🗣️",
+          "mnemonic": "'Sprechen' = 'speak' - same first sound!",
+          "cognate": true,
+          "cognateNote": "'Sprechen' = 'speak' (same root)",
+          "conjugation": {
+            "ich": "spreche",
+            "du": "sprichst",
+            "er/sie/es": "spricht",
+            "wir": "sprechen",
+            "ihr": "sprecht",
+            "sie/Sie": "sprechen"
+          },
           "audioUrl": null
         },
         {
@@ -668,6 +1031,18 @@
           "example": "Wir essen zu Mittag.",
           "exampleTranslation": "We eat lunch.",
           "difficulty": 2,
+          "emoji": "🍽️",
+          "mnemonic": "'Essen' = 'eat' - starts with E!",
+          "cognate": true,
+          "cognateNote": "'Essen' = 'eat' (same root)",
+          "conjugation": {
+            "ich": "esse",
+            "du": "isst",
+            "er/sie/es": "isst",
+            "wir": "essen",
+            "ihr": "esst",
+            "sie/Sie": "essen"
+          },
           "audioUrl": null
         },
         {
@@ -678,11 +1053,456 @@
           "example": "Ich trinke Kaffee.",
           "exampleTranslation": "I drink coffee.",
           "difficulty": 2,
+          "emoji": "🥤",
+          "mnemonic": "'Trinken' = 'drink' - sounds similar!",
+          "cognate": true,
+          "cognateNote": "'Trinken' = 'drink' (same root)",
+          "conjugation": {
+            "ich": "trinke",
+            "du": "trinkst",
+            "er/sie/es": "trinkt",
+            "wir": "trinken",
+            "ihr": "trinkt",
+            "sie/Sie": "trinken"
+          },
+          "audioUrl": null
+        }
+      ]
+    },
+    "food": {
+      "name": "Food & Drinks (Essen & Trinken)",
+      "description": "Common food and drink vocabulary",
+      "icon": "🍕",
+      "words": [
+        {
+          "id": "a1_food_001",
+          "word": "das Brot",
+          "translation": "the bread",
+          "partOfSpeech": "noun",
+          "gender": "neuter",
+          "article": "das",
+          "example": "Ich esse Brot zum Frühstück.",
+          "exampleTranslation": "I eat bread for breakfast.",
+          "difficulty": 1,
+          "emoji": "🍞",
+          "mnemonic": "'Brot' = 'bread' - similar sound!",
+          "cognate": true,
+          "cognateNote": "'Brot' = 'bread' (same root)",
+          "audioUrl": null
+        },
+        {
+          "id": "a1_food_002",
+          "word": "der Apfel",
+          "translation": "the apple",
+          "partOfSpeech": "noun",
+          "gender": "masculine",
+          "article": "der",
+          "example": "Der Apfel ist rot.",
+          "exampleTranslation": "The apple is red.",
+          "difficulty": 1,
+          "emoji": "🍎",
+          "mnemonic": "'Apfel' = 'apple' - almost identical!",
+          "cognate": true,
+          "cognateNote": "'Apfel' = 'apple' (same root)",
+          "audioUrl": null
+        },
+        {
+          "id": "a1_food_003",
+          "word": "das Wasser",
+          "translation": "the water",
+          "partOfSpeech": "noun",
+          "gender": "neuter",
+          "article": "das",
+          "example": "Ich trinke Wasser.",
+          "exampleTranslation": "I drink water.",
+          "difficulty": 1,
+          "emoji": "💧",
+          "mnemonic": "'Wasser' = 'water' - same word!",
+          "cognate": true,
+          "cognateNote": "'Wasser' = 'water' (identical)",
+          "audioUrl": null
+        },
+        {
+          "id": "a1_food_004",
+          "word": "der Kaffee",
+          "translation": "the coffee",
+          "partOfSpeech": "noun",
+          "gender": "masculine",
+          "article": "der",
+          "example": "Ich trinke morgens Kaffee.",
+          "exampleTranslation": "I drink coffee in the morning.",
+          "difficulty": 1,
+          "emoji": "☕",
+          "mnemonic": "'Kaffee' = 'coffee' - sounds the same!",
+          "cognate": true,
+          "cognateNote": "'Kaffee' = 'coffee' (same)",
+          "audioUrl": null
+        },
+        {
+          "id": "a1_food_005",
+          "word": "der Tee",
+          "translation": "the tea",
+          "partOfSpeech": "noun",
+          "gender": "masculine",
+          "article": "der",
+          "example": "Möchtest du Tee?",
+          "exampleTranslation": "Would you like tea?",
+          "difficulty": 1,
+          "emoji": "🍵",
+          "mnemonic": "'Tee' = 'tea' - exactly the same!",
+          "cognate": true,
+          "cognateNote": "'Tee' = 'tea' (identical)",
+          "audioUrl": null
+        },
+        {
+          "id": "a1_food_006",
+          "word": "die Milch",
+          "translation": "the milk",
+          "partOfSpeech": "noun",
+          "gender": "feminine",
+          "article": "die",
+          "example": "Die Milch ist kalt.",
+          "exampleTranslation": "The milk is cold.",
+          "difficulty": 1,
+          "emoji": "🥛",
+          "mnemonic": "'Milch' = 'milk' - very similar!",
+          "cognate": true,
+          "cognateNote": "'Milch' = 'milk' (same root)",
+          "audioUrl": null
+        },
+        {
+          "id": "a1_food_007",
+          "word": "das Ei",
+          "translation": "the egg",
+          "partOfSpeech": "noun",
+          "gender": "neuter",
+          "article": "das",
+          "example": "Ich esse ein Ei.",
+          "exampleTranslation": "I eat an egg.",
+          "difficulty": 1,
+          "emoji": "🥚",
+          "mnemonic": "'Ei' sounds like 'eye' - egg-shaped!",
+          "cognate": true,
+          "cognateNote": "'Ei' = 'egg' (same Germanic root)",
+          "audioUrl": null
+        },
+        {
+          "id": "a1_food_008",
+          "word": "das Fleisch",
+          "translation": "the meat",
+          "partOfSpeech": "noun",
+          "gender": "neuter",
+          "article": "das",
+          "example": "Das Fleisch ist lecker.",
+          "exampleTranslation": "The meat is delicious.",
+          "difficulty": 2,
+          "emoji": "🥩",
+          "mnemonic": "'Fleisch' = 'flesh' (meat)!",
+          "cognate": true,
+          "cognateNote": "'Fleisch' = 'flesh' (same root)",
+          "audioUrl": null
+        },
+        {
+          "id": "a1_food_009",
+          "word": "der Fisch",
+          "translation": "the fish",
+          "partOfSpeech": "noun",
+          "gender": "masculine",
+          "article": "der",
+          "example": "Der Fisch schwimmt im Wasser.",
+          "exampleTranslation": "The fish swims in the water.",
+          "difficulty": 1,
+          "emoji": "🐟",
+          "mnemonic": "'Fisch' = 'fish' - same word!",
+          "cognate": true,
+          "cognateNote": "'Fisch' = 'fish' (identical)",
+          "audioUrl": null
+        },
+        {
+          "id": "a1_food_010",
+          "word": "der Käse",
+          "translation": "the cheese",
+          "partOfSpeech": "noun",
+          "gender": "masculine",
+          "article": "der",
+          "example": "Ich mag Käse.",
+          "exampleTranslation": "I like cheese.",
+          "difficulty": 1,
+          "emoji": "🧀",
+          "mnemonic": "'Käse' sounds like 'case' - a case of cheese!",
+          "cognate": true,
+          "cognateNote": "'Käse' = 'cheese' (Latin 'caseus')",
+          "audioUrl": null
+        }
+      ]
+    },
+    "common_objects": {
+      "name": "Common Objects (Gegenstände)",
+      "description": "Everyday objects and things",
+      "icon": "📦",
+      "words": [
+        {
+          "id": "a1_obj_001",
+          "word": "das Haus",
+          "translation": "the house",
+          "partOfSpeech": "noun",
+          "gender": "neuter",
+          "article": "das",
+          "example": "Das Haus ist groß.",
+          "exampleTranslation": "The house is big.",
+          "difficulty": 1,
+          "emoji": "🏠",
+          "mnemonic": "'Haus' = 'house' - exactly the same!",
+          "cognate": true,
+          "cognateNote": "'Haus' = 'house' (identical)",
+          "audioUrl": null
+        },
+        {
+          "id": "a1_obj_002",
+          "word": "das Buch",
+          "translation": "the book",
+          "partOfSpeech": "noun",
+          "gender": "neuter",
+          "article": "das",
+          "example": "Ich lese ein Buch.",
+          "exampleTranslation": "I read a book.",
+          "difficulty": 1,
+          "emoji": "📚",
+          "mnemonic": "'Buch' = 'book' - very similar!",
+          "cognate": true,
+          "cognateNote": "'Buch' = 'book' (same root)",
+          "audioUrl": null
+        },
+        {
+          "id": "a1_obj_003",
+          "word": "der Tisch",
+          "translation": "the table",
+          "partOfSpeech": "noun",
+          "gender": "masculine",
+          "article": "der",
+          "example": "Das Buch liegt auf dem Tisch.",
+          "exampleTranslation": "The book is on the table.",
+          "difficulty": 1,
+          "emoji": "🪑",
+          "mnemonic": "Think 'dish' - dishes go on the 'Tisch'!",
+          "cognate": true,
+          "cognateNote": "Related to 'dish/desk'",
+          "audioUrl": null
+        },
+        {
+          "id": "a1_obj_004",
+          "word": "der Stuhl",
+          "translation": "the chair",
+          "partOfSpeech": "noun",
+          "gender": "masculine",
+          "article": "der",
+          "example": "Der Stuhl ist bequem.",
+          "exampleTranslation": "The chair is comfortable.",
+          "difficulty": 1,
+          "emoji": "🪑",
+          "mnemonic": "'Stuhl' sounds like 'stool' - a type of chair!",
+          "cognate": true,
+          "cognateNote": "'Stuhl' = 'stool' (same root)",
+          "audioUrl": null
+        },
+        {
+          "id": "a1_obj_005",
+          "word": "das Auto",
+          "translation": "the car",
+          "partOfSpeech": "noun",
+          "gender": "neuter",
+          "article": "das",
+          "example": "Das Auto ist schnell.",
+          "exampleTranslation": "The car is fast.",
+          "difficulty": 1,
+          "emoji": "🚗",
+          "mnemonic": "'Auto' = 'auto/automobile' - same word!",
+          "cognate": true,
+          "cognateNote": "'Auto' = 'automobile' (identical)",
+          "audioUrl": null
+        },
+        {
+          "id": "a1_obj_006",
+          "word": "das Telefon",
+          "translation": "the telephone",
+          "partOfSpeech": "noun",
+          "gender": "neuter",
+          "article": "das",
+          "example": "Das Telefon klingelt.",
+          "exampleTranslation": "The telephone is ringing.",
+          "difficulty": 1,
+          "emoji": "📞",
+          "mnemonic": "'Telefon' = 'telephone' - identical!",
+          "cognate": true,
+          "cognateNote": "'Telefon' = 'telephone' (same)",
+          "audioUrl": null
+        },
+        {
+          "id": "a1_obj_007",
+          "word": "der Computer",
+          "translation": "the computer",
+          "partOfSpeech": "noun",
+          "gender": "masculine",
+          "article": "der",
+          "example": "Ich arbeite am Computer.",
+          "exampleTranslation": "I work on the computer.",
+          "difficulty": 1,
+          "emoji": "💻",
+          "mnemonic": "'Computer' is the same in German!",
+          "cognate": true,
+          "cognateNote": "Identical word!",
+          "audioUrl": null
+        },
+        {
+          "id": "a1_obj_008",
+          "word": "die Lampe",
+          "translation": "the lamp",
+          "partOfSpeech": "noun",
+          "gender": "feminine",
+          "article": "die",
+          "example": "Die Lampe ist hell.",
+          "exampleTranslation": "The lamp is bright.",
+          "difficulty": 1,
+          "emoji": "💡",
+          "mnemonic": "'Lampe' = 'lamp' - same word!",
+          "cognate": true,
+          "cognateNote": "'Lampe' = 'lamp' (identical)",
+          "audioUrl": null
+        }
+      ]
+    },
+    "time_weather": {
+      "name": "Time & Weather (Zeit & Wetter)",
+      "description": "Time expressions and weather vocabulary",
+      "icon": "⏰",
+      "words": [
+        {
+          "id": "a1_time_001",
+          "word": "der Tag",
+          "translation": "the day",
+          "partOfSpeech": "noun",
+          "gender": "masculine",
+          "article": "der",
+          "example": "Heute ist ein schöner Tag.",
+          "exampleTranslation": "Today is a beautiful day.",
+          "difficulty": 1,
+          "emoji": "☀️",
+          "mnemonic": "'Tag' = 'day' - same root!",
+          "cognate": true,
+          "cognateNote": "'Tag' = 'day' (same Germanic root)",
+          "audioUrl": null
+        },
+        {
+          "id": "a1_time_002",
+          "word": "die Nacht",
+          "translation": "the night",
+          "partOfSpeech": "noun",
+          "gender": "feminine",
+          "article": "die",
+          "example": "Die Nacht ist dunkel.",
+          "exampleTranslation": "The night is dark.",
+          "difficulty": 1,
+          "emoji": "🌙",
+          "mnemonic": "'Nacht' = 'night' - sounds the same!",
+          "cognate": true,
+          "cognateNote": "'Nacht' = 'night' (same root)",
+          "audioUrl": null
+        },
+        {
+          "id": "a1_time_003",
+          "word": "die Sonne",
+          "translation": "the sun",
+          "partOfSpeech": "noun",
+          "gender": "feminine",
+          "article": "die",
+          "example": "Die Sonne scheint.",
+          "exampleTranslation": "The sun is shining.",
+          "difficulty": 1,
+          "emoji": "☀️",
+          "mnemonic": "'Sonne' = 'sun' - very similar!",
+          "cognate": true,
+          "cognateNote": "'Sonne' = 'sun' (same root)",
+          "audioUrl": null
+        },
+        {
+          "id": "a1_time_004",
+          "word": "der Regen",
+          "translation": "the rain",
+          "partOfSpeech": "noun",
+          "gender": "masculine",
+          "article": "der",
+          "example": "Der Regen fällt.",
+          "exampleTranslation": "The rain falls.",
+          "difficulty": 1,
+          "emoji": "🌧️",
+          "mnemonic": "'Regen' = 'rain' - same first sound!",
+          "cognate": true,
+          "cognateNote": "'Regen' = 'rain' (same root)",
+          "audioUrl": null
+        },
+        {
+          "id": "a1_time_005",
+          "word": "der Wind",
+          "translation": "the wind",
+          "partOfSpeech": "noun",
+          "gender": "masculine",
+          "article": "der",
+          "example": "Der Wind ist stark.",
+          "exampleTranslation": "The wind is strong.",
+          "difficulty": 1,
+          "emoji": "💨",
+          "mnemonic": "'Wind' = 'wind' - identical!",
+          "cognate": true,
+          "cognateNote": "'Wind' = 'wind' (same word)",
+          "audioUrl": null
+        },
+        {
+          "id": "a1_time_006",
+          "word": "der Schnee",
+          "translation": "the snow",
+          "partOfSpeech": "noun",
+          "gender": "masculine",
+          "article": "der",
+          "example": "Der Schnee ist weiß.",
+          "exampleTranslation": "The snow is white.",
+          "difficulty": 1,
+          "emoji": "❄️",
+          "mnemonic": "'Schnee' = 'snow' - similar sound!",
+          "cognate": true,
+          "cognateNote": "'Schnee' = 'snow' (same root)",
+          "audioUrl": null
+        },
+        {
+          "id": "a1_time_007",
+          "word": "heute",
+          "translation": "today",
+          "partOfSpeech": "adverb",
+          "example": "Heute ist Montag.",
+          "exampleTranslation": "Today is Monday.",
+          "difficulty": 1,
+          "emoji": "📅",
+          "mnemonic": "'Heute' - think 'hooray today'!",
+          "cognate": false,
+          "cognateNote": null,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_time_008",
+          "word": "morgen",
+          "translation": "tomorrow",
+          "partOfSpeech": "adverb",
+          "example": "Morgen gehe ich einkaufen.",
+          "exampleTranslation": "Tomorrow I go shopping.",
+          "difficulty": 1,
+          "emoji": "🌅",
+          "mnemonic": "'Morgen' = 'morning/morrow' - the next morning!",
+          "cognate": true,
+          "cognateNote": "'Morgen' = 'morrow' (tomorrow)",
           "audioUrl": null
         }
       ]
     }
   },
-  "totalWords": 85,
-  "estimatedStudyTime": "8-12 hours"
+  "totalWords": 115,
+  "estimatedStudyTime": "10-15 hours"
 }

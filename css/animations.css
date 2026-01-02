@@ -1,0 +1,727 @@
+/* Duolingo-Style Playful Animations */
+
+/* ==================== CONFETTI ==================== */
+.confetti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    animation: confettiFall 3s ease-out forwards;
+}
+
+.confetti.circle { border-radius: 50%; }
+.confetti.square { border-radius: 2px; }
+.confetti.triangle {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 10px solid currentColor;
+    background: transparent !important;
+}
+
+@keyframes confettiFall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* ==================== ANSWER FEEDBACK ==================== */
+/* Correct Answer - Happy Bounce */
+@keyframes correctBounce {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.15); }
+    50% { transform: scale(0.95); }
+    75% { transform: scale(1.05); }
+}
+
+.answer-correct {
+    animation: correctBounce 0.5s ease-out;
+    background-color: rgba(16, 185, 129, 0.2) !important;
+    border-color: var(--success) !important;
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+}
+
+/* Wrong Answer - Shake */
+@keyframes wrongShake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-8px); }
+    20%, 40%, 60%, 80% { transform: translateX(8px); }
+}
+
+.answer-wrong {
+    animation: wrongShake 0.5s ease-out;
+    background-color: rgba(239, 68, 68, 0.2) !important;
+    border-color: var(--error) !important;
+}
+
+/* ==================== QUIZ OPTION BUTTONS ==================== */
+.quiz-option {
+    background: var(--bg-card);
+    border: 3px solid var(--border-medium);
+    border-radius: var(--border-radius-xl);
+    padding: var(--space-5) var(--space-6);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    width: 100%;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+}
+
+.quiz-option:hover:not(.disabled) {
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.quiz-option:active:not(.disabled) {
+    transform: scale(0.98);
+}
+
+.quiz-option .option-number {
+    background: var(--border-light);
+    color: var(--text-secondary);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-sm);
+    flex-shrink: 0;
+}
+
+.quiz-option .option-text {
+    flex-grow: 1;
+}
+
+.quiz-option .option-emoji {
+    font-size: var(--font-size-2xl);
+    flex-shrink: 0;
+}
+
+.quiz-option.correct {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.25) 100%);
+    border-color: var(--success);
+    animation: correctBounce 0.5s ease-out;
+}
+
+.quiz-option.correct .option-number {
+    background: var(--success);
+    color: white;
+}
+
+.quiz-option.wrong {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(239, 68, 68, 0.25) 100%);
+    border-color: var(--error);
+    animation: wrongShake 0.5s ease-out;
+}
+
+.quiz-option.wrong .option-number {
+    background: var(--error);
+    color: white;
+}
+
+.quiz-option.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ==================== STREAK COUNTER ==================== */
+.streak-counter {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--streak-color);
+}
+
+.streak-counter .streak-fire {
+    font-size: var(--font-size-2xl);
+    animation: fireFlicker 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes fireFlicker {
+    0% { transform: scale(1) rotate(-3deg); }
+    100% { transform: scale(1.1) rotate(3deg); }
+}
+
+.streak-counter.streak-milestone {
+    animation: streakCelebrate 0.6s ease-out;
+}
+
+@keyframes streakCelebrate {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+
+/* ==================== XP GAIN ANIMATION ==================== */
+.xp-popup {
+    position: fixed;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--xp-color);
+    pointer-events: none;
+    z-index: 9999;
+    animation: xpFloat 1.5s ease-out forwards;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+@keyframes xpFloat {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-30px) scale(1.2);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-60px) scale(0.8);
+    }
+}
+
+/* ==================== PROGRESS BAR ANIMATIONS ==================== */
+.progress-bar-animated .progress-fill {
+    transition: width 0.5s ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-bar-animated .progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    animation: progressShine 2s ease-in-out infinite;
+}
+
+@keyframes progressShine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* ==================== CARD FLIP ==================== */
+.flashcard-flip {
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.flashcard-flip.flipped {
+    transform: rotateY(180deg);
+}
+
+.flashcard-flip .flashcard-front,
+.flashcard-flip .flashcard-back {
+    backface-visibility: hidden;
+}
+
+.flashcard-flip .flashcard-back {
+    transform: rotateY(180deg);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* ==================== PULSE EFFECT ==================== */
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+}
+
+.pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.pulse-success {
+    animation: pulse 2s ease-in-out infinite;
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+}
+
+/* ==================== TYPING FEEDBACK ==================== */
+.typing-input {
+    transition: all 0.2s ease;
+}
+
+.typing-input:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.2);
+}
+
+.typing-input.almost-correct {
+    border-color: var(--warning);
+    background: rgba(245, 158, 11, 0.1);
+}
+
+.typing-input.correct {
+    border-color: var(--success);
+    background: rgba(16, 185, 129, 0.1);
+}
+
+.typing-input.incorrect {
+    border-color: var(--error);
+    animation: wrongShake 0.3s ease-out;
+}
+
+/* ==================== HINT REVEAL ==================== */
+@keyframes hintReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hint-box {
+    animation: hintReveal 0.3s ease-out;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
+    border: 1px solid var(--info);
+    border-radius: var(--border-radius-lg);
+    padding: var(--space-4);
+    margin-top: var(--space-4);
+}
+
+.hint-box .hint-icon {
+    color: var(--info);
+    margin-right: var(--space-2);
+}
+
+/* ==================== WORD VISUAL CARD ==================== */
+.word-visual-card {
+    background: var(--bg-card);
+    border-radius: var(--border-radius-xl);
+    padding: var(--space-6);
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+    transition: transform 0.3s ease;
+}
+
+.word-visual-card:hover {
+    transform: translateY(-4px);
+}
+
+.word-visual-card .word-emoji {
+    font-size: 4rem;
+    margin-bottom: var(--space-4);
+    animation: emojiWobble 2s ease-in-out infinite;
+}
+
+@keyframes emojiWobble {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-5deg); }
+    75% { transform: rotate(5deg); }
+}
+
+.word-visual-card .german-word {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--primary-color);
+    margin-bottom: var(--space-2);
+}
+
+.word-visual-card .english-word {
+    font-size: var(--font-size-xl);
+    color: var(--success);
+    margin-bottom: var(--space-3);
+}
+
+.word-visual-card .mnemonic {
+    font-style: italic;
+    color: var(--text-secondary);
+    background: var(--bg-secondary);
+    padding: var(--space-3);
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-sm);
+}
+
+.word-visual-card .cognate-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    background: linear-gradient(135deg, var(--info) 0%, #2563EB 100%);
+    color: white;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--border-radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    margin-top: var(--space-3);
+}
+
+/* ==================== SUCCESS CELEBRATION ==================== */
+.celebration-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.celebration-content {
+    background: var(--bg-card);
+    border-radius: var(--border-radius-xl);
+    padding: var(--space-10);
+    text-align: center;
+    animation: celebrationPop 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    max-width: 400px;
+}
+
+@keyframes celebrationPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.celebration-emoji {
+    font-size: 5rem;
+    animation: celebrationBounce 0.6s ease-out;
+}
+
+@keyframes celebrationBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.celebration-title {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--success);
+    margin: var(--space-4) 0;
+}
+
+.celebration-subtitle {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-6);
+}
+
+/* ==================== LOADING STATES ==================== */
+.skeleton {
+    background: linear-gradient(90deg, var(--border-light) 25%, var(--bg-secondary) 50%, var(--border-light) 75%);
+    background-size: 200% 100%;
+    animation: skeletonLoading 1.5s infinite;
+    border-radius: var(--border-radius-md);
+}
+
+@keyframes skeletonLoading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* ==================== DAILY CHALLENGE CARD ==================== */
+.daily-challenge-card {
+    background: linear-gradient(135deg, var(--german-gold) 0%, #E6B800 100%);
+    border-radius: var(--border-radius-xl);
+    padding: var(--space-6);
+    color: var(--text-primary);
+    position: relative;
+    overflow: hidden;
+}
+
+.daily-challenge-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+    animation: challengeShine 3s ease-in-out infinite;
+}
+
+@keyframes challengeShine {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-20%, 20%); }
+}
+
+.daily-challenge-card .challenge-icon {
+    font-size: 3rem;
+    margin-bottom: var(--space-3);
+}
+
+.daily-challenge-card .challenge-title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-2);
+}
+
+.daily-challenge-card .challenge-desc {
+    opacity: 0.8;
+    margin-bottom: var(--space-4);
+}
+
+.daily-challenge-card .challenge-reward {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: rgba(0,0,0,0.2);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--border-radius-full);
+    font-weight: var(--font-weight-bold);
+}
+
+/* ==================== GRAMMAR INDICATOR ==================== */
+.article-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--border-radius-md);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-sm);
+    text-transform: lowercase;
+}
+
+.article-badge.der {
+    background: rgba(59, 130, 246, 0.2);
+    color: #2563EB;
+    border: 2px solid #2563EB;
+}
+
+.article-badge.die {
+    background: rgba(236, 72, 153, 0.2);
+    color: #DB2777;
+    border: 2px solid #DB2777;
+}
+
+.article-badge.das {
+    background: rgba(16, 185, 129, 0.2);
+    color: #059669;
+    border: 2px solid #059669;
+}
+
+/* ==================== BUTTON INTERACTIONS ==================== */
+.btn-playful {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.btn-playful::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease;
+}
+
+.btn-playful:active::after {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-playful:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-playful:active {
+    transform: translateY(0);
+}
+
+/* ==================== QUIZ CONTAINER ==================== */
+.quiz-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.quiz-question {
+    text-align: center;
+    margin-bottom: var(--space-8);
+}
+
+.quiz-question .question-emoji {
+    font-size: 4rem;
+    margin-bottom: var(--space-4);
+    animation: emojiWobble 3s ease-in-out infinite;
+}
+
+.quiz-question .question-text {
+    font-size: var(--font-size-xl);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-2);
+}
+
+.quiz-question .question-word {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--primary-color);
+}
+
+.quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.quiz-progress {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-6);
+    padding: var(--space-4);
+    background: var(--bg-secondary);
+    border-radius: var(--border-radius-lg);
+}
+
+.quiz-progress .progress-dots {
+    display: flex;
+    gap: var(--space-2);
+}
+
+.quiz-progress .progress-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--border-light);
+    transition: all 0.3s ease;
+}
+
+.quiz-progress .progress-dot.correct {
+    background: var(--success);
+    transform: scale(1.1);
+}
+
+.quiz-progress .progress-dot.wrong {
+    background: var(--error);
+}
+
+.quiz-progress .progress-dot.current {
+    background: var(--accent-color);
+    animation: pulse 1s ease-in-out infinite;
+}
+
+/* ==================== TYPING EXERCISE ==================== */
+.typing-exercise {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.typing-prompt {
+    text-align: center;
+    margin-bottom: var(--space-6);
+}
+
+.typing-prompt .prompt-label {
+    font-size: var(--font-size-lg);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-2);
+}
+
+.typing-prompt .prompt-word {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--primary-color);
+}
+
+.typing-prompt .prompt-emoji {
+    font-size: 3rem;
+    margin-bottom: var(--space-3);
+}
+
+.typing-input-container {
+    position: relative;
+    margin-bottom: var(--space-4);
+}
+
+.typing-input-container input {
+    width: 100%;
+    padding: var(--space-5);
+    font-size: var(--font-size-2xl);
+    text-align: center;
+    border: 3px solid var(--border-medium);
+    border-radius: var(--border-radius-xl);
+    transition: all 0.2s ease;
+}
+
+.typing-feedback {
+    text-align: center;
+    padding: var(--space-4);
+    border-radius: var(--border-radius-lg);
+    margin-top: var(--space-4);
+}
+
+.typing-feedback.hint {
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid var(--warning);
+    color: var(--warning);
+}
+
+/* ==================== MOBILE TOUCH FEEDBACK ==================== */
+@media (hover: none) {
+    .quiz-option:active {
+        transform: scale(0.97);
+        background: var(--bg-hover);
+    }
+
+    .btn-playful:active {
+        transform: scale(0.97);
+    }
+}
+
+/* ==================== REDUCED MOTION ==================== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
