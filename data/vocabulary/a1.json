@@ -1,0 +1,688 @@
+{
+  "level": "A1",
+  "description": "Beginner German vocabulary - fundamental words and phrases",
+  "categories": {
+    "greetings": {
+      "name": "Greetings & Introductions",
+      "description": "Basic greetings and introduction phrases",
+      "words": [
+        {
+          "id": "a1_greet_001",
+          "word": "Hallo",
+          "translation": "Hello",
+          "partOfSpeech": "interjection",
+          "example": "Hallo! Wie geht es dir?",
+          "exampleTranslation": "Hello! How are you?",
+          "difficulty": 1,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_greet_002",
+          "word": "Guten Morgen",
+          "translation": "Good morning",
+          "partOfSpeech": "phrase",
+          "example": "Guten Morgen, Frau Müller!",
+          "exampleTranslation": "Good morning, Mrs. Müller!",
+          "difficulty": 1,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_greet_003",
+          "word": "Guten Tag",
+          "translation": "Good day/Hello",
+          "partOfSpeech": "phrase",
+          "example": "Guten Tag! Schön, Sie zu sehen.",
+          "exampleTranslation": "Hello! Nice to see you.",
+          "difficulty": 1,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_greet_004",
+          "word": "Guten Abend",
+          "translation": "Good evening",
+          "partOfSpeech": "phrase",
+          "example": "Guten Abend, Familie Schmidt!",
+          "exampleTranslation": "Good evening, Schmidt family!",
+          "difficulty": 1,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_greet_005",
+          "word": "Gute Nacht",
+          "translation": "Good night",
+          "partOfSpeech": "phrase",
+          "example": "Gute Nacht und süße Träume!",
+          "exampleTranslation": "Good night and sweet dreams!",
+          "difficulty": 1,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_greet_006",
+          "word": "Auf Wiedersehen",
+          "translation": "Goodbye",
+          "partOfSpeech": "phrase",
+          "example": "Auf Wiedersehen! Bis morgen!",
+          "exampleTranslation": "Goodbye! See you tomorrow!",
+          "difficulty": 2,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_greet_007",
+          "word": "Tschüss",
+          "translation": "Bye (informal)",
+          "partOfSpeech": "interjection",
+          "example": "Tschüss, Anna! Bis später!",
+          "exampleTranslation": "Bye, Anna! See you later!",
+          "difficulty": 1,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_greet_008",
+          "word": "Wie heißt du?",
+          "translation": "What's your name? (informal)",
+          "partOfSpeech": "phrase",
+          "example": "Hallo! Wie heißt du denn?",
+          "exampleTranslation": "Hello! What's your name?",
+          "difficulty": 2,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_greet_009",
+          "word": "Wie heißen Sie?",
+          "translation": "What's your name? (formal)",
+          "partOfSpeech": "phrase",
+          "example": "Entschuldigung, wie heißen Sie?",
+          "exampleTranslation": "Excuse me, what's your name?",
+          "difficulty": 3,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_greet_010",
+          "word": "Ich heiße",
+          "translation": "My name is",
+          "partOfSpeech": "phrase",
+          "example": "Ich heiße Maria. Und du?",
+          "exampleTranslation": "My name is Maria. And you?",
+          "difficulty": 2,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_greet_011",
+          "word": "Wie geht es dir?",
+          "translation": "How are you? (informal)",
+          "partOfSpeech": "phrase",
+          "example": "Hi Tom! Wie geht es dir heute?",
+          "exampleTranslation": "Hi Tom! How are you today?",
+          "difficulty": 3,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_greet_012",
+          "word": "Wie geht es Ihnen?",
+          "translation": "How are you? (formal)",
+          "partOfSpeech": "phrase",
+          "example": "Guten Morgen! Wie geht es Ihnen?",
+          "exampleTranslation": "Good morning! How are you?",
+          "difficulty": 3,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_greet_013",
+          "word": "Mir geht es gut",
+          "translation": "I'm doing well",
+          "partOfSpeech": "phrase",
+          "example": "Danke! Mir geht es sehr gut.",
+          "exampleTranslation": "Thanks! I'm doing very well.",
+          "difficulty": 3,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_greet_014",
+          "word": "Danke",
+          "translation": "Thank you",
+          "partOfSpeech": "interjection",
+          "example": "Danke für deine Hilfe!",
+          "exampleTranslation": "Thank you for your help!",
+          "difficulty": 1,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_greet_015",
+          "word": "Bitte",
+          "translation": "Please / You're welcome",
+          "partOfSpeech": "adverb",
+          "example": "Bitte, gern geschehen!",
+          "exampleTranslation": "You're welcome!",
+          "difficulty": 2,
+          "audioUrl": null
+        }
+      ]
+    },
+    "numbers": {
+      "name": "Numbers 0-100",
+      "description": "Cardinal numbers from zero to one hundred",
+      "words": [
+        {
+          "id": "a1_num_001",
+          "word": "null",
+          "translation": "zero",
+          "partOfSpeech": "number",
+          "example": "Null plus eins ist eins.",
+          "exampleTranslation": "Zero plus one is one.",
+          "difficulty": 1,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_num_002",
+          "word": "eins",
+          "translation": "one",
+          "partOfSpeech": "number",
+          "example": "Ich habe einen Apfel.",
+          "exampleTranslation": "I have one apple.",
+          "difficulty": 1,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_num_003",
+          "word": "zwei",
+          "translation": "two",
+          "partOfSpeech": "number",
+          "example": "Zwei plus zwei ist vier.",
+          "exampleTranslation": "Two plus two is four.",
+          "difficulty": 1,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_num_004",
+          "word": "drei",
+          "translation": "three",
+          "partOfSpeech": "number",
+          "example": "Ich habe drei Katzen.",
+          "exampleTranslation": "I have three cats.",
+          "difficulty": 1,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_num_005",
+          "word": "vier",
+          "translation": "four",
+          "partOfSpeech": "number",
+          "example": "Der Tisch hat vier Beine.",
+          "exampleTranslation": "The table has four legs.",
+          "difficulty": 1,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_num_006",
+          "word": "fünf",
+          "translation": "five",
+          "partOfSpeech": "number",
+          "example": "Ich arbeite fünf Tage pro Woche.",
+          "exampleTranslation": "I work five days per week.",
+          "difficulty": 1,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_num_007",
+          "word": "sechs",
+          "translation": "six",
+          "partOfSpeech": "number",
+          "example": "Es ist sechs Uhr morgens.",
+          "exampleTranslation": "It's six o'clock in the morning.",
+          "difficulty": 2,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_num_008",
+          "word": "sieben",
+          "translation": "seven",
+          "partOfSpeech": "number",
+          "example": "Eine Woche hat sieben Tage.",
+          "exampleTranslation": "A week has seven days.",
+          "difficulty": 2,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_num_009",
+          "word": "acht",
+          "translation": "eight",
+          "partOfSpeech": "number",
+          "example": "Acht mal acht ist vierundsechzig.",
+          "exampleTranslation": "Eight times eight is sixty-four.",
+          "difficulty": 2,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_num_010",
+          "word": "neun",
+          "translation": "nine",
+          "partOfSpeech": "number",
+          "example": "Ich gehe um neun Uhr ins Bett.",
+          "exampleTranslation": "I go to bed at nine o'clock.",
+          "difficulty": 2,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_num_011",
+          "word": "zehn",
+          "translation": "ten",
+          "partOfSpeech": "number",
+          "example": "Zehn minus drei ist sieben.",
+          "exampleTranslation": "Ten minus three is seven.",
+          "difficulty": 1,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_num_012",
+          "word": "zwanzig",
+          "translation": "twenty",
+          "partOfSpeech": "number",
+          "example": "Ich bin zwanzig Jahre alt.",
+          "exampleTranslation": "I am twenty years old.",
+          "difficulty": 2,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_num_013",
+          "word": "dreißig",
+          "translation": "thirty",
+          "partOfSpeech": "number",
+          "example": "Der Bus kommt in dreißig Minuten.",
+          "exampleTranslation": "The bus comes in thirty minutes.",
+          "difficulty": 2,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_num_014",
+          "word": "vierzig",
+          "translation": "forty",
+          "partOfSpeech": "number",
+          "example": "Mein Vater ist vierzig Jahre alt.",
+          "exampleTranslation": "My father is forty years old.",
+          "difficulty": 2,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_num_015",
+          "word": "hundert",
+          "translation": "one hundred",
+          "partOfSpeech": "number",
+          "example": "Das Buch hat hundert Seiten.",
+          "exampleTranslation": "The book has one hundred pages.",
+          "difficulty": 2,
+          "audioUrl": null
+        }
+      ]
+    },
+    "colors": {
+      "name": "Colors (Farben)",
+      "description": "Basic color names in German",
+      "words": [
+        {
+          "id": "a1_color_001",
+          "word": "rot",
+          "translation": "red",
+          "partOfSpeech": "adjective",
+          "example": "Der Apfel ist rot.",
+          "exampleTranslation": "The apple is red.",
+          "difficulty": 1,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_color_002",
+          "word": "blau",
+          "translation": "blue",
+          "partOfSpeech": "adjective",
+          "example": "Der Himmel ist blau.",
+          "exampleTranslation": "The sky is blue.",
+          "difficulty": 1,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_color_003",
+          "word": "grün",
+          "translation": "green",
+          "partOfSpeech": "adjective",
+          "example": "Das Gras ist grün.",
+          "exampleTranslation": "The grass is green.",
+          "difficulty": 1,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_color_004",
+          "word": "gelb",
+          "translation": "yellow",
+          "partOfSpeech": "adjective",
+          "example": "Die Sonne ist gelb.",
+          "exampleTranslation": "The sun is yellow.",
+          "difficulty": 1,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_color_005",
+          "word": "schwarz",
+          "translation": "black",
+          "partOfSpeech": "adjective",
+          "example": "Die Katze ist schwarz.",
+          "exampleTranslation": "The cat is black.",
+          "difficulty": 1,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_color_006",
+          "word": "weiß",
+          "translation": "white",
+          "partOfSpeech": "adjective",
+          "example": "Der Schnee ist weiß.",
+          "exampleTranslation": "The snow is white.",
+          "difficulty": 1,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_color_007",
+          "word": "orange",
+          "translation": "orange",
+          "partOfSpeech": "adjective",
+          "example": "Die Orange ist orange.",
+          "exampleTranslation": "The orange is orange.",
+          "difficulty": 1,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_color_008",
+          "word": "lila",
+          "translation": "purple",
+          "partOfSpeech": "adjective",
+          "example": "Ihre Bluse ist lila.",
+          "exampleTranslation": "Her blouse is purple.",
+          "difficulty": 2,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_color_009",
+          "word": "rosa",
+          "translation": "pink",
+          "partOfSpeech": "adjective",
+          "example": "Das Baby trägt rosa Schuhe.",
+          "exampleTranslation": "The baby wears pink shoes.",
+          "difficulty": 1,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_color_010",
+          "word": "braun",
+          "translation": "brown",
+          "partOfSpeech": "adjective",
+          "example": "Der Hund ist braun.",
+          "exampleTranslation": "The dog is brown.",
+          "difficulty": 1,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_color_011",
+          "word": "grau",
+          "translation": "gray",
+          "partOfSpeech": "adjective",
+          "example": "Das Auto ist grau.",
+          "exampleTranslation": "The car is gray.",
+          "difficulty": 1,
+          "audioUrl": null
+        }
+      ]
+    },
+    "family": {
+      "name": "Family Members (Familie)",
+      "description": "Family relationship terms",
+      "words": [
+        {
+          "id": "a1_family_001",
+          "word": "die Familie",
+          "translation": "the family",
+          "partOfSpeech": "noun",
+          "example": "Meine Familie ist sehr groß.",
+          "exampleTranslation": "My family is very big.",
+          "difficulty": 1,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_family_002",
+          "word": "die Mutter",
+          "translation": "the mother",
+          "partOfSpeech": "noun",
+          "example": "Meine Mutter ist Lehrerin.",
+          "exampleTranslation": "My mother is a teacher.",
+          "difficulty": 1,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_family_003",
+          "word": "der Vater",
+          "translation": "the father",
+          "partOfSpeech": "noun",
+          "example": "Mein Vater arbeitet im Büro.",
+          "exampleTranslation": "My father works in the office.",
+          "difficulty": 1,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_family_004",
+          "word": "die Eltern",
+          "translation": "the parents",
+          "partOfSpeech": "noun",
+          "example": "Meine Eltern kommen aus Berlin.",
+          "exampleTranslation": "My parents come from Berlin.",
+          "difficulty": 2,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_family_005",
+          "word": "der Sohn",
+          "translation": "the son",
+          "partOfSpeech": "noun",
+          "example": "Ihr Sohn ist zehn Jahre alt.",
+          "exampleTranslation": "Her son is ten years old.",
+          "difficulty": 1,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_family_006",
+          "word": "die Tochter",
+          "translation": "the daughter",
+          "partOfSpeech": "noun",
+          "example": "Unsere Tochter spielt Klavier.",
+          "exampleTranslation": "Our daughter plays piano.",
+          "difficulty": 1,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_family_007",
+          "word": "die Kinder",
+          "translation": "the children",
+          "partOfSpeech": "noun",
+          "example": "Die Kinder spielen im Park.",
+          "exampleTranslation": "The children play in the park.",
+          "difficulty": 1,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_family_008",
+          "word": "der Bruder",
+          "translation": "the brother",
+          "partOfSpeech": "noun",
+          "example": "Mein Bruder studiert Medizin.",
+          "exampleTranslation": "My brother studies medicine.",
+          "difficulty": 1,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_family_009",
+          "word": "die Schwester",
+          "translation": "the sister",
+          "partOfSpeech": "noun",
+          "example": "Meine Schwester wohnt in München.",
+          "exampleTranslation": "My sister lives in Munich.",
+          "difficulty": 1,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_family_010",
+          "word": "die Großmutter",
+          "translation": "the grandmother",
+          "partOfSpeech": "noun",
+          "example": "Meine Großmutter kocht sehr gut.",
+          "exampleTranslation": "My grandmother cooks very well.",
+          "difficulty": 2,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_family_011",
+          "word": "der Großvater",
+          "translation": "the grandfather",
+          "partOfSpeech": "noun",
+          "example": "Mein Großvater liest gerne Zeitung.",
+          "exampleTranslation": "My grandfather likes to read the newspaper.",
+          "difficulty": 2,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_family_012",
+          "word": "die Großeltern",
+          "translation": "the grandparents",
+          "partOfSpeech": "noun",
+          "example": "Wir besuchen unsere Großeltern am Sonntag.",
+          "exampleTranslation": "We visit our grandparents on Sunday.",
+          "difficulty": 2,
+          "audioUrl": null
+        }
+      ]
+    },
+    "verbs": {
+      "name": "Basic Verbs (Grundverben)",
+      "description": "Essential German verbs for beginners",
+      "words": [
+        {
+          "id": "a1_verb_001",
+          "word": "sein",
+          "translation": "to be",
+          "partOfSpeech": "verb",
+          "example": "Ich bin müde.",
+          "exampleTranslation": "I am tired.",
+          "difficulty": 3,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_verb_002",
+          "word": "haben",
+          "translation": "to have",
+          "partOfSpeech": "verb",
+          "example": "Ich habe einen Hund.",
+          "exampleTranslation": "I have a dog.",
+          "difficulty": 3,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_verb_003",
+          "word": "gehen",
+          "translation": "to go",
+          "partOfSpeech": "verb",
+          "example": "Ich gehe zur Schule.",
+          "exampleTranslation": "I go to school.",
+          "difficulty": 2,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_verb_004",
+          "word": "kommen",
+          "translation": "to come",
+          "partOfSpeech": "verb",
+          "example": "Kommst du mit mir?",
+          "exampleTranslation": "Are you coming with me?",
+          "difficulty": 2,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_verb_005",
+          "word": "machen",
+          "translation": "to make/do",
+          "partOfSpeech": "verb",
+          "example": "Was machst du heute?",
+          "exampleTranslation": "What are you doing today?",
+          "difficulty": 2,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_verb_006",
+          "word": "sehen",
+          "translation": "to see",
+          "partOfSpeech": "verb",
+          "example": "Ich sehe einen Vogel.",
+          "exampleTranslation": "I see a bird.",
+          "difficulty": 2,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_verb_007",
+          "word": "wohnen",
+          "translation": "to live",
+          "partOfSpeech": "verb",
+          "example": "Wo wohnst du?",
+          "exampleTranslation": "Where do you live?",
+          "difficulty": 2,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_verb_008",
+          "word": "arbeiten",
+          "translation": "to work",
+          "partOfSpeech": "verb",
+          "example": "Ich arbeite in einem Büro.",
+          "exampleTranslation": "I work in an office.",
+          "difficulty": 2,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_verb_009",
+          "word": "lernen",
+          "translation": "to learn",
+          "partOfSpeech": "verb",
+          "example": "Ich lerne Deutsch.",
+          "exampleTranslation": "I learn German.",
+          "difficulty": 2,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_verb_010",
+          "word": "sprechen",
+          "translation": "to speak",
+          "partOfSpeech": "verb",
+          "example": "Sprichst du Englisch?",
+          "exampleTranslation": "Do you speak English?",
+          "difficulty": 3,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_verb_011",
+          "word": "essen",
+          "translation": "to eat",
+          "partOfSpeech": "verb",
+          "example": "Wir essen zu Mittag.",
+          "exampleTranslation": "We eat lunch.",
+          "difficulty": 2,
+          "audioUrl": null
+        },
+        {
+          "id": "a1_verb_012",
+          "word": "trinken",
+          "translation": "to drink",
+          "partOfSpeech": "verb",
+          "example": "Ich trinke Kaffee.",
+          "exampleTranslation": "I drink coffee.",
+          "difficulty": 2,
+          "audioUrl": null
+        }
+      ]
+    }
+  },
+  "totalWords": 85,
+  "estimatedStudyTime": "8-12 hours"
+}

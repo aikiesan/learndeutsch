@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnDeutsch - Interactive German Learning Platform</title>
+    <meta name="description" content="Learn German from A1 to C2 with gamified lessons, vocabulary practice, and interactive exercises">
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/themes.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <span class="logo-icon">🇩🇪</span>
+                        <h1>LearnDeutsch</h1>
+                    </div>
+
+                    <div class="user-stats">
+                        <div class="stat">
+                            <span class="stat-label">Level</span>
+                            <span class="stat-value" id="user-level">1</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">XP</span>
+                            <span class="stat-value" id="user-xp">0</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Streak</span>
+                            <span class="stat-value" id="user-streak">0</span>
+                            <span class="streak-icon">🔥</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" id="level-progress"></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="nav">
+            <div class="container">
+                <ul class="nav-list">
+                    <li><button class="nav-btn active" data-section="dashboard">Dashboard</button></li>
+                    <li><button class="nav-btn" data-section="vocabulary">Vocabulary</button></li>
+                    <li><button class="nav-btn" data-section="writing">Writing</button></li>
+                    <li><button class="nav-btn" data-section="progress">Progress</button></li>
+                    <li><button class="nav-btn" data-section="settings">Settings</button></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main">
+            <div class="container">
+
+                <!-- Dashboard Section -->
+                <section id="dashboard" class="section active">
+                    <div class="welcome-card">
+                        <h2>Welcome back to LearnDeutsch!</h2>
+                        <p>Continue your German learning journey. Choose your current level to get started.</p>
+                    </div>
+
+                    <div class="level-selector">
+                        <h3>Choose Your Level</h3>
+                        <div class="level-grid">
+                            <button class="level-card" data-level="A1">
+                                <div class="level-badge">A1</div>
+                                <h4>Beginner</h4>
+                                <p>Basic greetings, numbers, family</p>
+                                <div class="level-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 0%"></div>
+                                    </div>
+                                    <span class="progress-text">0/150 words</span>
+                                </div>
+                            </button>
+
+                            <button class="level-card" data-level="A2">
+                                <div class="level-badge">A2</div>
+                                <h4>Elementary</h4>
+                                <p>Daily activities, simple conversations</p>
+                                <div class="level-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 0%"></div>
+                                    </div>
+                                    <span class="progress-text">0/200 words</span>
+                                </div>
+                            </button>
+
+                            <button class="level-card disabled" data-level="B1">
+                                <div class="level-badge">B1</div>
+                                <h4>Intermediate</h4>
+                                <p>Work, travel, opinions</p>
+                                <div class="level-progress">
+                                    <span class="progress-text">Coming Soon</span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="quick-actions">
+                        <h3>Continue Learning</h3>
+                        <div class="action-grid">
+                            <button class="action-card" id="review-vocabulary">
+                                <div class="action-icon">📚</div>
+                                <h4>Review Vocabulary</h4>
+                                <p>Practice your flashcards</p>
+                            </button>
+
+                            <button class="action-card" id="writing-exercise">
+                                <div class="action-icon">✏️</div>
+                                <h4>Writing Practice</h4>
+                                <p>Complete sentences and translations</p>
+                            </button>
+
+                            <button class="action-card" id="daily-challenge">
+                                <div class="action-icon">🏆</div>
+                                <h4>Daily Challenge</h4>
+                                <p>Earn bonus XP today</p>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="recent-achievements">
+                        <h3>Recent Achievements</h3>
+                        <div class="achievement-list" id="recent-achievements">
+                            <!-- Achievements will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Vocabulary Section -->
+                <section id="vocabulary" class="section">
+                    <div class="section-header">
+                        <h2>Vocabulary Learning</h2>
+                        <div class="section-controls">
+                            <select id="vocabulary-category">
+                                <option value="all">All Categories</option>
+                                <option value="greetings">Greetings</option>
+                                <option value="numbers">Numbers</option>
+                                <option value="colors">Colors</option>
+                                <option value="family">Family</option>
+                                <option value="verbs">Basic Verbs</option>
+                            </select>
+                            <button class="btn btn-primary" id="start-flashcards">Start Flashcards</button>
+                        </div>
+                    </div>
+
+                    <div class="vocabulary-stats">
+                        <div class="stat-card">
+                            <div class="stat-number" id="words-learned">0</div>
+                            <div class="stat-label">Words Learned</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="words-reviewing">0</div>
+                            <div class="stat-label">Due for Review</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="accuracy-rate">0%</div>
+                            <div class="stat-label">Accuracy Rate</div>
+                        </div>
+                    </div>
+
+                    <!-- Flashcard Interface -->
+                    <div class="flashcard-container hidden" id="flashcard-container">
+                        <div class="flashcard" id="flashcard">
+                            <div class="flashcard-front">
+                                <div class="word-german" id="word-german"></div>
+                                <button class="btn btn-outline" id="reveal-translation">Show Translation</button>
+                            </div>
+                            <div class="flashcard-back hidden">
+                                <div class="word-english" id="word-english"></div>
+                                <div class="word-example" id="word-example"></div>
+                                <div class="difficulty-buttons">
+                                    <button class="btn btn-error" id="difficulty-hard">Hard</button>
+                                    <button class="btn btn-warning" id="difficulty-medium">Medium</button>
+                                    <button class="btn btn-success" id="difficulty-easy">Easy</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flashcard-progress">
+                            <div class="progress-text">
+                                Card <span id="current-card">1</span> of <span id="total-cards">10</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="flashcard-progress"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Vocabulary List -->
+                    <div class="vocabulary-list" id="vocabulary-list">
+                        <!-- Vocabulary items will be populated by JavaScript -->
+                    </div>
+                </section>
+
+                <!-- Writing Section -->
+                <section id="writing" class="section">
+                    <div class="section-header">
+                        <h2>Writing Practice</h2>
+                        <div class="section-controls">
+                            <select id="writing-type">
+                                <option value="sentence-construction">Sentence Construction</option>
+                                <option value="translation">Translation</option>
+                                <option value="free-writing">Free Writing</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="writing-exercise" id="writing-exercise">
+                        <!-- Exercise content will be populated by JavaScript -->
+                    </div>
+                </section>
+
+                <!-- Progress Section -->
+                <section id="progress" class="section">
+                    <div class="section-header">
+                        <h2>Your Progress</h2>
+                    </div>
+
+                    <div class="progress-overview">
+                        <div class="progress-card">
+                            <h3>Overall Statistics</h3>
+                            <div class="stat-grid">
+                                <div class="stat-item">
+                                    <span class="stat-value" id="total-study-time">0h</span>
+                                    <span class="stat-label">Study Time</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-value" id="exercises-completed">0</span>
+                                    <span class="stat-label">Exercises Completed</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-value" id="current-streak-display">0</span>
+                                    <span class="stat-label">Current Streak</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-value" id="longest-streak">0</span>
+                                    <span class="stat-label">Longest Streak</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="achievements-section">
+                            <h3>Achievements</h3>
+                            <div class="achievements-grid" id="achievements-grid">
+                                <!-- Achievements will be populated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <div class="study-calendar">
+                            <h3>Study Calendar</h3>
+                            <div class="calendar-heatmap" id="study-heatmap">
+                                <!-- Calendar will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Settings Section -->
+                <section id="settings" class="section">
+                    <div class="section-header">
+                        <h2>Settings</h2>
+                    </div>
+
+                    <div class="settings-grid">
+                        <div class="setting-card">
+                            <h3>Learning Preferences</h3>
+                            <div class="setting-item">
+                                <label for="daily-goal">Daily Word Goal</label>
+                                <select id="daily-goal">
+                                    <option value="5">5 words</option>
+                                    <option value="10" selected>10 words</option>
+                                    <option value="15">15 words</option>
+                                    <option value="20">20 words</option>
+                                </select>
+                            </div>
+                            <div class="setting-item">
+                                <label for="difficulty-preference">Difficulty Preference</label>
+                                <select id="difficulty-preference">
+                                    <option value="easy">Easy</option>
+                                    <option value="balanced" selected>Balanced</option>
+                                    <option value="challenging">Challenging</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="setting-card">
+                            <h3>Interface</h3>
+                            <div class="setting-item">
+                                <label>
+                                    <input type="checkbox" id="dark-mode"> Dark Mode
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <label>
+                                    <input type="checkbox" id="sound-effects" checked> Sound Effects
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="setting-card">
+                            <h3>Data</h3>
+                            <button class="btn btn-outline" id="export-progress">Export Progress</button>
+                            <button class="btn btn-error" id="reset-progress">Reset All Progress</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; 2026 LearnDeutsch. Built for German language learners worldwide.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay hidden" id="loading-overlay">
+        <div class="loading-spinner"></div>
+        <p>Loading...</p>
+    </div>
+
+    <!-- Modal for achievements -->
+    <div class="modal hidden" id="achievement-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <div class="achievement-celebration">
+                <div class="achievement-icon" id="achievement-icon"></div>
+                <h3 id="achievement-title">Achievement Unlocked!</h3>
+                <p id="achievement-description"></p>
+                <div class="xp-reward">+<span id="achievement-xp">0</span> XP</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/gamification.js"></script>
+    <script src="js/vocabulary.js"></script>
+    <script src="js/exercises.js"></script>
+    <script src="js/progress.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
