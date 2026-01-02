@@ -1,61 +1,93 @@
-/* German-themed Color Variables */
+/* Cozy Pastel Theme - Warm & Friendly */
 :root {
-    /* German Flag Colors */
-    --german-black: #000000;
-    --german-red: #DD0000;
-    --german-gold: #FFCC00;
+    /* ==================== COZY PASTEL PALETTE ==================== */
 
-    /* Primary Colors */
-    --primary-color: var(--german-black);
-    --secondary-color: var(--german-red);
-    --accent-color: var(--german-gold);
+    /* Primary Cozy Colors */
+    --cozy-peach: #FFDAB3;
+    --cozy-lavender: #E8D5E8;
+    --cozy-mint: #C8E6C9;
+    --cozy-sky: #B3D9E8;
+    --cozy-rose: #F5C6CB;
+    --cozy-cream: #FFF8E7;
+    --cozy-sage: #D4E6D4;
+    --cozy-blush: #FFE4E1;
 
-    /* Background Colors */
-    --bg-primary: #FFFFFF;
-    --bg-secondary: #F8F9FA;
-    --bg-dark: #1A1A1A;
+    /* Warm Accent Colors */
+    --warm-coral: #FF8A80;
+    --warm-sunset: #FFAB91;
+    --warm-honey: #FFD54F;
+    --warm-terracotta: #E57373;
+
+    /* Primary Colors - Soft & Inviting */
+    --primary-color: #7C9A92;
+    --primary-light: #A8C5BC;
+    --primary-dark: #5D7A73;
+    --secondary-color: #E8A87C;
+    --accent-color: #F9D56E;
+
+    /* Background Colors - Warm & Cozy */
+    --bg-primary: #FFFBF5;
+    --bg-secondary: #FFF5EB;
+    --bg-tertiary: #FFF0E5;
     --bg-card: #FFFFFF;
-    --bg-hover: #F5F5F5;
+    --bg-card-hover: #FFFAF3;
+    --bg-hover: #FFF8F0;
 
-    /* Text Colors */
-    --text-primary: #1A1A1A;
-    --text-secondary: #6C757D;
-    --text-muted: #9CA3AF;
+    /* Text Colors - Soft Contrast */
+    --text-primary: #4A4A4A;
+    --text-secondary: #6B6B6B;
+    --text-muted: #9B9B9B;
     --text-white: #FFFFFF;
+    --text-warm: #8B6914;
 
-    /* Border Colors */
-    --border-light: #E5E7EB;
-    --border-medium: #D1D5DB;
-    --border-dark: #9CA3AF;
+    /* Border Colors - Gentle */
+    --border-light: #F0E6DC;
+    --border-medium: #E5D5C5;
+    --border-dark: #D4C4B4;
+    --border-cozy: #E8DDD0;
 
-    /* Status Colors */
-    --success: #10B981;
-    --warning: #F59E0B;
-    --error: #EF4444;
-    --info: #3B82F6;
+    /* Status Colors - Pastel Versions */
+    --success: #81C784;
+    --success-light: #C8E6C9;
+    --success-dark: #66BB6A;
+    --warning: #FFB74D;
+    --warning-light: #FFE0B2;
+    --error: #E57373;
+    --error-light: #FFCDD2;
+    --info: #64B5F6;
+    --info-light: #BBDEFB;
 
-    /* Gamification Colors */
-    --xp-color: #8B5CF6;
-    --streak-color: #F97316;
-    --level-color: var(--german-gold);
+    /* Gamification Colors - Playful Pastels */
+    --xp-color: #B39DDB;
+    --xp-light: #E1BEE7;
+    --streak-color: #FFAB91;
+    --streak-glow: #FF8A65;
+    --level-color: #FFD54F;
 
-    /* Achievement Badge Colors */
-    --bronze: #CD7F32;
-    --silver: #C0C0C0;
-    --gold: #FFD700;
-    --platinum: #E5E4E2;
+    /* Achievement Badge Colors - Warm Metals */
+    --bronze: #D7A574;
+    --silver: #B8C5C5;
+    --gold: #F4D03F;
+    --platinum: #E0E6E6;
 
-    /* Shadow Colors */
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    /* Cozy Shadows - Soft & Warm */
+    --shadow-cozy: 0 2px 8px rgba(139, 105, 20, 0.08);
+    --shadow-sm: 0 1px 3px rgba(139, 105, 20, 0.06);
+    --shadow-md: 0 4px 12px rgba(139, 105, 20, 0.1);
+    --shadow-lg: 0 8px 24px rgba(139, 105, 20, 0.12);
+    --shadow-xl: 0 16px 40px rgba(139, 105, 20, 0.15);
+    --shadow-glow: 0 0 20px rgba(249, 213, 110, 0.3);
 
-    /* Gradient Backgrounds */
-    --gradient-primary: linear-gradient(135deg, var(--german-black) 0%, var(--german-red) 100%);
-    --gradient-secondary: linear-gradient(135deg, var(--german-red) 0%, var(--german-gold) 100%);
-    --gradient-success: linear-gradient(135deg, var(--success) 0%, #059669 100%);
-    --gradient-warning: linear-gradient(135deg, var(--warning) 0%, #D97706 100%);
+    /* Cozy Gradients - Warm & Inviting */
+    --gradient-primary: linear-gradient(135deg, #7C9A92 0%, #A8C5BC 100%);
+    --gradient-secondary: linear-gradient(135deg, #E8A87C 0%, #F9D56E 100%);
+    --gradient-cozy: linear-gradient(135deg, #FFDAB3 0%, #FFE4C4 100%);
+    --gradient-sunset: linear-gradient(135deg, #FFB347 0%, #FFCC33 100%);
+    --gradient-lavender: linear-gradient(135deg, #E8D5E8 0%, #D4C4E8 100%);
+    --gradient-mint: linear-gradient(135deg, #C8E6C9 0%, #A5D6A7 100%);
+    --gradient-success: linear-gradient(135deg, #81C784 0%, #66BB6A 100%);
+    --gradient-warning: linear-gradient(135deg, #FFB74D 0%, #FFA726 100%);
+    --gradient-hero: linear-gradient(135deg, #E8A87C 0%, #F9D56E 50%, #FFE4C4 100%);
 
     /* Typography */
     --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -91,49 +123,53 @@
     --space-16: 4rem;
     --space-20: 5rem;
 
-    /* Border Radius */
-    --border-radius-sm: 0.25rem;
-    --border-radius-md: 0.5rem;
-    --border-radius-lg: 0.75rem;
-    --border-radius-xl: 1rem;
+    /* Border Radius - Softer, Rounder */
+    --border-radius-sm: 0.375rem;
+    --border-radius-md: 0.625rem;
+    --border-radius-lg: 1rem;
+    --border-radius-xl: 1.25rem;
+    --border-radius-2xl: 1.5rem;
     --border-radius-full: 9999px;
 
-    /* Transitions */
-    --transition-fast: 0.15s ease-in-out;
-    --transition-normal: 0.3s ease-in-out;
-    --transition-slow: 0.5s ease-in-out;
+    /* Transitions - Gentle */
+    --transition-fast: 0.2s ease-out;
+    --transition-normal: 0.3s ease-out;
+    --transition-slow: 0.5s ease-out;
+    --transition-bounce: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 
     /* Z-index */
     --z-dropdown: 10;
+    --z-sticky: 20;
     --z-modal: 50;
     --z-tooltip: 100;
 }
 
-/* Dark Mode Theme */
+/* ==================== DARK COZY THEME ==================== */
 [data-theme="dark"] {
-    --bg-primary: #111827;
-    --bg-secondary: #1F2937;
-    --bg-card: #374151;
-    --bg-hover: #4B5563;
+    --bg-primary: #2D2A2E;
+    --bg-secondary: #383438;
+    --bg-tertiary: #423D42;
+    --bg-card: #3D393D;
+    --bg-card-hover: #4A454A;
+    --bg-hover: #4A454A;
 
-    --text-primary: #F9FAFB;
-    --text-secondary: #D1D5DB;
-    --text-muted: #9CA3AF;
+    --text-primary: #F5F0E8;
+    --text-secondary: #C8C0B8;
+    --text-muted: #9A928A;
 
-    --border-light: #374151;
-    --border-medium: #4B5563;
-    --border-dark: #6B7280;
+    --border-light: #4A454A;
+    --border-medium: #5A555A;
+    --border-dark: #6A656A;
+
+    --shadow-cozy: 0 2px 8px rgba(0, 0, 0, 0.2);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.15);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.2);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.25);
 }
 
-/* High Contrast Mode */
-[data-theme="high-contrast"] {
-    --primary-color: #000000;
-    --bg-primary: #FFFFFF;
-    --text-primary: #000000;
-    --border-light: #000000;
-}
+/* ==================== UTILITY CLASSES ==================== */
 
-/* Color Utilities */
+/* Text Colors */
 .text-primary { color: var(--text-primary); }
 .text-secondary { color: var(--text-secondary); }
 .text-muted { color: var(--text-muted); }
@@ -142,64 +178,80 @@
 .text-warning { color: var(--warning); }
 .text-error { color: var(--error); }
 .text-info { color: var(--info); }
+.text-cozy { color: var(--secondary-color); }
 
+/* Background Colors */
 .bg-primary { background-color: var(--bg-primary); }
 .bg-secondary { background-color: var(--bg-secondary); }
 .bg-card { background-color: var(--bg-card); }
-.bg-success { background-color: var(--success); }
-.bg-warning { background-color: var(--warning); }
-.bg-error { background-color: var(--error); }
-.bg-info { background-color: var(--info); }
+.bg-success { background-color: var(--success-light); color: var(--success-dark); }
+.bg-warning { background-color: var(--warning-light); color: var(--warning); }
+.bg-error { background-color: var(--error-light); color: var(--error); }
+.bg-info { background-color: var(--info-light); color: var(--info); }
+.bg-cozy { background-color: var(--cozy-cream); }
+.bg-cozy-peach { background-color: var(--cozy-peach); }
+.bg-cozy-lavender { background-color: var(--cozy-lavender); }
+.bg-cozy-mint { background-color: var(--cozy-mint); }
 
+/* Border Colors */
 .border-light { border-color: var(--border-light); }
 .border-medium { border-color: var(--border-medium); }
-.border-dark { border-color: var(--border-dark); }
+.border-cozy { border-color: var(--border-cozy); }
 
-/* German Cultural Design Elements */
-.german-pattern {
+/* ==================== COZY DECORATIVE ELEMENTS ==================== */
+
+/* Soft pattern overlay */
+.cozy-pattern {
     background-image:
-        repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 10px,
-            rgba(221, 0, 0, 0.1) 10px,
-            rgba(221, 0, 0, 0.1) 20px
-        );
+        radial-gradient(circle at 20% 80%, rgba(255, 218, 179, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(232, 213, 232, 0.3) 0%, transparent 50%);
 }
 
-.flag-gradient {
-    background: linear-gradient(to bottom,
-        var(--german-black) 0% 33.33%,
-        var(--german-red) 33.33% 66.66%,
-        var(--german-gold) 66.66% 100%
-    );
+/* Warm glow effect */
+.cozy-glow {
+    box-shadow:
+        0 0 40px rgba(249, 213, 110, 0.15),
+        0 0 80px rgba(232, 168, 124, 0.1);
 }
 
-/* Achievement Rarity Colors */
+/* Floating clouds decoration */
+.cozy-clouds::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    width: 100px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50px;
+    filter: blur(10px);
+}
+
+/* Achievement Rarity - Cozy Version */
 .rarity-bronze {
-    background: var(--gradient-warning);
+    background: linear-gradient(135deg, #D7A574 0%, #C4956A 100%);
     color: white;
 }
 
 .rarity-silver {
-    background: linear-gradient(135deg, #C0C0C0 0%, #A8A8A8 100%);
+    background: linear-gradient(135deg, #B8C5C5 0%, #A8B5B5 100%);
     color: var(--text-primary);
 }
 
 .rarity-gold {
-    background: linear-gradient(135deg, var(--german-gold) 0%, #E6B800 100%);
+    background: linear-gradient(135deg, #F4D03F 0%, #E8C430 100%);
     color: var(--text-primary);
 }
 
 .rarity-platinum {
-    background: linear-gradient(135deg, #E5E4E2 0%, #D3D3D3 100%);
+    background: linear-gradient(135deg, #E0E6E6 0%, #D0D6D6 100%);
     color: var(--text-primary);
 }
 
-/* Level Colors */
-.level-beginner { color: var(--success); }
-.level-elementary { color: var(--info); }
-.level-intermediate { color: var(--warning); }
-.level-upper-intermediate { color: var(--secondary-color); }
-.level-advanced { color: var(--german-red); }
-.level-mastery { color: var(--primary-color); }
+/* Level Colors - Pastel */
+.level-beginner { color: var(--cozy-mint); }
+.level-elementary { color: var(--cozy-sky); }
+.level-intermediate { color: var(--cozy-peach); }
+.level-upper-intermediate { color: var(--cozy-lavender); }
+.level-advanced { color: var(--cozy-rose); }
+.level-mastery { color: var(--warm-honey); }

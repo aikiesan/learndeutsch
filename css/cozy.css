@@ -1,0 +1,555 @@
+/* Cozy UI Components - Warm & Friendly Styling */
+
+/* ==================== BODY & BASE ==================== */
+body {
+    background: var(--bg-primary);
+    background-image:
+        radial-gradient(circle at 10% 20%, rgba(255, 218, 179, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(232, 213, 232, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(200, 230, 201, 0.1) 0%, transparent 60%);
+    min-height: 100vh;
+}
+
+/* ==================== HEADER - COZY STYLE ==================== */
+.header {
+    background: var(--gradient-hero);
+    border-bottom: none;
+    box-shadow: var(--shadow-md);
+}
+
+.compact-header {
+    background: linear-gradient(135deg, #E8A87C 0%, #F9D56E 100%);
+}
+
+.compact-header .stat {
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.logo-icon {
+    font-size: 1.5rem;
+}
+
+.progress-bar {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: var(--border-radius-full);
+    height: 6px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    background: linear-gradient(90deg, #fff 0%, rgba(255,255,255,0.8) 100%);
+    border-radius: var(--border-radius-full);
+}
+
+/* ==================== HERO SECTION - COZY ==================== */
+.hero-section {
+    background: linear-gradient(135deg, var(--cozy-peach) 0%, var(--warm-honey) 50%, var(--cozy-cream) 100%);
+    border: none;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 60%);
+    width: 250px;
+    height: 250px;
+    top: -30%;
+    right: -10%;
+}
+
+.hero-section::after {
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 60%);
+    width: 180px;
+    height: 180px;
+    bottom: -20%;
+    left: -5%;
+}
+
+.hero-title {
+    color: var(--text-primary);
+    text-shadow: 0 2px 4px rgba(255,255,255,0.3);
+}
+
+.hero-subtitle {
+    color: var(--text-secondary);
+}
+
+/* ==================== CTA BUTTON - COZY ==================== */
+.cta-button {
+    background: var(--bg-card);
+    border: 2px solid var(--border-light);
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+    transition: var(--transition-bounce);
+}
+
+.cta-button:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: var(--shadow-xl), 0 0 30px rgba(249, 213, 110, 0.4);
+}
+
+.cta-title {
+    color: var(--primary-color);
+}
+
+.cta-arrow {
+    color: var(--secondary-color);
+}
+
+/* Pulse glow - cozy version */
+@keyframes pulseGlowCozy {
+    0%, 100% {
+        box-shadow: var(--shadow-lg), 0 0 20px rgba(249, 213, 110, 0.2);
+    }
+    50% {
+        box-shadow: var(--shadow-xl), 0 0 40px rgba(249, 213, 110, 0.4);
+    }
+}
+
+.pulse-glow {
+    animation: pulseGlowCozy 3s ease-in-out infinite;
+}
+
+/* ==================== PATH CARDS - COZY ==================== */
+.path-card {
+    background: var(--bg-card);
+    border: 2px solid var(--border-light);
+    border-radius: var(--border-radius-xl);
+    box-shadow: var(--shadow-cozy);
+    transition: var(--transition-bounce);
+}
+
+.path-card:hover {
+    border-color: var(--secondary-color);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-6px);
+}
+
+.path-card.featured {
+    border-color: var(--warm-honey);
+    background: linear-gradient(135deg, rgba(249, 213, 110, 0.1) 0%, var(--bg-card) 100%);
+}
+
+.path-badge {
+    background: linear-gradient(135deg, var(--warm-sunset) 0%, var(--warm-honey) 100%);
+    color: white;
+    font-weight: 600;
+}
+
+.path-xp {
+    color: var(--xp-color);
+}
+
+/* ==================== QUIZ OPTIONS - COZY ==================== */
+.quiz-option {
+    background: var(--bg-card);
+    border: 2px solid var(--border-light);
+    border-radius: var(--border-radius-xl);
+    box-shadow: var(--shadow-cozy);
+    transition: var(--transition-bounce);
+}
+
+.quiz-option:hover:not(.disabled) {
+    border-color: var(--secondary-color);
+    background: var(--bg-card-hover);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.quiz-option .option-letter {
+    background: var(--cozy-peach);
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.quiz-option.correct {
+    background: linear-gradient(135deg, var(--success-light) 0%, rgba(200, 230, 201, 0.5) 100%);
+    border-color: var(--success);
+}
+
+.quiz-option.correct .option-letter {
+    background: var(--success);
+    color: white;
+}
+
+.quiz-option.wrong {
+    background: linear-gradient(135deg, var(--error-light) 0%, rgba(255, 205, 210, 0.5) 100%);
+    border-color: var(--error);
+}
+
+.quiz-option.wrong .option-letter {
+    background: var(--error);
+    color: white;
+}
+
+/* ==================== DAILY BANNER - COZY ==================== */
+.daily-banner {
+    background: linear-gradient(135deg, var(--cozy-lavender) 0%, #D4C4E8 100%);
+    border: none;
+    box-shadow: var(--shadow-md);
+}
+
+.daily-banner::before {
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 60%);
+}
+
+.daily-btn {
+    background: white;
+    color: #8B7DC5;
+    box-shadow: var(--shadow-sm);
+}
+
+.daily-btn:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-md);
+}
+
+.daily-reward {
+    background: #8B7DC5;
+    color: white;
+}
+
+/* ==================== SUMMARY CARDS - COZY ==================== */
+.summary-card {
+    background: var(--bg-card);
+    border: 2px solid var(--border-light);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-cozy);
+}
+
+.summary-number {
+    color: var(--primary-color);
+}
+
+/* ==================== CATEGORY PILLS - COZY ==================== */
+.category-pill {
+    background: var(--bg-card);
+    border: 2px solid var(--border-light);
+    border-radius: var(--border-radius-full);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-fast);
+}
+
+.category-pill:hover {
+    border-color: var(--secondary-color);
+    background: var(--cozy-cream);
+}
+
+.category-pill.active {
+    background: var(--gradient-secondary);
+    border-color: var(--secondary-color);
+    color: white;
+    box-shadow: var(--shadow-md);
+}
+
+/* ==================== BOTTOM NAV - COZY ==================== */
+.bottom-nav {
+    background: var(--bg-card);
+    border-top: 2px solid var(--border-light);
+    box-shadow: 0 -4px 20px rgba(139, 105, 20, 0.1);
+}
+
+.nav-item {
+    color: var(--text-muted);
+    transition: var(--transition-fast);
+}
+
+.nav-item:hover {
+    color: var(--secondary-color);
+}
+
+.nav-item.active {
+    color: var(--primary-color);
+}
+
+.nav-quiz .nav-icon {
+    background: var(--gradient-secondary);
+    box-shadow: var(--shadow-md), 0 0 20px rgba(249, 213, 110, 0.3);
+}
+
+/* ==================== GRAMMAR CARDS - COZY ==================== */
+.grammar-intro {
+    background: var(--cozy-cream);
+    border-left: 4px solid var(--warm-honey);
+    border-radius: var(--border-radius-lg);
+}
+
+.grammar-card {
+    background: var(--bg-card);
+    box-shadow: var(--shadow-cozy);
+    border-radius: var(--border-radius-xl);
+}
+
+.der-card {
+    border: 3px solid var(--cozy-sky);
+    background: linear-gradient(135deg, rgba(179, 217, 232, 0.1) 0%, var(--bg-card) 100%);
+}
+.die-card {
+    border: 3px solid var(--cozy-rose);
+    background: linear-gradient(135deg, rgba(245, 198, 203, 0.1) 0%, var(--bg-card) 100%);
+}
+.das-card {
+    border: 3px solid var(--cozy-mint);
+    background: linear-gradient(135deg, rgba(200, 230, 201, 0.1) 0%, var(--bg-card) 100%);
+}
+
+.article-badge.der {
+    background: var(--cozy-sky);
+    color: #1976D2;
+    border: 2px solid #64B5F6;
+}
+
+.article-badge.die {
+    background: var(--cozy-rose);
+    color: #C2185B;
+    border: 2px solid #F48FB1;
+}
+
+.article-badge.das {
+    background: var(--cozy-mint);
+    color: #388E3C;
+    border: 2px solid #81C784;
+}
+
+/* ==================== BUTTONS - COZY ==================== */
+.btn {
+    border-radius: var(--border-radius-lg);
+    font-weight: 500;
+    transition: var(--transition-bounce);
+}
+
+.btn-primary {
+    background: var(--gradient-primary);
+    border: none;
+    color: white;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-playful {
+    border-radius: var(--border-radius-xl);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--border-medium);
+    color: var(--text-primary);
+}
+
+.btn-outline:hover {
+    border-color: var(--secondary-color);
+    background: var(--cozy-cream);
+}
+
+/* ==================== STREAK COUNTER - COZY ==================== */
+.streak-counter {
+    color: var(--streak-color);
+}
+
+.streak-counter .streak-fire {
+    filter: drop-shadow(0 0 8px rgba(255, 171, 145, 0.5));
+}
+
+/* ==================== XP POPUP - COZY ==================== */
+.xp-popup {
+    color: var(--xp-color);
+    text-shadow: 0 2px 8px rgba(179, 157, 219, 0.4);
+}
+
+/* ==================== CONFETTI - COZY COLORS ==================== */
+.confetti {
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+/* ==================== FLASHCARD - COZY ==================== */
+.flashcard {
+    background: var(--bg-card);
+    border: 2px solid var(--border-light);
+    border-radius: var(--border-radius-2xl);
+    box-shadow: var(--shadow-lg);
+}
+
+.flashcard:hover {
+    box-shadow: var(--shadow-xl);
+}
+
+/* ==================== TYPING INPUT - COZY ==================== */
+.typing-input {
+    background: var(--bg-card);
+    border: 3px solid var(--border-medium);
+    border-radius: var(--border-radius-xl);
+    transition: var(--transition-fast);
+}
+
+.typing-input:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 4px rgba(232, 168, 124, 0.2);
+}
+
+.typing-input.correct {
+    border-color: var(--success);
+    background: var(--success-light);
+}
+
+.typing-input.almost-correct {
+    border-color: var(--warning);
+    background: var(--warning-light);
+}
+
+.typing-input.incorrect {
+    border-color: var(--error);
+    background: var(--error-light);
+}
+
+/* ==================== CELEBRATION - COZY ==================== */
+.celebration-content {
+    background: var(--bg-card);
+    border: 2px solid var(--border-light);
+    border-radius: var(--border-radius-2xl);
+    box-shadow: var(--shadow-xl);
+}
+
+.celebration-title {
+    color: var(--success);
+}
+
+/* ==================== NOTIFICATIONS - COZY ==================== */
+.notification {
+    border-radius: var(--border-radius-xl);
+    box-shadow: var(--shadow-lg);
+}
+
+.notification-info {
+    background: linear-gradient(135deg, var(--info) 0%, #42A5F5 100%);
+}
+
+.notification-success {
+    background: linear-gradient(135deg, var(--success) 0%, #66BB6A 100%);
+}
+
+.notification-error {
+    background: linear-gradient(135deg, var(--error) 0%, #EF5350 100%);
+}
+
+/* ==================== MODAL - COZY ==================== */
+.modal-content {
+    background: var(--bg-card);
+    border-radius: var(--border-radius-2xl);
+    box-shadow: var(--shadow-xl);
+}
+
+/* ==================== SETTINGS - COZY ==================== */
+.setting-card {
+    background: var(--bg-card);
+    border: 2px solid var(--border-light);
+    border-radius: var(--border-radius-xl);
+    box-shadow: var(--shadow-cozy);
+}
+
+.toggle-label input[type="checkbox"] {
+    background: var(--border-medium);
+}
+
+.toggle-label input[type="checkbox"]:checked {
+    background: var(--gradient-primary);
+}
+
+/* ==================== VOCABULARY LIST - COZY ==================== */
+.vocabulary-item {
+    background: var(--bg-card);
+    border: 2px solid var(--border-light);
+    border-radius: var(--border-radius-lg);
+    transition: var(--transition-fast);
+}
+
+.vocabulary-item:hover {
+    border-color: var(--secondary-color);
+    box-shadow: var(--shadow-md);
+}
+
+/* ==================== STAT CARDS - COZY ==================== */
+.stat-card {
+    background: var(--bg-card);
+    border: 2px solid var(--border-light);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-cozy);
+}
+
+/* ==================== PROGRESS DOTS - COZY ==================== */
+.progress-dot {
+    background: var(--border-light);
+    transition: var(--transition-fast);
+}
+
+.progress-dot.correct {
+    background: var(--success);
+    box-shadow: 0 0 8px rgba(129, 199, 132, 0.5);
+}
+
+.progress-dot.wrong {
+    background: var(--error);
+}
+
+.progress-dot.current {
+    background: var(--warm-honey);
+    box-shadow: 0 0 8px rgba(249, 213, 110, 0.5);
+}
+
+/* ==================== SECTION HEADERS - COZY ==================== */
+.section-header h2 {
+    color: var(--text-primary);
+}
+
+.back-btn {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.back-btn:hover {
+    color: var(--secondary-color);
+}
+
+/* ==================== SCROLLBAR - COZY ==================== */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+    border-radius: var(--border-radius-full);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-medium);
+    border-radius: var(--border-radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--border-dark);
+}
+
+/* ==================== SELECTION - COZY ==================== */
+::selection {
+    background: var(--cozy-peach);
+    color: var(--text-primary);
+}
+
+/* ==================== FOCUS STATES - COZY ==================== */
+:focus-visible {
+    outline: 3px solid var(--secondary-color);
+    outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible {
+    outline: 3px solid var(--secondary-color);
+    outline-offset: 2px;
+    border-radius: var(--border-radius-md);
+}
