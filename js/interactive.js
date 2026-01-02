@@ -85,7 +85,7 @@ class InteractiveExercises {
         if (!container) return;
 
         container.innerHTML = `
-            <div class="quiz-container">
+            <div class="quiz-container quiz-fullscreen">
                 <div class="quiz-progress">
                     <div class="streak-counter" id="quiz-streak">
                         <span class="streak-fire">🔥</span>
@@ -101,8 +101,8 @@ class InteractiveExercises {
                     <!-- Question content -->
                 </div>
 
-                <div class="quiz-options" id="quiz-options">
-                    <!-- Answer options -->
+                <div class="quiz-options quiz-grid-4" id="quiz-options">
+                    <!-- Answer options - 2x2 grid on mobile -->
                 </div>
 
                 <div class="quiz-feedback hidden" id="quiz-feedback"></div>

@@ -1,0 +1,659 @@
+/* Mobile Optimizations - LearnDeutsch */
+/* Touch-friendly, full-screen quiz experience */
+
+/* ==================== MOBILE BASE ==================== */
+@media (max-width: 768px) {
+    /* Larger touch targets */
+    :root {
+        --touch-target-min: 48px;
+    }
+
+    /* Remove hover effects on touch devices */
+    @media (hover: none) {
+        .quiz-option:hover,
+        .path-card:hover,
+        .category-pill:hover {
+            transform: none;
+            box-shadow: none;
+        }
+    }
+
+    /* Compact header for more content space */
+    .compact-header {
+        padding: var(--space-2) 0;
+    }
+
+    .compact-header .logo h1 {
+        font-size: 1.1rem;
+    }
+
+    .compact-header .stat {
+        padding: var(--space-1) var(--space-2);
+        font-size: 0.85rem;
+    }
+
+    .compact-header .stat-value {
+        font-size: 0.9rem;
+    }
+
+    /* Hero section - more compact */
+    .hero-section {
+        padding: var(--space-5) var(--space-3);
+        margin: 0 calc(-1 * var(--space-3));
+        border-radius: 0;
+        margin-bottom: var(--space-4);
+    }
+
+    .hero-title {
+        font-size: 1.4rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.95rem;
+    }
+
+    /* CTA Button - full width on mobile */
+    .cta-button {
+        width: 100%;
+        padding: var(--space-4);
+        justify-content: center;
+    }
+
+    .cta-icon {
+        font-size: 1.8rem;
+    }
+
+    .cta-title {
+        font-size: 1.1rem;
+    }
+
+    /* Main content area */
+    .main {
+        padding-top: var(--space-3);
+        padding-bottom: 100px; /* Space for bottom nav */
+    }
+
+    .container {
+        padding: 0 var(--space-3);
+    }
+
+    /* Section headers */
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-2);
+        margin-bottom: var(--space-4);
+    }
+
+    .section-header h2 {
+        font-size: 1.3rem;
+    }
+
+    .back-btn {
+        font-size: 0.9rem;
+        padding: var(--space-2);
+    }
+}
+
+/* ==================== QUIZ MOBILE OPTIMIZATIONS ==================== */
+@media (max-width: 768px) {
+    /* Quiz container - full screen feel */
+    .quiz-container {
+        margin: 0 calc(-1 * var(--space-3));
+        padding: 0 var(--space-3);
+    }
+
+    /* Fullscreen quiz mode */
+    .quiz-fullscreen {
+        min-height: calc(100vh - 200px);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    /* 2x2 Grid for 4 options */
+    .quiz-grid-4 {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-3);
+    }
+
+    .quiz-grid-4 .quiz-option {
+        flex-direction: column;
+        text-align: center;
+        padding: var(--space-3);
+        min-height: 80px;
+        justify-content: center;
+    }
+
+    .quiz-grid-4 .quiz-option .option-letter {
+        margin-bottom: var(--space-2);
+    }
+
+    .quiz-grid-4 .quiz-option .option-text {
+        font-size: 0.95rem;
+        line-height: 1.3;
+    }
+
+    /* Question display */
+    .quiz-question {
+        margin-bottom: var(--space-5);
+    }
+
+    .quiz-question .question-emoji {
+        font-size: 3rem;
+        margin-bottom: var(--space-2);
+    }
+
+    .quiz-question .question-text {
+        font-size: 1rem;
+    }
+
+    .quiz-question .question-word {
+        font-size: 1.8rem;
+    }
+
+    /* Quiz options - larger touch targets */
+    .quiz-options {
+        gap: var(--space-3);
+    }
+
+    .quiz-option {
+        min-height: var(--touch-target-min);
+        padding: var(--space-4);
+        font-size: 1rem;
+        border-width: 2px;
+        border-radius: var(--border-radius-lg);
+    }
+
+    .quiz-option .option-letter {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .quiz-option .option-text {
+        font-size: 1.05rem;
+    }
+
+    /* Active state for touch */
+    .quiz-option:active:not(.disabled) {
+        transform: scale(0.97);
+        background: var(--bg-hover);
+    }
+
+    /* Progress bar */
+    .quiz-progress {
+        padding: var(--space-3);
+        margin-bottom: var(--space-4);
+        border-radius: var(--border-radius-md);
+    }
+
+    .quiz-progress .progress-dot {
+        width: 10px;
+        height: 10px;
+    }
+
+    /* Streak counter */
+    .streak-counter {
+        font-size: 1rem;
+    }
+
+    .streak-counter .streak-fire {
+        font-size: 1.3rem;
+    }
+
+    /* Quiz feedback */
+    .quiz-feedback {
+        font-size: 0.9rem;
+        padding: var(--space-3);
+    }
+}
+
+/* ==================== TYPING PRACTICE MOBILE ==================== */
+@media (max-width: 768px) {
+    .typing-exercise {
+        margin: 0 calc(-1 * var(--space-3));
+        padding: 0 var(--space-3);
+    }
+
+    .typing-prompt .prompt-emoji {
+        font-size: 2.5rem;
+    }
+
+    .typing-prompt .prompt-word {
+        font-size: 1.6rem;
+    }
+
+    .typing-input-container input {
+        padding: var(--space-4);
+        font-size: 1.3rem;
+        border-radius: var(--border-radius-lg);
+    }
+
+    .typing-actions {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .typing-actions .btn {
+        flex: 1;
+        min-width: 100px;
+        padding: var(--space-3);
+    }
+}
+
+/* ==================== LEARNING PATHS MOBILE ==================== */
+@media (max-width: 768px) {
+    .paths-title,
+    .summary-title,
+    .category-title {
+        font-size: 1rem;
+        margin-bottom: var(--space-3);
+    }
+
+    .paths-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-3);
+    }
+
+    .path-card {
+        padding: var(--space-4);
+    }
+
+    .path-icon {
+        font-size: 2rem;
+    }
+
+    .path-title {
+        font-size: 0.9rem;
+        margin-bottom: var(--space-1);
+    }
+
+    .path-desc {
+        font-size: 0.75rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .path-meta {
+        font-size: 0.7rem;
+        margin-top: var(--space-2);
+    }
+
+    .path-badge {
+        font-size: 0.55rem;
+        padding: 1px 6px;
+    }
+}
+
+/* ==================== PROGRESS SUMMARY MOBILE ==================== */
+@media (max-width: 768px) {
+    .summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-2);
+    }
+
+    .summary-card {
+        padding: var(--space-3);
+    }
+
+    .summary-number {
+        font-size: 1.5rem;
+    }
+
+    .summary-label {
+        font-size: 0.7rem;
+    }
+}
+
+/* ==================== CATEGORY PILLS MOBILE ==================== */
+@media (max-width: 768px) {
+    .category-section {
+        margin-bottom: var(--space-5);
+    }
+
+    .category-grid {
+        gap: var(--space-2);
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: var(--space-2);
+        margin: 0 calc(-1 * var(--space-3));
+        padding-left: var(--space-3);
+        padding-right: var(--space-3);
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .category-pill {
+        flex-shrink: 0;
+        padding: var(--space-2) var(--space-3);
+        font-size: 0.85rem;
+        white-space: nowrap;
+    }
+}
+
+/* ==================== DAILY BANNER MOBILE ==================== */
+@media (max-width: 768px) {
+    .daily-banner {
+        padding: var(--space-3);
+        margin: 0 calc(-1 * var(--space-3)) var(--space-4);
+        border-radius: 0;
+    }
+
+    .daily-icon {
+        font-size: 1.5rem;
+    }
+
+    .daily-title {
+        font-size: 0.9rem;
+    }
+
+    .daily-desc {
+        font-size: 0.8rem;
+    }
+
+    .daily-btn {
+        padding: var(--space-2) var(--space-3);
+        font-size: 0.85rem;
+    }
+}
+
+/* ==================== BOTTOM NAVIGATION ENHANCED ==================== */
+@media (max-width: 768px) {
+    .bottom-nav {
+        padding: var(--space-2) var(--space-1);
+        padding-bottom: calc(var(--space-2) + env(safe-area-inset-bottom, 8px));
+        background: var(--bg-card);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid var(--border-light);
+    }
+
+    .nav-item {
+        padding: var(--space-2) var(--space-1);
+        min-width: 50px;
+    }
+
+    .nav-icon {
+        font-size: 1.3rem;
+    }
+
+    .nav-label {
+        font-size: 0.65rem;
+    }
+
+    /* Center quiz button - prominent */
+    .nav-quiz .nav-icon {
+        margin-top: -20px;
+        padding: var(--space-3);
+        font-size: 1.4rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+}
+
+/* ==================== GRAMMAR SECTION MOBILE ==================== */
+@media (max-width: 768px) {
+    .grammar-intro {
+        padding: var(--space-4);
+        margin: 0 calc(-1 * var(--space-3)) var(--space-4);
+        border-radius: 0;
+    }
+
+    .grammar-intro h3 {
+        font-size: 1.1rem;
+    }
+
+    .article-cards {
+        grid-template-columns: 1fr;
+        gap: var(--space-3);
+    }
+
+    .grammar-card {
+        padding: var(--space-4);
+    }
+
+    .article-header h4 {
+        font-size: 1rem;
+    }
+
+    .article-examples {
+        font-size: 0.9rem;
+    }
+
+    .grammar-cta {
+        padding: var(--space-4) 0;
+    }
+
+    .btn-lg {
+        font-size: 1rem;
+        padding: var(--space-4) var(--space-5);
+        width: 100%;
+    }
+}
+
+/* ==================== CELEBRATION/RESULTS MOBILE ==================== */
+@media (max-width: 768px) {
+    .celebration-content {
+        padding: var(--space-6) var(--space-4) !important;
+    }
+
+    .celebration-emoji {
+        font-size: 3.5rem !important;
+    }
+
+    .celebration-title {
+        font-size: 1.4rem !important;
+    }
+
+    .results-stats {
+        gap: var(--space-3) !important;
+    }
+
+    .result-stat div:first-child {
+        font-size: 1.5rem !important;
+    }
+}
+
+/* ==================== SETTINGS MOBILE ==================== */
+@media (max-width: 768px) {
+    .settings-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+
+    .setting-card {
+        padding: var(--space-4);
+    }
+
+    .setting-card h3 {
+        font-size: 1rem;
+        margin-bottom: var(--space-3);
+    }
+
+    .setting-item {
+        margin-bottom: var(--space-3);
+    }
+
+    .toggle-label input[type="checkbox"] {
+        width: 50px;
+        height: 28px;
+    }
+
+    .toggle-label input[type="checkbox"]::before {
+        width: 24px;
+        height: 24px;
+    }
+
+    .toggle-label input[type="checkbox"]:checked::before {
+        transform: translateX(22px);
+    }
+}
+
+/* ==================== FLASHCARD MOBILE ==================== */
+@media (max-width: 768px) {
+    .flashcard-container {
+        margin: 0 calc(-1 * var(--space-3));
+        padding: var(--space-4) var(--space-3);
+    }
+
+    .flashcard {
+        min-height: 250px;
+        padding: var(--space-5);
+    }
+
+    .word-german {
+        font-size: 1.8rem;
+    }
+
+    .word-english {
+        font-size: 1.3rem;
+    }
+
+    .difficulty-buttons {
+        flex-direction: row;
+        gap: var(--space-2);
+    }
+
+    .difficulty-buttons .btn {
+        flex: 1;
+        padding: var(--space-3);
+    }
+}
+
+/* ==================== VOCABULARY LIST MOBILE ==================== */
+@media (max-width: 768px) {
+    .vocabulary-list {
+        grid-template-columns: 1fr;
+        gap: var(--space-2);
+    }
+
+    .vocabulary-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-2);
+    }
+
+    .stat-card {
+        padding: var(--space-3);
+    }
+
+    .stat-number {
+        font-size: 1.5rem;
+    }
+}
+
+/* ==================== SMALL PHONES ==================== */
+@media (max-width: 380px) {
+    .hero-title {
+        font-size: 1.2rem;
+    }
+
+    .cta-title {
+        font-size: 1rem;
+    }
+
+    .paths-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .path-card {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        text-align: left;
+    }
+
+    .path-icon-wrap {
+        margin-bottom: 0;
+    }
+
+    .path-icon {
+        font-size: 1.8rem;
+    }
+
+    .quiz-option {
+        padding: var(--space-3);
+    }
+
+    .quiz-option .option-letter {
+        width: 36px;
+        height: 36px;
+    }
+
+    .summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ==================== LANDSCAPE MODE ==================== */
+@media (max-width: 768px) and (orientation: landscape) {
+    .hero-section {
+        padding: var(--space-4);
+    }
+
+    .hero-title {
+        font-size: 1.3rem;
+    }
+
+    .main-cta {
+        margin-top: var(--space-3);
+    }
+
+    .quiz-question .question-emoji {
+        font-size: 2rem;
+    }
+
+    .quiz-question .question-word {
+        font-size: 1.5rem;
+    }
+
+    .quiz-options {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-2);
+    }
+}
+
+/* ==================== SAFE AREA INSETS (NOTCH) ==================== */
+@supports (padding: env(safe-area-inset-bottom)) {
+    .bottom-nav {
+        padding-bottom: calc(var(--space-2) + env(safe-area-inset-bottom));
+    }
+
+    .main {
+        padding-bottom: calc(80px + env(safe-area-inset-bottom));
+    }
+}
+
+/* ==================== TOUCH FEEDBACK ==================== */
+@media (hover: none) and (pointer: coarse) {
+    /* Active states for touch */
+    .btn:active,
+    .path-card:active,
+    .category-pill:active,
+    .nav-item:active {
+        transform: scale(0.97);
+        opacity: 0.9;
+    }
+
+    /* Disable text selection on interactive elements */
+    .quiz-option,
+    .btn,
+    .path-card,
+    .category-pill {
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+}
+
+/* ==================== PULL TO REFRESH SUPPORT ==================== */
+body {
+    overscroll-behavior-y: contain;
+}
+
+/* ==================== SMOOTH SCROLLING ==================== */
+html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
