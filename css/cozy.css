@@ -18,13 +18,24 @@ body {
 }
 
 .compact-header {
-    background: linear-gradient(135deg, #E8A87C 0%, #F9D56E 100%);
+    background: linear-gradient(135deg, #8B5E3C 0%, #A8785A 100%);
 }
 
 .compact-header .stat {
-    background: rgba(255, 255, 255, 0.35);
+    background: rgba(255, 253, 249, 0.25);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 253, 249, 0.3);
+    color: var(--text-white);
+}
+
+.compact-header .stat-value,
+.compact-header .stat-label,
+.compact-header .stat-icon {
+    color: var(--text-white);
+}
+
+.compact-header .logo h1 {
+    color: var(--text-white);
 }
 
 .logo-icon {
@@ -43,9 +54,9 @@ body {
     border-radius: var(--border-radius-full);
 }
 
-/* ==================== HERO SECTION - COZY ==================== */
+/* ==================== HERO SECTION - WARM EARTH ==================== */
 .hero-section {
-    background: linear-gradient(135deg, var(--cozy-peach) 0%, var(--warm-honey) 50%, var(--cozy-cream) 100%);
+    background: linear-gradient(135deg, #F5D4B3 0%, #E8C4A0 50%, #FAF5EF 100%);
     border: none;
     box-shadow: var(--shadow-lg);
     position: relative;
@@ -53,7 +64,9 @@ body {
 }
 
 .hero-section::before {
-    background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 60%);
+    content: '';
+    position: absolute;
+    background: radial-gradient(circle, rgba(255,253,249,0.5) 0%, transparent 60%);
     width: 250px;
     height: 250px;
     top: -30%;
@@ -61,7 +74,9 @@ body {
 }
 
 .hero-section::after {
-    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 60%);
+    content: '';
+    position: absolute;
+    background: radial-gradient(circle, rgba(255,253,249,0.4) 0%, transparent 60%);
     width: 180px;
     height: 180px;
     bottom: -20%;
@@ -69,42 +84,46 @@ body {
 }
 
 .hero-title {
-    color: var(--text-primary);
-    text-shadow: 0 2px 4px rgba(255,255,255,0.3);
+    color: #3D2914;
+    text-shadow: none;
 }
 
 .hero-subtitle {
-    color: var(--text-secondary);
+    color: #5C4028;
 }
 
-/* ==================== CTA BUTTON - COZY ==================== */
+/* ==================== CTA BUTTON - WARM EARTH ==================== */
 .cta-button {
     background: var(--bg-card);
-    border: 2px solid var(--border-light);
+    border: 2px solid var(--border-medium);
     box-shadow: var(--shadow-lg), var(--shadow-glow);
     transition: var(--transition-bounce);
 }
 
 .cta-button:hover {
     transform: translateY(-4px) scale(1.02);
-    box-shadow: var(--shadow-xl), 0 0 30px rgba(249, 213, 110, 0.4);
+    box-shadow: var(--shadow-xl), 0 0 30px rgba(196, 112, 60, 0.4);
 }
 
 .cta-title {
-    color: var(--primary-color);
+    color: #8B5E3C;
+}
+
+.cta-desc {
+    color: #5C4028;
 }
 
 .cta-arrow {
-    color: var(--secondary-color);
+    color: #C4703C;
 }
 
-/* Pulse glow - cozy version */
+/* Pulse glow - earth tone version */
 @keyframes pulseGlowCozy {
     0%, 100% {
-        box-shadow: var(--shadow-lg), 0 0 20px rgba(249, 213, 110, 0.2);
+        box-shadow: var(--shadow-lg), 0 0 20px rgba(196, 112, 60, 0.2);
     }
     50% {
-        box-shadow: var(--shadow-xl), 0 0 40px rgba(249, 213, 110, 0.4);
+        box-shadow: var(--shadow-xl), 0 0 40px rgba(196, 112, 60, 0.4);
     }
 }
 
@@ -133,8 +152,8 @@ body {
 }
 
 .path-badge {
-    background: linear-gradient(135deg, var(--warm-sunset) 0%, var(--warm-honey) 100%);
-    color: white;
+    background: linear-gradient(135deg, #C4703C 0%, #D4924A 100%);
+    color: #FFFDF9;
     font-weight: 600;
 }
 
@@ -196,9 +215,9 @@ body {
     letter-spacing: 1px;
 }
 
-/* ==================== CHALLENGE MODES BANNER - COZY ==================== */
+/* ==================== CHALLENGE MODES BANNER - WARM EARTH ==================== */
 .challenge-modes-banner {
-    background: linear-gradient(135deg, var(--cozy-lavender) 0%, #D4C4E8 100%);
+    background: linear-gradient(135deg, #E8C4A0 0%, #D4B8A0 100%);
     border-radius: var(--border-radius-xl);
     padding: 1.5rem;
     box-shadow: var(--shadow-md);
@@ -208,8 +227,9 @@ body {
 .challenge-title {
     text-align: center;
     margin: 0 0 1rem 0;
-    color: #6B5B95;
+    color: #5C4028;
     font-size: 1.1rem;
+    font-weight: 600;
 }
 
 .challenge-modes-grid {
@@ -223,8 +243,8 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 1rem 0.5rem;
-    background: white;
-    border: 2px solid rgba(255, 255, 255, 0.5);
+    background: #FFFDF9;
+    border: 2px solid rgba(139, 94, 60, 0.2);
     border-radius: var(--border-radius-lg);
     cursor: pointer;
     transition: var(--transition-bounce);
@@ -234,7 +254,7 @@ body {
 .challenge-mode-card:hover {
     transform: translateY(-3px);
     box-shadow: var(--shadow-md);
-    border-color: #8B7DC5;
+    border-color: #8B5E3C;
 }
 
 .challenge-mode-card .challenge-icon {
@@ -245,26 +265,27 @@ body {
 .challenge-mode-card .challenge-name {
     font-weight: 600;
     font-size: 0.85rem;
-    color: #6B5B95;
+    color: #5C4028;
 }
 
 .challenge-mode-card .challenge-desc {
     font-size: 0.7rem;
-    color: var(--text-muted);
+    color: #8B7355;
     text-align: center;
 }
 
-/* ==================== LEVEL SELECTOR - COZY ==================== */
+/* ==================== LEVEL SELECTOR - WARM EARTH ==================== */
 .level-section {
     margin-bottom: 1.5rem;
 }
 
 .level-title {
     font-size: 1rem;
-    color: var(--text-secondary);
+    color: #5C4028;
     margin-bottom: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 1px;
+    font-weight: 600;
 }
 
 .level-selector {
@@ -279,7 +300,7 @@ body {
     align-items: center;
     padding: 1rem;
     background: var(--bg-card);
-    border: 2px solid var(--border-light);
+    border: 2px solid var(--border-medium);
     border-radius: var(--border-radius-lg);
     cursor: pointer;
     transition: var(--transition-bounce);
@@ -287,35 +308,67 @@ body {
 }
 
 .level-btn:hover {
-    border-color: var(--secondary-color);
+    border-color: #C4703C;
     transform: translateY(-2px);
 }
 
 .level-btn.active {
-    border-color: var(--primary-color);
-    background: linear-gradient(135deg, rgba(232, 168, 124, 0.15) 0%, var(--bg-card) 100%);
-    box-shadow: var(--shadow-md), 0 0 15px rgba(232, 168, 124, 0.2);
+    border-color: #8B5E3C;
+    background: linear-gradient(135deg, rgba(196, 112, 60, 0.1) 0%, var(--bg-card) 100%);
+    box-shadow: var(--shadow-md), 0 0 15px rgba(139, 94, 60, 0.2);
 }
 
 .level-badge {
     font-size: 1.5rem;
     font-weight: 800;
-    color: var(--primary-color);
+    color: #8B5E3C;
 }
 
 .level-btn.active .level-badge {
-    color: var(--secondary-color);
+    color: #C4703C;
 }
 
 .level-name {
     font-size: 0.85rem;
-    color: var(--text-primary);
+    color: #3D2914;
     font-weight: 500;
 }
 
 .level-words {
     font-size: 0.75rem;
-    color: var(--text-muted);
+    color: #8B7355;
+}
+
+/* ==================== MOTIVATIONAL PHRASE ==================== */
+.motivational-phrase {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: #8B5E3C;
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+    font-weight: 500;
+}
+
+/* ==================== CHALLENGE WORD BADGE ==================== */
+.challenge-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    background: linear-gradient(135deg, #D4924A 0%, #C4703C 100%);
+    color: #FFFDF9;
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 0.15rem 0.5rem;
+    border-radius: 12px;
+    margin-left: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.question-word .challenge-badge {
+    display: block;
+    margin: 0.5rem auto 0;
+    width: fit-content;
 }
 
 /* ==================== BONUS POPUP - COZY ==================== */
