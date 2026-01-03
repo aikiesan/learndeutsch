@@ -27,7 +27,7 @@ class ExerciseManager {
                 level: 'A1',
                 prompt: 'Build a sentence: "I am a student"',
                 correctSentence: 'Ich bin ein Student.',
-                words: ['Ich', 'bin', 'ein', 'Student', '.'],
+                words: ['Ich', 'bin', 'ein', 'Student.'],
                 hints: ['Start with the subject', 'Use the correct form of "to be"'],
                 category: 'basic_sentences'
             },
@@ -36,7 +36,7 @@ class ExerciseManager {
                 level: 'A1',
                 prompt: 'Build a sentence: "My name is Anna"',
                 correctSentence: 'Ich heiße Anna.',
-                words: ['Ich', 'heiße', 'Anna', '.'],
+                words: ['Ich', 'heiße', 'Anna.'],
                 hints: ['Use the phrase for introducing yourself'],
                 category: 'introductions'
             },
@@ -45,7 +45,7 @@ class ExerciseManager {
                 level: 'A1',
                 prompt: 'Build a sentence: "The apple is red"',
                 correctSentence: 'Der Apfel ist rot.',
-                words: ['Der', 'Apfel', 'ist', 'rot', '.'],
+                words: ['Der', 'Apfel', 'ist', 'rot.'],
                 hints: ['Remember the article for apple', 'Use the correct form of "to be"'],
                 category: 'colors_objects'
             },
@@ -54,7 +54,7 @@ class ExerciseManager {
                 level: 'A1',
                 prompt: 'Build a sentence: "I have two cats"',
                 correctSentence: 'Ich habe zwei Katzen.',
-                words: ['Ich', 'habe', 'zwei', 'Katzen', '.'],
+                words: ['Ich', 'habe', 'zwei', 'Katzen.'],
                 hints: ['Use the correct form of "to have"', 'Remember the number'],
                 category: 'family_animals'
             },
@@ -63,7 +63,7 @@ class ExerciseManager {
                 level: 'A1',
                 prompt: 'Build a sentence: "We go to school"',
                 correctSentence: 'Wir gehen zur Schule.',
-                words: ['Wir', 'gehen', 'zur', 'Schule', '.'],
+                words: ['Wir', 'gehen', 'zur', 'Schule.'],
                 hints: ['Start with "we"', 'Use the correct preposition'],
                 category: 'daily_activities'
             }
