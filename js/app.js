@@ -144,9 +144,16 @@ class LearnDeutschApp {
             this.navigateToSection('grammar');
         });
 
-        document.getElementById('sentence-building')?.addEventListener('click', () => {
+        document.getElementById('sentence-builder')?.addEventListener('click', () => {
+            window.soundManager?.play('whoosh');
             this.navigateToSection('practice');
             setTimeout(() => window.exerciseManager?.startExercise('sentenceConstruction'), 300);
+        });
+
+        document.getElementById('listening-practice')?.addEventListener('click', () => {
+            window.soundManager?.play('whoosh');
+            this.navigateToSection('practice');
+            setTimeout(() => window.interactiveExercises?.startListeningPractice(), 300);
         });
 
         document.getElementById('daily-challenge')?.addEventListener('click', () => {

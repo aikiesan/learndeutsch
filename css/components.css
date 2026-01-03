@@ -554,6 +554,141 @@
     }
 }
 
+/* ==================== NEW BADGE ==================== */
+.new-badge {
+    background: linear-gradient(135deg, #4CAF50, #66BB6A) !important;
+    color: white !important;
+    animation: pulse-badge 2s ease-in-out infinite;
+}
+
+@keyframes pulse-badge {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 0 6px rgba(76, 175, 80, 0);
+    }
+}
+
+/* ==================== LISTENING EXERCISE ==================== */
+.listening-exercise {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.listening-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #7B1FA2, #9C27B0);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.listening-prompt {
+    text-align: center;
+    padding: 2rem 1rem;
+    background: var(--bg-card);
+    border-radius: var(--border-radius-lg);
+    margin: 1.5rem 0;
+    box-shadow: var(--shadow-md);
+}
+
+.listening-icon-large {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: pulse-speaker 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-speaker {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+.listening-instruction {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.speak-word-btn,
+.speak-slow-btn {
+    margin: 0.5rem;
+}
+
+.speak-word-btn.speaking,
+.speak-slow-btn.speaking {
+    animation: pulse-speak 0.6s ease-in-out infinite;
+    background: linear-gradient(135deg, var(--success), #4CAF50) !important;
+}
+
+.listening-input-container {
+    margin: 1.5rem 0;
+}
+
+.listening-input {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 1.25rem;
+    border: 2px solid var(--border-light);
+    border-radius: var(--border-radius-lg);
+    background: var(--bg-card);
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.listening-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(139, 94, 60, 0.1);
+}
+
+.listening-input.correct {
+    border-color: var(--success);
+    background: rgba(129, 199, 132, 0.1);
+}
+
+.listening-input.incorrect {
+    border-color: var(--error);
+    background: rgba(229, 115, 115, 0.1);
+}
+
+.listening-feedback {
+    padding: 1rem;
+    border-radius: var(--border-radius-md);
+    text-align: center;
+    margin-top: 1rem;
+    font-weight: 500;
+}
+
+.listening-feedback.correct {
+    background: rgba(129, 199, 132, 0.15);
+    color: var(--success);
+    border: 1px solid var(--success);
+}
+
+.listening-feedback.incorrect {
+    background: rgba(229, 115, 115, 0.15);
+    color: var(--error);
+    border: 1px solid var(--error);
+}
+
+.listening-feedback.hint {
+    background: rgba(255, 193, 7, 0.15);
+    color: #F57F17;
+    border: 1px solid #FFC107;
+}
+
 /* ==================== PRONUNCIATION BUTTONS ==================== */
 .speak-btn {
     display: inline-flex;

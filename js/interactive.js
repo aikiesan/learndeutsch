@@ -2046,6 +2046,320 @@ class InteractiveExercises {
         });
     }
 
+    // ==================== LISTENING PRACTICE ====================
+    startListeningPractice(category = 'all', wordCount = 10) {
+        // Ensure vocabulary is loaded
+        if (!window.vocabularyManager || !window.vocabularyManager.vocabularyData) {
+            setTimeout(() => this.startListeningPractice(category, wordCount), 200);
+            return;
+        }
+
+        // Check if speech synthesis is available
+        if (!window.soundManager?.isSpeechAvailable()) {
+            alert('Sorry, listening practice requires speech synthesis which is not available in your browser.');
+            return;
+        }
+
+        const allWords = window.vocabularyManager.getAllWords(category);
+        const words = this.shuffleArray([...allWords]).slice(0, wordCount);
+
+        if (words.length === 0) {
+            alert('No words available. Please try a different category.');
+            return;
+        }
+
+        // Navigate to practice section
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.getElementById('practice')?.classList.add('active');
+
+        this.currentListening = {
+            words: words,
+            currentIndex: 0,
+            score: 0,
+            attempts: [],
+            startTime: Date.now(),
+            hintsUsed: 0
+        };
+
+        this.showListeningInterface();
+        this.showListeningWord();
+    }
+
+    showListeningInterface() {
+        const container = document.getElementById('writing-exercise');
+        if (!container) return;
+
+        container.innerHTML = `
+            <div class="listening-exercise">
+                <div class="quiz-progress">
+                    <div class="listening-badge">
+                        <span>🎧</span> Listening Practice
+                    </div>
+                    <div class="progress-dots" id="listening-progress-dots"></div>
+                    <div class="listening-score">
+                        <span id="listening-score-display">0</span> / <span>${this.currentListening.words.length}</span>
+                    </div>
+                </div>
+
+                <div class="listening-prompt" id="listening-prompt">
+                    <div class="listening-icon-large">🔊</div>
+                    <p class="listening-instruction">Listen and type what you hear</p>
+                    <button class="btn btn-primary btn-lg speak-word-btn" id="play-word-btn">
+                        🔊 Play Word
+                    </button>
+                    <button class="btn btn-outline speak-slow-btn" id="play-slow-btn">
+                        🐢 Play Slowly
+                    </button>
+                </div>
+
+                <div class="listening-input-container">
+                    <input type="text"
+                           id="listening-input"
+                           class="listening-input"
+                           placeholder="Type the German word you hear..."
+                           autocomplete="off"
+                           autocapitalize="off"
+                           spellcheck="false">
+                </div>
+
+                <div class="listening-actions" style="display: flex; gap: 1rem; justify-content: center; margin-top: 1rem;">
+                    <button class="btn btn-outline" id="listening-hint-btn">
+                        💡 Show Translation
+                    </button>
+                    <button class="btn btn-primary" id="listening-check-btn">
+                        Check Answer
+                    </button>
+                    <button class="btn btn-outline" id="listening-skip-btn">
+                        Skip →
+                    </button>
+                </div>
+
+                <div class="listening-feedback hidden" id="listening-feedback"></div>
+            </div>
+        `;
+
+        // Create progress dots
+        const dotsContainer = document.getElementById('listening-progress-dots');
+        for (let i = 0; i < this.currentListening.words.length; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'progress-dot';
+            if (i === 0) dot.classList.add('current');
+            dotsContainer.appendChild(dot);
+        }
+
+        // Event listeners
+        document.getElementById('listening-input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') this.checkListeningAnswer();
+        });
+        document.getElementById('play-word-btn').addEventListener('click', () => this.playCurrentWord());
+        document.getElementById('play-slow-btn').addEventListener('click', () => this.playCurrentWord(0.6));
+        document.getElementById('listening-hint-btn').addEventListener('click', () => this.showListeningHint());
+        document.getElementById('listening-check-btn').addEventListener('click', () => this.checkListeningAnswer());
+        document.getElementById('listening-skip-btn').addEventListener('click', () => this.skipListeningWord());
+    }
+
+    showListeningWord() {
+        if (this.currentListening.currentIndex >= this.currentListening.words.length) {
+            this.endListeningPractice();
+            return;
+        }
+
+        const word = this.currentListening.words[this.currentListening.currentIndex];
+
+        // Reset input
+        const input = document.getElementById('listening-input');
+        input.value = '';
+        input.className = 'listening-input';
+        input.focus();
+
+        // Update progress
+        const dots = document.querySelectorAll('.progress-dot');
+        dots.forEach((dot, i) => {
+            dot.classList.remove('current');
+            if (i === this.currentListening.currentIndex) dot.classList.add('current');
+        });
+
+        // Hide feedback and hint
+        document.getElementById('listening-feedback').classList.add('hidden');
+
+        // Auto-play the word
+        setTimeout(() => this.playCurrentWord(), 500);
+    }
+
+    playCurrentWord(rate = 0.9) {
+        const word = this.currentListening.words[this.currentListening.currentIndex];
+        const btn = rate < 0.8 ? document.getElementById('play-slow-btn') : document.getElementById('play-word-btn');
+
+        if (btn) {
+            btn.classList.add('speaking');
+            const utterance = new SpeechSynthesisUtterance(word.word);
+            if (window.soundManager?.germanVoice) {
+                utterance.voice = window.soundManager.germanVoice;
+            }
+            utterance.lang = 'de-DE';
+            utterance.rate = rate;
+
+            utterance.onend = () => btn.classList.remove('speaking');
+            utterance.onerror = () => btn.classList.remove('speaking');
+
+            speechSynthesis.cancel();
+            speechSynthesis.speak(utterance);
+        }
+    }
+
+    showListeningHint() {
+        const word = this.currentListening.words[this.currentListening.currentIndex];
+        this.currentListening.hintsUsed++;
+
+        const feedback = document.getElementById('listening-feedback');
+        feedback.className = 'listening-feedback hint';
+        feedback.innerHTML = `💡 Translation: "${word.translation}" ${word.emoji || ''}`;
+        feedback.classList.remove('hidden');
+    }
+
+    checkListeningAnswer() {
+        const word = this.currentListening.words[this.currentListening.currentIndex];
+        const input = document.getElementById('listening-input');
+        const userAnswer = input.value.trim().toLowerCase();
+
+        // Remove article from correct answer for comparison
+        const correctFull = word.word.toLowerCase();
+        const correctNoArticle = correctFull.replace(/^(der|die|das)\s+/i, '');
+
+        const similarity = Math.max(
+            this.calculateSimilarity(userAnswer, correctFull),
+            this.calculateSimilarity(userAnswer, correctNoArticle)
+        );
+
+        const isCorrect = similarity >= 0.85;
+
+        if (isCorrect) {
+            input.className = 'listening-input correct';
+            this.currentListening.score++;
+            document.getElementById('listening-score-display').textContent = this.currentListening.score;
+
+            window.soundManager?.play('correct');
+
+            this.showListeningFeedback(true, `✅ Correct! "${word.word}" = ${word.translation}`);
+
+            // Update progress dot
+            const dots = document.querySelectorAll('.progress-dot');
+            dots[this.currentListening.currentIndex].classList.add('correct');
+
+            // Next word after delay
+            setTimeout(() => {
+                this.currentListening.currentIndex++;
+                this.showListeningWord();
+            }, 1500);
+
+        } else {
+            input.className = 'listening-input incorrect';
+            window.soundManager?.play('wrong');
+
+            this.showListeningFeedback(false, `The word was: "${word.word}" (${word.translation})`);
+
+            // Update progress dot
+            const dots = document.querySelectorAll('.progress-dot');
+            dots[this.currentListening.currentIndex].classList.add('wrong');
+
+            // Next word after delay
+            setTimeout(() => {
+                this.currentListening.currentIndex++;
+                this.showListeningWord();
+            }, 2500);
+        }
+
+        this.currentListening.attempts.push({
+            word: word,
+            userAnswer: userAnswer,
+            correct: isCorrect
+        });
+    }
+
+    skipListeningWord() {
+        const word = this.currentListening.words[this.currentListening.currentIndex];
+
+        // Mark as wrong
+        const dots = document.querySelectorAll('.progress-dot');
+        dots[this.currentListening.currentIndex].classList.add('wrong');
+
+        this.currentListening.attempts.push({
+            word: word,
+            userAnswer: '',
+            correct: false,
+            skipped: true
+        });
+
+        this.currentListening.currentIndex++;
+        this.showListeningWord();
+    }
+
+    showListeningFeedback(isCorrect, message) {
+        const feedback = document.getElementById('listening-feedback');
+        feedback.className = `listening-feedback ${isCorrect ? 'correct' : 'incorrect'}`;
+        feedback.innerHTML = message;
+        feedback.classList.remove('hidden');
+    }
+
+    endListeningPractice() {
+        const totalTime = Math.floor((Date.now() - this.currentListening.startTime) / 1000);
+        const accuracy = Math.round((this.currentListening.score / this.currentListening.words.length) * 100);
+
+        // Award XP
+        const baseXP = this.currentListening.score * 12;
+        const bonusXP = accuracy >= 80 ? 30 : (accuracy >= 60 ? 15 : 0);
+        const totalXP = baseXP + bonusXP;
+
+        // Record exercise
+        window.gamificationSystem.simulateExerciseCompletion(
+            'listening',
+            accuracy,
+            totalTime,
+            this.currentListening.words.map(w => w.id)
+        );
+
+        if (accuracy >= 80) {
+            this.createConfetti(60);
+            window.soundManager?.play('celebration');
+        }
+
+        const container = document.getElementById('writing-exercise');
+        container.innerHTML = `
+            <div class="celebration-content" style="margin: 0 auto; max-width: 400px;">
+                <div class="celebration-emoji">${accuracy >= 80 ? '🎧🎉' : accuracy >= 50 ? '🎧👍' : '🎧💪'}</div>
+                <h2 class="celebration-title">${accuracy >= 80 ? 'Excellent listening!' : accuracy >= 50 ? 'Good effort!' : 'Keep practicing!'}</h2>
+                <div class="results-stats" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.5rem 0;">
+                    <div class="result-stat" style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--success);">${accuracy}%</div>
+                        <div style="color: var(--text-muted);">Accuracy</div>
+                    </div>
+                    <div class="result-stat" style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--primary-color);">${this.currentListening.score}/${this.currentListening.words.length}</div>
+                        <div style="color: var(--text-muted);">Correct</div>
+                    </div>
+                    <div class="result-stat" style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--info);">${Math.floor(totalTime / 60)}:${(totalTime % 60).toString().padStart(2, '0')}</div>
+                        <div style="color: var(--text-muted);">Time</div>
+                    </div>
+                    <div class="result-stat" style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--xp-color);">+${totalXP}</div>
+                        <div style="color: var(--text-muted);">XP Earned</div>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
+                    <button class="btn btn-primary btn-playful" onclick="window.interactiveExercises.startListeningPractice()">
+                        🎧 Practice Again
+                    </button>
+                    <button class="btn btn-outline" onclick="window.interactiveExercises.showExerciseSelector()">
+                        Back to Exercises
+                    </button>
+                </div>
+            </div>
+        `;
+
+        window.gamificationSystem.updateUI();
+    }
+
     // ==================== UTILITY FUNCTIONS ====================
     shuffleArray(array) {
         const shuffled = [...array];
