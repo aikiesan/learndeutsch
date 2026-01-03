@@ -1501,8 +1501,90 @@
           "audioUrl": null
         }
       ]
+    },
+    "days_months": {
+      "name": "Days & Months (Tage & Monate)",
+      "description": "Days of the week and months of the year",
+      "icon": "📆",
+      "words": [
+        { "id": "a1_dm_001", "word": "Montag", "translation": "Monday", "partOfSpeech": "noun", "example": "Am Montag gehe ich arbeiten.", "exampleTranslation": "On Monday I go to work.", "difficulty": 1, "emoji": "📅", "mnemonic": "'Mon-tag' = Moon day!", "cognate": true },
+        { "id": "a1_dm_002", "word": "Dienstag", "translation": "Tuesday", "partOfSpeech": "noun", "example": "Dienstag ist mein freier Tag.", "exampleTranslation": "Tuesday is my day off.", "difficulty": 1, "emoji": "📅", "mnemonic": "Think of 'Tiu's day'!", "cognate": true },
+        { "id": "a1_dm_003", "word": "Mittwoch", "translation": "Wednesday", "partOfSpeech": "noun", "example": "Mittwoch ist Mitte der Woche.", "exampleTranslation": "Wednesday is the middle of the week.", "difficulty": 1, "emoji": "📅", "mnemonic": "'Mitt-woch' = mid-week!", "cognate": false },
+        { "id": "a1_dm_004", "word": "Donnerstag", "translation": "Thursday", "partOfSpeech": "noun", "example": "Donnerstag regnet es.", "exampleTranslation": "It rains on Thursday.", "difficulty": 1, "emoji": "📅", "mnemonic": "'Donner' = thunder = Thor's day!", "cognate": true },
+        { "id": "a1_dm_005", "word": "Freitag", "translation": "Friday", "partOfSpeech": "noun", "example": "Freitag ist Party-Zeit!", "exampleTranslation": "Friday is party time!", "difficulty": 1, "emoji": "📅", "mnemonic": "'Frei-tag' = free day!", "cognate": true },
+        { "id": "a1_dm_006", "word": "Samstag", "translation": "Saturday", "partOfSpeech": "noun", "example": "Samstag gehe ich einkaufen.", "exampleTranslation": "Saturday I go shopping.", "difficulty": 1, "emoji": "📅", "mnemonic": "Think 'Sabbath day'!", "cognate": true },
+        { "id": "a1_dm_007", "word": "Sonntag", "translation": "Sunday", "partOfSpeech": "noun", "example": "Sonntag ist Ruhetag.", "exampleTranslation": "Sunday is a rest day.", "difficulty": 1, "emoji": "📅", "mnemonic": "'Sonn-tag' = sun day!", "cognate": true },
+        { "id": "a1_dm_008", "word": "Januar", "translation": "January", "partOfSpeech": "noun", "example": "Januar ist kalt.", "exampleTranslation": "January is cold.", "difficulty": 1, "emoji": "❄️", "mnemonic": "Same as English!", "cognate": true },
+        { "id": "a1_dm_009", "word": "Februar", "translation": "February", "partOfSpeech": "noun", "example": "Februar ist kurz.", "exampleTranslation": "February is short.", "difficulty": 1, "emoji": "❤️", "mnemonic": "Same as English!", "cognate": true },
+        { "id": "a1_dm_010", "word": "März", "translation": "March", "partOfSpeech": "noun", "example": "Im März wird es wärmer.", "exampleTranslation": "In March it gets warmer.", "difficulty": 1, "emoji": "🌸", "mnemonic": "Same as English!", "cognate": true },
+        { "id": "a1_dm_011", "word": "April", "translation": "April", "partOfSpeech": "noun", "example": "April, April!", "exampleTranslation": "April fools!", "difficulty": 1, "emoji": "🌧️", "mnemonic": "Identical!", "cognate": true },
+        { "id": "a1_dm_012", "word": "Mai", "translation": "May", "partOfSpeech": "noun", "example": "Im Mai blühen die Blumen.", "exampleTranslation": "Flowers bloom in May.", "difficulty": 1, "emoji": "🌷", "mnemonic": "Same as English!", "cognate": true },
+        { "id": "a1_dm_013", "word": "Juni", "translation": "June", "partOfSpeech": "noun", "example": "Juni ist warm.", "exampleTranslation": "June is warm.", "difficulty": 1, "emoji": "☀️", "mnemonic": "Same as English!", "cognate": true },
+        { "id": "a1_dm_014", "word": "Juli", "translation": "July", "partOfSpeech": "noun", "example": "Im Juli ist Sommer.", "exampleTranslation": "In July it's summer.", "difficulty": 1, "emoji": "🏖️", "mnemonic": "Same as English!", "cognate": true },
+        { "id": "a1_dm_015", "word": "August", "translation": "August", "partOfSpeech": "noun", "example": "August ist heiß.", "exampleTranslation": "August is hot.", "difficulty": 1, "emoji": "🌞", "mnemonic": "Identical!", "cognate": true }
+      ]
+    },
+    "body_parts": {
+      "name": "Body Parts (Körperteile)",
+      "description": "Parts of the body in German",
+      "icon": "🧍",
+      "words": [
+        { "id": "a1_body_001", "word": "der Kopf", "translation": "the head", "partOfSpeech": "noun", "gender": "masculine", "article": "der", "example": "Mein Kopf tut weh.", "exampleTranslation": "My head hurts.", "difficulty": 1, "emoji": "🗣️", "mnemonic": "Think 'cap' on your head!", "cognate": false },
+        { "id": "a1_body_002", "word": "das Auge", "translation": "the eye", "partOfSpeech": "noun", "gender": "neuter", "article": "das", "example": "Ich habe blaue Augen.", "exampleTranslation": "I have blue eyes.", "difficulty": 1, "emoji": "👁️", "mnemonic": "Think 'ogle' = to eye!", "cognate": true },
+        { "id": "a1_body_003", "word": "die Nase", "translation": "the nose", "partOfSpeech": "noun", "gender": "feminine", "article": "die", "example": "Meine Nase ist kalt.", "exampleTranslation": "My nose is cold.", "difficulty": 1, "emoji": "👃", "mnemonic": "'Nase' = 'nose' - same root!", "cognate": true },
+        { "id": "a1_body_004", "word": "der Mund", "translation": "the mouth", "partOfSpeech": "noun", "gender": "masculine", "article": "der", "example": "Öffne deinen Mund.", "exampleTranslation": "Open your mouth.", "difficulty": 1, "emoji": "👄", "mnemonic": "'Mund' = 'mouth' - same root!", "cognate": true },
+        { "id": "a1_body_005", "word": "das Ohr", "translation": "the ear", "partOfSpeech": "noun", "gender": "neuter", "article": "das", "example": "Ich höre mit meinen Ohren.", "exampleTranslation": "I hear with my ears.", "difficulty": 1, "emoji": "👂", "mnemonic": "'Ohr' = 'ear' - same root!", "cognate": true },
+        { "id": "a1_body_006", "word": "die Hand", "translation": "the hand", "partOfSpeech": "noun", "gender": "feminine", "article": "die", "example": "Gib mir deine Hand.", "exampleTranslation": "Give me your hand.", "difficulty": 1, "emoji": "🤚", "mnemonic": "'Hand' is identical!", "cognate": true },
+        { "id": "a1_body_007", "word": "der Finger", "translation": "the finger", "partOfSpeech": "noun", "gender": "masculine", "article": "der", "example": "Ich habe zehn Finger.", "exampleTranslation": "I have ten fingers.", "difficulty": 1, "emoji": "👆", "mnemonic": "'Finger' is identical!", "cognate": true },
+        { "id": "a1_body_008", "word": "der Arm", "translation": "the arm", "partOfSpeech": "noun", "gender": "masculine", "article": "der", "example": "Mein Arm ist lang.", "exampleTranslation": "My arm is long.", "difficulty": 1, "emoji": "💪", "mnemonic": "'Arm' is identical!", "cognate": true },
+        { "id": "a1_body_009", "word": "das Bein", "translation": "the leg", "partOfSpeech": "noun", "gender": "neuter", "article": "das", "example": "Ich habe zwei Beine.", "exampleTranslation": "I have two legs.", "difficulty": 1, "emoji": "🦵", "mnemonic": "Think 'bone' in the leg!", "cognate": true },
+        { "id": "a1_body_010", "word": "der Fuß", "translation": "the foot", "partOfSpeech": "noun", "gender": "masculine", "article": "der", "example": "Mein Fuß tut weh.", "exampleTranslation": "My foot hurts.", "difficulty": 1, "emoji": "🦶", "mnemonic": "'Fuß' = 'foot' - same root!", "cognate": true },
+        { "id": "a1_body_011", "word": "das Haar", "translation": "the hair", "partOfSpeech": "noun", "gender": "neuter", "article": "das", "example": "Sie hat blondes Haar.", "exampleTranslation": "She has blonde hair.", "difficulty": 1, "emoji": "💇", "mnemonic": "'Haar' = 'hair' - same root!", "cognate": true },
+        { "id": "a1_body_012", "word": "das Herz", "translation": "the heart", "partOfSpeech": "noun", "gender": "neuter", "article": "das", "example": "Mein Herz schlägt.", "exampleTranslation": "My heart beats.", "difficulty": 1, "emoji": "❤️", "mnemonic": "'Herz' = 'heart' - same root!", "cognate": true }
+      ]
+    },
+    "adjectives": {
+      "name": "Common Adjectives (Adjektive)",
+      "description": "Frequently used describing words",
+      "icon": "✨",
+      "words": [
+        { "id": "a1_adj_001", "word": "groß", "translation": "big/tall", "partOfSpeech": "adjective", "example": "Das Haus ist groß.", "exampleTranslation": "The house is big.", "difficulty": 1, "emoji": "📏", "mnemonic": "Think 'gross' size!", "cognate": true },
+        { "id": "a1_adj_002", "word": "klein", "translation": "small", "partOfSpeech": "adjective", "example": "Die Katze ist klein.", "exampleTranslation": "The cat is small.", "difficulty": 1, "emoji": "🐭", "mnemonic": "Think of a 'clean' tiny mouse!", "cognate": false },
+        { "id": "a1_adj_003", "word": "alt", "translation": "old", "partOfSpeech": "adjective", "example": "Mein Opa ist alt.", "exampleTranslation": "My grandpa is old.", "difficulty": 1, "emoji": "👴", "mnemonic": "'Alt' = 'old' - same root!", "cognate": true },
+        { "id": "a1_adj_004", "word": "neu", "translation": "new", "partOfSpeech": "adjective", "example": "Das Auto ist neu.", "exampleTranslation": "The car is new.", "difficulty": 1, "emoji": "✨", "mnemonic": "'Neu' = 'new' - same root!", "cognate": true },
+        { "id": "a1_adj_005", "word": "gut", "translation": "good", "partOfSpeech": "adjective", "example": "Das Essen ist gut.", "exampleTranslation": "The food is good.", "difficulty": 1, "emoji": "👍", "mnemonic": "'Gut' = 'good' - same root!", "cognate": true },
+        { "id": "a1_adj_006", "word": "schlecht", "translation": "bad", "partOfSpeech": "adjective", "example": "Das Wetter ist schlecht.", "exampleTranslation": "The weather is bad.", "difficulty": 1, "emoji": "👎", "mnemonic": "Think 'slight' problem = bad!", "cognate": false },
+        { "id": "a1_adj_007", "word": "schnell", "translation": "fast/quick", "partOfSpeech": "adjective", "example": "Der Zug ist schnell.", "exampleTranslation": "The train is fast.", "difficulty": 1, "emoji": "⚡", "mnemonic": "Think 'snail' is NOT schnell!", "cognate": false },
+        { "id": "a1_adj_008", "word": "langsam", "translation": "slow", "partOfSpeech": "adjective", "example": "Die Schildkröte ist langsam.", "exampleTranslation": "The turtle is slow.", "difficulty": 1, "emoji": "🐢", "mnemonic": "'Lang' = long time = slow!", "cognate": false },
+        { "id": "a1_adj_009", "word": "warm", "translation": "warm", "partOfSpeech": "adjective", "example": "Das Wasser ist warm.", "exampleTranslation": "The water is warm.", "difficulty": 1, "emoji": "🌡️", "mnemonic": "'Warm' is identical!", "cognate": true },
+        { "id": "a1_adj_010", "word": "kalt", "translation": "cold", "partOfSpeech": "adjective", "example": "Der Winter ist kalt.", "exampleTranslation": "Winter is cold.", "difficulty": 1, "emoji": "❄️", "mnemonic": "'Kalt' = 'cold' - same root!", "cognate": true },
+        { "id": "a1_adj_011", "word": "schön", "translation": "beautiful", "partOfSpeech": "adjective", "example": "Die Blume ist schön.", "exampleTranslation": "The flower is beautiful.", "difficulty": 1, "emoji": "🌸", "mnemonic": "A 'scene' is schön!", "cognate": false },
+        { "id": "a1_adj_012", "word": "jung", "translation": "young", "partOfSpeech": "adjective", "example": "Sie ist noch jung.", "exampleTranslation": "She is still young.", "difficulty": 1, "emoji": "👶", "mnemonic": "'Jung' = 'young' - same root!", "cognate": true },
+        { "id": "a1_adj_013", "word": "müde", "translation": "tired", "partOfSpeech": "adjective", "example": "Ich bin müde.", "exampleTranslation": "I am tired.", "difficulty": 1, "emoji": "😴", "mnemonic": "Think 'mood' when tired!", "cognate": false },
+        { "id": "a1_adj_014", "word": "hungrig", "translation": "hungry", "partOfSpeech": "adjective", "example": "Ich bin hungrig.", "exampleTranslation": "I am hungry.", "difficulty": 1, "emoji": "🍽️", "mnemonic": "'Hungrig' = 'hungry' - same root!", "cognate": true },
+        { "id": "a1_adj_015", "word": "glücklich", "translation": "happy", "partOfSpeech": "adjective", "example": "Sie ist sehr glücklich.", "exampleTranslation": "She is very happy.", "difficulty": 2, "emoji": "😊", "mnemonic": "Think 'lucky' = happy!", "cognate": true }
+      ]
+    },
+    "places": {
+      "name": "Places (Orte)",
+      "description": "Common places and locations",
+      "icon": "📍",
+      "words": [
+        { "id": "a1_place_001", "word": "die Stadt", "translation": "the city", "partOfSpeech": "noun", "gender": "feminine", "article": "die", "example": "Berlin ist eine große Stadt.", "exampleTranslation": "Berlin is a big city.", "difficulty": 1, "emoji": "🏙️", "mnemonic": "'Stadt' = 'stead/state'!", "cognate": true },
+        { "id": "a1_place_002", "word": "das Land", "translation": "the country", "partOfSpeech": "noun", "gender": "neuter", "article": "das", "example": "Deutschland ist ein schönes Land.", "exampleTranslation": "Germany is a beautiful country.", "difficulty": 1, "emoji": "🌍", "mnemonic": "'Land' is identical!", "cognate": true },
+        { "id": "a1_place_003", "word": "die Straße", "translation": "the street", "partOfSpeech": "noun", "gender": "feminine", "article": "die", "example": "Die Straße ist lang.", "exampleTranslation": "The street is long.", "difficulty": 1, "emoji": "🛣️", "mnemonic": "Think 'street' in German!", "cognate": true },
+        { "id": "a1_place_004", "word": "der Park", "translation": "the park", "partOfSpeech": "noun", "gender": "masculine", "article": "der", "example": "Der Park ist grün.", "exampleTranslation": "The park is green.", "difficulty": 1, "emoji": "🌳", "mnemonic": "'Park' is identical!", "cognate": true },
+        { "id": "a1_place_005", "word": "die Schule", "translation": "the school", "partOfSpeech": "noun", "gender": "feminine", "article": "die", "example": "Die Kinder gehen zur Schule.", "exampleTranslation": "The children go to school.", "difficulty": 1, "emoji": "🏫", "mnemonic": "'Schule' = 'school' - same root!", "cognate": true },
+        { "id": "a1_place_006", "word": "das Krankenhaus", "translation": "the hospital", "partOfSpeech": "noun", "gender": "neuter", "article": "das", "example": "Das Krankenhaus ist neu.", "exampleTranslation": "The hospital is new.", "difficulty": 2, "emoji": "🏥", "mnemonic": "'Kranken-haus' = sick-house!", "cognate": false },
+        { "id": "a1_place_007", "word": "das Restaurant", "translation": "the restaurant", "partOfSpeech": "noun", "gender": "neuter", "article": "das", "example": "Das Restaurant ist teuer.", "exampleTranslation": "The restaurant is expensive.", "difficulty": 1, "emoji": "🍽️", "mnemonic": "'Restaurant' is identical!", "cognate": true },
+        { "id": "a1_place_008", "word": "der Supermarkt", "translation": "the supermarket", "partOfSpeech": "noun", "gender": "masculine", "article": "der", "example": "Ich gehe zum Supermarkt.", "exampleTranslation": "I go to the supermarket.", "difficulty": 1, "emoji": "🛒", "mnemonic": "'Supermarkt' is identical!", "cognate": true },
+        { "id": "a1_place_009", "word": "die Kirche", "translation": "the church", "partOfSpeech": "noun", "gender": "feminine", "article": "die", "example": "Die Kirche ist alt.", "exampleTranslation": "The church is old.", "difficulty": 1, "emoji": "⛪", "mnemonic": "'Kirche' = 'kirk/church' - same root!", "cognate": true },
+        { "id": "a1_place_010", "word": "der Flughafen", "translation": "the airport", "partOfSpeech": "noun", "gender": "masculine", "article": "der", "example": "Wir fahren zum Flughafen.", "exampleTranslation": "We drive to the airport.", "difficulty": 2, "emoji": "✈️", "mnemonic": "'Flug-hafen' = flight-harbor!", "cognate": false },
+        { "id": "a1_place_011", "word": "die Bank", "translation": "the bank", "partOfSpeech": "noun", "gender": "feminine", "article": "die", "example": "Die Bank ist geschlossen.", "exampleTranslation": "The bank is closed.", "difficulty": 1, "emoji": "🏦", "mnemonic": "'Bank' is identical!", "cognate": true },
+        { "id": "a1_place_012", "word": "das Kino", "translation": "the cinema", "partOfSpeech": "noun", "gender": "neuter", "article": "das", "example": "Wir gehen ins Kino.", "exampleTranslation": "We go to the cinema.", "difficulty": 1, "emoji": "🎬", "mnemonic": "'Kino' = 'cinema' - same root!", "cognate": true }
+      ]
     }
   },
-  "totalWords": 115,
-  "estimatedStudyTime": "10-15 hours"
+  "totalWords": 169,
+  "estimatedStudyTime": "12-18 hours"
 }

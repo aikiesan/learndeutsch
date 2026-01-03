@@ -119,19 +119,35 @@ class InteractiveExercises {
         return this.getConsecutiveAccuracy() >= 80;
     }
 
+    getA2Words() {
+        // Extract all words from A2 categories
+        const a2Data = window.vocabularyManager?.allLevelsData?.A2;
+        if (!a2Data || !a2Data.categories) return [];
+
+        let a2Words = [];
+        Object.values(a2Data.categories).forEach(category => {
+            if (category.words && Array.isArray(category.words)) {
+                a2Words = a2Words.concat(category.words);
+            }
+        });
+        return a2Words;
+    }
+
     getWordsWithA2Sprinkle(category, count) {
         let words = window.vocabularyManager.getWordsForStudy(category, count);
 
-        if (this.shouldSprinkleA2Words() && window.vocabularyManager.allLevelsData?.A2) {
-            const a2Words = window.vocabularyManager.allLevelsData.A2.words || [];
-            const a2Sample = this.shuffleArray([...a2Words]).slice(0, Math.ceil(count * 0.2));
+        if (this.shouldSprinkleA2Words()) {
+            const a2Words = this.getA2Words();
+            if (a2Words.length > 0) {
+                const a2Sample = this.shuffleArray([...a2Words]).slice(0, Math.ceil(count * 0.2));
 
-            // Mark A2 words as challenge words
-            a2Sample.forEach(w => w.isChallenge = true);
+                // Mark A2 words as challenge words
+                a2Sample.forEach(w => w.isChallenge = true);
 
-            // Mix in A2 words (replace some A1 words)
-            words = words.slice(0, count - a2Sample.length).concat(a2Sample);
-            words = this.shuffleArray(words);
+                // Mix in A2 words (replace some A1 words)
+                words = words.slice(0, count - a2Sample.length).concat(a2Sample);
+                words = this.shuffleArray(words);
+            }
         }
 
         return words;
@@ -710,22 +726,16 @@ class InteractiveExercises {
         let allWords = window.vocabularyManager.getAllWords(category);
 
         // At higher difficulty, mix in A2 words
-        if (difficultyLevel >= 2 && window.vocabularyManager.allLevelsData?.A2) {
-            const a2Words = window.vocabularyManager.allLevelsData.A2.words || [];
-            const a2Flat = [];
-            if (Array.isArray(a2Words)) {
-                a2Flat.push(...a2Words);
-            } else if (window.vocabularyManager.allLevelsData.A2.categories) {
-                Object.values(window.vocabularyManager.allLevelsData.A2.categories).forEach(cat => {
-                    if (cat.words) a2Flat.push(...cat.words);
-                });
+        if (difficultyLevel >= 2) {
+            const a2Words = this.getA2Words();
+            if (a2Words.length > 0) {
+                // Mark A2 words as challenge
+                a2Words.forEach(w => w.isChallenge = true);
+                const mixRatio = Math.min(0.5, difficultyLevel * 0.15); // 15%, 30%, 45%...
+                const a2Count = Math.floor(questionCount * mixRatio);
+                const a2Sample = this.shuffleArray([...a2Words]).slice(0, a2Count);
+                allWords = [...allWords, ...a2Sample];
             }
-            // Mark A2 words as challenge
-            a2Flat.forEach(w => w.isChallenge = true);
-            const mixRatio = Math.min(0.5, difficultyLevel * 0.15); // 15%, 30%, 45%...
-            const a2Count = Math.floor(questionCount * mixRatio);
-            const a2Sample = this.shuffleArray([...a2Flat]).slice(0, a2Count);
-            allWords = [...allWords, ...a2Sample];
         }
 
         const words = this.shuffleArray([...allWords]).slice(0, questionCount);
