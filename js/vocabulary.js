@@ -217,9 +217,23 @@ class VocabularyManager {
         const totalCards = document.getElementById('total-cards');
         const progressBar = document.getElementById('flashcard-progress');
 
-        if (wordGerman) wordGerman.textContent = currentWord.word;
+        if (wordGerman) {
+            wordGerman.innerHTML = `
+                ${currentWord.word}
+                <button class="speak-btn" onclick="window.soundManager.speakWithFeedback('${currentWord.word.replace(/'/g, "\\'")}', this)" title="Listen to pronunciation">
+                    🔊
+                </button>
+            `;
+        }
         if (wordEnglish) wordEnglish.textContent = currentWord.translation;
-        if (wordExample) wordExample.textContent = currentWord.example;
+        if (wordExample) {
+            wordExample.innerHTML = `
+                ${currentWord.example}
+                <button class="speak-btn speak-btn-small" onclick="window.soundManager.speakWithFeedback('${currentWord.example.replace(/'/g, "\\'")}', this)" title="Listen to example">
+                    🔊
+                </button>
+            `;
+        }
         if (currentCard) currentCard.textContent = this.currentWordIndex + 1;
         if (totalCards) totalCards.textContent = this.sessionWords.length;
 
@@ -470,11 +484,21 @@ class VocabularyManager {
             `<span class="mastery-dot ${i < masteryLevel ? 'filled' : ''}"></span>`
         ).join('');
 
+        // Escape quotes for onclick handler
+        const escapedWord = word.word.replace(/'/g, "\\'");
+        const escapedExample = word.example.replace(/'/g, "\\'");
+
         item.innerHTML = `
             <div class="vocabulary-category">${word.category}</div>
-            <div class="vocabulary-word">${word.word}</div>
+            <div class="vocabulary-word">
+                ${word.word}
+                <button class="speak-btn speak-btn-small" onclick="event.stopPropagation(); window.soundManager.speakWithFeedback('${escapedWord}', this)" title="Listen">🔊</button>
+            </div>
             <div class="vocabulary-translation">${word.translation}</div>
-            <div class="vocabulary-example">"${word.example}"</div>
+            <div class="vocabulary-example">
+                "${word.example}"
+                <button class="speak-btn speak-btn-tiny" onclick="event.stopPropagation(); window.soundManager.speakWithFeedback('${escapedExample}', this)" title="Listen to example">🔊</button>
+            </div>
             <div class="vocabulary-progress">
                 <div class="mastery-level">
                     ${masteryDots}
