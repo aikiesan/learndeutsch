@@ -156,6 +156,12 @@ class LearnDeutschApp {
             setTimeout(() => window.interactiveExercises?.startListeningPractice(), 300);
         });
 
+        document.getElementById('match-pairs')?.addEventListener('click', () => {
+            window.soundManager?.play('whoosh');
+            this.navigateToSection('practice');
+            setTimeout(() => window.interactiveExercises?.startMatchPairs(), 300);
+        });
+
         document.getElementById('daily-challenge')?.addEventListener('click', () => {
             this.startDailyChallenge();
         });

@@ -2046,6 +2046,305 @@ class InteractiveExercises {
         });
     }
 
+    // ==================== MATCH PAIRS GAME ====================
+    startMatchPairs(category = 'all', pairCount = 6) {
+        // Ensure vocabulary is loaded
+        if (!window.vocabularyManager || !window.vocabularyManager.vocabularyData) {
+            setTimeout(() => this.startMatchPairs(category, pairCount), 200);
+            return;
+        }
+
+        const allWords = window.vocabularyManager.getAllWords(category);
+        const words = this.shuffleArray([...allWords]).slice(0, pairCount);
+
+        if (words.length < 4) {
+            alert('Not enough words available. Please try a different category.');
+            return;
+        }
+
+        // Navigate to practice section
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.getElementById('practice')?.classList.add('active');
+
+        this.currentMatch = {
+            words: words,
+            cards: [],
+            flippedCards: [],
+            matchedPairs: 0,
+            moves: 0,
+            startTime: Date.now(),
+            isLocked: false
+        };
+
+        this.createMatchCards();
+        this.showMatchInterface();
+    }
+
+    createMatchCards() {
+        const cards = [];
+
+        // Create pairs of cards (German and English)
+        this.currentMatch.words.forEach((word, index) => {
+            cards.push({
+                id: `de_${index}`,
+                pairId: index,
+                type: 'german',
+                text: word.word,
+                emoji: word.emoji || '🇩🇪',
+                isFlipped: false,
+                isMatched: false
+            });
+            cards.push({
+                id: `en_${index}`,
+                pairId: index,
+                type: 'english',
+                text: word.translation,
+                emoji: '🇬🇧',
+                isFlipped: false,
+                isMatched: false
+            });
+        });
+
+        // Shuffle cards
+        this.currentMatch.cards = this.shuffleArray(cards);
+    }
+
+    showMatchInterface() {
+        const container = document.getElementById('writing-exercise');
+        if (!container) return;
+
+        const gridSize = this.currentMatch.cards.length <= 12 ? 'grid-4' : 'grid-4';
+
+        container.innerHTML = `
+            <div class="match-pairs-game">
+                <div class="match-header">
+                    <div class="match-badge">
+                        <span>🎴</span> Match Pairs
+                    </div>
+                    <div class="match-stats">
+                        <div class="match-stat">
+                            <span class="stat-icon">🎯</span>
+                            <span id="match-pairs-count">0</span>/<span>${this.currentMatch.words.length}</span>
+                        </div>
+                        <div class="match-stat">
+                            <span class="stat-icon">👆</span>
+                            <span id="match-moves">0</span> moves
+                        </div>
+                        <div class="match-stat">
+                            <span class="stat-icon">⏱️</span>
+                            <span id="match-timer">0:00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="match-instruction">Flip cards to find matching German-English pairs!</p>
+
+                <div class="match-grid ${gridSize}" id="match-grid">
+                    ${this.currentMatch.cards.map((card, i) => `
+                        <div class="match-card" data-index="${i}" data-pair="${card.pairId}">
+                            <div class="match-card-inner">
+                                <div class="match-card-front">
+                                    <span class="card-icon">❓</span>
+                                </div>
+                                <div class="match-card-back ${card.type}">
+                                    <span class="card-emoji">${card.emoji}</span>
+                                    <span class="card-text">${card.text}</span>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+
+                <div class="match-actions">
+                    <button class="btn btn-outline" onclick="window.interactiveExercises.restartMatchPairs()">
+                        🔄 Restart
+                    </button>
+                    <button class="btn btn-outline" onclick="window.interactiveExercises.showExerciseSelector()">
+                        ← Back
+                    </button>
+                </div>
+            </div>
+        `;
+
+        // Add click listeners to cards
+        document.querySelectorAll('.match-card').forEach(card => {
+            card.addEventListener('click', () => this.flipCard(card));
+        });
+
+        // Start timer
+        this.startMatchTimer();
+    }
+
+    startMatchTimer() {
+        if (this.matchTimerInterval) clearInterval(this.matchTimerInterval);
+
+        this.matchTimerInterval = setInterval(() => {
+            const elapsed = Math.floor((Date.now() - this.currentMatch.startTime) / 1000);
+            const minutes = Math.floor(elapsed / 60);
+            const seconds = elapsed % 60;
+            const timerEl = document.getElementById('match-timer');
+            if (timerEl) {
+                timerEl.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            }
+        }, 1000);
+    }
+
+    flipCard(cardElement) {
+        const index = parseInt(cardElement.dataset.index);
+        const card = this.currentMatch.cards[index];
+
+        // Don't flip if locked, already flipped, or already matched
+        if (this.currentMatch.isLocked || card.isFlipped || card.isMatched) {
+            return;
+        }
+
+        // Flip the card
+        card.isFlipped = true;
+        cardElement.classList.add('flipped');
+        this.currentMatch.flippedCards.push({ card, element: cardElement });
+
+        window.soundManager?.play('click');
+
+        // Speak the word if it's German
+        if (card.type === 'german') {
+            window.soundManager?.speakGerman(card.text);
+        }
+
+        // Check for match when 2 cards are flipped
+        if (this.currentMatch.flippedCards.length === 2) {
+            this.currentMatch.moves++;
+            document.getElementById('match-moves').textContent = this.currentMatch.moves;
+            this.checkMatch();
+        }
+    }
+
+    checkMatch() {
+        const [first, second] = this.currentMatch.flippedCards;
+
+        if (first.card.pairId === second.card.pairId) {
+            // Match found!
+            this.currentMatch.matchedPairs++;
+            document.getElementById('match-pairs-count').textContent = this.currentMatch.matchedPairs;
+
+            first.card.isMatched = true;
+            second.card.isMatched = true;
+
+            first.element.classList.add('matched');
+            second.element.classList.add('matched');
+
+            window.soundManager?.play('correct');
+
+            this.currentMatch.flippedCards = [];
+
+            // Check for game completion
+            if (this.currentMatch.matchedPairs === this.currentMatch.words.length) {
+                setTimeout(() => this.endMatchPairs(), 500);
+            }
+        } else {
+            // No match - flip back
+            this.currentMatch.isLocked = true;
+            window.soundManager?.play('wrong');
+
+            setTimeout(() => {
+                first.card.isFlipped = false;
+                second.card.isFlipped = false;
+
+                first.element.classList.remove('flipped');
+                second.element.classList.remove('flipped');
+
+                this.currentMatch.flippedCards = [];
+                this.currentMatch.isLocked = false;
+            }, 1000);
+        }
+    }
+
+    restartMatchPairs() {
+        if (this.matchTimerInterval) clearInterval(this.matchTimerInterval);
+        this.startMatchPairs();
+    }
+
+    endMatchPairs() {
+        if (this.matchTimerInterval) clearInterval(this.matchTimerInterval);
+
+        const totalTime = Math.floor((Date.now() - this.currentMatch.startTime) / 1000);
+        const pairs = this.currentMatch.words.length;
+        const moves = this.currentMatch.moves;
+
+        // Calculate score based on efficiency (fewer moves = better)
+        const perfectMoves = pairs; // Minimum possible moves
+        const efficiency = Math.min(100, Math.round((perfectMoves / moves) * 100));
+
+        // Calculate XP
+        const baseXP = pairs * 15;
+        const efficiencyBonus = efficiency >= 80 ? 40 : (efficiency >= 60 ? 20 : 0);
+        const speedBonus = totalTime < pairs * 10 ? 25 : 0; // Under 10 seconds per pair
+        const totalXP = baseXP + efficiencyBonus + speedBonus;
+
+        // Record exercise
+        window.gamificationSystem?.simulateExerciseCompletion(
+            'matchPairs',
+            efficiency,
+            totalTime,
+            this.currentMatch.words.map(w => w.id)
+        );
+
+        if (efficiency >= 70) {
+            this.createConfetti(50);
+            window.soundManager?.play('celebration');
+        }
+
+        const container = document.getElementById('writing-exercise');
+        container.innerHTML = `
+            <div class="celebration-content" style="margin: 0 auto; max-width: 450px;">
+                <div class="celebration-emoji">${efficiency >= 80 ? '🎴🎉' : efficiency >= 60 ? '🎴👍' : '🎴💪'}</div>
+                <h2 class="celebration-title">${efficiency >= 80 ? 'Perfect Memory!' : efficiency >= 60 ? 'Great matching!' : 'Good effort!'}</h2>
+
+                <div class="results-stats" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.5rem 0;">
+                    <div class="result-stat" style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--success);">${pairs}/${pairs}</div>
+                        <div style="color: var(--text-muted);">Pairs Found</div>
+                    </div>
+                    <div class="result-stat" style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--primary-color);">${moves}</div>
+                        <div style="color: var(--text-muted);">Moves</div>
+                    </div>
+                    <div class="result-stat" style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--info);">${Math.floor(totalTime / 60)}:${(totalTime % 60).toString().padStart(2, '0')}</div>
+                        <div style="color: var(--text-muted);">Time</div>
+                    </div>
+                    <div class="result-stat" style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--xp-color);">+${totalXP}</div>
+                        <div style="color: var(--text-muted);">XP Earned</div>
+                    </div>
+                </div>
+
+                <div class="efficiency-bar" style="margin: 1rem 0;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <span>Efficiency</span>
+                        <span>${efficiency}%</span>
+                    </div>
+                    <div style="background: var(--border-light); border-radius: 10px; height: 10px; overflow: hidden;">
+                        <div style="background: linear-gradient(90deg, var(--success), #4CAF50); width: ${efficiency}%; height: 100%; border-radius: 10px; transition: width 0.5s ease;"></div>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
+                    <button class="btn btn-primary btn-playful" onclick="window.interactiveExercises.startMatchPairs()">
+                        🎴 Play Again
+                    </button>
+                    <button class="btn btn-outline" onclick="window.interactiveExercises.startMatchPairs('all', 8)">
+                        🔥 Harder (8 pairs)
+                    </button>
+                    <button class="btn btn-outline" onclick="window.interactiveExercises.showExerciseSelector()">
+                        Back to Exercises
+                    </button>
+                </div>
+            </div>
+        `;
+
+        window.gamificationSystem?.updateUI();
+    }
+
     // ==================== LISTENING PRACTICE ====================
     startListeningPractice(category = 'all', wordCount = 10) {
         // Ensure vocabulary is loaded

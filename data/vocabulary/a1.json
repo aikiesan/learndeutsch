@@ -1583,8 +1583,46 @@
         { "id": "a1_place_011", "word": "die Bank", "translation": "the bank", "partOfSpeech": "noun", "gender": "feminine", "article": "die", "example": "Die Bank ist geschlossen.", "exampleTranslation": "The bank is closed.", "difficulty": 1, "emoji": "🏦", "mnemonic": "'Bank' is identical!", "cognate": true },
         { "id": "a1_place_012", "word": "das Kino", "translation": "the cinema", "partOfSpeech": "noun", "gender": "neuter", "article": "das", "example": "Wir gehen ins Kino.", "exampleTranslation": "We go to the cinema.", "difficulty": 1, "emoji": "🎬", "mnemonic": "'Kino' = 'cinema' - same root!", "cognate": true }
       ]
+    },
+    "animals": {
+      "name": "Animals (Tiere)",
+      "description": "Common animals in German",
+      "icon": "🐾",
+      "words": [
+        { "id": "a1_animal_001", "word": "der Hund", "translation": "the dog", "partOfSpeech": "noun", "gender": "masculine", "article": "der", "example": "Der Hund bellt laut.", "exampleTranslation": "The dog barks loudly.", "difficulty": 1, "emoji": "🐕", "mnemonic": "'Hund' = 'hound' - same root!", "cognate": true },
+        { "id": "a1_animal_002", "word": "die Katze", "translation": "the cat", "partOfSpeech": "noun", "gender": "feminine", "article": "die", "example": "Die Katze schläft.", "exampleTranslation": "The cat sleeps.", "difficulty": 1, "emoji": "🐱", "mnemonic": "'Katze' = 'cat' - similar sound!", "cognate": true },
+        { "id": "a1_animal_003", "word": "der Vogel", "translation": "the bird", "partOfSpeech": "noun", "gender": "masculine", "article": "der", "example": "Der Vogel singt.", "exampleTranslation": "The bird sings.", "difficulty": 1, "emoji": "🐦", "mnemonic": "Think 'fowl' = Vogel!", "cognate": true },
+        { "id": "a1_animal_004", "word": "der Fisch", "translation": "the fish", "partOfSpeech": "noun", "gender": "masculine", "article": "der", "example": "Der Fisch schwimmt.", "exampleTranslation": "The fish swims.", "difficulty": 1, "emoji": "🐟", "mnemonic": "'Fisch' = 'fish' - identical!", "cognate": true },
+        { "id": "a1_animal_005", "word": "das Pferd", "translation": "the horse", "partOfSpeech": "noun", "gender": "neuter", "article": "das", "example": "Das Pferd läuft schnell.", "exampleTranslation": "The horse runs fast.", "difficulty": 1, "emoji": "🐴", "mnemonic": "A horse needs to be 'paired' with a rider!", "cognate": false },
+        { "id": "a1_animal_006", "word": "die Kuh", "translation": "the cow", "partOfSpeech": "noun", "gender": "feminine", "article": "die", "example": "Die Kuh gibt Milch.", "exampleTranslation": "The cow gives milk.", "difficulty": 1, "emoji": "🐄", "mnemonic": "'Kuh' = 'cow' - same root!", "cognate": true },
+        { "id": "a1_animal_007", "word": "das Schwein", "translation": "the pig", "partOfSpeech": "noun", "gender": "neuter", "article": "das", "example": "Das Schwein ist rosa.", "exampleTranslation": "The pig is pink.", "difficulty": 1, "emoji": "🐷", "mnemonic": "'Schwein' = 'swine' - same root!", "cognate": true },
+        { "id": "a1_animal_008", "word": "die Maus", "translation": "the mouse", "partOfSpeech": "noun", "gender": "feminine", "article": "die", "example": "Die Maus ist klein.", "exampleTranslation": "The mouse is small.", "difficulty": 1, "emoji": "🐭", "mnemonic": "'Maus' = 'mouse' - same root!", "cognate": true },
+        { "id": "a1_animal_009", "word": "der Bär", "translation": "the bear", "partOfSpeech": "noun", "gender": "masculine", "article": "der", "example": "Der Bär ist groß.", "exampleTranslation": "The bear is big.", "difficulty": 1, "emoji": "🐻", "mnemonic": "'Bär' = 'bear' - same root!", "cognate": true },
+        { "id": "a1_animal_010", "word": "der Elefant", "translation": "the elephant", "partOfSpeech": "noun", "gender": "masculine", "article": "der", "example": "Der Elefant ist grau.", "exampleTranslation": "The elephant is gray.", "difficulty": 1, "emoji": "🐘", "mnemonic": "'Elefant' = 'elephant' - same!", "cognate": true },
+        { "id": "a1_animal_011", "word": "der Löwe", "translation": "the lion", "partOfSpeech": "noun", "gender": "masculine", "article": "der", "example": "Der Löwe ist der König.", "exampleTranslation": "The lion is the king.", "difficulty": 1, "emoji": "🦁", "mnemonic": "'Löwe' = 'lion' - Leo!", "cognate": true },
+        { "id": "a1_animal_012", "word": "der Affe", "translation": "the monkey", "partOfSpeech": "noun", "gender": "masculine", "article": "der", "example": "Der Affe klettert.", "exampleTranslation": "The monkey climbs.", "difficulty": 1, "emoji": "🐒", "mnemonic": "Think 'ape' = Affe!", "cognate": true }
+      ]
+    },
+    "common_phrases": {
+      "name": "Common Phrases (Redewendungen)",
+      "description": "Useful everyday expressions",
+      "icon": "💬",
+      "words": [
+        { "id": "a1_phrase_001", "word": "Entschuldigung", "translation": "Excuse me / Sorry", "partOfSpeech": "interjection", "example": "Entschuldigung, wo ist der Bahnhof?", "exampleTranslation": "Excuse me, where is the train station?", "difficulty": 2, "emoji": "🙏", "mnemonic": "Say it when you need to 'un-guilt' yourself!", "cognate": false },
+        { "id": "a1_phrase_002", "word": "Ich verstehe nicht", "translation": "I don't understand", "partOfSpeech": "phrase", "example": "Tut mir leid, ich verstehe nicht.", "exampleTranslation": "I'm sorry, I don't understand.", "difficulty": 2, "emoji": "😕", "mnemonic": "Essential phrase for learners!", "cognate": false },
+        { "id": "a1_phrase_003", "word": "Sprechen Sie Englisch?", "translation": "Do you speak English?", "partOfSpeech": "phrase", "example": "Sprechen Sie Englisch?", "exampleTranslation": "Do you speak English?", "difficulty": 2, "emoji": "🇬🇧", "mnemonic": "Polite question with 'Sie'!", "cognate": false },
+        { "id": "a1_phrase_004", "word": "Ich möchte", "translation": "I would like", "partOfSpeech": "phrase", "example": "Ich möchte einen Kaffee, bitte.", "exampleTranslation": "I would like a coffee, please.", "difficulty": 2, "emoji": "☕", "mnemonic": "Polite way to order!", "cognate": false },
+        { "id": "a1_phrase_005", "word": "Wie viel kostet das?", "translation": "How much does this cost?", "partOfSpeech": "phrase", "example": "Wie viel kostet das Buch?", "exampleTranslation": "How much does the book cost?", "difficulty": 2, "emoji": "💰", "mnemonic": "'Kostet' = 'costs'!", "cognate": true },
+        { "id": "a1_phrase_006", "word": "Ich komme aus...", "translation": "I come from...", "partOfSpeech": "phrase", "example": "Ich komme aus den USA.", "exampleTranslation": "I come from the USA.", "difficulty": 1, "emoji": "🌍", "mnemonic": "'Kommen' = 'come'!", "cognate": true },
+        { "id": "a1_phrase_007", "word": "Wo ist...?", "translation": "Where is...?", "partOfSpeech": "phrase", "example": "Wo ist die Toilette?", "exampleTranslation": "Where is the toilet?", "difficulty": 1, "emoji": "📍", "mnemonic": "'Wo' = 'where'!", "cognate": true },
+        { "id": "a1_phrase_008", "word": "Ich brauche", "translation": "I need", "partOfSpeech": "phrase", "example": "Ich brauche Hilfe.", "exampleTranslation": "I need help.", "difficulty": 2, "emoji": "🆘", "mnemonic": "Important for emergencies!", "cognate": false },
+        { "id": "a1_phrase_009", "word": "Es tut mir leid", "translation": "I'm sorry", "partOfSpeech": "phrase", "example": "Es tut mir leid, das zu hören.", "exampleTranslation": "I'm sorry to hear that.", "difficulty": 2, "emoji": "😔", "mnemonic": "Literally 'it does me sorrow'!", "cognate": false },
+        { "id": "a1_phrase_010", "word": "Können Sie mir helfen?", "translation": "Can you help me?", "partOfSpeech": "phrase", "example": "Können Sie mir bitte helfen?", "exampleTranslation": "Can you please help me?", "difficulty": 3, "emoji": "🤝", "mnemonic": "'Helfen' = 'help'!", "cognate": true },
+        { "id": "a1_phrase_011", "word": "Das ist wunderbar", "translation": "That is wonderful", "partOfSpeech": "phrase", "example": "Das ist wunderbar!", "exampleTranslation": "That is wonderful!", "difficulty": 1, "emoji": "✨", "mnemonic": "'Wunderbar' = 'wonderful'!", "cognate": true },
+        { "id": "a1_phrase_012", "word": "Keine Ahnung", "translation": "No idea", "partOfSpeech": "phrase", "example": "Keine Ahnung, wo das ist.", "exampleTranslation": "No idea where that is.", "difficulty": 2, "emoji": "🤷", "mnemonic": "Casual way to say 'I don't know'!", "cognate": false }
+      ]
     }
   },
-  "totalWords": 169,
-  "estimatedStudyTime": "12-18 hours"
+  "totalWords": 193,
+  "estimatedStudyTime": "14-20 hours"
 }

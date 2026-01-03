@@ -689,6 +689,191 @@
     border: 1px solid #FFC107;
 }
 
+/* ==================== MATCH PAIRS GAME ==================== */
+.match-pairs-game {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.match-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.match-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.match-stats {
+    display: flex;
+    gap: 1rem;
+}
+
+.match-stat {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.match-instruction {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.match-grid {
+    display: grid;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.match-grid.grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.match-grid.grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.match-card {
+    aspect-ratio: 1;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.match-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease;
+    transform-style: preserve-3d;
+}
+
+.match-card.flipped .match-card-inner {
+    transform: rotateY(180deg);
+}
+
+.match-card-front,
+.match-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: var(--border-radius-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    box-shadow: var(--shadow-md);
+}
+
+.match-card-front {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+}
+
+.match-card-front .card-icon {
+    font-size: 2rem;
+}
+
+.match-card-back {
+    background: var(--bg-card);
+    border: 2px solid var(--border-light);
+    transform: rotateY(180deg);
+}
+
+.match-card-back.german {
+    border-color: #4CAF50;
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(129, 199, 132, 0.1));
+}
+
+.match-card-back.english {
+    border-color: #2196F3;
+    background: linear-gradient(135deg, rgba(33, 150, 243, 0.1), rgba(100, 181, 246, 0.1));
+}
+
+.match-card-back .card-emoji {
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.match-card-back .card-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--text-primary);
+    word-break: break-word;
+}
+
+.match-card.matched .match-card-inner {
+    transform: rotateY(180deg);
+}
+
+.match-card.matched .match-card-back {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.2), rgba(129, 199, 132, 0.2));
+    border-color: var(--success);
+}
+
+.match-card.matched {
+    animation: match-pulse 0.5s ease;
+}
+
+@keyframes match-pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.match-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+/* Mobile adjustments for match pairs */
+@media (max-width: 480px) {
+    .match-grid.grid-4 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .match-card-back .card-text {
+        font-size: 0.75rem;
+    }
+
+    .match-card-back .card-emoji {
+        font-size: 1.25rem;
+    }
+
+    .match-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .match-stats {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
 /* ==================== PRONUNCIATION BUTTONS ==================== */
 .speak-btn {
     display: inline-flex;
