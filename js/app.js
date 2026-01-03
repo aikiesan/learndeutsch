@@ -228,6 +228,19 @@ class LearnDeutschApp {
             window.soundManager?.toggle(e.target.checked);
         });
 
+        // Speech toggle in header
+        const speechToggle = document.getElementById('speech-toggle');
+        if (speechToggle) {
+            // Set initial state based on current speechEnabled value
+            this.updateSpeechToggleUI();
+
+            speechToggle.addEventListener('click', () => {
+                const newState = !window.soundManager?.speechEnabled;
+                window.soundManager?.toggleSpeech(newState);
+                this.updateSpeechToggleUI();
+            });
+        }
+
         // Export progress
         document.getElementById('export-progress')?.addEventListener('click', () => {
             this.exportData();
@@ -729,6 +742,27 @@ class LearnDeutschApp {
 
     toggleDarkMode(enabled) {
         document.body.dataset.theme = enabled ? 'dark' : 'light';
+    }
+
+    updateSpeechToggleUI() {
+        const speechToggle = document.getElementById('speech-toggle');
+        const speechIcon = document.getElementById('speech-icon');
+
+        if (speechToggle && speechIcon) {
+            const isEnabled = window.soundManager?.speechEnabled ?? true;
+
+            if (isEnabled) {
+                speechToggle.classList.add('active');
+                speechToggle.classList.remove('disabled');
+                speechIcon.textContent = '🔊';
+                speechToggle.title = 'Voice pronunciation ON - Click to turn off';
+            } else {
+                speechToggle.classList.remove('active');
+                speechToggle.classList.add('disabled');
+                speechIcon.textContent = '🔇';
+                speechToggle.title = 'Voice pronunciation OFF - Click to turn on';
+            }
+        }
     }
 
     checkFirstVisit() {
