@@ -33,6 +33,108 @@ class InteractiveExercises {
         this.setupChallengeModeListeners();
         // Setup level selector
         this.setupLevelSelector();
+        // Setup adaptive CTA and motivational phrases
+        this.setupAdaptiveCTA();
+        this.showMotivationalPhrase();
+    }
+
+    // ==================== MOTIVATIONAL GERMAN PHRASES ====================
+    motivationalPhrases = [
+        { german: 'Übung macht den Meister!', english: 'Practice makes perfect!' },
+        { german: 'Schritt für Schritt!', english: 'Step by step!' },
+        { german: 'Du schaffst das!', english: 'You can do it!' },
+        { german: 'Weiter so!', english: 'Keep it up!' },
+        { german: 'Jeden Tag ein bisschen besser!', english: 'A little better every day!' },
+        { german: 'Lernen ist ein Abenteuer!', english: 'Learning is an adventure!' },
+        { german: 'Der Weg ist das Ziel!', english: 'The journey is the destination!' },
+        { german: 'Gut gemacht!', english: 'Well done!' },
+        { german: 'Bleib dran!', english: 'Stay on it!' },
+        { german: 'Wissen ist Macht!', english: 'Knowledge is power!' }
+    ];
+
+    showMotivationalPhrase() {
+        const phraseEl = document.getElementById('motivational-phrase');
+        if (!phraseEl) return;
+
+        const phrase = this.motivationalPhrases[Math.floor(Math.random() * this.motivationalPhrases.length)];
+        phraseEl.textContent = phrase.german;
+        phraseEl.title = phrase.english;
+    }
+
+    // ==================== ADAPTIVE CTA ====================
+    setupAdaptiveCTA() {
+        const lastActivity = window.storageManager?.getLastActivity?.() || localStorage.getItem('lastActivity');
+        const lastExercise = localStorage.getItem('lastExerciseType');
+        const consecutiveAccuracy = this.getConsecutiveAccuracy();
+
+        const greetingEl = document.getElementById('hero-greeting');
+        const subtitleEl = document.getElementById('hero-subtitle');
+        const ctaTitleEl = document.getElementById('cta-title');
+        const ctaDescEl = document.getElementById('cta-desc');
+        const ctaIconEl = document.getElementById('cta-icon');
+
+        if (!greetingEl) return;
+
+        // Check if returning user
+        if (lastExercise) {
+            greetingEl.textContent = 'Willkommen zurück!';
+            subtitleEl.textContent = 'Continue your German journey';
+
+            const exerciseNames = {
+                'quiz': { icon: '🎯', name: 'Quiz', desc: 'Continue your quiz session' },
+                'typing': { icon: '⌨️', name: 'Typing Practice', desc: 'Resume typing practice' },
+                'timed_challenge': { icon: '⏱️', name: 'Timed Challenge', desc: 'Beat your best time' },
+                'survival': { icon: '💀', name: 'Survival Mode', desc: 'Try to survive again' },
+                'reverse_quiz': { icon: '🔄', name: 'Reverse Quiz', desc: 'Continue EN → DE practice' }
+            };
+
+            const exercise = exerciseNames[lastExercise] || { icon: '🎯', name: 'Continue', desc: 'Pick up where you left off' };
+            ctaIconEl.textContent = exercise.icon;
+            ctaTitleEl.textContent = exercise.name;
+            ctaDescEl.textContent = exercise.desc;
+        }
+
+        // If user has high accuracy, suggest A2 challenge
+        if (consecutiveAccuracy >= 80 && this.currentLevel === 'A1') {
+            subtitleEl.textContent = 'You\'re doing great! Ready for a challenge?';
+        }
+    }
+
+    getConsecutiveAccuracy() {
+        try {
+            const history = JSON.parse(localStorage.getItem('quizHistory') || '[]');
+            if (history.length < 3) return 0;
+
+            const lastThree = history.slice(-3);
+            const avgAccuracy = lastThree.reduce((sum, q) => sum + (q.accuracy || 0), 0) / 3;
+            return avgAccuracy;
+        } catch {
+            return 0;
+        }
+    }
+
+    // ==================== A1/A2 MIXING ====================
+    shouldSprinkleA2Words() {
+        if (this.currentLevel !== 'A1') return false;
+        return this.getConsecutiveAccuracy() >= 80;
+    }
+
+    getWordsWithA2Sprinkle(category, count) {
+        let words = window.vocabularyManager.getWordsForStudy(category, count);
+
+        if (this.shouldSprinkleA2Words() && window.vocabularyManager.allLevelsData?.A2) {
+            const a2Words = window.vocabularyManager.allLevelsData.A2.words || [];
+            const a2Sample = this.shuffleArray([...a2Words]).slice(0, Math.ceil(count * 0.2));
+
+            // Mark A2 words as challenge words
+            a2Sample.forEach(w => w.isChallenge = true);
+
+            // Mix in A2 words (replace some A1 words)
+            words = words.slice(0, count - a2Sample.length).concat(a2Sample);
+            words = this.shuffleArray(words);
+        }
+
+        return words;
     }
 
     waitForVocabulary() {
@@ -358,7 +460,7 @@ class InteractiveExercises {
         questionEl.innerHTML = `
             <div class="question-emoji">${word.emoji || '📚'}</div>
             <div class="question-text">What does this mean?</div>
-            <div class="question-word">${word.word}</div>
+            <div class="question-word">${word.word}${word.isChallenge ? '<span class="challenge-badge">⭐ A2 Challenge</span>' : ''}</div>
             ${word.cognate ? `<span class="cognate-badge">🔗 Similar to English</span>` : ''}
         `;
 
@@ -502,6 +604,10 @@ class InteractiveExercises {
     endQuiz() {
         const totalTime = Math.floor((Date.now() - this.currentQuiz.startTime) / 1000);
         const accuracy = Math.round((this.currentQuiz.score / this.currentQuiz.words.length) * 100);
+
+        // Save quiz history for adaptive features
+        this.saveQuizHistory({ accuracy, type: 'quiz', timestamp: Date.now() });
+        localStorage.setItem('lastExerciseType', 'quiz');
 
         // Award XP
         const baseXP = this.currentQuiz.score * 10;
@@ -1643,6 +1749,18 @@ class InteractiveExercises {
         }
 
         return matrix[str2.length][str1.length];
+    }
+
+    saveQuizHistory(result) {
+        try {
+            const history = JSON.parse(localStorage.getItem('quizHistory') || '[]');
+            history.push(result);
+            // Keep only last 10 entries
+            if (history.length > 10) history.shift();
+            localStorage.setItem('quizHistory', JSON.stringify(history));
+        } catch (e) {
+            console.error('Error saving quiz history:', e);
+        }
     }
 }
 

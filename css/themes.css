@@ -1,50 +1,50 @@
-/* Cozy Pastel Theme - Warm & Friendly */
+/* Cozy Warm Earth Theme - Browns, Terracotta & Deep Oranges */
 :root {
-    /* ==================== COZY PASTEL PALETTE ==================== */
+    /* ==================== WARM EARTH PALETTE ==================== */
 
-    /* Primary Cozy Colors */
-    --cozy-peach: #FFDAB3;
-    --cozy-lavender: #E8D5E8;
-    --cozy-mint: #C8E6C9;
-    --cozy-sky: #B3D9E8;
-    --cozy-rose: #F5C6CB;
-    --cozy-cream: #FFF8E7;
-    --cozy-sage: #D4E6D4;
-    --cozy-blush: #FFE4E1;
+    /* Primary Earth Tones */
+    --cozy-peach: #F5D4B3;
+    --cozy-lavender: #D4C4B8;
+    --cozy-mint: #B8D4C8;
+    --cozy-sky: #A8C8D8;
+    --cozy-rose: #E8C4C0;
+    --cozy-cream: #FAF5EF;
+    --cozy-sage: #C8D4C4;
+    --cozy-blush: #F0D8D4;
 
-    /* Warm Accent Colors */
-    --warm-coral: #FF8A80;
-    --warm-sunset: #FFAB91;
-    --warm-honey: #FFD54F;
-    --warm-terracotta: #E57373;
+    /* Warm Earth Accent Colors */
+    --warm-coral: #D97852;
+    --warm-sunset: #E8945A;
+    --warm-honey: #D4A84A;
+    --warm-terracotta: #C45C3E;
 
-    /* Primary Colors - Soft & Inviting */
-    --primary-color: #7C9A92;
-    --primary-light: #A8C5BC;
-    --primary-dark: #5D7A73;
-    --secondary-color: #E8A87C;
-    --accent-color: #F9D56E;
+    /* Primary Colors - Warm Earth Tones */
+    --primary-color: #8B5E3C;
+    --primary-light: #A8785A;
+    --primary-dark: #6B4423;
+    --secondary-color: #C4703C;
+    --accent-color: #D4924A;
 
     /* Background Colors - Warm & Cozy */
-    --bg-primary: #FFFBF5;
-    --bg-secondary: #FFF5EB;
-    --bg-tertiary: #FFF0E5;
-    --bg-card: #FFFFFF;
-    --bg-card-hover: #FFFAF3;
-    --bg-hover: #FFF8F0;
+    --bg-primary: #FAF6F1;
+    --bg-secondary: #F5EDE4;
+    --bg-tertiary: #F0E6DB;
+    --bg-card: #FFFDF9;
+    --bg-card-hover: #FBF5EE;
+    --bg-hover: #F8F0E6;
 
-    /* Text Colors - Soft Contrast */
-    --text-primary: #4A4A4A;
-    --text-secondary: #6B6B6B;
-    --text-muted: #9B9B9B;
-    --text-white: #FFFFFF;
-    --text-warm: #8B6914;
+    /* Text Colors - Strong Contrast for Readability */
+    --text-primary: #3D2914;
+    --text-secondary: #5C4028;
+    --text-muted: #8B7355;
+    --text-white: #FFFDF9;
+    --text-warm: #6B4423;
 
-    /* Border Colors - Gentle */
-    --border-light: #F0E6DC;
-    --border-medium: #E5D5C5;
-    --border-dark: #D4C4B4;
-    --border-cozy: #E8DDD0;
+    /* Border Colors - Warm Earth Tones */
+    --border-light: #E8DDD0;
+    --border-medium: #D4C4B4;
+    --border-dark: #B8A690;
+    --border-cozy: #DCCFC0;
 
     /* Status Colors - Pastel Versions */
     --success: #81C784;
@@ -57,37 +57,37 @@
     --info: #64B5F6;
     --info-light: #BBDEFB;
 
-    /* Gamification Colors - Playful Pastels */
-    --xp-color: #B39DDB;
-    --xp-light: #E1BEE7;
-    --streak-color: #FFAB91;
-    --streak-glow: #FF8A65;
-    --level-color: #FFD54F;
+    /* Gamification Colors - Earth Tones */
+    --xp-color: #9B7355;
+    --xp-light: #D4C4B8;
+    --streak-color: #D97852;
+    --streak-glow: #C45C3E;
+    --level-color: #D4A84A;
 
     /* Achievement Badge Colors - Warm Metals */
-    --bronze: #D7A574;
-    --silver: #B8C5C5;
-    --gold: #F4D03F;
-    --platinum: #E0E6E6;
+    --bronze: #B87333;
+    --silver: #A8A8A8;
+    --gold: #D4924A;
+    --platinum: #C0C0C0;
 
-    /* Cozy Shadows - Soft & Warm */
-    --shadow-cozy: 0 2px 8px rgba(139, 105, 20, 0.08);
-    --shadow-sm: 0 1px 3px rgba(139, 105, 20, 0.06);
-    --shadow-md: 0 4px 12px rgba(139, 105, 20, 0.1);
-    --shadow-lg: 0 8px 24px rgba(139, 105, 20, 0.12);
-    --shadow-xl: 0 16px 40px rgba(139, 105, 20, 0.15);
-    --shadow-glow: 0 0 20px rgba(249, 213, 110, 0.3);
+    /* Cozy Shadows - Warm Brown Tones */
+    --shadow-cozy: 0 2px 8px rgba(107, 68, 35, 0.08);
+    --shadow-sm: 0 1px 3px rgba(107, 68, 35, 0.06);
+    --shadow-md: 0 4px 12px rgba(107, 68, 35, 0.1);
+    --shadow-lg: 0 8px 24px rgba(107, 68, 35, 0.12);
+    --shadow-xl: 0 16px 40px rgba(107, 68, 35, 0.15);
+    --shadow-glow: 0 0 20px rgba(196, 112, 60, 0.3);
 
-    /* Cozy Gradients - Warm & Inviting */
-    --gradient-primary: linear-gradient(135deg, #7C9A92 0%, #A8C5BC 100%);
-    --gradient-secondary: linear-gradient(135deg, #E8A87C 0%, #F9D56E 100%);
-    --gradient-cozy: linear-gradient(135deg, #FFDAB3 0%, #FFE4C4 100%);
-    --gradient-sunset: linear-gradient(135deg, #FFB347 0%, #FFCC33 100%);
-    --gradient-lavender: linear-gradient(135deg, #E8D5E8 0%, #D4C4E8 100%);
-    --gradient-mint: linear-gradient(135deg, #C8E6C9 0%, #A5D6A7 100%);
+    /* Cozy Gradients - Warm Earth Tones */
+    --gradient-primary: linear-gradient(135deg, #8B5E3C 0%, #A8785A 100%);
+    --gradient-secondary: linear-gradient(135deg, #C4703C 0%, #D4924A 100%);
+    --gradient-cozy: linear-gradient(135deg, #F5D4B3 0%, #E8C4A0 100%);
+    --gradient-sunset: linear-gradient(135deg, #D97852 0%, #E8945A 100%);
+    --gradient-lavender: linear-gradient(135deg, #D4C4B8 0%, #C8B8A8 100%);
+    --gradient-mint: linear-gradient(135deg, #B8D4C8 0%, #A8C8B8 100%);
     --gradient-success: linear-gradient(135deg, #81C784 0%, #66BB6A 100%);
-    --gradient-warning: linear-gradient(135deg, #FFB74D 0%, #FFA726 100%);
-    --gradient-hero: linear-gradient(135deg, #E8A87C 0%, #F9D56E 50%, #FFE4C4 100%);
+    --gradient-warning: linear-gradient(135deg, #E8945A 0%, #D4A84A 100%);
+    --gradient-hero: linear-gradient(135deg, #C4703C 0%, #D4924A 50%, #F5D4B3 100%);
 
     /* Typography */
     --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
