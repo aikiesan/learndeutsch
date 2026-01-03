@@ -383,21 +383,43 @@ class InteractiveExercises {
 
     // ==================== TAP-TO-ANSWER QUIZ ====================
     startQuiz(category = 'all', questionCount = 10) {
-        const words = window.vocabularyManager.getWordsForStudy(category, questionCount * 2);
-
-        if (words.length < 4) {
-            alert('Not enough words available for a quiz. Please try a different category.');
+        // Ensure vocabulary is loaded
+        if (!window.vocabularyManager || !window.vocabularyManager.vocabularyData) {
+            console.warn('Vocabulary not loaded yet, retrying...');
+            setTimeout(() => this.startQuiz(category, questionCount), 200);
             return;
         }
 
+        const allWords = window.vocabularyManager.getAllWords(category);
+
+        if (allWords.length < 4) {
+            alert('Not enough words in this category. Try "All Words" or switch levels.');
+            return;
+        }
+
+        // Use A2 sprinkle if applicable
+        const words = this.shouldSprinkleA2Words()
+            ? this.getWordsWithA2Sprinkle(category, questionCount)
+            : this.shuffleArray([...allWords]).slice(0, questionCount);
+
+        if (words.length < 4) {
+            alert('Not enough words available. Please try a different category.');
+            return;
+        }
+
+        // Navigate to practice section
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.getElementById('practice')?.classList.add('active');
+
         this.currentQuiz = {
-            words: words.slice(0, questionCount),
-            allWords: window.vocabularyManager.getAllWords(),
+            words: words,
+            allWords: allWords,
             currentIndex: 0,
             score: 0,
             answers: [],
             startTime: Date.now(),
-            category: category
+            category: category,
+            mode: 'standard'
         };
 
         this.streakCount = 0;
@@ -446,7 +468,11 @@ class InteractiveExercises {
 
     showQuizQuestion() {
         if (this.currentQuiz.currentIndex >= this.currentQuiz.words.length) {
-            this.endQuiz();
+            if (this.currentQuiz.mode === 'progressive') {
+                this.endProgressiveQuiz();
+            } else {
+                this.endQuiz();
+            }
             return;
         }
 
@@ -654,12 +680,181 @@ class InteractiveExercises {
                         <div style="color: var(--text-muted);">XP Earned</div>
                     </div>
                 </div>
-                <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem;">
-                    <button class="btn btn-primary btn-playful" onclick="window.interactiveExercises.startQuiz('${this.currentQuiz.category}', ${this.currentQuiz.words.length})">
-                        Play Again
+                <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
+                    <button class="btn btn-primary btn-playful" onclick="window.interactiveExercises.startProgressiveQuiz('${this.currentQuiz.category}', ${accuracy >= 80 ? 2 : 1})">
+                        ${accuracy >= 80 ? '🚀 Level Up!' : '💪 Keep Going'}
+                    </button>
+                    <button class="btn btn-outline" onclick="window.interactiveExercises.startQuiz('${this.currentQuiz.category}', ${this.currentQuiz.words.length})">
+                        Replay
                     </button>
                     <button class="btn btn-outline" onclick="window.interactiveExercises.showExerciseSelector()">
-                        Back to Exercises
+                        Back
+                    </button>
+                </div>
+            </div>
+        `;
+
+        window.gamificationSystem.updateUI();
+    }
+
+    // ==================== PROGRESSIVE QUIZ MODE ====================
+    startProgressiveQuiz(category = 'all', difficultyLevel = 1) {
+        // Ensure vocabulary is loaded
+        if (!window.vocabularyManager || !window.vocabularyManager.vocabularyData) {
+            setTimeout(() => this.startProgressiveQuiz(category, difficultyLevel), 200);
+            return;
+        }
+
+        // Progressive: More questions, mix levels if doing well
+        const questionCount = 10 + (difficultyLevel - 1) * 5; // 10, 15, 20...
+        let allWords = window.vocabularyManager.getAllWords(category);
+
+        // At higher difficulty, mix in A2 words
+        if (difficultyLevel >= 2 && window.vocabularyManager.allLevelsData?.A2) {
+            const a2Words = window.vocabularyManager.allLevelsData.A2.words || [];
+            const a2Flat = [];
+            if (Array.isArray(a2Words)) {
+                a2Flat.push(...a2Words);
+            } else if (window.vocabularyManager.allLevelsData.A2.categories) {
+                Object.values(window.vocabularyManager.allLevelsData.A2.categories).forEach(cat => {
+                    if (cat.words) a2Flat.push(...cat.words);
+                });
+            }
+            // Mark A2 words as challenge
+            a2Flat.forEach(w => w.isChallenge = true);
+            const mixRatio = Math.min(0.5, difficultyLevel * 0.15); // 15%, 30%, 45%...
+            const a2Count = Math.floor(questionCount * mixRatio);
+            const a2Sample = this.shuffleArray([...a2Flat]).slice(0, a2Count);
+            allWords = [...allWords, ...a2Sample];
+        }
+
+        const words = this.shuffleArray([...allWords]).slice(0, questionCount);
+
+        if (words.length < 4) {
+            alert('Not enough words available.');
+            return;
+        }
+
+        // Navigate to practice section
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.getElementById('practice')?.classList.add('active');
+
+        this.currentQuiz = {
+            words: words,
+            allWords: allWords,
+            currentIndex: 0,
+            score: 0,
+            answers: [],
+            startTime: Date.now(),
+            category: category,
+            mode: 'progressive',
+            difficultyLevel: difficultyLevel
+        };
+
+        this.streakCount = 0;
+        this.showProgressiveInterface(difficultyLevel);
+        this.showQuizQuestion();
+    }
+
+    showProgressiveInterface(level) {
+        const container = document.getElementById('writing-exercise');
+        if (!container) return;
+
+        container.innerHTML = `
+            <div class="quiz-container quiz-fullscreen">
+                <div class="quiz-progress">
+                    <div class="difficulty-badge" style="background: linear-gradient(135deg, #C4703C, #D4924A); color: white; padding: 0.25rem 0.75rem; border-radius: 12px; font-weight: 600; font-size: 0.8rem;">
+                        Level ${level} ${'⭐'.repeat(Math.min(level, 5))}
+                    </div>
+                    <div class="streak-counter" id="quiz-streak">
+                        <span class="streak-fire">🔥</span>
+                        <span class="streak-number">0</span>
+                    </div>
+                    <div class="progress-dots" id="progress-dots"></div>
+                    <div class="quiz-score">
+                        <span id="quiz-score-display">0</span> / <span id="quiz-total">${this.currentQuiz.words.length}</span>
+                    </div>
+                </div>
+
+                <div class="quiz-question" id="quiz-question"></div>
+                <div class="quiz-options quiz-grid-4" id="quiz-options"></div>
+                <div class="quiz-feedback hidden" id="quiz-feedback"></div>
+            </div>
+        `;
+
+        // Create progress dots
+        const dotsContainer = document.getElementById('progress-dots');
+        for (let i = 0; i < this.currentQuiz.words.length; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'progress-dot';
+            if (i === 0) dot.classList.add('current');
+            dotsContainer.appendChild(dot);
+        }
+    }
+
+    endProgressiveQuiz() {
+        const totalTime = Math.floor((Date.now() - this.currentQuiz.startTime) / 1000);
+        const accuracy = Math.round((this.currentQuiz.score / this.currentQuiz.words.length) * 100);
+        const currentLevel = this.currentQuiz.difficultyLevel || 1;
+        const nextLevel = accuracy >= 80 ? currentLevel + 1 : currentLevel;
+
+        // Save quiz history
+        this.saveQuizHistory({ accuracy, type: 'progressive', level: currentLevel, timestamp: Date.now() });
+        localStorage.setItem('lastExerciseType', 'quiz');
+
+        const baseXP = this.currentQuiz.score * 10 + (currentLevel * 5);
+        const bonusXP = accuracy >= 80 ? 30 : (accuracy >= 60 ? 15 : 0);
+        const totalXP = baseXP + bonusXP;
+
+        window.gamificationSystem.simulateExerciseCompletion(
+            'progressive_quiz',
+            accuracy,
+            totalTime,
+            this.currentQuiz.words.map(w => w.id)
+        );
+
+        if (accuracy >= 80) {
+            this.createConfetti(100);
+            window.soundManager?.play('celebration');
+            window.soundManager?.play('levelUp');
+        }
+
+        const container = document.getElementById('writing-exercise');
+        container.innerHTML = `
+            <div class="celebration-content" style="margin: 0 auto; max-width: 400px;">
+                <div class="celebration-emoji">${accuracy >= 80 ? '🚀' : accuracy >= 50 ? '💪' : '📚'}</div>
+                <h2 class="celebration-title">${accuracy >= 80 ? 'Level Complete!' : 'Good Effort!'}</h2>
+                <p style="text-align: center; color: var(--text-muted);">Level ${currentLevel} ${'⭐'.repeat(Math.min(currentLevel, 5))}</p>
+                <div class="results-stats" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.5rem 0;">
+                    <div class="result-stat" style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--success);">${accuracy}%</div>
+                        <div style="color: var(--text-muted);">Accuracy</div>
+                    </div>
+                    <div class="result-stat" style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--primary-color);">${this.currentQuiz.score}/${this.currentQuiz.words.length}</div>
+                        <div style="color: var(--text-muted);">Correct</div>
+                    </div>
+                    <div class="result-stat" style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--info);">${Math.floor(totalTime / 60)}:${(totalTime % 60).toString().padStart(2, '0')}</div>
+                        <div style="color: var(--text-muted);">Time</div>
+                    </div>
+                    <div class="result-stat" style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--xp-color);">+${totalXP}</div>
+                        <div style="color: var(--text-muted);">XP Earned</div>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
+                    ${accuracy >= 80 ? `
+                        <button class="btn btn-primary btn-playful" onclick="window.interactiveExercises.startProgressiveQuiz('${this.currentQuiz.category}', ${nextLevel})">
+                            🚀 Level ${nextLevel}
+                        </button>
+                    ` : `
+                        <button class="btn btn-primary btn-playful" onclick="window.interactiveExercises.startProgressiveQuiz('${this.currentQuiz.category}', ${currentLevel})">
+                            💪 Try Again
+                        </button>
+                    `}
+                    <button class="btn btn-outline" onclick="window.interactiveExercises.showExerciseSelector()">
+                        Back
                     </button>
                 </div>
             </div>
@@ -1007,20 +1202,28 @@ class InteractiveExercises {
 
     // ==================== TIMED CHALLENGE MODE ====================
     startTimedChallenge(category = 'all', questionCount = 10, timeLimit = 60) {
-        const words = window.vocabularyManager.getWordsForStudy(category, questionCount * 2);
+        // Ensure vocabulary is loaded
+        if (!window.vocabularyManager || !window.vocabularyManager.vocabularyData) {
+            setTimeout(() => this.startTimedChallenge(category, questionCount, timeLimit), 200);
+            return;
+        }
 
-        if (words.length < 4) {
+        const allWords = window.vocabularyManager.getAllWords(category);
+
+        if (allWords.length < 4) {
             alert('Not enough words available. Please try a different category.');
             return;
         }
+
+        const words = this.shuffleArray([...allWords]).slice(0, questionCount);
 
         // Navigate to practice section
         document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
         document.getElementById('practice')?.classList.add('active');
 
         this.currentQuiz = {
-            words: words.slice(0, questionCount),
-            allWords: window.vocabularyManager.getAllWords(),
+            words: words,
+            allWords: allWords,
             currentIndex: 0,
             score: 0,
             answers: [],
@@ -1034,7 +1237,92 @@ class InteractiveExercises {
         this.streakCount = 0;
         this.showTimedQuizInterface();
         this.startTimedCountdown();
-        this.showQuizQuestion();
+        this.showTimedQuestion();
+    }
+
+    showTimedQuestion() {
+        // Check if quiz is complete
+        if (this.currentQuiz.currentIndex >= this.currentQuiz.words.length) {
+            this.endTimedChallenge();
+            return;
+        }
+
+        const word = this.currentQuiz.words[this.currentQuiz.currentIndex];
+        const questionEl = document.getElementById('quiz-question');
+        const optionsEl = document.getElementById('quiz-options');
+
+        const options = this.generateQuizOptions(word);
+
+        questionEl.innerHTML = `
+            <div class="question-emoji">${word.emoji || '📚'}</div>
+            <div class="question-text">What does this mean?</div>
+            <div class="question-word">${word.word}</div>
+        `;
+
+        optionsEl.innerHTML = options.map((option, index) => `
+            <button class="quiz-option btn-playful" data-answer="${option}" data-index="${index}">
+                <span class="option-letter">${['A', 'B', 'C', 'D'][index]}</span>
+                <span class="option-text">${option}</span>
+            </button>
+        `).join('');
+
+        window.soundManager?.play('whoosh');
+        this.currentQuiz.questionStartTime = Date.now();
+
+        optionsEl.querySelectorAll('.quiz-option').forEach(btn => {
+            btn.addEventListener('click', (e) => this.handleTimedAnswer(e, word));
+        });
+
+        // Update progress dots
+        const dots = document.querySelectorAll('.progress-dot');
+        dots.forEach((dot, i) => {
+            dot.classList.remove('current');
+            if (i === this.currentQuiz.currentIndex) dot.classList.add('current');
+        });
+    }
+
+    handleTimedAnswer(event, word) {
+        const btn = event.currentTarget;
+        const selectedAnswer = btn.dataset.answer;
+        const isCorrect = selectedAnswer === word.translation;
+
+        window.soundManager?.play('select');
+
+        document.querySelectorAll('.quiz-option').forEach(b => {
+            b.classList.add('disabled');
+            if (b.dataset.answer === word.translation) {
+                b.classList.add('correct');
+            }
+        });
+
+        if (isCorrect) {
+            btn.classList.add('correct');
+            this.currentQuiz.score++;
+            this.streakCount++;
+            setTimeout(() => window.soundManager?.play('correct'), 100);
+
+            const streakEl = document.getElementById('quiz-streak');
+            if (streakEl) {
+                streakEl.querySelector('.streak-number').textContent = this.streakCount;
+            }
+        } else {
+            btn.classList.add('wrong');
+            this.streakCount = 0;
+            setTimeout(() => window.soundManager?.play('wrong'), 100);
+        }
+
+        document.getElementById('quiz-score-display').textContent = this.currentQuiz.score;
+
+        const dots = document.querySelectorAll('.progress-dot');
+        if (dots[this.currentQuiz.currentIndex]) {
+            dots[this.currentQuiz.currentIndex].classList.add(isCorrect ? 'correct' : 'wrong');
+        }
+
+        // Move to next question quickly for timed mode
+        setTimeout(() => {
+            this.currentQuiz.currentIndex++;
+            this.showTimedQuestion();
+        }, 500);
     }
 
     showTimedQuizInterface() {
@@ -1104,11 +1392,16 @@ class InteractiveExercises {
     }
 
     endTimedChallenge() {
-        clearInterval(this.timedInterval);
+        // Clear timer immediately
+        if (this.timedInterval) {
+            clearInterval(this.timedInterval);
+            this.timedInterval = null;
+        }
         document.getElementById('timed-overlay')?.remove();
 
         const totalTime = Math.floor((Date.now() - this.currentQuiz.startTime) / 1000);
-        const accuracy = Math.round((this.currentQuiz.score / this.currentQuiz.words.length) * 100);
+        const questionsAnswered = this.currentQuiz.currentIndex;
+        const accuracy = questionsAnswered > 0 ? Math.round((this.currentQuiz.score / questionsAnswered) * 100) : 0;
 
         // Calculate bonuses
         const bonuses = this.calculateBonuses({
@@ -1133,18 +1426,24 @@ class InteractiveExercises {
             window.soundManager?.play('celebration');
         }
 
+        // Save quiz history
+        this.saveQuizHistory({ accuracy, type: 'timed_challenge', timestamp: Date.now() });
+        localStorage.setItem('lastExerciseType', 'timed_challenge');
+
         const container = document.getElementById('writing-exercise');
+        const completed = questionsAnswered >= this.currentQuiz.words.length;
         container.innerHTML = `
             <div class="celebration-content" style="margin: 0 auto; max-width: 400px;">
-                <div class="celebration-emoji">${accuracy >= 80 ? '⏱️🎉' : accuracy >= 50 ? '⏱️👍' : '⏱️💪'}</div>
-                <h2 class="celebration-title">Timed Challenge ${accuracy >= 80 ? 'Complete!' : 'Over!'}</h2>
+                <div class="celebration-emoji">${completed && accuracy >= 80 ? '⏱️🎉' : completed ? '⏱️👍' : '⏱️💪'}</div>
+                <h2 class="celebration-title">${completed ? 'Challenge Complete!' : 'Time\'s Up!'}</h2>
+                <p style="text-align: center; color: var(--text-muted);">${completed ? 'You finished all questions!' : `Answered ${questionsAnswered}/${this.currentQuiz.words.length}`}</p>
                 <div class="results-stats" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.5rem 0;">
                     <div class="result-stat" style="text-align: center;">
                         <div style="font-size: 2rem; font-weight: bold; color: var(--success);">${accuracy}%</div>
                         <div style="color: var(--text-muted);">Accuracy</div>
                     </div>
                     <div class="result-stat" style="text-align: center;">
-                        <div style="font-size: 2rem; font-weight: bold; color: var(--primary-color);">${this.currentQuiz.score}/${this.currentQuiz.words.length}</div>
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--primary-color);">${this.currentQuiz.score}/${questionsAnswered}</div>
                         <div style="color: var(--text-muted);">Correct</div>
                     </div>
                     <div class="result-stat" style="text-align: center;">
@@ -1156,9 +1455,9 @@ class InteractiveExercises {
                         <div style="color: var(--text-muted);">XP Earned</div>
                     </div>
                 </div>
-                <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem;">
-                    <button class="btn btn-primary btn-playful" onclick="window.interactiveExercises.startTimedChallenge()">
-                        Try Again
+                <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
+                    <button class="btn btn-primary btn-playful" onclick="window.interactiveExercises.startTimedChallenge('all', 10, ${completed && accuracy >= 80 ? 45 : 60})">
+                        ${completed && accuracy >= 80 ? '⚡ Faster (45s)' : '🔄 Try Again'}
                     </button>
                     <button class="btn btn-outline" onclick="window.interactiveExercises.showExerciseSelector()">
                         Back
@@ -1172,6 +1471,12 @@ class InteractiveExercises {
 
     // ==================== SURVIVAL MODE ====================
     startSurvivalMode(category = 'all') {
+        // Ensure vocabulary is loaded
+        if (!window.vocabularyManager || !window.vocabularyManager.vocabularyData) {
+            setTimeout(() => this.startSurvivalMode(category), 200);
+            return;
+        }
+
         const words = window.vocabularyManager.getAllWords(category);
 
         if (words.length < 4) {
@@ -1401,7 +1706,14 @@ class InteractiveExercises {
 
     // ==================== REVERSE QUIZ (German → English) ====================
     startReverseQuiz(category = 'all', questionCount = 10) {
-        const words = window.vocabularyManager.getWordsForStudy(category, questionCount * 2);
+        // Ensure vocabulary is loaded
+        if (!window.vocabularyManager || !window.vocabularyManager.vocabularyData) {
+            setTimeout(() => this.startReverseQuiz(category, questionCount), 200);
+            return;
+        }
+
+        const allWords = window.vocabularyManager.getAllWords(category);
+        const words = this.shuffleArray([...allWords]).slice(0, questionCount);
 
         if (words.length < 4) {
             alert('Not enough words available. Please try a different category.');
@@ -1413,8 +1725,8 @@ class InteractiveExercises {
         document.getElementById('practice')?.classList.add('active');
 
         this.currentQuiz = {
-            words: words.slice(0, questionCount),
-            allWords: window.vocabularyManager.getAllWords(),
+            words: words,
+            allWords: allWords,
             currentIndex: 0,
             score: 0,
             answers: [],
