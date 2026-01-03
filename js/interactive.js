@@ -502,7 +502,10 @@ class InteractiveExercises {
         questionEl.innerHTML = `
             <div class="question-emoji">${word.emoji || '📚'}</div>
             <div class="question-text">What does this mean?</div>
-            <div class="question-word">${word.word}${word.isChallenge ? '<span class="challenge-badge">⭐ A2 Challenge</span>' : ''}</div>
+            <div class="question-word">
+                ${word.word}${word.isChallenge ? '<span class="challenge-badge">⭐ A2 Challenge</span>' : ''}
+                <button class="speak-btn" onclick="event.stopPropagation(); window.soundManager.speakWithFeedback('${word.word.replace(/'/g, "\\'")}', this)" title="Listen to pronunciation">🔊</button>
+            </div>
             ${word.cognate ? `<span class="cognate-badge">🔗 Similar to English</span>` : ''}
         `;
 
@@ -628,14 +631,26 @@ class InteractiveExercises {
         }, isCorrect ? 1000 : 2000);
     }
 
-    showQuizFeedback(isCorrect, message) {
+    showQuizFeedback(isCorrect, message, germanWord = null) {
         const feedback = document.getElementById('quiz-feedback');
         feedback.className = `quiz-feedback ${isCorrect ? 'correct' : 'incorrect'}`;
+
+        // Extract German word from the current question if not provided
+        const word = germanWord || this.currentQuiz?.words[this.currentQuiz.currentIndex]?.word;
+
         feedback.innerHTML = `
             <span class="feedback-icon">${isCorrect ? '✅' : '💡'}</span>
             <span class="feedback-text">${message}</span>
+            ${word ? `<button class="speak-btn speak-btn-inline" onclick="window.soundManager.speakWithFeedback('${word.replace(/'/g, "\\'")}', this)" title="Listen">🔊</button>` : ''}
         `;
         feedback.classList.remove('hidden');
+
+        // Auto-pronounce the word on correct answers
+        if (isCorrect && word && window.soundManager?.speechEnabled) {
+            setTimeout(() => {
+                window.soundManager.speakGerman(word);
+            }, 300);
+        }
     }
 
     hideQuizFeedback() {

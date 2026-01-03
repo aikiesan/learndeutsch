@@ -6,6 +6,8 @@ class SoundManager {
         this.enabled = true;
         this.audioContext = null;
         this.sounds = {};
+        this.speechEnabled = true;
+        this.germanVoice = null;
         this.init();
     }
 
@@ -14,9 +16,126 @@ class SoundManager {
         const soundPref = localStorage.getItem('soundEffects');
         this.enabled = soundPref !== 'false';
 
+        const speechPref = localStorage.getItem('speechEnabled');
+        this.speechEnabled = speechPref !== 'false';
+
         // Initialize on first user interaction
         document.addEventListener('click', () => this.initAudioContext(), { once: true });
         document.addEventListener('touchstart', () => this.initAudioContext(), { once: true });
+
+        // Initialize speech synthesis
+        this.initSpeechSynthesis();
+    }
+
+    // ==================== SPEECH SYNTHESIS ====================
+    initSpeechSynthesis() {
+        if (!('speechSynthesis' in window)) {
+            console.warn('Speech synthesis not supported');
+            this.speechEnabled = false;
+            return;
+        }
+
+        // Load voices (may be async)
+        const loadVoices = () => {
+            const voices = speechSynthesis.getVoices();
+            // Try to find a German voice
+            this.germanVoice = voices.find(voice =>
+                voice.lang.startsWith('de') && voice.name.includes('Google')
+            ) || voices.find(voice =>
+                voice.lang.startsWith('de')
+            ) || voices.find(voice =>
+                voice.lang === 'de-DE'
+            );
+
+            if (this.germanVoice) {
+                console.log('German voice loaded:', this.germanVoice.name);
+            }
+        };
+
+        // Voices may load asynchronously
+        if (speechSynthesis.getVoices().length > 0) {
+            loadVoices();
+        }
+        speechSynthesis.addEventListener('voiceschanged', loadVoices);
+    }
+
+    /**
+     * Speak German text using Web Speech API
+     * @param {string} text - The German text to speak
+     * @param {Object} options - Optional settings (rate, pitch, volume)
+     */
+    speakGerman(text, options = {}) {
+        if (!this.speechEnabled || !('speechSynthesis' in window)) {
+            console.warn('Speech synthesis disabled or not supported');
+            return false;
+        }
+
+        // Cancel any ongoing speech
+        speechSynthesis.cancel();
+
+        const utterance = new SpeechSynthesisUtterance(text);
+
+        // Set German voice if available
+        if (this.germanVoice) {
+            utterance.voice = this.germanVoice;
+        }
+
+        // Configure speech parameters
+        utterance.lang = 'de-DE';
+        utterance.rate = options.rate || 0.9; // Slightly slower for learning
+        utterance.pitch = options.pitch || 1;
+        utterance.volume = options.volume || 1;
+
+        // Speak
+        speechSynthesis.speak(utterance);
+
+        return true;
+    }
+
+    /**
+     * Speak with visual feedback (for buttons)
+     * @param {string} text - Text to speak
+     * @param {HTMLElement} button - Button element to animate
+     */
+    speakWithFeedback(text, button = null) {
+        if (button) {
+            button.classList.add('speaking');
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            if (this.germanVoice) utterance.voice = this.germanVoice;
+            utterance.lang = 'de-DE';
+            utterance.rate = 0.9;
+
+            utterance.onend = () => {
+                button.classList.remove('speaking');
+            };
+            utterance.onerror = () => {
+                button.classList.remove('speaking');
+            };
+
+            speechSynthesis.cancel();
+            speechSynthesis.speak(utterance);
+        } else {
+            this.speakGerman(text);
+        }
+    }
+
+    /**
+     * Toggle speech synthesis on/off
+     */
+    toggleSpeech(enabled) {
+        this.speechEnabled = enabled;
+        localStorage.setItem('speechEnabled', enabled);
+        if (!enabled) {
+            speechSynthesis.cancel();
+        }
+    }
+
+    /**
+     * Check if speech synthesis is available
+     */
+    isSpeechAvailable() {
+        return 'speechSynthesis' in window;
     }
 
     initAudioContext() {
