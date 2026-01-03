@@ -119,6 +119,43 @@ p {
     margin-left: var(--space-2);
 }
 
+/* Speech Toggle Button */
+.speech-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+}
+
+.speech-toggle:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.speech-toggle.active {
+    background: rgba(255, 255, 255, 0.35);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px rgba(255, 193, 7, 0.4);
+}
+
+.speech-toggle.disabled {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.15);
+    opacity: 0.6;
+}
+
+.speech-icon {
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
 .progress-bar {
     height: 4px;
     background: rgba(255, 255, 255, 0.2);
