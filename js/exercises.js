@@ -66,6 +66,96 @@ class ExerciseManager {
                 words: ['Wir', 'gehen', 'zur', 'Schule.'],
                 hints: ['Start with "we"', 'Use the correct preposition'],
                 category: 'daily_activities'
+            },
+            {
+                id: 'sc_006',
+                level: 'A1',
+                prompt: 'Build a sentence: "Where is the train station?"',
+                correctSentence: 'Wo ist der Bahnhof?',
+                words: ['Wo', 'ist', 'der', 'Bahnhof?'],
+                hints: ['Start with the question word', 'Use the correct article'],
+                category: 'questions'
+            },
+            {
+                id: 'sc_007',
+                level: 'A1',
+                prompt: 'Build a sentence: "The weather is beautiful today"',
+                correctSentence: 'Das Wetter ist heute schön.',
+                words: ['Das', 'Wetter', 'ist', 'heute', 'schön.'],
+                hints: ['Weather is neuter', 'Put time expression before the adjective'],
+                category: 'time_weather'
+            },
+            {
+                id: 'sc_008',
+                level: 'A1',
+                prompt: 'Build a sentence: "I wear a shirt"',
+                correctSentence: 'Ich trage ein Hemd.',
+                words: ['Ich', 'trage', 'ein', 'Hemd.'],
+                hints: ['Use the verb for "to wear"', 'Hemd is neuter'],
+                category: 'clothing'
+            },
+            {
+                id: 'sc_009',
+                level: 'A1',
+                prompt: 'Build a sentence: "My mother is happy"',
+                correctSentence: 'Meine Mutter ist glücklich.',
+                words: ['Meine', 'Mutter', 'ist', 'glücklich.'],
+                hints: ['Use feminine possessive for mother', 'Remember the adjective for happy'],
+                category: 'family'
+            },
+            {
+                id: 'sc_010',
+                level: 'A1',
+                prompt: 'Build a sentence: "The book is on the table"',
+                correctSentence: 'Das Buch liegt auf dem Tisch.',
+                words: ['Das', 'Buch', 'liegt', 'auf', 'dem', 'Tisch.'],
+                hints: ['Use "liegt" for lying position', '"auf" + dative for location'],
+                category: 'prepositions'
+            },
+            {
+                id: 'sc_011',
+                level: 'A2',
+                prompt: 'Build a sentence: "I am looking forward to the party"',
+                correctSentence: 'Ich freue mich auf die Party.',
+                words: ['Ich', 'freue', 'mich', 'auf', 'die', 'Party.'],
+                hints: ['Use the reflexive verb "sich freuen"', '"auf" + accusative for looking forward to'],
+                category: 'feelings'
+            },
+            {
+                id: 'sc_012',
+                level: 'A2',
+                prompt: 'Build a sentence: "Can you help me please?"',
+                correctSentence: 'Können Sie mir bitte helfen?',
+                words: ['Können', 'Sie', 'mir', 'bitte', 'helfen?'],
+                hints: ['Start with the modal verb', 'Formal "you" is "Sie"'],
+                category: 'communication'
+            },
+            {
+                id: 'sc_013',
+                level: 'A2',
+                prompt: 'Build a sentence: "I have to download the app"',
+                correctSentence: 'Ich muss die App herunterladen.',
+                words: ['Ich', 'muss', 'die', 'App', 'herunterladen.'],
+                hints: ['Use "müssen" for "have to"', 'Separable verb goes at the end'],
+                category: 'technology'
+            },
+            {
+                id: 'sc_014',
+                level: 'A2',
+                prompt: 'Build a sentence: "The gym opens at seven"',
+                correctSentence: 'Das Fitnessstudio öffnet um sieben.',
+                words: ['Das', 'Fitnessstudio', 'öffnet', 'um', 'sieben.'],
+                hints: ['Fitnessstudio is neuter', 'Use "um" for specific times'],
+                category: 'leisure'
+            },
+            {
+                id: 'sc_015',
+                level: 'A2',
+                prompt: 'Build a sentence: "I get up at six o\'clock"',
+                correctSentence: 'Ich stehe um sechs Uhr auf.',
+                words: ['Ich', 'stehe', 'um', 'sechs', 'Uhr', 'auf.'],
+                hints: ['aufstehen is separable', 'Prefix goes at the end'],
+                category: 'daily_life'
             }
         ];
 
@@ -114,6 +204,123 @@ class ExerciseManager {
                 german: 'Ich trinke morgens Kaffee.',
                 hints: ['verb "trinken"', '"morgens" for "in the morning"'],
                 category: 'daily_routine',
+                difficulty: 3
+            },
+            {
+                id: 'tr_006',
+                level: 'A1',
+                english: 'Where are you from?',
+                german: 'Woher kommst du?',
+                hints: ['woher = where from', 'informal "du"'],
+                category: 'questions',
+                difficulty: 2
+            },
+            {
+                id: 'tr_007',
+                level: 'A1',
+                english: 'The jacket is too expensive.',
+                german: 'Die Jacke ist zu teuer.',
+                hints: ['Jacke is feminine', '"zu" means "too"'],
+                category: 'clothing',
+                difficulty: 2
+            },
+            {
+                id: 'tr_008',
+                level: 'A1',
+                english: 'The dog runs in the park.',
+                german: 'Der Hund läuft im Park.',
+                hints: ['Hund is masculine', '"im" = in dem'],
+                category: 'animals',
+                difficulty: 2
+            },
+            {
+                id: 'tr_009',
+                level: 'A1',
+                english: 'I live next to the supermarket.',
+                german: 'Ich wohne neben dem Supermarkt.',
+                hints: ['neben + dative', 'Supermarkt is masculine'],
+                category: 'prepositions',
+                difficulty: 3
+            },
+            {
+                id: 'tr_010',
+                level: 'A1',
+                english: 'We have no idea.',
+                german: 'Wir haben keine Ahnung.',
+                hints: ['keine Ahnung is a common phrase', 'negation with "keine"'],
+                category: 'phrases',
+                difficulty: 2
+            },
+            {
+                id: 'tr_011',
+                level: 'A2',
+                english: 'I am excited about the trip.',
+                german: 'Ich bin aufgeregt wegen der Reise.',
+                hints: ['aufgeregt = excited', 'wegen + genitive'],
+                category: 'feelings',
+                difficulty: 3
+            },
+            {
+                id: 'tr_012',
+                level: 'A2',
+                english: 'Can you upload the photo?',
+                german: 'Kannst du das Foto hochladen?',
+                hints: ['hochladen = to upload', 'separable verb at end'],
+                category: 'technology',
+                difficulty: 3
+            },
+            {
+                id: 'tr_013',
+                level: 'A2',
+                english: 'I go to the gym every day.',
+                german: 'Ich gehe jeden Tag ins Fitnessstudio.',
+                hints: ['jeden Tag = every day', 'ins = in das'],
+                category: 'leisure',
+                difficulty: 2
+            },
+            {
+                id: 'tr_014',
+                level: 'A2',
+                english: 'I would like to invite you to dinner.',
+                german: 'Ich möchte dich zum Abendessen einladen.',
+                hints: ['einladen = to invite', 'zum = zu dem'],
+                category: 'communication',
+                difficulty: 3
+            },
+            {
+                id: 'tr_015',
+                level: 'A2',
+                english: 'My apartment has two bedrooms.',
+                german: 'Meine Wohnung hat zwei Schlafzimmer.',
+                hints: ['Wohnung = apartment', 'Schlafzimmer = bedroom'],
+                category: 'daily_life',
+                difficulty: 2
+            },
+            {
+                id: 'tr_016',
+                level: 'A2',
+                english: 'I forgot my password.',
+                german: 'Ich habe mein Passwort vergessen.',
+                hints: ['vergessen = to forget', 'perfect tense with haben'],
+                category: 'technology',
+                difficulty: 3
+            },
+            {
+                id: 'tr_017',
+                level: 'A2',
+                english: 'The team won the game.',
+                german: 'Die Mannschaft hat das Spiel gewonnen.',
+                hints: ['Mannschaft = team', 'perfect tense of gewinnen'],
+                category: 'leisure',
+                difficulty: 3
+            },
+            {
+                id: 'tr_018',
+                level: 'A2',
+                english: 'I am satisfied with my work.',
+                german: 'Ich bin mit meiner Arbeit zufrieden.',
+                hints: ['zufrieden = satisfied', 'mit + dative'],
+                category: 'feelings',
                 difficulty: 3
             }
         ];
