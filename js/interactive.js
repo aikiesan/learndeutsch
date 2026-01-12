@@ -572,12 +572,36 @@ class InteractiveExercises {
             // Play correct sound
             setTimeout(() => window.soundManager?.play('correct'), 100);
 
+            // FUN REACTIONS FOR CORRECT ANSWERS!
+            if (window.funUtils) {
+                window.funUtils.mascotReact('correct');
+
+                // Random chance for beer clink on correct answer
+                if (Math.random() > 0.7) {
+                    window.funUtils.triggerBeerClink();
+                }
+
+                // Show funny motivational phrase
+                const funMessage = window.funUtils.getMotivationalPhrase('correct');
+                if (word.mnemonic) {
+                    this.showQuizFeedback(true, `${funMessage}<br><small>${word.mnemonic}</small>`);
+                } else {
+                    this.showQuizFeedback(true, funMessage);
+                }
+            }
+
             // Update streak display
             const streakEl = document.getElementById('quiz-streak');
             streakEl.querySelector('.streak-number').textContent = this.streakCount;
             if (this.streakCount >= 3) {
                 streakEl.classList.add('streak-milestone');
                 window.soundManager?.play('streak');
+
+                // BIG celebration for 5+ streak
+                if (this.streakCount >= 5 && window.funUtils) {
+                    window.funUtils.triggerGermanConfetti('german');
+                }
+
                 setTimeout(() => streakEl.classList.remove('streak-milestone'), 600);
             }
 
@@ -585,10 +609,6 @@ class InteractiveExercises {
             const rect = btn.getBoundingClientRect();
             this.showXPPopup(10, rect.left + rect.width / 2, rect.top);
 
-            // Show mnemonic if available
-            if (word.mnemonic) {
-                this.showQuizFeedback(true, word.mnemonic);
-            }
         } else {
             btn.classList.add('wrong');
             this.streakCount = 0;
@@ -597,8 +617,15 @@ class InteractiveExercises {
             // Play wrong sound
             setTimeout(() => window.soundManager?.play('wrong'), 100);
 
-            // Show correct answer with mnemonic
-            this.showQuizFeedback(false, `${word.translation} - ${word.mnemonic || ''}`);
+            // FUN REACTIONS FOR WRONG ANSWERS!
+            if (window.funUtils) {
+                window.funUtils.mascotReact('wrong');
+                const funMessage = window.funUtils.getMotivationalPhrase('wrong');
+                this.showQuizFeedback(false, `${funMessage}<br><small>Correct: ${word.translation} - ${word.mnemonic || ''}</small>`);
+            } else {
+                // Show correct answer with mnemonic
+                this.showQuizFeedback(false, `${word.translation} - ${word.mnemonic || ''}`);
+            }
         }
 
         // Update score display

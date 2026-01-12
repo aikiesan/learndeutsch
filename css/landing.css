@@ -226,12 +226,16 @@
 
 .path-card:hover {
     border-color: var(--accent-color);
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: var(--shadow-lg), 0 0 20px rgba(139, 94, 60, 0.2);
+}
+
+.path-card:hover .path-icon {
+    animation: wiggle 0.5s ease-in-out;
 }
 
 .path-card:active {
-    transform: translateY(-2px);
+    transform: translateY(-2px) scale(1.01);
 }
 
 .path-card.featured {
