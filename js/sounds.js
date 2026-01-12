@@ -192,6 +192,111 @@ class SoundManager {
             case 'pop':
                 this.playPop();
                 break;
+            case 'bier':
+                this.playBier();
+                break;
+            case 'pretzel':
+                this.playPretzel();
+                break;
+            case 'epic':
+                this.playEpic();
+                break;
+            case 'party':
+                this.playParty();
+                break;
+        }
+    }
+
+    // German Beer Clink - festive double chime
+    playBier() {
+        const now = this.audioContext.currentTime;
+
+        // Two bell tones for clink sound
+        [880, 1046.5].forEach((freq, i) => {
+            const osc = this.audioContext.createOscillator();
+            const gain = this.audioContext.createGain();
+
+            osc.type = 'sine';
+            osc.frequency.value = freq;
+
+            gain.gain.setValueAtTime(0, now + i * 0.05);
+            gain.gain.linearRampToValueAtTime(0.4, now + i * 0.05 + 0.01);
+            gain.gain.exponentialRampToValueAtTime(0.01, now + i * 0.05 + 0.4);
+
+            osc.connect(gain);
+            gain.connect(this.audioContext.destination);
+
+            osc.start(now + i * 0.05);
+            osc.stop(now + i * 0.05 + 0.45);
+        });
+    }
+
+    // Pretzel bounce - quirky bouncing tone
+    playPretzel() {
+        const now = this.audioContext.currentTime;
+        const bounces = [600, 550, 500, 480];
+
+        bounces.forEach((freq, i) => {
+            const osc = this.audioContext.createOscillator();
+            const gain = this.audioContext.createGain();
+
+            osc.type = 'square';
+            osc.frequency.value = freq;
+
+            gain.gain.setValueAtTime(0.15, now + i * 0.08);
+            gain.gain.exponentialRampToValueAtTime(0.01, now + i * 0.08 + 0.1);
+
+            osc.connect(gain);
+            gain.connect(this.audioContext.destination);
+
+            osc.start(now + i * 0.08);
+            osc.stop(now + i * 0.08 + 0.12);
+        });
+    }
+
+    // Epic achievement - grand fanfare
+    playEpic() {
+        const now = this.audioContext.currentTime;
+        const melody = [523.25, 659.25, 783.99, 1046.5]; // C, E, G, C octave
+
+        melody.forEach((freq, i) => {
+            const osc = this.audioContext.createOscillator();
+            const gain = this.audioContext.createGain();
+
+            osc.type = 'sine';
+            osc.frequency.value = freq;
+
+            gain.gain.setValueAtTime(0, now + i * 0.15);
+            gain.gain.linearRampToValueAtTime(0.35, now + i * 0.15 + 0.02);
+            gain.gain.exponentialRampToValueAtTime(0.01, now + i * 0.15 + 0.5);
+
+            osc.connect(gain);
+            gain.connect(this.audioContext.destination);
+
+            osc.start(now + i * 0.15);
+            osc.stop(now + i * 0.15 + 0.55);
+        });
+    }
+
+    // Party mode - rapid ascending tones
+    playParty() {
+        const now = this.audioContext.currentTime;
+
+        for (let i = 0; i < 8; i++) {
+            const osc = this.audioContext.createOscillator();
+            const gain = this.audioContext.createGain();
+
+            osc.type = 'sine';
+            osc.frequency.value = 400 + (i * 100);
+
+            gain.gain.setValueAtTime(0.2, now + i * 0.05);
+            gain.gain.exponentialRampToValueAtTime(0.01, now + i * 0.05 + 0.1);
+
+            osc.connect(gain);
+            gain.connect(this.audioContext.destination);
+
+            osc.start(now + i * 0.05);
+            osc.stop(now + i * 0.05 + 0.12);
         }
     }
 

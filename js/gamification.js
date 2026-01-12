@@ -470,12 +470,86 @@ class GamificationSystem {
         description.textContent = achievement.description;
         xpReward.textContent = achievement.xpReward;
 
+        // EPIC SCREEN SHAKE!
+        document.body.classList.add('screen-shake');
+        setTimeout(() => document.body.classList.remove('screen-shake'), 600);
+
+        // Play achievement sound based on rarity
+        if (achievement.rarity === 'platinum' || achievement.rarity === 'gold') {
+            window.soundManager?.play('epic');
+        } else if (achievement.rarity === 'silver') {
+            window.soundManager?.play('celebration');
+        } else {
+            window.soundManager?.play('party');
+        }
+
+        // Particle explosion based on rarity
+        this.triggerParticleExplosion(achievement.rarity);
+
+        // German-themed effects for gold/platinum achievements
+        if (achievement.rarity === 'gold' || achievement.rarity === 'platinum') {
+            this.triggerPretzelRain();
+            icon.classList.add('mega-bounce');
+            setTimeout(() => icon.classList.remove('mega-bounce'), 1000);
+        } else {
+            icon.classList.add('elastic-scale');
+            setTimeout(() => icon.classList.remove('elastic-scale'), 800);
+        }
+
+        // Rainbow glow for platinum achievements
+        if (achievement.rarity === 'platinum') {
+            modal.classList.add('rainbow-glow');
+            setTimeout(() => modal.classList.remove('rainbow-glow'), 3000);
+        }
+
         modal.classList.remove('hidden');
 
         // Auto-close after 5 seconds
         setTimeout(() => {
             modal.classList.add('hidden');
         }, 5000);
+    }
+
+    triggerParticleExplosion(rarity) {
+        const particles = rarity === 'platinum' ? 50 : rarity === 'gold' ? 30 : 20;
+        const emojis = rarity === 'platinum' ? ['💎', '👑', '⭐', '✨', '🏆'] :
+                       rarity === 'gold' ? ['🥇', '⭐', '✨', '🎉'] :
+                       rarity === 'silver' ? ['🥈', '⭐', '✨'] :
+                       ['🎯', '✨', '🎉'];
+
+        for (let i = 0; i < particles; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            const angle = (Math.PI * 2 * i) / particles;
+            const velocity = 100 + Math.random() * 200;
+
+            particle.style.left = centerX + 'px';
+            particle.style.top = centerY + 'px';
+            particle.style.setProperty('--tx', Math.cos(angle) * velocity + 'px');
+            particle.style.setProperty('--ty', Math.sin(angle) * velocity + 'px');
+
+            document.body.appendChild(particle);
+
+            setTimeout(() => particle.remove(), 1500);
+        }
+    }
+
+    triggerPretzelRain() {
+        const pretzels = ['🥨', '🍺', '🇩🇪', '🎉', '🏆'];
+        for (let i = 0; i < 15; i++) {
+            setTimeout(() => {
+                const pretzel = document.createElement('div');
+                pretzel.className = 'pretzel-rain';
+                pretzel.textContent = pretzels[Math.floor(Math.random() * pretzels.length)];
+                pretzel.style.left = Math.random() * 100 + '%';
+                document.body.appendChild(pretzel);
+                setTimeout(() => pretzel.remove(), 3000);
+            }, i * 100);
+        }
     }
 
     updateUI() {
