@@ -713,6 +713,12 @@ class LearnDeutschApp {
     initProgressSection() {
         // Refresh progress data
         window.progressManager?.updateProgressDisplay();
+
+        // Render progress map with German cities
+        window.progressMapManager?.renderProgressMap();
+
+        // Render enhanced analytics
+        window.analyticsManager?.renderEnhancedStats();
     }
 
     initSettingsSection() {
