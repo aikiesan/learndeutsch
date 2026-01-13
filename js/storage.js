@@ -23,6 +23,7 @@ class StorageManager {
             exercisesCompleted: 0,
             wordsLearned: [],
             achievements: [],
+            achievedMilestones: [],  // Track progress milestones
             settings: {
                 dailyGoal: 10,
                 difficultyPreference: 'balanced',
@@ -36,6 +37,12 @@ class StorageManager {
                 totalStudyTime: 0,
                 vocabularyByCategory: {},
                 dailyActivity: {}
+            },
+            analytics: {
+                timeOfDay: {},  // Hour -> {exercises: X, correct: Y, total: Z}
+                categoryMastery: {},  // Category -> {attempts: X, correct: Y, lastPracticed: date}
+                learningVelocity: [],  // Array of {date, wordsLearned, timeSpent}
+                accuracyByHour: {}
             }
         };
 

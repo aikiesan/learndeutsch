@@ -650,6 +650,16 @@ class InteractiveExercises {
             isCorrect
         );
 
+        // Track analytics (time-of-day, category mastery)
+        if (window.analyticsManager) {
+            window.analyticsManager.recordExercise(isCorrect, word.category || 'General');
+        }
+
+        // Check milestones
+        if (window.progressMapManager) {
+            window.progressMapManager.checkMilestones();
+        }
+
         // Next question after delay
         setTimeout(() => {
             this.currentQuiz.currentIndex++;
