@@ -525,8 +525,7 @@ class VocabularyManager {
 
     showError(message) {
         console.error(message);
-        // Could show a toast notification here
-        alert(message); // Simple fallback
+        window.utils.showAlert(message, 'error');
     }
 
     // Multiple choice exercise generation

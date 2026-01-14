@@ -781,7 +781,7 @@ class ExerciseManager {
         const wordCount = text ? text.split(/\s+/).length : 0;
 
         if (wordCount < this.currentExercise.minWords) {
-            alert(`Please write at least ${this.currentExercise.minWords} words. Current: ${wordCount}`);
+            window.utils.showAlert(`Please write at least ${this.currentExercise.minWords} words. Current: ${wordCount}`, 'info');
             return;
         }
 
@@ -807,7 +807,7 @@ class ExerciseManager {
         const text = textarea.value.trim();
 
         if (!text) {
-            alert('Nothing to save yet. Start writing first!');
+            window.utils.showAlert('Nothing to save yet. Start writing first!', 'info');
             return;
         }
 
@@ -819,7 +819,7 @@ class ExerciseManager {
             savedAt: new Date().toISOString()
         }));
 
-        alert('Draft saved successfully!');
+        window.utils.showAlert('Draft saved successfully!', 'success');
     }
 
     showExerciseFeedback(isCorrect, details) {
@@ -934,7 +934,7 @@ class ExerciseManager {
 
     showError(message) {
         console.error(message);
-        alert(message);
+        window.utils.showAlert(message, 'error');
     }
 }
 
