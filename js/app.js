@@ -108,10 +108,14 @@ class LearnDeutschApp {
                 document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
                 e.currentTarget.classList.add('active');
 
-                window.soundManager?.play('select');
+                window.soundManager?.play('whoosh');
 
                 // Store selected category
                 this.selectedCategory = category;
+
+                // Navigate to practice section and start quiz with selected category
+                this.navigateToSection('practice');
+                setTimeout(() => window.interactiveExercises?.startQuiz(category), 300);
             });
         });
 
