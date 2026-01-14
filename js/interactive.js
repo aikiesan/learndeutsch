@@ -536,6 +536,36 @@ class InteractiveExercises {
         setTimeout(() => popup.remove(), 1500);
     }
 
+    showXPPopupCustom(text, x, y) {
+        const popup = document.createElement('div');
+        popup.className = 'xp-popup';
+        popup.textContent = text;
+        popup.style.left = `${x}px`;
+        popup.style.top = `${y}px`;
+        document.body.appendChild(popup);
+
+        setTimeout(() => popup.remove(), 1500);
+    }
+
+    showAchievementPopup(title, subtitle) {
+        const popup = document.getElementById('achievement-popup');
+        if (!popup) return;
+
+        popup.innerHTML = `
+            <div class="achievement-title">${title}</div>
+            <div class="achievement-subtitle">${subtitle}</div>
+        `;
+        popup.classList.remove('hidden');
+        popup.style.animation = 'none';
+        setTimeout(() => {
+            popup.style.animation = 'achievementSlide 2s ease';
+        }, 10);
+
+        setTimeout(() => {
+            popup.classList.add('hidden');
+        }, 2000);
+    }
+
     // ==================== TAP-TO-ANSWER QUIZ ====================
     startQuiz(category = 'all', questionCount = 10) {
         // Ensure vocabulary is loaded
@@ -586,10 +616,16 @@ class InteractiveExercises {
             answers: [],
             startTime: Date.now(),
             category: category,
-            mode: 'standard'
+            mode: 'standard',
+            totalXP: 0,
+            fastestAnswer: Infinity,
+            slowestAnswer: 0,
+            questionStartTime: Date.now()
         };
 
         this.streakCount = 0;
+        this.maxStreak = 0;
+        this.comboMultiplier = 1;
         this.showQuizInterface();
         this.showQuizQuestion();
     }
@@ -604,6 +640,7 @@ class InteractiveExercises {
                     <div class="streak-counter" id="quiz-streak">
                         <span class="streak-fire">🔥</span>
                         <span class="streak-number">0</span>
+                        <span class="combo-multiplier hidden" id="combo-multiplier">×1</span>
                     </div>
                     <div class="progress-dots" id="progress-dots"></div>
                     <div class="quiz-score">
@@ -620,6 +657,7 @@ class InteractiveExercises {
                 </div>
 
                 <div class="quiz-feedback hidden" id="quiz-feedback"></div>
+                <div class="achievement-popup hidden" id="achievement-popup"></div>
             </div>
         `;
 
@@ -642,6 +680,9 @@ class InteractiveExercises {
             }
             return;
         }
+
+        // Track question start time for speed bonus
+        this.currentQuiz.questionStartTime = Date.now();
 
         const word = this.currentQuiz.words[this.currentQuiz.currentIndex];
         const questionEl = document.getElementById('quiz-question');
@@ -707,6 +748,11 @@ class InteractiveExercises {
         const selectedAnswer = btn.dataset.answer;
         const isCorrect = selectedAnswer === word.translation;
 
+        // Calculate answer time for speed bonus
+        const answerTime = (Date.now() - this.currentQuiz.questionStartTime) / 1000;
+        this.currentQuiz.fastestAnswer = Math.min(this.currentQuiz.fastestAnswer, answerTime);
+        this.currentQuiz.slowestAnswer = Math.max(this.currentQuiz.slowestAnswer, answerTime);
+
         // Play select sound immediately
         window.soundManager?.play('select');
 
@@ -722,6 +768,30 @@ class InteractiveExercises {
             btn.classList.add('correct');
             this.currentQuiz.score++;
             this.streakCount++;
+            this.maxStreak = Math.max(this.maxStreak, this.streakCount);
+
+            // Calculate XP with combo multiplier and speed bonus
+            let xpEarned = 10;
+
+            // Combo multiplier increases with streak
+            if (this.streakCount >= 10) {
+                this.comboMultiplier = 5;
+            } else if (this.streakCount >= 5) {
+                this.comboMultiplier = 3;
+            } else if (this.streakCount >= 3) {
+                this.comboMultiplier = 2;
+            } else {
+                this.comboMultiplier = 1;
+            }
+
+            xpEarned = Math.floor(xpEarned * this.comboMultiplier);
+
+            // Speed bonus (extra 5 XP for answers under 3 seconds)
+            if (answerTime < 3) {
+                xpEarned += 5;
+            }
+
+            this.currentQuiz.totalXP += xpEarned;
 
             // Play correct sound
             setTimeout(() => window.soundManager?.play('correct'), 100);
@@ -747,29 +817,73 @@ class InteractiveExercises {
             // Update streak display
             const streakEl = document.getElementById('quiz-streak');
             streakEl.querySelector('.streak-number').textContent = this.streakCount;
-            if (this.streakCount >= 3) {
+
+            // Show/update combo multiplier
+            const comboEl = document.getElementById('combo-multiplier');
+            if (this.comboMultiplier > 1) {
+                comboEl.textContent = `×${this.comboMultiplier}`;
+                comboEl.classList.remove('hidden');
+                comboEl.style.animation = 'none';
+                setTimeout(() => comboEl.style.animation = 'pulse 0.3s ease', 10);
+            } else {
+                comboEl.classList.add('hidden');
+            }
+
+            // Milestone achievements
+            if (this.streakCount === 3) {
+                this.showAchievementPopup('🎯 Hat Trick!', 'Three in a row!');
                 streakEl.classList.add('streak-milestone');
                 window.soundManager?.play('streak');
-
-                // BIG celebration for 5+ streak
-                if (this.streakCount >= 5 && window.funUtils) {
+                setTimeout(() => streakEl.classList.remove('streak-milestone'), 600);
+            } else if (this.streakCount === 5) {
+                this.showAchievementPopup('🔥 On Fire!', 'Five streak combo!');
+                streakEl.classList.add('streak-milestone');
+                window.soundManager?.play('streak');
+                if (window.funUtils) {
                     window.funUtils.triggerGermanConfetti('german');
                 }
-
+                setTimeout(() => streakEl.classList.remove('streak-milestone'), 600);
+            } else if (this.streakCount === 10) {
+                this.showAchievementPopup('⚡ UNSTOPPABLE!', 'Ten streak! You\'re a legend!');
+                streakEl.classList.add('streak-milestone');
+                window.soundManager?.play('streak');
+                if (window.funUtils) {
+                    window.funUtils.triggerGermanConfetti('german');
+                }
+                setTimeout(() => streakEl.classList.remove('streak-milestone'), 600);
+            } else if (this.streakCount >= 3) {
+                streakEl.classList.add('streak-milestone');
                 setTimeout(() => streakEl.classList.remove('streak-milestone'), 600);
             }
 
-            // XP popup
+            // Speed bonus achievement
+            if (answerTime < 2) {
+                this.showAchievementPopup('⚡ Lightning Fast!', `${answerTime.toFixed(1)}s answer!`);
+            }
+
+            // XP popup with multiplier
             const rect = btn.getBoundingClientRect();
-            this.showXPPopup(10, rect.left + rect.width / 2, rect.top);
+            let xpText = `+${xpEarned} XP`;
+            if (this.comboMultiplier > 1) {
+                xpText = `+${xpEarned} XP (×${this.comboMultiplier})`;
+            }
+            if (answerTime < 3) {
+                xpText += ' ⚡';
+            }
+            this.showXPPopupCustom(xpText, rect.left + rect.width / 2, rect.top);
 
         } else {
             btn.classList.add('wrong');
             this.streakCount = 0;
+            this.comboMultiplier = 1;
             document.getElementById('quiz-streak').querySelector('.streak-number').textContent = 0;
+            document.getElementById('combo-multiplier').classList.add('hidden');
 
             // Play wrong sound
             setTimeout(() => window.soundManager?.play('wrong'), 100);
+
+            // Shake animation on wrong answer
+            btn.style.animation = 'shake 0.4s';
 
             // FUN REACTIONS FOR WRONG ANSWERS!
             if (window.funUtils) {
@@ -859,10 +973,10 @@ class InteractiveExercises {
         this.saveQuizHistory({ accuracy, type: 'quiz', timestamp: Date.now() });
         localStorage.setItem('lastExerciseType', 'quiz');
 
-        // Award XP
-        const baseXP = this.currentQuiz.score * 10;
-        const bonusXP = accuracy >= 80 ? 25 : (accuracy >= 60 ? 15 : 0);
-        const totalXP = baseXP + bonusXP;
+        // Use tracked total XP (includes combo bonuses and speed bonuses)
+        const totalXP = this.currentQuiz.totalXP || (this.currentQuiz.score * 10);
+        const bonusXP = accuracy >= 80 ? 30 : (accuracy >= 60 ? 15 : 0);
+        const finalXP = totalXP + bonusXP;
 
         // Record exercise completion
         window.gamificationSystem.simulateExerciseCompletion(
@@ -881,38 +995,74 @@ class InteractiveExercises {
             window.soundManager?.play('correct');
         }
 
+        // Get fastest and slowest answer times
+        const fastestTime = this.currentQuiz.fastestAnswer < Infinity ? this.currentQuiz.fastestAnswer.toFixed(1) : 'N/A';
+        const avgTime = (totalTime / this.currentQuiz.words.length).toFixed(1);
+
         const container = document.getElementById('writing-exercise');
         container.innerHTML = `
-            <div class="celebration-content" style="margin: 0 auto; max-width: 400px;">
+            <div class="celebration-content" style="margin: 0 auto; max-width: 500px;">
                 <div class="celebration-emoji">${accuracy >= 80 ? '🎉' : accuracy >= 50 ? '👍' : '💪'}</div>
                 <h2 class="celebration-title">${accuracy >= 80 ? 'Ausgezeichnet!' : accuracy >= 50 ? 'Gut gemacht!' : 'Keep practicing!'}</h2>
-                <div class="results-stats" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.5rem 0;">
+
+                <!-- Main Stats Grid -->
+                <div class="results-stats" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.5rem 0; padding: 1rem; background: var(--bg-card); border-radius: var(--border-radius-lg);">
                     <div class="result-stat" style="text-align: center;">
-                        <div style="font-size: 2rem; font-weight: bold; color: var(--success);">${accuracy}%</div>
-                        <div style="color: var(--text-muted);">Accuracy</div>
+                        <div style="font-size: 2.5rem; font-weight: bold; color: var(--success);">${accuracy}%</div>
+                        <div style="color: var(--text-muted); font-size: 0.9rem;">Accuracy</div>
                     </div>
                     <div class="result-stat" style="text-align: center;">
-                        <div style="font-size: 2rem; font-weight: bold; color: var(--primary-color);">${this.currentQuiz.score}/${this.currentQuiz.words.length}</div>
-                        <div style="color: var(--text-muted);">Correct</div>
+                        <div style="font-size: 2.5rem; font-weight: bold; color: var(--primary-color);">${this.currentQuiz.score}/${this.currentQuiz.words.length}</div>
+                        <div style="color: var(--text-muted); font-size: 0.9rem;">Correct</div>
                     </div>
                     <div class="result-stat" style="text-align: center;">
-                        <div style="font-size: 2rem; font-weight: bold; color: var(--info);">${Math.floor(totalTime / 60)}:${(totalTime % 60).toString().padStart(2, '0')}</div>
-                        <div style="color: var(--text-muted);">Time</div>
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--xp-color);">+${finalXP}</div>
+                        <div style="color: var(--text-muted); font-size: 0.9rem;">XP Earned</div>
                     </div>
                     <div class="result-stat" style="text-align: center;">
-                        <div style="font-size: 2rem; font-weight: bold; color: var(--xp-color);">+${totalXP}</div>
-                        <div style="color: var(--text-muted);">XP Earned</div>
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--accent-color);">🔥 ${this.maxStreak}</div>
+                        <div style="color: var(--text-muted); font-size: 0.9rem;">Max Streak</div>
                     </div>
                 </div>
-                <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
-                    <button class="btn btn-primary btn-playful" onclick="window.interactiveExercises.startProgressiveQuiz('${this.currentQuiz.category}', ${accuracy >= 80 ? 2 : 1})">
-                        ${accuracy >= 80 ? '🚀 Level Up!' : '💪 Keep Going'}
+
+                <!-- Detailed Stats -->
+                <div style="background: var(--bg-secondary); padding: 1rem; border-radius: var(--border-radius-md); margin-bottom: 1.5rem;">
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; font-size: 0.9rem;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span style="color: var(--text-muted);">⏱️ Total Time:</span>
+                            <span style="font-weight: 600;">${Math.floor(totalTime / 60)}:${(totalTime % 60).toString().padStart(2, '0')}</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span style="color: var(--text-muted);">⚡ Fastest:</span>
+                            <span style="font-weight: 600;">${fastestTime}s</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span style="color: var(--text-muted);">📊 Avg Time:</span>
+                            <span style="font-weight: 600;">${avgTime}s</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span style="color: var(--text-muted);">🎯 Category:</span>
+                            <span style="font-weight: 600;">${this.currentQuiz.category === 'all' ? 'All' : this.currentQuiz.category}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+                    <button class="btn btn-primary btn-playful" onclick="window.interactiveExercises.startQuiz('${this.currentQuiz.category}', ${this.currentQuiz.words.length})" style="font-size: 1.1rem; padding: 0.75rem 2rem;">
+                        🔄 One More Round!
                     </button>
+                    ${accuracy >= 80 ? `
+                    <button class="btn btn-accent" onclick="window.interactiveExercises.startProgressiveQuiz('${this.currentQuiz.category}', 2)">
+                        🚀 Level Up!
+                    </button>
+                    ` : `
                     <button class="btn btn-outline" onclick="window.interactiveExercises.startQuiz('${this.currentQuiz.category}', ${this.currentQuiz.words.length})">
-                        Replay
+                        💪 Try Again
                     </button>
+                    `}
                     <button class="btn btn-outline" onclick="window.interactiveExercises.showExerciseSelector()">
-                        Back
+                        ← Back
                     </button>
                 </div>
             </div>
