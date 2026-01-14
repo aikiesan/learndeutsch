@@ -923,41 +923,13 @@ class ExerciseManager {
         `;
     }
 
-    // Utility functions
+    // Utility functions - delegate to shared utils
     shuffleArray(array) {
-        const shuffled = [...array];
-        for (let i = shuffled.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-        }
-        return shuffled;
+        return window.utils.shuffleArray(array);
     }
 
     calculateStringSimilarity(str1, str2) {
-        // Simple Levenshtein distance-based similarity
-        const distance = this.levenshteinDistance(str1, str2);
-        const maxLength = Math.max(str1.length, str2.length);
-        return maxLength === 0 ? 1 : 1 - (distance / maxLength);
-    }
-
-    levenshteinDistance(str1, str2) {
-        const matrix = Array(str2.length + 1).fill().map(() => Array(str1.length + 1).fill(0));
-
-        for (let i = 0; i <= str1.length; i++) matrix[0][i] = i;
-        for (let j = 0; j <= str2.length; j++) matrix[j][0] = j;
-
-        for (let j = 1; j <= str2.length; j++) {
-            for (let i = 1; i <= str1.length; i++) {
-                const cost = str1[i - 1] === str2[j - 1] ? 0 : 1;
-                matrix[j][i] = Math.min(
-                    matrix[j][i - 1] + 1,
-                    matrix[j - 1][i] + 1,
-                    matrix[j - 1][i - 1] + cost
-                );
-            }
-        }
-
-        return matrix[str2.length][str1.length];
+        return window.utils.calculateSimilarity(str1, str2);
     }
 
     showError(message) {

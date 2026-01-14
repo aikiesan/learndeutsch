@@ -33,7 +33,6 @@ class VocabularyManager {
 
             this.displayVocabularyStats();
             this.populateVocabularyList();
-            console.log('Vocabulary loaded:', Object.keys(this.allLevelsData).join(', '));
         } catch (error) {
             console.error('Error loading vocabulary data:', error);
             this.showError('Failed to load vocabulary data');
@@ -46,10 +45,8 @@ class VocabularyManager {
             this.vocabularyData = this.allLevelsData[level];
             this.displayVocabularyStats();
             this.populateVocabularyList();
-            console.log('Switched to level:', level);
-        } else {
-            console.warn('Level not available:', level);
         }
+        // Silently ignore unavailable levels
     }
 
     async loadVocabularyData() {
@@ -123,12 +120,7 @@ class VocabularyManager {
     }
 
     shuffleArray(array) {
-        const shuffled = [...array];
-        for (let i = shuffled.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-        }
-        return shuffled;
+        return window.utils.shuffleArray(array);
     }
 
     startFlashcardSession(category = 'all', wordCount = 10) {
@@ -513,16 +505,7 @@ class VocabularyManager {
     }
 
     formatTimeAgo(timestamp) {
-        const now = Date.now();
-        const diff = now - timestamp;
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor(diff / (1000 * 60 * 60));
-        const minutes = Math.floor(diff / (1000 * 60));
-
-        if (days > 0) return `${days} day${days > 1 ? 's' : ''} ago`;
-        if (hours > 0) return `${hours} hour${hours > 1 ? 's' : ''} ago`;
-        if (minutes > 0) return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
-        return 'Just now';
+        return window.utils.formatTimeAgo(timestamp);
     }
 
     filterVocabularyByCategory(category) {

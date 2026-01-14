@@ -47,9 +47,7 @@ class SoundManager {
                 voice.lang === 'de-DE'
             );
 
-            if (this.germanVoice) {
-                console.log('German voice loaded:', this.germanVoice.name);
-            }
+            // German voice loaded successfully
         };
 
         // Voices may load asynchronously
@@ -143,7 +141,6 @@ class SoundManager {
 
         try {
             this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            console.log('Sound system initialized');
         } catch (e) {
             console.warn('Web Audio API not supported');
             this.enabled = false;

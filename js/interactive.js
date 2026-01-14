@@ -36,6 +36,37 @@ class InteractiveExercises {
         // Setup adaptive CTA and motivational phrases
         this.setupAdaptiveCTA();
         this.showMotivationalPhrase();
+        // Setup keyboard navigation for quizzes
+        this.setupKeyboardNavigation();
+    }
+
+    // ==================== KEYBOARD NAVIGATION ====================
+    setupKeyboardNavigation() {
+        document.addEventListener('keydown', (e) => {
+            // Only handle when quiz options are visible
+            const optionsContainer = document.getElementById('quiz-options');
+            if (!optionsContainer || optionsContainer.closest('.hidden')) return;
+
+            const options = optionsContainer.querySelectorAll('.quiz-option:not(.disabled)');
+            if (options.length === 0) return;
+
+            let selectedIndex = -1;
+
+            // Number keys 1-4
+            if (e.key >= '1' && e.key <= '4') {
+                selectedIndex = parseInt(e.key) - 1;
+            }
+            // Letter keys A-D (case insensitive)
+            else if (['a', 'b', 'c', 'd', 'A', 'B', 'C', 'D'].includes(e.key)) {
+                selectedIndex = e.key.toUpperCase().charCodeAt(0) - 65; // A=0, B=1, C=2, D=3
+            }
+
+            // Click the corresponding option if it exists
+            if (selectedIndex >= 0 && selectedIndex < options.length) {
+                e.preventDefault();
+                options[selectedIndex].click();
+            }
+        });
     }
 
     // ==================== MOTIVATIONAL GERMAN PHRASES ====================
@@ -153,22 +184,81 @@ class InteractiveExercises {
         return words;
     }
 
-    waitForVocabulary() {
+    waitForVocabulary(retryCount = 0) {
+        const MAX_RETRIES = 50; // 5 seconds max (50 * 100ms)
+
         if (window.vocabularyManager && window.vocabularyManager.vocabularyData) {
-            console.log('Interactive exercises initialized');
-        } else {
-            setTimeout(() => this.waitForVocabulary(), 100);
+            // Vocabulary loaded successfully
+            return;
         }
+
+        if (retryCount >= MAX_RETRIES) {
+            console.warn('Vocabulary manager failed to load within timeout');
+            return;
+        }
+
+        setTimeout(() => this.waitForVocabulary(retryCount + 1), 100);
     }
 
     // ==================== SESSION TIMER ====================
     startSessionTimer() {
+        // Clear any existing timer first to prevent memory leaks
+        this.stopSessionTimer();
+
         this.sessionStartTime = Date.now();
         this.updateSessionTimerDisplay();
 
         this.sessionTimerInterval = setInterval(() => {
             this.updateSessionTimerDisplay();
         }, 1000);
+
+        // Pause timer when page is hidden, resume when visible
+        this.handleVisibilityChange = () => {
+            if (document.hidden) {
+                this.pauseSessionTimer();
+            } else {
+                this.resumeSessionTimer();
+            }
+        };
+        document.addEventListener('visibilitychange', this.handleVisibilityChange);
+    }
+
+    stopSessionTimer() {
+        if (this.sessionTimerInterval) {
+            clearInterval(this.sessionTimerInterval);
+            this.sessionTimerInterval = null;
+        }
+        if (this.handleVisibilityChange) {
+            document.removeEventListener('visibilitychange', this.handleVisibilityChange);
+            this.handleVisibilityChange = null;
+        }
+    }
+
+    pauseSessionTimer() {
+        if (this.sessionTimerInterval) {
+            clearInterval(this.sessionTimerInterval);
+            this.sessionTimerInterval = null;
+            this.pausedAt = Date.now();
+        }
+    }
+
+    resumeSessionTimer() {
+        if (this.pausedAt) {
+            // Adjust start time to account for paused duration
+            const pauseDuration = Date.now() - this.pausedAt;
+            this.sessionStartTime += pauseDuration;
+            this.pausedAt = null;
+        }
+        if (!this.sessionTimerInterval) {
+            this.sessionTimerInterval = setInterval(() => {
+                this.updateSessionTimerDisplay();
+            }, 1000);
+        }
+    }
+
+    // Cleanup method - call when destroying the instance
+    destroy() {
+        this.stopSessionTimer();
     }
 
     updateSessionTimerDisplay() {
@@ -499,12 +589,15 @@ class InteractiveExercises {
         // Generate 3 options (1 correct + 2 wrong)
         const options = this.generateQuizOptions(word);
 
+        const safeWord = window.utils.escapeHtml(word.word);
+        const safeWordJs = window.utils.escapeJs(word.word);
+
         questionEl.innerHTML = `
             <div class="question-emoji">${word.emoji || '📚'}</div>
             <div class="question-text">What does this mean?</div>
             <div class="question-word">
-                ${word.word}${word.isChallenge ? '<span class="challenge-badge">⭐ A2 Challenge</span>' : ''}
-                <button class="speak-btn" onclick="event.stopPropagation(); window.soundManager.speakWithFeedback('${word.word.replace(/'/g, "\\'")}', this)" title="Listen to pronunciation">🔊</button>
+                ${safeWord}${word.isChallenge ? '<span class="challenge-badge">⭐ A2 Challenge</span>' : ''}
+                <button class="speak-btn" onclick="event.stopPropagation(); window.soundManager.speakWithFeedback('${safeWordJs}', this)" title="Listen to pronunciation">🔊</button>
             </div>
             ${word.cognate ? `<span class="cognate-badge">🔗 Similar to English</span>` : ''}
         `;
@@ -674,11 +767,13 @@ class InteractiveExercises {
 
         // Extract German word from the current question if not provided
         const word = germanWord || this.currentQuiz?.words[this.currentQuiz.currentIndex]?.word;
+        const safeWordJs = word ? window.utils.escapeJs(word) : '';
+        const safeMessage = window.utils.escapeHtml(message);
 
         feedback.innerHTML = `
             <span class="feedback-icon">${isCorrect ? '✅' : '💡'}</span>
-            <span class="feedback-text">${message}</span>
-            ${word ? `<button class="speak-btn speak-btn-inline" onclick="window.soundManager.speakWithFeedback('${word.replace(/'/g, "\\'")}', this)" title="Listen">🔊</button>` : ''}
+            <span class="feedback-text">${safeMessage}</span>
+            ${word ? `<button class="speak-btn speak-btn-inline" onclick="window.soundManager.speakWithFeedback('${safeWordJs}', this)" title="Listen">🔊</button>` : ''}
         `;
         feedback.classList.remove('hidden');
 
@@ -1014,8 +1109,12 @@ class InteractiveExercises {
         document.getElementById('typing-input').addEventListener('keypress', (e) => {
             if (e.key === 'Enter') this.checkTypingAnswer();
         });
+        // Debounced input handler for better performance
+        const debouncedHandler = window.utils.debounce((value) => {
+            this.handleTypingInput(value);
+        }, 150);
         document.getElementById('typing-input').addEventListener('input', (e) => {
-            this.handleTypingInput(e.target.value);
+            debouncedHandler(e.target.value);
         });
         document.getElementById('typing-hint-btn').addEventListener('click', () => this.showTypingHint());
         document.getElementById('typing-check-btn').addEventListener('click', () => this.checkTypingAnswer());
@@ -2697,45 +2796,13 @@ class InteractiveExercises {
     }
 
     // ==================== UTILITY FUNCTIONS ====================
+    // Delegate to shared utils module
     shuffleArray(array) {
-        const shuffled = [...array];
-        for (let i = shuffled.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-        }
-        return shuffled;
+        return window.utils.shuffleArray(array);
     }
 
     calculateSimilarity(str1, str2) {
-        const s1 = str1.toLowerCase();
-        const s2 = str2.toLowerCase();
-
-        if (s1 === s2) return 1;
-        if (s1.length === 0 || s2.length === 0) return 0;
-
-        const distance = this.levenshteinDistance(s1, s2);
-        const maxLength = Math.max(s1.length, s2.length);
-        return 1 - (distance / maxLength);
-    }
-
-    levenshteinDistance(str1, str2) {
-        const matrix = Array(str2.length + 1).fill().map(() => Array(str1.length + 1).fill(0));
-
-        for (let i = 0; i <= str1.length; i++) matrix[0][i] = i;
-        for (let j = 0; j <= str2.length; j++) matrix[j][0] = j;
-
-        for (let j = 1; j <= str2.length; j++) {
-            for (let i = 1; i <= str1.length; i++) {
-                const cost = str1[i - 1] === str2[j - 1] ? 0 : 1;
-                matrix[j][i] = Math.min(
-                    matrix[j][i - 1] + 1,
-                    matrix[j - 1][i] + 1,
-                    matrix[j - 1][i - 1] + cost
-                );
-            }
-        }
-
-        return matrix[str2.length][str1.length];
+        return window.utils.calculateSimilarity(str1, str2);
     }
 
     saveQuizHistory(result) {
