@@ -183,6 +183,72 @@
     100% { transform: scale(1); }
 }
 
+/* ==================== COMBO MULTIPLIER ==================== */
+.combo-multiplier {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--accent-color);
+    background: rgba(255, 204, 0, 0.2);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--border-radius-md);
+    margin-left: var(--space-2);
+}
+
+/* ==================== ACHIEVEMENT POPUP ==================== */
+.achievement-popup {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, var(--accent-color) 0%, #ffaa00 100%);
+    color: var(--text-primary);
+    padding: var(--space-4) var(--space-6);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-xl);
+    z-index: 10000;
+    text-align: center;
+    min-width: 280px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.achievement-title {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-2);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.achievement-subtitle {
+    font-size: var(--font-size-base);
+    opacity: 0.95;
+}
+
+@keyframes achievementSlide {
+    0% {
+        transform: translateX(-50%) translateY(-100px) scale(0.8);
+        opacity: 0;
+    }
+    10% {
+        transform: translateX(-50%) translateY(0) scale(1);
+        opacity: 1;
+    }
+    90% {
+        transform: translateX(-50%) translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-50%) translateY(-50px) scale(0.9);
+        opacity: 0;
+    }
+}
+
+/* ==================== SHAKE ANIMATION ==================== */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-8px); }
+    20%, 40%, 60%, 80% { transform: translateX(8px); }
+}
+
 /* ==================== XP GAIN ANIMATION ==================== */
 .xp-popup {
     position: fixed;
