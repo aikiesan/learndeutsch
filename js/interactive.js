@@ -499,7 +499,7 @@ class InteractiveExercises {
         const allWords = window.vocabularyManager.getAllWords(category);
 
         if (allWords.length < 4) {
-            alert('Not enough words in this category. Try "All Words" or switch levels.');
+            window.utils.showAlert('Not enough words in this category. Try "All Words" or switch levels.', 'warning');
             return;
         }
 
@@ -509,7 +509,7 @@ class InteractiveExercises {
             : this.shuffleArray([...allWords]).slice(0, questionCount);
 
         if (words.length < 4) {
-            alert('Not enough words available. Please try a different category.');
+            window.utils.showAlert('Not enough words available. Please try a different category.', 'warning');
             return;
         }
 
@@ -888,7 +888,7 @@ class InteractiveExercises {
         const words = this.shuffleArray([...allWords]).slice(0, questionCount);
 
         if (words.length < 4) {
-            alert('Not enough words available.');
+            window.utils.showAlert('Not enough words available.', 'warning');
             return;
         }
 
@@ -1032,7 +1032,7 @@ class InteractiveExercises {
         words = this.shuffleArray(words).slice(0, wordCount);
 
         if (words.length === 0) {
-            alert('No words available. Please try a different category.');
+            window.utils.showAlert('No words available. Please try a different category.', 'warning');
             return;
         }
 
@@ -1372,7 +1372,7 @@ class InteractiveExercises {
         const allWords = window.vocabularyManager.getAllWords(category);
 
         if (allWords.length < 4) {
-            alert('Not enough words available. Please try a different category.');
+            window.utils.showAlert('Not enough words available. Please try a different category.', 'warning');
             return;
         }
 
@@ -1641,7 +1641,7 @@ class InteractiveExercises {
         const words = window.vocabularyManager.getAllWords(category);
 
         if (words.length < 4) {
-            alert('Not enough words available. Please try a different category.');
+            window.utils.showAlert('Not enough words available. Please try a different category.', 'warning');
             return;
         }
 
@@ -1877,7 +1877,7 @@ class InteractiveExercises {
         const words = this.shuffleArray([...allWords]).slice(0, questionCount);
 
         if (words.length < 4) {
-            alert('Not enough words available. Please try a different category.');
+            window.utils.showAlert('Not enough words available. Please try a different category.', 'warning');
             return;
         }
 
@@ -2194,7 +2194,7 @@ class InteractiveExercises {
         const words = this.shuffleArray([...allWords]).slice(0, pairCount);
 
         if (words.length < 4) {
-            alert('Not enough words available. Please try a different category.');
+            window.utils.showAlert('Not enough words available. Please try a different category.', 'warning');
             return;
         }
 
@@ -2491,7 +2491,7 @@ class InteractiveExercises {
 
         // Check if speech synthesis is available
         if (!window.soundManager?.isSpeechAvailable()) {
-            alert('Sorry, listening practice requires speech synthesis which is not available in your browser.');
+            window.utils.showAlert('Sorry, listening practice requires speech synthesis which is not available in your browser.', 'error');
             return;
         }
 
@@ -2499,7 +2499,7 @@ class InteractiveExercises {
         const words = this.shuffleArray([...allWords]).slice(0, wordCount);
 
         if (words.length === 0) {
-            alert('No words available. Please try a different category.');
+            window.utils.showAlert('No words available. Please try a different category.', 'warning');
             return;
         }
 

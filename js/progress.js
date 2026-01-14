@@ -468,12 +468,22 @@ class ProgressManager {
         URL.revokeObjectURL(url);
     }
 
-    resetProgress() {
-        if (!confirm('Are you sure you want to reset all progress? This cannot be undone.')) {
+    async resetProgress() {
+        const firstConfirm = await window.utils.showConfirm(
+            'Are you sure you want to reset all progress? This cannot be undone.',
+            { danger: true, confirmText: 'Reset', cancelText: 'Cancel' }
+        );
+
+        if (!firstConfirm) {
             return false;
         }
 
-        if (!confirm('This will delete all your learned vocabulary, statistics, and achievements. Are you absolutely sure?')) {
+        const secondConfirm = await window.utils.showConfirm(
+            'This will delete all your learned vocabulary, statistics, and achievements. Are you absolutely sure?',
+            { danger: true, confirmText: 'Yes, Delete Everything', cancelText: 'Cancel' }
+        );
+
+        if (!secondConfirm) {
             return false;
         }
 

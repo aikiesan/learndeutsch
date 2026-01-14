@@ -588,3 +588,220 @@ label {
         font-size: var(--font-size-2xl);
     }
 }
+
+/* ============================================
+   Custom Dialog/Modal Styles
+   ============================================ */
+
+.dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    animation: dialogFadeIn 0.2s ease-out;
+}
+
+.dialog-overlay.dialog-closing {
+    animation: dialogFadeOut 0.2s ease-out forwards;
+}
+
+.dialog-box {
+    background: var(--bg-primary);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: var(--shadow-xl);
+    animation: dialogSlideIn 0.2s ease-out;
+}
+
+.dialog-closing .dialog-box {
+    animation: dialogSlideOut 0.2s ease-out forwards;
+}
+
+.dialog-icon {
+    font-size: 3rem;
+    margin-bottom: var(--space-4);
+}
+
+.dialog-message {
+    font-size: var(--font-size-base);
+    color: var(--text-primary);
+    margin-bottom: var(--space-6);
+    line-height: 1.5;
+}
+
+.dialog-buttons {
+    display: flex;
+    gap: var(--space-3);
+    justify-content: center;
+}
+
+.dialog-buttons .btn {
+    min-width: 100px;
+}
+
+.dialog-danger .dialog-confirm,
+.btn-danger {
+    background: var(--error);
+    border-color: var(--error);
+    color: white;
+}
+
+.dialog-danger .dialog-confirm:hover,
+.btn-danger:hover {
+    background: #dc2626;
+    border-color: #dc2626;
+}
+
+@keyframes dialogFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes dialogFadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes dialogSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes dialogSlideOut {
+    from {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.9) translateY(-20px);
+    }
+}
+
+/* ============================================
+   Notification Styles
+   ============================================ */
+
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    max-width: 400px;
+    animation: slideInRight 0.3s ease-out;
+}
+
+.notification-info {
+    background: #3B82F6;
+    color: white;
+}
+
+.notification-success {
+    background: #10B981;
+    color: white;
+}
+
+.notification-error {
+    background: #EF4444;
+    color: white;
+}
+
+.notification-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.notification-close {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 1.2rem;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.notification-close:hover {
+    opacity: 1;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* ============================================
+   Welcome Modal Styles
+   ============================================ */
+
+.welcome-modal {
+    max-width: 600px;
+}
+
+.welcome-features {
+    margin: 2rem 0;
+}
+
+.feature {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.feature-icon {
+    font-size: 2rem;
+}
+
+.getting-started {
+    margin: 2rem 0;
+}
+
+.getting-started ol {
+    margin-left: 1rem;
+    margin-top: 1rem;
+}
+
+.getting-started li {
+    margin-bottom: 0.5rem;
+}
+
+/* ============================================
+   Heatmap Tooltip
+   ============================================ */
+
+.heatmap-tooltip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    pointer-events: none;
+    z-index: 1000;
+    display: none;
+}

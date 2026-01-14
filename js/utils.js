@@ -169,7 +169,101 @@ const LearnDeutschUtils = {
         604800000,     // 7 days
         1209600000,    // 14 days
         2592000000     // 30 days
-    ]
+    ],
+
+    /**
+     * Show a custom alert dialog (replacement for window.alert)
+     * @param {string} message - The message to display
+     * @param {string} type - The type of alert: 'info', 'warning', 'error', 'success'
+     * @returns {Promise} - Resolves when dialog is closed
+     */
+    showAlert(message, type = 'info') {
+        return new Promise((resolve) => {
+            const icons = {
+                info: 'ℹ️',
+                warning: '⚠️',
+                error: '❌',
+                success: '✅'
+            };
+
+            const overlay = document.createElement('div');
+            overlay.className = 'dialog-overlay';
+            overlay.innerHTML = `
+                <div class="dialog-box dialog-${type}">
+                    <div class="dialog-icon">${icons[type]}</div>
+                    <div class="dialog-message">${this.escapeHtml(message)}</div>
+                    <div class="dialog-buttons">
+                        <button class="btn btn-primary dialog-ok">OK</button>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(overlay);
+
+            const closeDialog = () => {
+                overlay.classList.add('dialog-closing');
+                setTimeout(() => {
+                    overlay.remove();
+                    resolve();
+                }, 200);
+            };
+
+            overlay.querySelector('.dialog-ok').addEventListener('click', closeDialog);
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) closeDialog();
+            });
+
+            // Focus the OK button for keyboard accessibility
+            overlay.querySelector('.dialog-ok').focus();
+        });
+    },
+
+    /**
+     * Show a custom confirm dialog (replacement for window.confirm)
+     * @param {string} message - The message to display
+     * @param {Object} options - Options for the dialog
+     * @param {string} options.confirmText - Text for confirm button (default: 'Yes')
+     * @param {string} options.cancelText - Text for cancel button (default: 'Cancel')
+     * @param {boolean} options.danger - Show as danger/destructive action
+     * @returns {Promise<boolean>} - Resolves true if confirmed, false if cancelled
+     */
+    showConfirm(message, options = {}) {
+        return new Promise((resolve) => {
+            const { confirmText = 'Yes', cancelText = 'Cancel', danger = false } = options;
+
+            const overlay = document.createElement('div');
+            overlay.className = 'dialog-overlay';
+            overlay.innerHTML = `
+                <div class="dialog-box ${danger ? 'dialog-danger' : ''}">
+                    <div class="dialog-icon">${danger ? '⚠️' : '❓'}</div>
+                    <div class="dialog-message">${this.escapeHtml(message)}</div>
+                    <div class="dialog-buttons">
+                        <button class="btn btn-secondary dialog-cancel">${this.escapeHtml(cancelText)}</button>
+                        <button class="btn ${danger ? 'btn-danger' : 'btn-primary'} dialog-confirm">${this.escapeHtml(confirmText)}</button>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(overlay);
+
+            const closeDialog = (result) => {
+                overlay.classList.add('dialog-closing');
+                setTimeout(() => {
+                    overlay.remove();
+                    resolve(result);
+                }, 200);
+            };
+
+            overlay.querySelector('.dialog-confirm').addEventListener('click', () => closeDialog(true));
+            overlay.querySelector('.dialog-cancel').addEventListener('click', () => closeDialog(false));
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) closeDialog(false);
+            });
+
+            // Focus the cancel button by default for destructive actions
+            overlay.querySelector(danger ? '.dialog-cancel' : '.dialog-confirm').focus();
+        });
+    }
 };
 
 // Make available globally
