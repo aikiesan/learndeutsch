@@ -12,7 +12,7 @@ class VocabularyManager {
     async loadAllVocabularyData() {
         try {
             // Load all available levels
-            const levels = ['a1', 'a2'];
+            const levels = ['a1', 'a2', 'b1'];
             const promises = levels.map(level =>
                 fetch(`data/vocabulary/${level}.json`)
                     .then(response => response.json())
