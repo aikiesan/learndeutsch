@@ -184,6 +184,55 @@ class InteractiveExercises {
         return words;
     }
 
+    // ==================== SMART CATEGORY MIXING ====================
+    getWordsWithCategoryMixing(primaryCategory, count) {
+        // Get words from the primary category
+        let primaryWords = window.vocabularyManager.getAllWords(primaryCategory);
+
+        // If category is 'all', just return shuffled words
+        if (primaryCategory === 'all') {
+            return this.shuffleArray([...primaryWords]).slice(0, count);
+        }
+
+        // Calculate target: 75% from primary category, 25% from others
+        const primaryTarget = Math.ceil(count * 0.75);
+        const supplementTarget = count - primaryTarget;
+
+        // Get available primary words (up to target or all available)
+        const availablePrimaryWords = Math.min(primaryWords.length, primaryTarget);
+        const selectedPrimaryWords = this.shuffleArray([...primaryWords]).slice(0, availablePrimaryWords);
+
+        // If we have enough from primary category, return
+        if (selectedPrimaryWords.length >= count) {
+            return selectedPrimaryWords.slice(0, count);
+        }
+
+        // Need to supplement from other categories
+        const wordsNeeded = count - selectedPrimaryWords.length;
+
+        // Get all words from other categories
+        const allCategories = window.vocabularyManager.vocabularyData?.categories || {};
+        let supplementWords = [];
+
+        Object.keys(allCategories).forEach(cat => {
+            if (cat !== primaryCategory) {
+                const catWords = window.vocabularyManager.getAllWords(cat);
+                supplementWords = supplementWords.concat(catWords);
+            }
+        });
+
+        // Remove duplicates based on word ID
+        const primaryWordIds = new Set(selectedPrimaryWords.map(w => w.id));
+        supplementWords = supplementWords.filter(w => !primaryWordIds.has(w.id));
+
+        // Get the needed supplement words
+        const selectedSupplementWords = this.shuffleArray(supplementWords).slice(0, wordsNeeded);
+
+        // Combine and shuffle
+        const finalWords = [...selectedPrimaryWords, ...selectedSupplementWords];
+        return this.shuffleArray(finalWords);
+    }
+
     waitForVocabulary(retryCount = 0) {
         const MAX_RETRIES = 50; // 5 seconds max (50 * 100ms)
 
@@ -496,20 +545,32 @@ class InteractiveExercises {
             return;
         }
 
-        const allWords = window.vocabularyManager.getAllWords(category);
+        let allWords = window.vocabularyManager.getAllWords(category);
+        let words;
 
-        if (allWords.length < 4) {
-            window.utils.showAlert('Not enough words in this category. Try "All Words" or switch levels.', 'warning');
-            return;
+        // Check if category has enough words
+        if (allWords.length < 4 && category !== 'all') {
+            // Use smart category mixing to supplement with other categories
+            allWords = this.getWordsWithCategoryMixing(category, questionCount);
+
+            if (allWords.length < 4) {
+                window.utils.showAlert('Not enough words available. Please try "All Words" or switch levels.', 'warning');
+                return;
+            }
         }
 
-        // Use A2 sprinkle if applicable
-        const words = this.shouldSprinkleA2Words()
-            ? this.getWordsWithA2Sprinkle(category, questionCount)
-            : this.shuffleArray([...allWords]).slice(0, questionCount);
+        // Use A2 sprinkle if applicable, otherwise use category mixing or all words
+        if (this.shouldSprinkleA2Words()) {
+            words = this.getWordsWithA2Sprinkle(category, questionCount);
+        } else if (allWords.length < questionCount && category !== 'all') {
+            // Use smart mixing to reach desired question count
+            words = this.getWordsWithCategoryMixing(category, questionCount);
+        } else {
+            words = this.shuffleArray([...allWords]).slice(0, questionCount);
+        }
 
         if (words.length < 4) {
-            window.utils.showAlert('Not enough words available. Please try a different category.', 'warning');
+            window.utils.showAlert('Not enough words available. Please try "All Words" or switch levels.', 'warning');
             return;
         }
 
@@ -872,6 +933,11 @@ class InteractiveExercises {
         const questionCount = 10 + (difficultyLevel - 1) * 5; // 10, 15, 20...
         let allWords = window.vocabularyManager.getAllWords(category);
 
+        // Use smart category mixing if not enough words
+        if (allWords.length < questionCount && category !== 'all') {
+            allWords = this.getWordsWithCategoryMixing(category, questionCount);
+        }
+
         // At higher difficulty, mix in A2 words
         if (difficultyLevel >= 2) {
             const a2Words = this.getA2Words();
@@ -1022,7 +1088,12 @@ class InteractiveExercises {
 
     // ==================== TYPING PRACTICE ====================
     startTyping(category = 'all', wordCount = 10, difficulty = 1) {
-        const allWords = window.vocabularyManager.getAllWords(category);
+        let allWords = window.vocabularyManager.getAllWords(category);
+
+        // Use smart category mixing if not enough words
+        if (allWords.length < wordCount && category !== 'all') {
+            allWords = this.getWordsWithCategoryMixing(category, wordCount);
+        }
 
         // Filter by difficulty
         let words = allWords.filter(w => w.difficulty <= difficulty);
@@ -1369,7 +1440,12 @@ class InteractiveExercises {
             return;
         }
 
-        const allWords = window.vocabularyManager.getAllWords(category);
+        let allWords = window.vocabularyManager.getAllWords(category);
+
+        // Use smart category mixing if not enough words
+        if (allWords.length < questionCount && category !== 'all') {
+            allWords = this.getWordsWithCategoryMixing(category, questionCount);
+        }
 
         if (allWords.length < 4) {
             window.utils.showAlert('Not enough words available. Please try a different category.', 'warning');
@@ -1638,7 +1714,12 @@ class InteractiveExercises {
             return;
         }
 
-        const words = window.vocabularyManager.getAllWords(category);
+        let words = window.vocabularyManager.getAllWords(category);
+
+        // Use smart category mixing if not enough words
+        if (words.length < 10 && category !== 'all') {
+            words = this.getWordsWithCategoryMixing(category, 10);
+        }
 
         if (words.length < 4) {
             window.utils.showAlert('Not enough words available. Please try a different category.', 'warning');
@@ -1873,7 +1954,13 @@ class InteractiveExercises {
             return;
         }
 
-        const allWords = window.vocabularyManager.getAllWords(category);
+        let allWords = window.vocabularyManager.getAllWords(category);
+
+        // Use smart category mixing if not enough words
+        if (allWords.length < questionCount && category !== 'all') {
+            allWords = this.getWordsWithCategoryMixing(category, questionCount);
+        }
+
         const words = this.shuffleArray([...allWords]).slice(0, questionCount);
 
         if (words.length < 4) {
@@ -2190,7 +2277,13 @@ class InteractiveExercises {
             return;
         }
 
-        const allWords = window.vocabularyManager.getAllWords(category);
+        let allWords = window.vocabularyManager.getAllWords(category);
+
+        // Use smart category mixing if not enough words
+        if (allWords.length < pairCount && category !== 'all') {
+            allWords = this.getWordsWithCategoryMixing(category, pairCount);
+        }
+
         const words = this.shuffleArray([...allWords]).slice(0, pairCount);
 
         if (words.length < 4) {
@@ -2495,7 +2588,13 @@ class InteractiveExercises {
             return;
         }
 
-        const allWords = window.vocabularyManager.getAllWords(category);
+        let allWords = window.vocabularyManager.getAllWords(category);
+
+        // Use smart category mixing if not enough words
+        if (allWords.length < wordCount && category !== 'all') {
+            allWords = this.getWordsWithCategoryMixing(category, wordCount);
+        }
+
         const words = this.shuffleArray([...allWords]).slice(0, wordCount);
 
         if (words.length === 0) {
