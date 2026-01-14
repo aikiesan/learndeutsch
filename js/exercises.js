@@ -410,6 +410,9 @@ class ExerciseManager {
         const exerciseContainer = document.getElementById('writing-exercise');
         if (!exerciseContainer) return;
 
+        // Clear any existing content and event listeners
+        exerciseContainer.innerHTML = '';
+
         let exerciseHTML = '';
 
         switch (this.currentExercise.type) {
@@ -425,7 +428,11 @@ class ExerciseManager {
         }
 
         exerciseContainer.innerHTML = exerciseHTML;
-        this.setupExerciseEventListeners();
+
+        // Small delay to ensure DOM is ready
+        setTimeout(() => {
+            this.setupExerciseEventListeners();
+        }, 10);
     }
 
     createSentenceConstructionHTML() {
@@ -566,38 +573,65 @@ class ExerciseManager {
         const clearBtn = document.getElementById('clear-sentence');
         const hintBtn = document.getElementById('hint-sentence');
 
+        if (!sentenceBuilder) {
+            console.error('Sentence builder not found!');
+            return;
+        }
+
         // Drag and drop functionality
         wordChips.forEach(chip => {
+            // Store reference to the specific chip element
             chip.addEventListener('dragstart', (e) => {
-                e.dataTransfer.setData('text/plain', e.target.dataset.word);
-                e.target.classList.add('dragging');
+                if (!chip.classList.contains('used')) {
+                    e.dataTransfer.effectAllowed = 'move';
+                    e.dataTransfer.setData('text/plain', chip.dataset.word);
+                    chip.classList.add('dragging');
+                    chip.setAttribute('data-dragging', 'true');
+                }
             });
 
             chip.addEventListener('dragend', (e) => {
-                e.target.classList.remove('dragging');
+                chip.classList.remove('dragging');
+                chip.removeAttribute('data-dragging');
             });
 
             // Click to move functionality for mobile
-            chip.addEventListener('click', () => {
-                this.moveWordToBuilder(chip.dataset.word, chip);
+            chip.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (!chip.classList.contains('used')) {
+                    this.moveWordToBuilder(chip.dataset.word, chip);
+                }
             });
         });
 
+        // Drag and drop on sentence builder
         sentenceBuilder.addEventListener('dragover', (e) => {
             e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
             sentenceBuilder.classList.add('drag-over');
         });
 
-        sentenceBuilder.addEventListener('dragleave', () => {
-            sentenceBuilder.classList.remove('drag-over');
+        sentenceBuilder.addEventListener('dragleave', (e) => {
+            // Only remove class if we're actually leaving the sentence builder
+            if (e.target === sentenceBuilder) {
+                sentenceBuilder.classList.remove('drag-over');
+            }
         });
 
         sentenceBuilder.addEventListener('drop', (e) => {
             e.preventDefault();
+            e.stopPropagation();
             sentenceBuilder.classList.remove('drag-over');
+
             const word = e.dataTransfer.getData('text/plain');
-            const chip = document.querySelector(`[data-word="${word}"]`);
-            this.moveWordToBuilder(word, chip);
+            if (word) {
+                // Find the chip that's being dragged
+                const chip = document.querySelector('.word-chip[data-dragging="true"]');
+                if (chip) {
+                    chip.removeAttribute('data-dragging');
+                    this.moveWordToBuilder(word, chip);
+                }
+            }
         });
 
         checkBtn?.addEventListener('click', () => this.checkSentenceConstruction());
@@ -607,8 +641,17 @@ class ExerciseManager {
 
     moveWordToBuilder(word, chipElement) {
         const sentenceBuilder = document.getElementById('sentence-builder');
-        const hint = sentenceBuilder.querySelector('.builder-hint');
+        if (!sentenceBuilder || !chipElement) {
+            console.error('Sentence builder or chip element not found', {sentenceBuilder, chipElement});
+            return;
+        }
 
+        // Don't add if already used
+        if (chipElement.classList.contains('used')) {
+            return;
+        }
+
+        const hint = sentenceBuilder.querySelector('.builder-hint');
         if (hint) hint.remove();
 
         // Create word in builder
@@ -617,14 +660,29 @@ class ExerciseManager {
         wordInBuilder.textContent = word;
         wordInBuilder.dataset.word = word;
 
+        // Ensure visibility with inline styles as fallback
+        wordInBuilder.style.display = 'inline-block';
+        wordInBuilder.style.padding = '8px 16px';
+        wordInBuilder.style.margin = '4px';
+        wordInBuilder.style.backgroundColor = '#FFCC00';
+        wordInBuilder.style.color = '#000000';
+        wordInBuilder.style.border = '1px solid #FFCC00';
+        wordInBuilder.style.borderRadius = '8px';
+        wordInBuilder.style.cursor = 'pointer';
+        wordInBuilder.style.userSelect = 'none';
+
         // Click to remove from builder
-        wordInBuilder.addEventListener('click', () => {
+        wordInBuilder.addEventListener('click', (e) => {
+            e.preventDefault();
             this.removeWordFromBuilder(wordInBuilder);
         });
 
         sentenceBuilder.appendChild(wordInBuilder);
         chipElement.classList.add('used');
         chipElement.style.pointerEvents = 'none';
+        chipElement.style.opacity = '0.5';
+
+        console.log('Word added to builder:', word);
     }
 
     removeWordFromBuilder(wordElement) {
@@ -632,17 +690,27 @@ class ExerciseManager {
         const chip = document.querySelector(`.word-chip[data-word="${word}"]`);
 
         wordElement.remove();
-        chip.classList.remove('used');
-        chip.style.pointerEvents = 'auto';
+
+        if (chip) {
+            chip.classList.remove('used');
+            chip.style.pointerEvents = 'auto';
+            chip.style.opacity = '1';
+        }
 
         // Add hint back if no words
         const sentenceBuilder = document.getElementById('sentence-builder');
-        if (sentenceBuilder.children.length === 0) {
+        if (sentenceBuilder && sentenceBuilder.children.length === 0) {
             const hint = document.createElement('p');
             hint.className = 'builder-hint';
             hint.textContent = 'Drop words here...';
+            hint.style.color = '#999';
+            hint.style.fontStyle = 'italic';
+            hint.style.margin = '0';
+            hint.style.padding = '8px';
             sentenceBuilder.appendChild(hint);
         }
+
+        console.log('Word removed from builder:', word);
     }
 
     clearSentenceBuilder() {
