@@ -382,6 +382,30 @@
     background: rgba(255, 204, 0, 0.1);
 }
 
+.word-in-sentence {
+    background: var(--accent-color);
+    color: var(--text-primary);
+    border: 1px solid var(--accent-color);
+    border-radius: var(--border-radius-md);
+    padding: var(--space-2) var(--space-4);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    user-select: none;
+    display: inline-block;
+}
+
+.word-in-sentence:hover {
+    opacity: 0.8;
+    transform: translateY(-1px);
+}
+
+.builder-hint {
+    color: var(--text-muted);
+    font-style: italic;
+    margin: 0;
+    padding: var(--space-2);
+}
+
 .writing-textarea {
     width: 100%;
     min-height: 150px;
