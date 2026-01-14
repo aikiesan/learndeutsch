@@ -442,18 +442,18 @@ class ExerciseManager {
         return `
             <div class="exercise-prompt">
                 <h3>${exercise.prompt}</h3>
-                <p><em>Drag the words below to form the correct German sentence.</em></p>
+                <p><em>Click the words below to build the correct German sentence.</em></p>
             </div>
 
             <div class="sentence-builder" id="sentence-builder">
-                <p class="builder-hint">Drop words here...</p>
+                <p class="builder-hint">Click words to add them here...</p>
             </div>
 
             <div class="word-bank">
                 <h4>Word Bank</h4>
                 <div class="word-chips" id="word-chips">
                     ${shuffledWords.map(word => `
-                        <div class="word-chip" data-word="${word}" draggable="true">
+                        <div class="word-chip" data-word="${word}">
                             ${word}
                         </div>
                     `).join('')}
@@ -578,60 +578,14 @@ class ExerciseManager {
             return;
         }
 
-        // Drag and drop functionality
+        // Click to add word functionality
         wordChips.forEach(chip => {
-            // Store reference to the specific chip element
-            chip.addEventListener('dragstart', (e) => {
-                if (!chip.classList.contains('used')) {
-                    e.dataTransfer.effectAllowed = 'move';
-                    e.dataTransfer.setData('text/plain', chip.dataset.word);
-                    chip.classList.add('dragging');
-                    chip.setAttribute('data-dragging', 'true');
-                }
-            });
-
-            chip.addEventListener('dragend', (e) => {
-                chip.classList.remove('dragging');
-                chip.removeAttribute('data-dragging');
-            });
-
-            // Click to move functionality for mobile
             chip.addEventListener('click', (e) => {
                 e.preventDefault();
                 if (!chip.classList.contains('used')) {
                     this.moveWordToBuilder(chip.dataset.word, chip);
                 }
             });
-        });
-
-        // Drag and drop on sentence builder
-        sentenceBuilder.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            e.dataTransfer.dropEffect = 'move';
-            sentenceBuilder.classList.add('drag-over');
-        });
-
-        sentenceBuilder.addEventListener('dragleave', (e) => {
-            // Only remove class if we're actually leaving the sentence builder
-            if (e.target === sentenceBuilder) {
-                sentenceBuilder.classList.remove('drag-over');
-            }
-        });
-
-        sentenceBuilder.addEventListener('drop', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            sentenceBuilder.classList.remove('drag-over');
-
-            const word = e.dataTransfer.getData('text/plain');
-            if (word) {
-                // Find the chip that's being dragged
-                const chip = document.querySelector('.word-chip[data-dragging="true"]');
-                if (chip) {
-                    chip.removeAttribute('data-dragging');
-                    this.moveWordToBuilder(word, chip);
-                }
-            }
         });
 
         checkBtn?.addEventListener('click', () => this.checkSentenceConstruction());
@@ -702,7 +656,7 @@ class ExerciseManager {
         if (sentenceBuilder && sentenceBuilder.children.length === 0) {
             const hint = document.createElement('p');
             hint.className = 'builder-hint';
-            hint.textContent = 'Drop words here...';
+            hint.textContent = 'Click words to add them here...';
             hint.style.color = '#999';
             hint.style.fontStyle = 'italic';
             hint.style.margin = '0';
