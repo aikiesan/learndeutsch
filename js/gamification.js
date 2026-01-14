@@ -353,14 +353,18 @@ class GamificationSystem {
     }
 
     applyStreakBonus() {
-        const userData = window.storageManager.getUserData();
-        const streak = window.storageManager.updateStreak();
+        // Get the old streak value BEFORE updating
+        const oldStreak = window.storageManager.getUserData().streak;
 
-        if (streak !== userData.streak) {
-            const bonus = this.getStreakBonus(streak);
+        // Update streak and get the new value
+        const newStreak = window.storageManager.updateStreak();
+
+        // Only give bonus if streak actually increased (not reset, not same day)
+        if (newStreak > oldStreak) {
+            const bonus = this.getStreakBonus(newStreak);
             if (bonus > 0) {
-                const result = this.addXP(bonus, `${streak}-day streak bonus`);
-                return { streakBonus: bonus, xpResult: result };
+                const result = this.addXP(bonus, `${newStreak}-day streak bonus`);
+                return { streakBonus: bonus, newStreak: newStreak, xpResult: result };
             }
         }
 

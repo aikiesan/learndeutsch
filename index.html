@@ -13,6 +13,10 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#E8A87C">
 
+    <!-- Favicon - German flag colors -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect y='0' width='32' height='10.67' fill='%23000'/><rect y='10.67' width='32' height='10.67' fill='%23DD0000'/><rect y='21.33' width='32' height='10.67' fill='%23FFCC00'/></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect y='0' width='32' height='10.67' fill='%23000'/><rect y='10.67' width='32' height='10.67' fill='%23DD0000'/><rect y='21.33' width='32' height='10.67' fill='%23FFCC00'/></svg>">
+
     <!-- Prevent zoom on input focus (iOS) -->
     <meta name="format-detection" content="telephone=no">
 
@@ -40,24 +44,24 @@
                     </div>
 
                     <div class="user-stats">
-                        <button class="speech-toggle" id="speech-toggle" title="Toggle voice pronunciation">
-                            <span class="speech-icon" id="speech-icon">🔊</span>
+                        <button class="speech-toggle" id="speech-toggle" title="Toggle voice pronunciation" aria-label="Toggle voice pronunciation">
+                            <span class="speech-icon" id="speech-icon" aria-hidden="true">🔊</span>
                         </button>
-                        <div class="stat stat-timer" id="session-timer-stat">
-                            <span class="stat-icon">⏱️</span>
+                        <div class="stat stat-timer" id="session-timer-stat" role="timer" aria-label="Session time">
+                            <span class="stat-icon" aria-hidden="true">⏱️</span>
                             <span class="stat-value" id="session-timer">00:00</span>
                         </div>
-                        <div class="stat stat-level">
-                            <span class="stat-icon">⭐</span>
+                        <div class="stat stat-level" aria-label="Current level">
+                            <span class="stat-icon" aria-hidden="true">⭐</span>
                             <span class="stat-value" id="user-level">1</span>
                         </div>
-                        <div class="stat stat-xp">
-                            <span class="stat-icon">✨</span>
+                        <div class="stat stat-xp" aria-label="Experience points">
+                            <span class="stat-icon" aria-hidden="true">✨</span>
                             <span class="stat-value" id="user-xp">0</span>
                             <span class="stat-label">XP</span>
                         </div>
-                        <div class="stat stat-streak">
-                            <span class="streak-fire" id="streak-fire">🔥</span>
+                        <div class="stat stat-streak" aria-label="Current streak">
+                            <span class="streak-fire" id="streak-fire" aria-hidden="true">🔥</span>
                             <span class="stat-value" id="user-streak">0</span>
                         </div>
                     </div>
@@ -538,6 +542,10 @@
                         <div class="setting-card">
                             <h3>Data</h3>
                             <button class="btn btn-outline" id="export-progress">Export Progress</button>
+                            <label class="btn btn-outline import-btn" for="import-file">
+                                Import Progress
+                                <input type="file" id="import-file" accept=".json" style="display: none;">
+                            </label>
                             <button class="btn btn-error" id="reset-progress">Reset All Progress</button>
                         </div>
                     </div>
@@ -597,6 +605,7 @@
         </div>
     </div>
 
+    <script src="js/utils.js"></script>
     <script src="js/storage.js"></script>
     <script src="js/gamification.js"></script>
     <script src="js/vocabulary.js"></script>

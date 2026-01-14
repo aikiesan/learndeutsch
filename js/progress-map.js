@@ -316,8 +316,6 @@ class ProgressMapManager {
 
     // EPIC milestone celebration!
     celebrateMilestone(milestone) {
-        console.log('🎉 Milestone achieved:', milestone.title);
-
         // Play epic sound
         window.soundManager?.play('epic');
 

@@ -15,6 +15,9 @@ class LearnDeutschApp {
             this.setupNavigation();
             this.updateUI();
 
+            // Initialize dark mode (with auto-detection)
+            this.initializeDarkMode();
+
             // Load initial data
             await this.loadInitialData();
 
@@ -22,7 +25,6 @@ class LearnDeutschApp {
             this.checkFirstVisit();
 
             this.isInitialized = true;
-            console.log('LearnDeutsch app initialized successfully');
 
         } catch (error) {
             console.error('Failed to initialize app:', error);
@@ -246,10 +248,41 @@ class LearnDeutschApp {
             this.exportData();
         });
 
+        // Import progress
+        document.getElementById('import-file')?.addEventListener('change', (e) => {
+            this.importData(e.target.files[0]);
+            e.target.value = ''; // Reset file input
+        });
+
         // Reset progress
         document.getElementById('reset-progress')?.addEventListener('click', () => {
             this.resetProgress();
         });
+    }
+
+    async importData(file) {
+        if (!file) return;
+
+        try {
+            const text = await file.text();
+            const data = JSON.parse(text);
+
+            // Validate the data structure
+            if (!data.userData && !data.progress) {
+                this.showNotification('Invalid file format', 'error');
+                return;
+            }
+
+            const success = window.storageManager.importData(data);
+            if (success) {
+                this.showNotification('Progress imported successfully! Refreshing...', 'success');
+                setTimeout(() => window.location.reload(), 1500);
+            } else {
+                this.showNotification('Failed to import data', 'error');
+            }
+        } catch (error) {
+            this.showNotification('Error reading file: ' + error.message, 'error');
+        }
     }
 
     setupNavigation() {
@@ -702,12 +735,7 @@ class LearnDeutschApp {
     }
 
     shuffleArray(array) {
-        const shuffled = [...array];
-        for (let i = shuffled.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-        }
-        return shuffled;
+        return window.utils.shuffleArray(array);
     }
 
     initProgressSection() {
@@ -748,6 +776,32 @@ class LearnDeutschApp {
 
     toggleDarkMode(enabled) {
         document.body.dataset.theme = enabled ? 'dark' : 'light';
+    }
+
+    initializeDarkMode() {
+        const userData = window.storageManager.getUserData();
+        const darkModeCheckbox = document.getElementById('dark-mode');
+
+        // Check if user has a saved preference
+        if (userData.settings.darkMode !== undefined) {
+            this.toggleDarkMode(userData.settings.darkMode);
+            if (darkModeCheckbox) darkModeCheckbox.checked = userData.settings.darkMode;
+        } else {
+            // Auto-detect system preference
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            this.toggleDarkMode(prefersDark);
+            if (darkModeCheckbox) darkModeCheckbox.checked = prefersDark;
+        }
+
+        // Listen for system preference changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            // Only auto-switch if user hasn't set a preference
+            const currentUserData = window.storageManager.getUserData();
+            if (currentUserData.settings.darkMode === undefined) {
+                this.toggleDarkMode(e.matches);
+                if (darkModeCheckbox) darkModeCheckbox.checked = e.matches;
+            }
+        });
     }
 
     updateSpeechToggleUI() {
@@ -937,18 +991,7 @@ class LearnDeutschApp {
     }
 
     formatTimeAgo(timestamp) {
-        const now = Date.now();
-        const time = new Date(timestamp).getTime();
-        const diff = now - time;
-
-        const minutes = Math.floor(diff / 60000);
-        const hours = Math.floor(diff / 3600000);
-        const days = Math.floor(diff / 86400000);
-
-        if (days > 0) return `${days} day${days > 1 ? 's' : ''} ago`;
-        if (hours > 0) return `${hours} hour${hours > 1 ? 's' : ''} ago`;
-        if (minutes > 0) return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
-        return 'Just now';
+        return window.utils.formatTimeAgo(new Date(timestamp).getTime());
     }
 }
 
