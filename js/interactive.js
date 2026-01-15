@@ -164,6 +164,20 @@ class InteractiveExercises {
         return a2Words;
     }
 
+    getB1Words() {
+        // Extract all words from B1 categories
+        const b1Data = window.vocabularyManager?.allLevelsData?.B1;
+        if (!b1Data || !b1Data.categories) return [];
+
+        let b1Words = [];
+        Object.values(b1Data.categories).forEach(category => {
+            if (category.words && Array.isArray(category.words)) {
+                b1Words = b1Words.concat(category.words);
+            }
+        });
+        return b1Words;
+    }
+
     getWordsWithA2Sprinkle(category, count) {
         let words = window.vocabularyManager.getWordsForStudy(category, count);
 
@@ -1005,6 +1019,10 @@ class InteractiveExercises {
         const totalTime = Math.floor((Date.now() - this.currentQuiz.startTime) / 1000);
         const accuracy = Math.round((this.currentQuiz.score / this.currentQuiz.words.length) * 100);
 
+        // Ensure category is valid for button onclick handlers
+        const category = this.currentQuiz.category || 'all';
+        const questionCount = this.currentQuiz.words.length;
+
         // Save quiz history for adaptive features
         this.saveQuizHistory({ accuracy, type: 'quiz', timestamp: Date.now() });
         localStorage.setItem('lastExerciseType', 'quiz');
@@ -1078,22 +1096,22 @@ class InteractiveExercises {
                         </div>
                         <div style="display: flex; justify-content: space-between;">
                             <span style="color: var(--text-muted);">🎯 Category:</span>
-                            <span style="font-weight: 600;">${this.currentQuiz.category === 'all' ? 'All' : this.currentQuiz.category}</span>
+                            <span style="font-weight: 600;">${category === 'all' ? 'All' : category}</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Action Buttons -->
                 <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
-                    <button class="btn btn-primary btn-playful" onclick="window.interactiveExercises.startQuiz('${this.currentQuiz.category}', ${this.currentQuiz.words.length})" style="font-size: 1.1rem; padding: 0.75rem 2rem;">
+                    <button class="btn btn-primary btn-playful" onclick="window.interactiveExercises.startQuiz('${category}', ${questionCount})" style="font-size: 1.1rem; padding: 0.75rem 2rem;">
                         🔄 One More Round!
                     </button>
                     ${accuracy >= 80 ? `
-                    <button class="btn btn-accent" onclick="window.interactiveExercises.startProgressiveQuiz('${this.currentQuiz.category}', 2)">
+                    <button class="btn btn-accent" onclick="window.interactiveExercises.startProgressiveQuiz('${category}', 2)">
                         🚀 Level Up!
                     </button>
                     ` : `
-                    <button class="btn btn-outline" onclick="window.interactiveExercises.startQuiz('${this.currentQuiz.category}', ${this.currentQuiz.words.length})">
+                    <button class="btn btn-outline" onclick="window.interactiveExercises.startQuiz('${category}', ${questionCount})">
                         💪 Try Again
                     </button>
                     `}
@@ -1111,8 +1129,15 @@ class InteractiveExercises {
     startProgressiveQuiz(category = 'all', difficultyLevel = 1) {
         // Ensure vocabulary is loaded
         if (!window.vocabularyManager || !window.vocabularyManager.vocabularyData) {
+            console.log('Progressive Quiz: Waiting for vocabulary to load...');
             setTimeout(() => this.startProgressiveQuiz(category, difficultyLevel), 200);
             return;
+        }
+
+        // Validate category - fallback to 'all' if undefined or invalid
+        if (!category || category === 'undefined' || category === 'null') {
+            console.warn('Progressive Quiz: Invalid category, falling back to "all"');
+            category = 'all';
         }
 
         // Progressive: More questions, mix levels if doing well
@@ -1124,7 +1149,14 @@ class InteractiveExercises {
             allWords = this.getWordsWithCategoryMixing(category, questionCount);
         }
 
-        // At higher difficulty, mix in A2 words
+        // Fallback to 'all' category if still not enough words
+        if (allWords.length < 4 && category !== 'all') {
+            console.warn('Progressive Quiz: Not enough words in category, falling back to "all"');
+            allWords = window.vocabularyManager.getAllWords('all');
+            category = 'all'; // Update category for display
+        }
+
+        // At higher difficulty, mix in A2 words (and B1 for even higher levels)
         if (difficultyLevel >= 2) {
             const a2Words = this.getA2Words();
             if (a2Words.length > 0) {
@@ -1137,10 +1169,23 @@ class InteractiveExercises {
             }
         }
 
+        // At level 4+, also mix in B1 words
+        if (difficultyLevel >= 4) {
+            const b1Words = this.getB1Words();
+            if (b1Words.length > 0) {
+                b1Words.forEach(w => w.isChallenge = true);
+                const mixRatio = Math.min(0.3, (difficultyLevel - 3) * 0.1); // 10%, 20%, 30%...
+                const b1Count = Math.floor(questionCount * mixRatio);
+                const b1Sample = this.shuffleArray([...b1Words]).slice(0, b1Count);
+                allWords = [...allWords, ...b1Sample];
+            }
+        }
+
         const words = this.shuffleArray([...allWords]).slice(0, questionCount);
 
         if (words.length < 4) {
-            window.utils.showAlert('Not enough words available.', 'warning');
+            window.utils.showAlert('Not enough words available. Please try a different category or level.', 'warning');
+            this.showExerciseSelector();
             return;
         }
 
@@ -1207,6 +1252,9 @@ class InteractiveExercises {
         const currentLevel = this.currentQuiz.difficultyLevel || 1;
         const nextLevel = accuracy >= 80 ? currentLevel + 1 : currentLevel;
 
+        // Ensure category is valid for button onclick handlers
+        const category = this.currentQuiz.category || 'all';
+
         // Save quiz history
         this.saveQuizHistory({ accuracy, type: 'progressive', level: currentLevel, timestamp: Date.now() });
         localStorage.setItem('lastExerciseType', 'quiz');
@@ -1254,11 +1302,11 @@ class InteractiveExercises {
                 </div>
                 <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
                     ${accuracy >= 80 ? `
-                        <button class="btn btn-primary btn-playful" onclick="window.interactiveExercises.startProgressiveQuiz('${this.currentQuiz.category}', ${nextLevel})">
+                        <button class="btn btn-primary btn-playful" onclick="window.interactiveExercises.startProgressiveQuiz('${category}', ${nextLevel})">
                             🚀 Level ${nextLevel}
                         </button>
                     ` : `
-                        <button class="btn btn-primary btn-playful" onclick="window.interactiveExercises.startProgressiveQuiz('${this.currentQuiz.category}', ${currentLevel})">
+                        <button class="btn btn-primary btn-playful" onclick="window.interactiveExercises.startProgressiveQuiz('${category}', ${currentLevel})">
                             💪 Try Again
                         </button>
                     `}

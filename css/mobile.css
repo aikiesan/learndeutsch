@@ -95,6 +95,19 @@
     }
 }
 
+/* ==================== MASCOT MOBILE OPTIMIZATIONS ==================== */
+@media (max-width: 768px) {
+    /* Hide mascot on mobile during quizzes to prevent overlap with options */
+    #german-mascot {
+        display: none !important;
+    }
+
+    /* Also hide speech bubble on mobile */
+    #mascot-speech {
+        display: none !important;
+    }
+}
+
 /* ==================== QUIZ MOBILE OPTIMIZATIONS ==================== */
 @media (max-width: 768px) {
     /* Quiz container - full screen feel */
