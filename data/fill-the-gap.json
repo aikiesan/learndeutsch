@@ -1,0 +1,667 @@
+{
+  "description": "Fill-the-gap sentences for contextual learning",
+  "levels": {
+    "A1": {
+      "sentences": [
+        {
+          "id": "ftg_a1_001",
+          "sentence": "Ich ___ Anna.",
+          "answer": "bin",
+          "options": ["bin", "bist", "ist", "sind"],
+          "translation": "I am Anna.",
+          "hint": "'bin' is used with 'ich' (I)",
+          "category": "verbs",
+          "difficulty": 1
+        },
+        {
+          "id": "ftg_a1_002",
+          "sentence": "Du ___ sehr nett.",
+          "answer": "bist",
+          "options": ["bin", "bist", "ist", "sind"],
+          "translation": "You are very nice.",
+          "hint": "'bist' is used with 'du' (you informal)",
+          "category": "verbs",
+          "difficulty": 1
+        },
+        {
+          "id": "ftg_a1_003",
+          "sentence": "Er ___ Student.",
+          "answer": "ist",
+          "options": ["bin", "bist", "ist", "sind"],
+          "translation": "He is a student.",
+          "hint": "'ist' is used with 'er/sie/es' (he/she/it)",
+          "category": "verbs",
+          "difficulty": 1
+        },
+        {
+          "id": "ftg_a1_004",
+          "sentence": "Wir ___ aus Deutschland.",
+          "answer": "kommen",
+          "options": ["komme", "kommst", "kommt", "kommen"],
+          "translation": "We come from Germany.",
+          "hint": "'kommen' (come) conjugates with 'wir' (we)",
+          "category": "verbs",
+          "difficulty": 1
+        },
+        {
+          "id": "ftg_a1_005",
+          "sentence": "___ Morgen!",
+          "answer": "Guten",
+          "options": ["Guten", "Gute", "Guter", "Gut"],
+          "translation": "Good morning!",
+          "hint": "'Morgen' is masculine, so 'Guten'",
+          "category": "greetings",
+          "difficulty": 1
+        },
+        {
+          "id": "ftg_a1_006",
+          "sentence": "Wie ___ du?",
+          "answer": "heißt",
+          "options": ["heiße", "heißt", "heißen", "heißt"],
+          "translation": "What is your name?",
+          "hint": "'heißt' is used with 'du'",
+          "category": "greetings",
+          "difficulty": 1
+        },
+        {
+          "id": "ftg_a1_007",
+          "sentence": "Ich ___ Deutsch.",
+          "answer": "lerne",
+          "options": ["lerne", "lernst", "lernt", "lernen"],
+          "translation": "I learn German.",
+          "hint": "'lerne' is used with 'ich'",
+          "category": "verbs",
+          "difficulty": 1
+        },
+        {
+          "id": "ftg_a1_008",
+          "sentence": "Die Katze ist ___.",
+          "answer": "schwarz",
+          "options": ["schwarz", "rot", "blau", "grün"],
+          "translation": "The cat is black.",
+          "hint": "Think of a typical cat color",
+          "category": "colors",
+          "difficulty": 1
+        },
+        {
+          "id": "ftg_a1_009",
+          "sentence": "Mein ___ heißt Thomas.",
+          "answer": "Vater",
+          "options": ["Vater", "Mutter", "Schwester", "Bruder"],
+          "translation": "My father is called Thomas.",
+          "hint": "Thomas is a male name",
+          "category": "family",
+          "difficulty": 1
+        },
+        {
+          "id": "ftg_a1_010",
+          "sentence": "Ich habe ___ Geschwister.",
+          "answer": "zwei",
+          "options": ["eins", "zwei", "drei", "vier"],
+          "translation": "I have two siblings.",
+          "hint": "Number after 'eins'",
+          "category": "numbers",
+          "difficulty": 1
+        },
+        {
+          "id": "ftg_a1_011",
+          "sentence": "Der Apfel ist ___.",
+          "answer": "rot",
+          "options": ["rot", "blau", "grün", "schwarz"],
+          "translation": "The apple is red.",
+          "hint": "Common apple color",
+          "category": "colors",
+          "difficulty": 1
+        },
+        {
+          "id": "ftg_a1_012",
+          "sentence": "Sie ___ Kaffee.",
+          "answer": "trinkt",
+          "options": ["trinke", "trinkst", "trinkt", "trinken"],
+          "translation": "She drinks coffee.",
+          "hint": "'trinkt' is used with 'sie' (she)",
+          "category": "verbs",
+          "difficulty": 1
+        },
+        {
+          "id": "ftg_a1_013",
+          "sentence": "Ich ___ gern Pizza.",
+          "answer": "esse",
+          "options": ["esse", "isst", "essen", "esst"],
+          "translation": "I like to eat pizza.",
+          "hint": "'esse' is the ich-form of 'essen'",
+          "category": "food",
+          "difficulty": 1
+        },
+        {
+          "id": "ftg_a1_014",
+          "sentence": "___ geht es Ihnen?",
+          "answer": "Wie",
+          "options": ["Wie", "Was", "Wo", "Wer"],
+          "translation": "How are you? (formal)",
+          "hint": "Question word for 'how'",
+          "category": "greetings",
+          "difficulty": 1
+        },
+        {
+          "id": "ftg_a1_015",
+          "sentence": "Die Banane ist ___.",
+          "answer": "gelb",
+          "options": ["gelb", "rot", "blau", "grün"],
+          "translation": "The banana is yellow.",
+          "hint": "Typical banana color",
+          "category": "colors",
+          "difficulty": 1
+        },
+        {
+          "id": "ftg_a1_016",
+          "sentence": "Er ___ in Berlin.",
+          "answer": "wohnt",
+          "options": ["wohne", "wohnst", "wohnt", "wohnen"],
+          "translation": "He lives in Berlin.",
+          "hint": "'wohnt' is used with 'er'",
+          "category": "verbs",
+          "difficulty": 2
+        },
+        {
+          "id": "ftg_a1_017",
+          "sentence": "Meine ___ ist Lehrerin.",
+          "answer": "Mutter",
+          "options": ["Mutter", "Vater", "Bruder", "Onkel"],
+          "translation": "My mother is a teacher.",
+          "hint": "'Lehrerin' is feminine, so female family member",
+          "category": "family",
+          "difficulty": 2
+        },
+        {
+          "id": "ftg_a1_018",
+          "sentence": "Wir ___ Fußball.",
+          "answer": "spielen",
+          "options": ["spiele", "spielst", "spielt", "spielen"],
+          "translation": "We play football.",
+          "hint": "'spielen' is used with 'wir'",
+          "category": "verbs",
+          "difficulty": 2
+        },
+        {
+          "id": "ftg_a1_019",
+          "sentence": "Das Wetter ist ___ heute.",
+          "answer": "schön",
+          "options": ["schön", "schlecht", "kalt", "heiß"],
+          "translation": "The weather is nice today.",
+          "hint": "Positive weather adjective",
+          "category": "weather",
+          "difficulty": 2
+        },
+        {
+          "id": "ftg_a1_020",
+          "sentence": "Ich ___ müde.",
+          "answer": "bin",
+          "options": ["bin", "habe", "mache", "gehe"],
+          "translation": "I am tired.",
+          "hint": "'sein' (to be) for describing states",
+          "category": "verbs",
+          "difficulty": 2
+        },
+        {
+          "id": "ftg_a1_021",
+          "sentence": "___ Sie Englisch?",
+          "answer": "Sprechen",
+          "options": ["Sprechen", "Sprichst", "Spricht", "Sprech"],
+          "translation": "Do you speak English? (formal)",
+          "hint": "'Sprechen' for formal 'Sie'",
+          "category": "verbs",
+          "difficulty": 2
+        },
+        {
+          "id": "ftg_a1_022",
+          "sentence": "Der Himmel ist ___.",
+          "answer": "blau",
+          "options": ["blau", "rot", "gelb", "schwarz"],
+          "translation": "The sky is blue.",
+          "hint": "Color of a clear sky",
+          "category": "colors",
+          "difficulty": 1
+        },
+        {
+          "id": "ftg_a1_023",
+          "sentence": "Ich ___ einen Bruder.",
+          "answer": "habe",
+          "options": ["habe", "hast", "hat", "haben"],
+          "translation": "I have a brother.",
+          "hint": "'habe' is used with 'ich'",
+          "category": "family",
+          "difficulty": 2
+        },
+        {
+          "id": "ftg_a1_024",
+          "sentence": "Es ist ___ Uhr.",
+          "answer": "zehn",
+          "options": ["acht", "neun", "zehn", "elf"],
+          "translation": "It is ten o'clock.",
+          "hint": "Number after 'neun'",
+          "category": "numbers",
+          "difficulty": 2
+        },
+        {
+          "id": "ftg_a1_025",
+          "sentence": "Auf ___!",
+          "answer": "Wiedersehen",
+          "options": ["Wiedersehen", "Morgen", "Abend", "Tag"],
+          "translation": "Goodbye!",
+          "hint": "Common farewell greeting",
+          "category": "greetings",
+          "difficulty": 1
+        }
+      ]
+    },
+    "A2": {
+      "sentences": [
+        {
+          "id": "ftg_a2_001",
+          "sentence": "Der Zug ___ um 10 Uhr ab.",
+          "answer": "fährt",
+          "options": ["fährt", "fahrt", "fahren", "fährst"],
+          "translation": "The train departs at 10 o'clock.",
+          "hint": "Separable verb 'abfahren' - 'fährt...ab'",
+          "category": "travel",
+          "difficulty": 2
+        },
+        {
+          "id": "ftg_a2_002",
+          "sentence": "Ich ___ eine Reservierung.",
+          "answer": "habe",
+          "options": ["habe", "bin", "möchte", "brauche"],
+          "translation": "I have a reservation.",
+          "hint": "'haben' for possession",
+          "category": "accommodation",
+          "difficulty": 1
+        },
+        {
+          "id": "ftg_a2_003",
+          "sentence": "Können Sie mir ___?",
+          "answer": "helfen",
+          "options": ["helfen", "hilft", "helft", "hilfst"],
+          "translation": "Can you help me?",
+          "hint": "Infinitive after modal verb 'können'",
+          "category": "communication",
+          "difficulty": 2
+        },
+        {
+          "id": "ftg_a2_004",
+          "sentence": "Die Rechnung, ___!",
+          "answer": "bitte",
+          "options": ["bitte", "danke", "ja", "nein"],
+          "translation": "The bill, please!",
+          "hint": "Polite word when asking for something",
+          "category": "restaurant",
+          "difficulty": 1
+        },
+        {
+          "id": "ftg_a2_005",
+          "sentence": "Ich ___ zum Arzt gehen.",
+          "answer": "muss",
+          "options": ["muss", "kann", "will", "darf"],
+          "translation": "I must go to the doctor.",
+          "hint": "Modal verb expressing necessity",
+          "category": "health",
+          "difficulty": 2
+        },
+        {
+          "id": "ftg_a2_006",
+          "sentence": "Wo ist der nächste ___?",
+          "answer": "Supermarkt",
+          "options": ["Supermarkt", "Bahnhof", "Flughafen", "Park"],
+          "translation": "Where is the nearest supermarket?",
+          "hint": "Place for grocery shopping",
+          "category": "shopping",
+          "difficulty": 1
+        },
+        {
+          "id": "ftg_a2_007",
+          "sentence": "Ich freue ___ auf die Party.",
+          "answer": "mich",
+          "options": ["mich", "mir", "sich", "dich"],
+          "translation": "I'm looking forward to the party.",
+          "hint": "Reflexive pronoun for 'ich'",
+          "category": "communication",
+          "difficulty": 2
+        },
+        {
+          "id": "ftg_a2_008",
+          "sentence": "Das Hotel ___ zentral.",
+          "answer": "liegt",
+          "options": ["liegt", "ist", "steht", "sitzt"],
+          "translation": "The hotel is centrally located.",
+          "hint": "'liegen' for location of buildings",
+          "category": "accommodation",
+          "difficulty": 2
+        },
+        {
+          "id": "ftg_a2_009",
+          "sentence": "Ich ___ eine E-Mail schreiben.",
+          "answer": "möchte",
+          "options": ["möchte", "muss", "kann", "soll"],
+          "translation": "I would like to write an email.",
+          "hint": "Polite way to express a wish",
+          "category": "work",
+          "difficulty": 2
+        },
+        {
+          "id": "ftg_a2_010",
+          "sentence": "___ Sie vegetarisch?",
+          "answer": "Essen",
+          "options": ["Essen", "Haben", "Trinken", "Mögen"],
+          "translation": "Do you eat vegetarian?",
+          "hint": "Verb for consuming food",
+          "category": "restaurant",
+          "difficulty": 2
+        },
+        {
+          "id": "ftg_a2_011",
+          "sentence": "Wir müssen am Hauptbahnhof ___.",
+          "answer": "umsteigen",
+          "options": ["umsteigen", "einsteigen", "aussteigen", "abfahren"],
+          "translation": "We have to transfer at the main station.",
+          "hint": "Changing from one train to another",
+          "category": "transport",
+          "difficulty": 2
+        },
+        {
+          "id": "ftg_a2_012",
+          "sentence": "Das Konzert ___ um 20 Uhr.",
+          "answer": "beginnt",
+          "options": ["beginnt", "endet", "dauert", "spielt"],
+          "translation": "The concert starts at 8 PM.",
+          "hint": "Verb for starting",
+          "category": "leisure",
+          "difficulty": 2
+        },
+        {
+          "id": "ftg_a2_013",
+          "sentence": "Ich bin sehr ___ heute.",
+          "answer": "müde",
+          "options": ["müde", "glücklich", "traurig", "aufgeregt"],
+          "translation": "I am very tired today.",
+          "hint": "Feeling when you need sleep",
+          "category": "feelings",
+          "difficulty": 1
+        },
+        {
+          "id": "ftg_a2_014",
+          "sentence": "Die Besprechung ist um ___ Uhr.",
+          "answer": "vierzehn",
+          "options": ["vierzehn", "zwölf", "elf", "zehn"],
+          "translation": "The meeting is at 14 o'clock (2 PM).",
+          "hint": "14 in German",
+          "category": "work",
+          "difficulty": 2
+        },
+        {
+          "id": "ftg_a2_015",
+          "sentence": "Ich habe ___ vergessen.",
+          "answer": "mein Passwort",
+          "options": ["mein Passwort", "meine E-Mail", "mein Handy", "mein Büro"],
+          "translation": "I have forgotten my password.",
+          "hint": "Something you need to log in",
+          "category": "technology",
+          "difficulty": 2
+        },
+        {
+          "id": "ftg_a2_016",
+          "sentence": "Der ___ funktioniert nicht.",
+          "answer": "Drucker",
+          "options": ["Drucker", "Computer", "Bildschirm", "Tisch"],
+          "translation": "The printer doesn't work.",
+          "hint": "Device for printing documents",
+          "category": "technology",
+          "difficulty": 2
+        },
+        {
+          "id": "ftg_a2_017",
+          "sentence": "Ich ___ Sie morgen an.",
+          "answer": "rufe",
+          "options": ["rufe", "ruft", "rufen", "rufst"],
+          "translation": "I will call you tomorrow.",
+          "hint": "Separable verb 'anrufen' - 'rufe...an'",
+          "category": "communication",
+          "difficulty": 2
+        },
+        {
+          "id": "ftg_a2_018",
+          "sentence": "Das Wetter ist heute sehr ___.",
+          "answer": "schön",
+          "options": ["schön", "schlecht", "kalt", "dunkel"],
+          "translation": "The weather is very nice today.",
+          "hint": "Positive weather description",
+          "category": "daily_life",
+          "difficulty": 1
+        },
+        {
+          "id": "ftg_a2_019",
+          "sentence": "Ich ___ mich für Samstag verabreden.",
+          "answer": "möchte",
+          "options": ["möchte", "muss", "kann", "soll"],
+          "translation": "I would like to make plans for Saturday.",
+          "hint": "Polite expression of desire",
+          "category": "communication",
+          "difficulty": 2
+        },
+        {
+          "id": "ftg_a2_020",
+          "sentence": "Die Ausstellung ist sehr ___.",
+          "answer": "interessant",
+          "options": ["interessant", "langweilig", "klein", "alt"],
+          "translation": "The exhibition is very interesting.",
+          "hint": "Positive adjective about something engaging",
+          "category": "leisure",
+          "difficulty": 1
+        },
+        {
+          "id": "ftg_a2_021",
+          "sentence": "Ich stehe um sieben Uhr ___.",
+          "answer": "auf",
+          "options": ["auf", "an", "ab", "ein"],
+          "translation": "I get up at seven o'clock.",
+          "hint": "Separable prefix for 'aufstehen'",
+          "category": "daily_life",
+          "difficulty": 2
+        },
+        {
+          "id": "ftg_a2_022",
+          "sentence": "Können wir uns morgen ___?",
+          "answer": "treffen",
+          "options": ["treffen", "sehen", "finden", "holen"],
+          "translation": "Can we meet tomorrow?",
+          "hint": "Verb for meeting someone",
+          "category": "communication",
+          "difficulty": 2
+        },
+        {
+          "id": "ftg_a2_023",
+          "sentence": "Die Miete ist sehr ___ in Berlin.",
+          "answer": "hoch",
+          "options": ["hoch", "niedrig", "billig", "klein"],
+          "translation": "The rent is very high in Berlin.",
+          "hint": "Opposite of low/cheap",
+          "category": "daily_life",
+          "difficulty": 2
+        },
+        {
+          "id": "ftg_a2_024",
+          "sentence": "Ich bin ___ auf die Prüfung.",
+          "answer": "nervös",
+          "options": ["nervös", "glücklich", "müde", "stolz"],
+          "translation": "I am nervous about the exam.",
+          "hint": "Feeling before a test",
+          "category": "feelings",
+          "difficulty": 2
+        },
+        {
+          "id": "ftg_a2_025",
+          "sentence": "Das ___ ist sehr nützlich.",
+          "answer": "Internet",
+          "options": ["Internet", "Buch", "Auto", "Fenster"],
+          "translation": "The internet is very useful.",
+          "hint": "Global network for information",
+          "category": "technology",
+          "difficulty": 1
+        }
+      ]
+    },
+    "B1": {
+      "sentences": [
+        {
+          "id": "ftg_b1_001",
+          "sentence": "Wenn ich mehr Zeit ___, würde ich reisen.",
+          "answer": "hätte",
+          "options": ["hätte", "habe", "hatte", "haben"],
+          "translation": "If I had more time, I would travel.",
+          "hint": "Konjunktiv II of 'haben'",
+          "category": "grammar",
+          "difficulty": 3
+        },
+        {
+          "id": "ftg_b1_002",
+          "sentence": "Er sagte, dass er ___ kommen würde.",
+          "answer": "später",
+          "options": ["später", "früher", "jetzt", "nie"],
+          "translation": "He said that he would come later.",
+          "hint": "Time adverb meaning 'after now'",
+          "category": "grammar",
+          "difficulty": 2
+        },
+        {
+          "id": "ftg_b1_003",
+          "sentence": "Ich bin ___, dass ich die Prüfung bestanden habe.",
+          "answer": "froh",
+          "options": ["froh", "traurig", "nervös", "müde"],
+          "translation": "I am glad that I passed the exam.",
+          "hint": "Positive emotion after success",
+          "category": "feelings",
+          "difficulty": 2
+        },
+        {
+          "id": "ftg_b1_004",
+          "sentence": "Das Projekt wurde ___ abgeschlossen.",
+          "answer": "erfolgreich",
+          "options": ["erfolgreich", "schlecht", "langsam", "nie"],
+          "translation": "The project was successfully completed.",
+          "hint": "Positive outcome adverb",
+          "category": "work",
+          "difficulty": 2
+        },
+        {
+          "id": "ftg_b1_005",
+          "sentence": "Obwohl es ___, gingen wir spazieren.",
+          "answer": "regnete",
+          "options": ["regnete", "sonnig", "schön", "warm"],
+          "translation": "Although it was raining, we went for a walk.",
+          "hint": "Past tense of 'regnen'",
+          "category": "weather",
+          "difficulty": 3
+        },
+        {
+          "id": "ftg_b1_006",
+          "sentence": "Ich interessiere mich ___ Kunst.",
+          "answer": "für",
+          "options": ["für", "an", "auf", "mit"],
+          "translation": "I am interested in art.",
+          "hint": "'sich interessieren' takes this preposition",
+          "category": "grammar",
+          "difficulty": 3
+        },
+        {
+          "id": "ftg_b1_007",
+          "sentence": "Nachdem ich ___ hatte, ging ich ins Bett.",
+          "answer": "gegessen",
+          "options": ["gegessen", "essen", "esse", "aß"],
+          "translation": "After I had eaten, I went to bed.",
+          "hint": "Past participle of 'essen'",
+          "category": "grammar",
+          "difficulty": 3
+        },
+        {
+          "id": "ftg_b1_008",
+          "sentence": "Die Umwelt muss ___ werden.",
+          "answer": "geschützt",
+          "options": ["geschützt", "zerstört", "vergessen", "gebaut"],
+          "translation": "The environment must be protected.",
+          "hint": "Past participle of 'schützen'",
+          "category": "environment",
+          "difficulty": 3
+        },
+        {
+          "id": "ftg_b1_009",
+          "sentence": "Je mehr ich lerne, ___ besser verstehe ich.",
+          "answer": "desto",
+          "options": ["desto", "so", "als", "wie"],
+          "translation": "The more I learn, the better I understand.",
+          "hint": "Correlative conjunction with 'je'",
+          "category": "grammar",
+          "difficulty": 3
+        },
+        {
+          "id": "ftg_b1_010",
+          "sentence": "Ich habe ___, dass du kommst.",
+          "answer": "gehofft",
+          "options": ["gehofft", "gedacht", "gewusst", "geglaubt"],
+          "translation": "I hoped that you would come.",
+          "hint": "Past participle of 'hoffen'",
+          "category": "feelings",
+          "difficulty": 2
+        },
+        {
+          "id": "ftg_b1_011",
+          "sentence": "Das Buch, ___ ich gelesen habe, war spannend.",
+          "answer": "das",
+          "options": ["das", "der", "die", "den"],
+          "translation": "The book that I read was exciting.",
+          "hint": "Relative pronoun for neuter nouns (accusative)",
+          "category": "grammar",
+          "difficulty": 3
+        },
+        {
+          "id": "ftg_b1_012",
+          "sentence": "Wir sollten mehr für die Umwelt ___.",
+          "answer": "tun",
+          "options": ["tun", "machen", "haben", "sein"],
+          "translation": "We should do more for the environment.",
+          "hint": "Infinitive meaning 'to do'",
+          "category": "environment",
+          "difficulty": 2
+        },
+        {
+          "id": "ftg_b1_013",
+          "sentence": "Die Entscheidung wurde von allen ___.",
+          "answer": "akzeptiert",
+          "options": ["akzeptiert", "abgelehnt", "vergessen", "ignoriert"],
+          "translation": "The decision was accepted by everyone.",
+          "hint": "Past participle meaning 'approved'",
+          "category": "work",
+          "difficulty": 2
+        },
+        {
+          "id": "ftg_b1_014",
+          "sentence": "Anstatt zu arbeiten, ___ er den ganzen Tag fern.",
+          "answer": "sah",
+          "options": ["sah", "sieht", "gesehen", "sehen"],
+          "translation": "Instead of working, he watched TV all day.",
+          "hint": "Past tense of 'fernsehen'",
+          "category": "daily_life",
+          "difficulty": 3
+        },
+        {
+          "id": "ftg_b1_015",
+          "sentence": "Es ist wichtig, ___ man gesund lebt.",
+          "answer": "dass",
+          "options": ["dass", "das", "ob", "wenn"],
+          "translation": "It is important that one lives healthily.",
+          "hint": "Conjunction introducing a statement",
+          "category": "grammar",
+          "difficulty": 2
+        }
+      ]
+    }
+  }
+}

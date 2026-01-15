@@ -416,7 +416,43 @@ class InteractiveExercises {
             </button>
         `;
 
-        grid.innerHTML = level === 'A2' ? a2Categories : a1Categories;
+        const b1Categories = `
+            <button class="category-pill" data-category="emotions">
+                <span>💭</span> Emotions
+            </button>
+            <button class="category-pill" data-category="abstract_concepts">
+                <span>💡</span> Concepts
+            </button>
+            <button class="category-pill" data-category="professional">
+                <span>💼</span> Professional
+            </button>
+            <button class="category-pill" data-category="environment">
+                <span>🌍</span> Environment
+            </button>
+            <button class="category-pill" data-category="opinions">
+                <span>💬</span> Opinions
+            </button>
+            <button class="category-pill" data-category="health_advanced">
+                <span>🏥</span> Health
+            </button>
+            <button class="category-pill" data-category="media_culture">
+                <span>📰</span> Media
+            </button>
+            <button class="category-pill" data-category="education">
+                <span>🎓</span> Education
+            </button>
+            <button class="category-pill active" data-category="all">
+                <span>📖</span> All Words
+            </button>
+        `;
+
+        if (level === 'B1') {
+            grid.innerHTML = b1Categories;
+        } else if (level === 'A2') {
+            grid.innerHTML = a2Categories;
+        } else {
+            grid.innerHTML = a1Categories;
+        }
     }
 
     // ==================== CHALLENGE MODE LISTENERS ====================
@@ -2330,6 +2366,359 @@ class InteractiveExercises {
         window.gamificationSystem.updateUI();
     }
 
+    // ==================== FILL-THE-GAP QUIZ ====================
+    async loadFillTheGapData() {
+        if (this.fillTheGapData) return this.fillTheGapData;
+
+        try {
+            const response = await fetch('data/fill-the-gap.json');
+            this.fillTheGapData = await response.json();
+            return this.fillTheGapData;
+        } catch (error) {
+            console.error('Failed to load fill-the-gap data:', error);
+            return null;
+        }
+    }
+
+    async startFillTheGap(questionCount = 10) {
+        const data = await this.loadFillTheGapData();
+        if (!data) {
+            window.utils.showAlert('Failed to load fill-the-gap exercises. Please try again.', 'warning');
+            return;
+        }
+
+        // Get sentences for current level
+        const levelData = data.levels[this.currentLevel];
+        if (!levelData || !levelData.sentences) {
+            window.utils.showAlert('No fill-the-gap exercises available for this level.', 'warning');
+            return;
+        }
+
+        const sentences = this.shuffleArray([...levelData.sentences]).slice(0, questionCount);
+
+        if (sentences.length < 4) {
+            window.utils.showAlert('Not enough sentences available. Please try again.', 'warning');
+            return;
+        }
+
+        // Navigate to practice section
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.getElementById('practice')?.classList.add('active');
+
+        this.currentQuiz = {
+            sentences: sentences,
+            currentIndex: 0,
+            score: 0,
+            answers: [],
+            startTime: Date.now(),
+            mode: 'fill_the_gap',
+            totalXP: 0,
+            questionStartTime: Date.now()
+        };
+
+        this.streakCount = 0;
+        this.maxStreak = 0;
+        this.comboMultiplier = 1;
+        this.showFillTheGapInterface();
+        this.showFillTheGapQuestion();
+    }
+
+    showFillTheGapInterface() {
+        const container = document.getElementById('writing-exercise');
+        if (!container) return;
+
+        container.innerHTML = `
+            <div class="quiz-container quiz-fullscreen">
+                <div class="quiz-progress">
+                    <div class="streak-counter" id="quiz-streak">
+                        <span class="streak-fire">🔥</span>
+                        <span class="streak-number">0</span>
+                        <span class="combo-multiplier hidden" id="combo-multiplier">x1</span>
+                    </div>
+                    <div class="progress-dots" id="progress-dots"></div>
+                    <div class="quiz-score">
+                        <span id="quiz-score-display">0</span> / <span id="quiz-total">${this.currentQuiz.sentences.length}</span>
+                    </div>
+                </div>
+
+                <div class="quiz-question" id="quiz-question">
+                    <!-- Question content -->
+                </div>
+
+                <div class="quiz-options quiz-grid-4" id="quiz-options">
+                    <!-- Answer options -->
+                </div>
+
+                <div class="quiz-feedback hidden" id="quiz-feedback"></div>
+                <div class="achievement-popup hidden" id="achievement-popup"></div>
+            </div>
+        `;
+
+        // Create progress dots
+        const dotsContainer = document.getElementById('progress-dots');
+        for (let i = 0; i < this.currentQuiz.sentences.length; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'progress-dot';
+            if (i === 0) dot.classList.add('current');
+            dotsContainer.appendChild(dot);
+        }
+    }
+
+    showFillTheGapQuestion() {
+        if (this.currentQuiz.currentIndex >= this.currentQuiz.sentences.length) {
+            this.endFillTheGap();
+            return;
+        }
+
+        this.currentQuiz.questionStartTime = Date.now();
+
+        const sentence = this.currentQuiz.sentences[this.currentQuiz.currentIndex];
+        const questionEl = document.getElementById('quiz-question');
+        const optionsEl = document.getElementById('quiz-options');
+
+        // Format sentence with blank
+        const formattedSentence = sentence.sentence.replace('___', '<span class="fill-blank">______</span>');
+
+        questionEl.innerHTML = `
+            <div class="question-emoji">📝</div>
+            <div class="question-text">What word fills the gap?</div>
+            <div class="question-sentence" style="font-size: 1.4rem; margin: 1rem 0; padding: 1rem; background: var(--bg-secondary); border-radius: var(--border-radius-md);">
+                ${formattedSentence}
+            </div>
+            <div class="question-translation" style="color: var(--text-muted); font-size: 0.9rem; font-style: italic;">
+                ${sentence.translation}
+            </div>
+        `;
+
+        // Shuffle options
+        const options = this.shuffleArray([...sentence.options]);
+
+        optionsEl.innerHTML = options.map((option, index) => `
+            <button class="quiz-option btn-playful" data-answer="${option}" data-index="${index}">
+                <span class="option-letter">${['A', 'B', 'C', 'D'][index]}</span>
+                <span class="option-text">${option}</span>
+            </button>
+        `).join('');
+
+        window.soundManager?.play('whoosh');
+
+        optionsEl.querySelectorAll('.quiz-option').forEach(btn => {
+            btn.addEventListener('click', (e) => this.handleFillTheGapAnswer(e, sentence));
+        });
+
+        // Update progress dots
+        const dots = document.querySelectorAll('.progress-dot');
+        dots.forEach((dot, i) => {
+            dot.classList.remove('current');
+            if (i === this.currentQuiz.currentIndex) dot.classList.add('current');
+        });
+    }
+
+    handleFillTheGapAnswer(event, sentence) {
+        const btn = event.currentTarget;
+        const selectedAnswer = btn.dataset.answer;
+        const isCorrect = selectedAnswer === sentence.answer;
+        const answerTime = (Date.now() - this.currentQuiz.questionStartTime) / 1000;
+
+        window.soundManager?.play('select');
+
+        // Disable all buttons and show correct answer
+        document.querySelectorAll('.quiz-option').forEach(b => {
+            b.classList.add('disabled');
+            if (b.dataset.answer === sentence.answer) {
+                b.classList.add('correct');
+            }
+        });
+
+        if (isCorrect) {
+            btn.classList.add('correct');
+            this.currentQuiz.score++;
+            this.streakCount++;
+            this.maxStreak = Math.max(this.maxStreak, this.streakCount);
+
+            // Calculate XP with combo multiplier
+            let xpEarned = 12;
+
+            if (this.streakCount >= 10) {
+                this.comboMultiplier = 5;
+            } else if (this.streakCount >= 5) {
+                this.comboMultiplier = 3;
+            } else if (this.streakCount >= 3) {
+                this.comboMultiplier = 2;
+            } else {
+                this.comboMultiplier = 1;
+            }
+
+            xpEarned = Math.floor(xpEarned * this.comboMultiplier);
+
+            // Speed bonus
+            if (answerTime < 3) {
+                xpEarned += 5;
+            }
+
+            this.currentQuiz.totalXP += xpEarned;
+
+            setTimeout(() => window.soundManager?.play('correct'), 100);
+
+            // Update streak display
+            const streakEl = document.getElementById('quiz-streak');
+            streakEl.querySelector('.streak-number').textContent = this.streakCount;
+
+            const comboEl = document.getElementById('combo-multiplier');
+            if (this.comboMultiplier > 1) {
+                comboEl.textContent = `x${this.comboMultiplier}`;
+                comboEl.classList.remove('hidden');
+            } else {
+                comboEl.classList.add('hidden');
+            }
+
+            // Fun reactions
+            if (window.funUtils) {
+                window.funUtils.mascotReact('correct');
+                const funMessage = window.funUtils.getMotivationalPhrase('correct');
+                this.showQuizFeedback(true, `${funMessage}<br><small>${sentence.hint || ''}</small>`);
+            } else {
+                this.showQuizFeedback(true, sentence.hint || 'Correct!');
+            }
+
+            // Show XP popup
+            const rect = btn.getBoundingClientRect();
+            let xpText = `+${xpEarned} XP`;
+            if (this.comboMultiplier > 1) xpText = `+${xpEarned} XP (x${this.comboMultiplier})`;
+            if (answerTime < 3) xpText += ' ⚡';
+            this.showXPPopupCustom(xpText, rect.left + rect.width / 2, rect.top);
+
+            // Milestone achievements
+            if (this.streakCount === 3) {
+                this.showAchievementPopup('🎯 Hat Trick!', 'Three in a row!');
+                window.soundManager?.play('streak');
+            } else if (this.streakCount === 5) {
+                this.showAchievementPopup('🔥 On Fire!', 'Five streak combo!');
+                window.soundManager?.play('streak');
+            }
+
+        } else {
+            btn.classList.add('wrong');
+            this.streakCount = 0;
+            this.comboMultiplier = 1;
+            document.getElementById('quiz-streak').querySelector('.streak-number').textContent = 0;
+            document.getElementById('combo-multiplier').classList.add('hidden');
+
+            setTimeout(() => window.soundManager?.play('wrong'), 100);
+            btn.style.animation = 'shake 0.4s';
+
+            if (window.funUtils) {
+                window.funUtils.mascotReact('wrong');
+                const funMessage = window.funUtils.getMotivationalPhrase('wrong');
+                this.showQuizFeedback(false, `${funMessage}<br><small>Correct: ${sentence.answer} - ${sentence.hint || ''}</small>`);
+            } else {
+                this.showQuizFeedback(false, `Correct: ${sentence.answer} - ${sentence.hint || ''}`);
+            }
+        }
+
+        // Update score display
+        document.getElementById('quiz-score-display').textContent = this.currentQuiz.score;
+
+        // Update progress dot
+        const dots = document.querySelectorAll('.progress-dot');
+        dots[this.currentQuiz.currentIndex].classList.add(isCorrect ? 'correct' : 'wrong');
+
+        // Record answer
+        this.currentQuiz.answers.push({
+            sentence: sentence,
+            selected: selectedAnswer,
+            correct: isCorrect
+        });
+
+        // Track analytics
+        if (window.analyticsManager) {
+            window.analyticsManager.recordExercise(isCorrect, sentence.category || 'Grammar');
+        }
+
+        // Next question after delay
+        setTimeout(() => {
+            this.currentQuiz.currentIndex++;
+            this.hideQuizFeedback();
+            this.showFillTheGapQuestion();
+        }, isCorrect ? 1000 : 2500);
+    }
+
+    endFillTheGap() {
+        const totalTime = Math.floor((Date.now() - this.currentQuiz.startTime) / 1000);
+        const accuracy = Math.round((this.currentQuiz.score / this.currentQuiz.sentences.length) * 100);
+
+        localStorage.setItem('lastExerciseType', 'fill_the_gap');
+
+        const totalXP = this.currentQuiz.totalXP || (this.currentQuiz.score * 12);
+        const bonusXP = accuracy >= 80 ? 35 : (accuracy >= 60 ? 20 : 0);
+        const finalXP = totalXP + bonusXP;
+
+        window.gamificationSystem.simulateExerciseCompletion(
+            'fill_the_gap',
+            accuracy,
+            totalTime,
+            this.currentQuiz.sentences.map(s => s.id)
+        );
+
+        if (accuracy >= 80) {
+            this.createConfetti(80);
+            window.soundManager?.play('celebration');
+            window.soundManager?.play('levelUp');
+        } else if (accuracy >= 50) {
+            window.soundManager?.play('correct');
+        }
+
+        const container = document.getElementById('writing-exercise');
+        container.innerHTML = `
+            <div class="celebration-content" style="margin: 0 auto; max-width: 500px;">
+                <div class="celebration-emoji">${accuracy >= 80 ? '📝🎉' : accuracy >= 50 ? '📝👍' : '📝💪'}</div>
+                <h2 class="celebration-title">${accuracy >= 80 ? 'Ausgezeichnet!' : accuracy >= 50 ? 'Gut gemacht!' : 'Keep practicing!'}</h2>
+                <p style="text-align: center; color: var(--text-muted);">Fill-the-Gap Quiz Complete</p>
+
+                <div class="results-stats" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.5rem 0; padding: 1rem; background: var(--bg-card); border-radius: var(--border-radius-lg);">
+                    <div class="result-stat" style="text-align: center;">
+                        <div style="font-size: 2.5rem; font-weight: bold; color: var(--success);">${accuracy}%</div>
+                        <div style="color: var(--text-muted); font-size: 0.9rem;">Accuracy</div>
+                    </div>
+                    <div class="result-stat" style="text-align: center;">
+                        <div style="font-size: 2.5rem; font-weight: bold; color: var(--primary-color);">${this.currentQuiz.score}/${this.currentQuiz.sentences.length}</div>
+                        <div style="color: var(--text-muted); font-size: 0.9rem;">Correct</div>
+                    </div>
+                    <div class="result-stat" style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--xp-color);">+${finalXP}</div>
+                        <div style="color: var(--text-muted); font-size: 0.9rem;">XP Earned</div>
+                    </div>
+                    <div class="result-stat" style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--accent-color);">🔥 ${this.maxStreak}</div>
+                        <div style="color: var(--text-muted); font-size: 0.9rem;">Max Streak</div>
+                    </div>
+                </div>
+
+                <div style="background: var(--bg-secondary); padding: 1rem; border-radius: var(--border-radius-md); margin-bottom: 1.5rem;">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+                        <span style="color: var(--text-muted);">⏱️ Total Time:</span>
+                        <span style="font-weight: 600;">${Math.floor(totalTime / 60)}:${(totalTime % 60).toString().padStart(2, '0')}</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.9rem; margin-top: 0.5rem;">
+                        <span style="color: var(--text-muted);">📚 Level:</span>
+                        <span style="font-weight: 600;">${this.currentLevel}</span>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <button class="btn btn-primary btn-playful" onclick="window.interactiveExercises.startFillTheGap()">
+                        🔄 Play Again
+                    </button>
+                    <button class="btn btn-outline" onclick="window.interactiveExercises.showExerciseSelector()">
+                        ← Back to Exercises
+                    </button>
+                </div>
+            </div>
+        `;
+
+        window.gamificationSystem.updateUI();
+    }
+
     // ==================== EXERCISE SELECTOR ====================
     showExerciseSelector() {
         const container = document.getElementById('writing-exercise');
@@ -2342,7 +2731,7 @@ class InteractiveExercises {
                     <h3 style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
                         <span>🎮</span> Challenge Modes
                     </h3>
-                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem;">
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem;">
                         <button class="exercise-type-card" onclick="window.interactiveExercises.startTimedChallenge()" style="padding: 1rem; text-align: center; border: 2px solid var(--border-light); border-radius: var(--border-radius-lg); background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), var(--bg-card)); cursor: pointer; transition: all 0.2s;">
                             <div style="font-size: 2rem;">⏱️</div>
                             <div style="font-weight: 600; font-size: 0.85rem;">Timed</div>
@@ -2357,6 +2746,11 @@ class InteractiveExercises {
                             <div style="font-size: 2rem;">🔄</div>
                             <div style="font-weight: 600; font-size: 0.85rem;">Reverse</div>
                             <div style="font-size: 0.7rem; color: var(--text-muted);">EN → DE</div>
+                        </button>
+                        <button class="exercise-type-card" onclick="window.interactiveExercises.startFillTheGap()" style="padding: 1rem; text-align: center; border: 2px solid var(--border-light); border-radius: var(--border-radius-lg); background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), var(--bg-card)); cursor: pointer; transition: all 0.2s;">
+                            <div style="font-size: 2rem;">📝</div>
+                            <div style="font-weight: 600; font-size: 0.85rem;">Fill Gap</div>
+                            <div style="font-size: 0.7rem; color: var(--text-muted);">Sentences</div>
                         </button>
                     </div>
                 </div>

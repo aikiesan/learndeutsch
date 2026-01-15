@@ -1720,8 +1720,71 @@
         { "id": "a1_prep_014", "word": "bei", "translation": "at / near / with", "partOfSpeech": "preposition", "example": "Ich wohne bei meinen Eltern.", "exampleTranslation": "I live with my parents.", "difficulty": 2, "emoji": "🏠", "mnemonic": "Think 'by' someone's place!", "cognate": true },
         { "id": "a1_prep_015", "word": "zu", "translation": "to", "partOfSpeech": "preposition", "example": "Ich gehe zu Fuß.", "exampleTranslation": "I go on foot.", "difficulty": 1, "emoji": "🚶", "mnemonic": "'Zu' = 'to' - same root!", "cognate": true }
       ]
+    },
+    "hobbies": {
+      "name": "Hobbies & Activities",
+      "description": "Fun activities and leisure time",
+      "icon": "🎮",
+      "words": [
+        { "id": "a1_hobby_001", "word": "das Hobby", "translation": "hobby", "partOfSpeech": "noun", "example": "Mein Hobby ist Lesen.", "exampleTranslation": "My hobby is reading.", "difficulty": 1, "emoji": "🎯", "mnemonic": "Same as 'hobby'!", "cognate": true },
+        { "id": "a1_hobby_002", "word": "lesen", "translation": "to read", "partOfSpeech": "verb", "example": "Ich lese gern Bücher.", "exampleTranslation": "I like to read books.", "difficulty": 1, "emoji": "📖", "mnemonic": "Think 'lesson' - you read lessons!", "cognate": false },
+        { "id": "a1_hobby_003", "word": "schwimmen", "translation": "to swim", "partOfSpeech": "verb", "example": "Wir schwimmen im See.", "exampleTranslation": "We swim in the lake.", "difficulty": 1, "emoji": "🏊", "mnemonic": "'Schwimmen' sounds like 'swim'!", "cognate": true },
+        { "id": "a1_hobby_004", "word": "tanzen", "translation": "to dance", "partOfSpeech": "verb", "example": "Sie tanzt gern.", "exampleTranslation": "She likes to dance.", "difficulty": 1, "emoji": "💃", "mnemonic": "'Tanzen' = 'dance' - similar!", "cognate": true },
+        { "id": "a1_hobby_005", "word": "singen", "translation": "to sing", "partOfSpeech": "verb", "example": "Er singt sehr gut.", "exampleTranslation": "He sings very well.", "difficulty": 1, "emoji": "🎤", "mnemonic": "'Singen' = 'sing' - same!", "cognate": true },
+        { "id": "a1_hobby_006", "word": "kochen", "translation": "to cook", "partOfSpeech": "verb", "example": "Ich koche gern italienisch.", "exampleTranslation": "I like to cook Italian.", "difficulty": 1, "emoji": "👨‍🍳", "mnemonic": "Think 'cook' - similar sound!", "cognate": true },
+        { "id": "a1_hobby_007", "word": "malen", "translation": "to paint/draw", "partOfSpeech": "verb", "example": "Die Kinder malen Bilder.", "exampleTranslation": "The children paint pictures.", "difficulty": 1, "emoji": "🎨", "mnemonic": "Think 'make' art!", "cognate": false },
+        { "id": "a1_hobby_008", "word": "der Sport", "translation": "sport", "partOfSpeech": "noun", "example": "Sport ist gesund.", "exampleTranslation": "Sport is healthy.", "difficulty": 1, "emoji": "⚽", "mnemonic": "Same as 'sport'!", "cognate": true },
+        { "id": "a1_hobby_009", "word": "das Spiel", "translation": "game", "partOfSpeech": "noun", "example": "Das Spiel ist spannend.", "exampleTranslation": "The game is exciting.", "difficulty": 1, "emoji": "🎲", "mnemonic": "'Spiel' sounds like 'play'!", "cognate": true },
+        { "id": "a1_hobby_010", "word": "die Musik", "translation": "music", "partOfSpeech": "noun", "example": "Ich höre Musik.", "exampleTranslation": "I listen to music.", "difficulty": 1, "emoji": "🎵", "mnemonic": "Same as 'music'!", "cognate": true },
+        { "id": "a1_hobby_011", "word": "der Film", "translation": "film/movie", "partOfSpeech": "noun", "example": "Der Film ist toll!", "exampleTranslation": "The movie is great!", "difficulty": 1, "emoji": "🎬", "mnemonic": "Same as 'film'!", "cognate": true },
+        { "id": "a1_hobby_012", "word": "das Foto", "translation": "photo", "partOfSpeech": "noun", "example": "Ich mache ein Foto.", "exampleTranslation": "I take a photo.", "difficulty": 1, "emoji": "📸", "mnemonic": "Same as 'photo'!", "cognate": true },
+        { "id": "a1_hobby_013", "word": "wandern", "translation": "to hike", "partOfSpeech": "verb", "example": "Wir wandern in den Bergen.", "exampleTranslation": "We hike in the mountains.", "difficulty": 2, "emoji": "🥾", "mnemonic": "'Wandern' = to wander/hike!", "cognate": true },
+        { "id": "a1_hobby_014", "word": "Rad fahren", "translation": "to cycle", "partOfSpeech": "verb", "example": "Ich fahre gern Rad.", "exampleTranslation": "I like to cycle.", "difficulty": 2, "emoji": "🚴", "mnemonic": "'Rad' = wheel, 'fahren' = to go!", "cognate": false },
+        { "id": "a1_hobby_015", "word": "der Garten", "translation": "garden", "partOfSpeech": "noun", "example": "Der Garten ist schön.", "exampleTranslation": "The garden is beautiful.", "difficulty": 1, "emoji": "🌻", "mnemonic": "'Garten' = 'garden' - same!", "cognate": true }
+      ]
+    },
+    "school": {
+      "name": "School & Learning",
+      "description": "Classroom and education vocabulary",
+      "icon": "🏫",
+      "words": [
+        { "id": "a1_school_001", "word": "die Schule", "translation": "school", "partOfSpeech": "noun", "example": "Ich gehe zur Schule.", "exampleTranslation": "I go to school.", "difficulty": 1, "emoji": "🏫", "mnemonic": "'Schule' = 'school' - same!", "cognate": true },
+        { "id": "a1_school_002", "word": "der Lehrer", "translation": "teacher (m)", "partOfSpeech": "noun", "example": "Der Lehrer ist nett.", "exampleTranslation": "The teacher is nice.", "difficulty": 1, "emoji": "👨‍🏫", "mnemonic": "Think 'lecturer'!", "cognate": false },
+        { "id": "a1_school_003", "word": "die Lehrerin", "translation": "teacher (f)", "partOfSpeech": "noun", "example": "Die Lehrerin erklärt gut.", "exampleTranslation": "The teacher explains well.", "difficulty": 1, "emoji": "👩‍🏫", "mnemonic": "Female teacher - add '-in'!", "cognate": false },
+        { "id": "a1_school_004", "word": "der Schüler", "translation": "student (m)", "partOfSpeech": "noun", "example": "Der Schüler lernt Deutsch.", "exampleTranslation": "The student learns German.", "difficulty": 1, "emoji": "👦", "mnemonic": "'Schüler' from 'Schule'!", "cognate": true },
+        { "id": "a1_school_005", "word": "die Klasse", "translation": "class", "partOfSpeech": "noun", "example": "Die Klasse hat 20 Schüler.", "exampleTranslation": "The class has 20 students.", "difficulty": 1, "emoji": "🏛️", "mnemonic": "'Klasse' = 'class' - same!", "cognate": true },
+        { "id": "a1_school_006", "word": "das Buch", "translation": "book", "partOfSpeech": "noun", "example": "Das Buch ist interessant.", "exampleTranslation": "The book is interesting.", "difficulty": 1, "emoji": "📚", "mnemonic": "'Buch' = 'book' - same root!", "cognate": true },
+        { "id": "a1_school_007", "word": "der Stift", "translation": "pen/pencil", "partOfSpeech": "noun", "example": "Hast du einen Stift?", "exampleTranslation": "Do you have a pen?", "difficulty": 1, "emoji": "✏️", "mnemonic": "Like a 'stylus' for writing!", "cognate": false },
+        { "id": "a1_school_008", "word": "das Heft", "translation": "notebook", "partOfSpeech": "noun", "example": "Ich schreibe ins Heft.", "exampleTranslation": "I write in the notebook.", "difficulty": 1, "emoji": "📓", "mnemonic": "Think 'heft' a notebook!", "cognate": false },
+        { "id": "a1_school_009", "word": "die Tafel", "translation": "blackboard", "partOfSpeech": "noun", "example": "Der Lehrer schreibt an die Tafel.", "exampleTranslation": "The teacher writes on the board.", "difficulty": 1, "emoji": "📋", "mnemonic": "'Tafel' = 'table/board'!", "cognate": true },
+        { "id": "a1_school_010", "word": "lernen", "translation": "to learn", "partOfSpeech": "verb", "example": "Ich lerne Deutsch.", "exampleTranslation": "I learn German.", "difficulty": 1, "emoji": "🧠", "mnemonic": "'Lernen' = 'learn' - same!", "cognate": true },
+        { "id": "a1_school_011", "word": "schreiben", "translation": "to write", "partOfSpeech": "verb", "example": "Ich schreibe einen Brief.", "exampleTranslation": "I write a letter.", "difficulty": 1, "emoji": "✍️", "mnemonic": "'Schreiben' sounds like 'scribe'!", "cognate": true },
+        { "id": "a1_school_012", "word": "die Hausaufgabe", "translation": "homework", "partOfSpeech": "noun", "example": "Ich mache meine Hausaufgaben.", "exampleTranslation": "I do my homework.", "difficulty": 2, "emoji": "📝", "mnemonic": "'Haus' + 'Aufgabe' = house + task!", "cognate": false },
+        { "id": "a1_school_013", "word": "die Pause", "translation": "break/pause", "partOfSpeech": "noun", "example": "In der Pause spielen wir.", "exampleTranslation": "During break we play.", "difficulty": 1, "emoji": "⏸️", "mnemonic": "'Pause' = 'pause' - same!", "cognate": true },
+        { "id": "a1_school_014", "word": "die Frage", "translation": "question", "partOfSpeech": "noun", "example": "Ich habe eine Frage.", "exampleTranslation": "I have a question.", "difficulty": 1, "emoji": "❓", "mnemonic": "Think 'inFRAGE' - question!", "cognate": false },
+        { "id": "a1_school_015", "word": "die Antwort", "translation": "answer", "partOfSpeech": "noun", "example": "Die Antwort ist richtig.", "exampleTranslation": "The answer is correct.", "difficulty": 1, "emoji": "✅", "mnemonic": "'Antwort' = response/answer!", "cognate": false }
+      ]
+    },
+    "emotions_basic": {
+      "name": "Basic Feelings",
+      "description": "Express simple emotions",
+      "icon": "😊",
+      "words": [
+        { "id": "a1_feel_001", "word": "glücklich", "translation": "happy", "partOfSpeech": "adjective", "example": "Ich bin sehr glücklich.", "exampleTranslation": "I am very happy.", "difficulty": 1, "emoji": "😊", "mnemonic": "'Glück' = luck/happiness!", "cognate": false },
+        { "id": "a1_feel_002", "word": "traurig", "translation": "sad", "partOfSpeech": "adjective", "example": "Er ist traurig.", "exampleTranslation": "He is sad.", "difficulty": 1, "emoji": "😢", "mnemonic": "Think 'tragic' = traurig!", "cognate": false },
+        { "id": "a1_feel_003", "word": "müde", "translation": "tired", "partOfSpeech": "adjective", "example": "Ich bin müde.", "exampleTranslation": "I am tired.", "difficulty": 1, "emoji": "😴", "mnemonic": "Sounds like 'moody' when tired!", "cognate": false },
+        { "id": "a1_feel_004", "word": "hungrig", "translation": "hungry", "partOfSpeech": "adjective", "example": "Bist du hungrig?", "exampleTranslation": "Are you hungry?", "difficulty": 1, "emoji": "🍽️", "mnemonic": "'Hungrig' = 'hungry' - same!", "cognate": true },
+        { "id": "a1_feel_005", "word": "durstig", "translation": "thirsty", "partOfSpeech": "adjective", "example": "Ich bin durstig.", "exampleTranslation": "I am thirsty.", "difficulty": 1, "emoji": "💧", "mnemonic": "'Durstig' = 'thirsty' - similar!", "cognate": true },
+        { "id": "a1_feel_006", "word": "krank", "translation": "sick/ill", "partOfSpeech": "adjective", "example": "Sie ist krank.", "exampleTranslation": "She is sick.", "difficulty": 1, "emoji": "🤒", "mnemonic": "Think 'crank-y' when sick!", "cognate": false },
+        { "id": "a1_feel_007", "word": "gesund", "translation": "healthy", "partOfSpeech": "adjective", "example": "Er ist wieder gesund.", "exampleTranslation": "He is healthy again.", "difficulty": 1, "emoji": "💪", "mnemonic": "'Gesund' = 'sound' health!", "cognate": true },
+        { "id": "a1_feel_008", "word": "böse", "translation": "angry/mad", "partOfSpeech": "adjective", "example": "Sie ist böse auf mich.", "exampleTranslation": "She is angry with me.", "difficulty": 1, "emoji": "😠", "mnemonic": "Think 'boss-y' when angry!", "cognate": false },
+        { "id": "a1_feel_009", "word": "aufgeregt", "translation": "excited", "partOfSpeech": "adjective", "example": "Die Kinder sind aufgeregt.", "exampleTranslation": "The children are excited.", "difficulty": 2, "emoji": "🤩", "mnemonic": "'Aufgeregt' = stirred up!", "cognate": false },
+        { "id": "a1_feel_010", "word": "langweilig", "translation": "boring/bored", "partOfSpeech": "adjective", "example": "Der Film ist langweilig.", "exampleTranslation": "The movie is boring.", "difficulty": 2, "emoji": "😑", "mnemonic": "'Lang' = long + 'weilig' = tedious!", "cognate": false },
+        { "id": "a1_feel_011", "word": "lustig", "translation": "funny", "partOfSpeech": "adjective", "example": "Das ist sehr lustig!", "exampleTranslation": "That is very funny!", "difficulty": 1, "emoji": "😂", "mnemonic": "'Lustig' brings lust for laughing!", "cognate": false },
+        { "id": "a1_feel_012", "word": "Angst haben", "translation": "to be afraid", "partOfSpeech": "phrase", "example": "Ich habe Angst.", "exampleTranslation": "I am afraid.", "difficulty": 2, "emoji": "😨", "mnemonic": "'Angst' = anxiety/fear!", "cognate": true }
+      ]
     }
   },
-  "totalWords": 278,
-  "estimatedStudyTime": "20-28 hours"
+  "totalWords": 320,
+  "estimatedStudyTime": "22-30 hours"
 }
