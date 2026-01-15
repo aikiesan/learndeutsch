@@ -1383,8 +1383,78 @@
           "mnemonic": "'Forschen' = to search for knowledge!"
         }
       ]
+    },
+    "politics_society": {
+      "name": "Politics & Society",
+      "description": "Discuss social and political topics",
+      "icon": "🏛️",
+      "words": [
+        { "id": "b1_pol_001", "word": "die Regierung", "translation": "government", "article": "die", "partOfSpeech": "noun", "example": "Die Regierung hat neue Gesetze beschlossen.", "exampleTranslation": "The government passed new laws.", "difficulty": 2, "emoji": "🏛️", "mnemonic": "'Regieren' = to govern/reign!" },
+        { "id": "b1_pol_002", "word": "die Wahl", "translation": "election/choice", "article": "die", "partOfSpeech": "noun", "example": "Die Wahl findet im September statt.", "exampleTranslation": "The election takes place in September.", "difficulty": 2, "emoji": "🗳️", "mnemonic": "'Wählen' = to choose/vote!" },
+        { "id": "b1_pol_003", "word": "wählen", "translation": "to vote/choose", "partOfSpeech": "verb", "example": "Ich wähle zum ersten Mal.", "exampleTranslation": "I'm voting for the first time.", "difficulty": 2, "emoji": "✅", "mnemonic": "'Wählen' = to choose!" },
+        { "id": "b1_pol_004", "word": "das Gesetz", "translation": "law", "article": "das", "partOfSpeech": "noun", "example": "Das Gesetz wurde geändert.", "exampleTranslation": "The law was changed.", "difficulty": 2, "emoji": "⚖️", "mnemonic": "'Gesetz' = what is set/placed!" },
+        { "id": "b1_pol_005", "word": "die Gesellschaft", "translation": "society", "article": "die", "partOfSpeech": "noun", "example": "Die Gesellschaft verändert sich.", "exampleTranslation": "Society is changing.", "difficulty": 2, "emoji": "👥", "mnemonic": "'Gesell' = companion + 'schaft' = -ship!" },
+        { "id": "b1_pol_006", "word": "der Bürger", "translation": "citizen", "article": "der", "partOfSpeech": "noun", "example": "Jeder Bürger hat Rechte.", "exampleTranslation": "Every citizen has rights.", "difficulty": 2, "emoji": "🧑", "mnemonic": "'Bürger' like 'burgher' = citizen!" },
+        { "id": "b1_pol_007", "word": "das Recht", "translation": "right/law", "article": "das", "partOfSpeech": "noun", "example": "Alle Menschen haben das Recht auf Freiheit.", "exampleTranslation": "All people have the right to freedom.", "difficulty": 2, "emoji": "⚖️", "mnemonic": "'Recht' = right - same root!" },
+        { "id": "b1_pol_008", "word": "die Pflicht", "translation": "duty/obligation", "article": "die", "partOfSpeech": "noun", "example": "Es ist meine Pflicht, zu helfen.", "exampleTranslation": "It's my duty to help.", "difficulty": 2, "emoji": "📋", "mnemonic": "Think 'plight' = duty/responsibility!" },
+        { "id": "b1_pol_009", "word": "die Demokratie", "translation": "democracy", "article": "die", "partOfSpeech": "noun", "example": "Demokratie ist wichtig.", "exampleTranslation": "Democracy is important.", "difficulty": 1, "emoji": "🗽", "mnemonic": "'Demokratie' = 'democracy' - same!", "cognate": true },
+        { "id": "b1_pol_010", "word": "die Partei", "translation": "political party", "article": "die", "partOfSpeech": "noun", "example": "Welche Partei wählst du?", "exampleTranslation": "Which party do you vote for?", "difficulty": 2, "emoji": "🏛️", "mnemonic": "'Partei' = 'party' - political!", "cognate": true }
+      ]
+    },
+    "technology_digital": {
+      "name": "Technology & Digital",
+      "description": "Modern technology vocabulary",
+      "icon": "💻",
+      "words": [
+        { "id": "b1_tech_001", "word": "das Smartphone", "translation": "smartphone", "article": "das", "partOfSpeech": "noun", "example": "Mein Smartphone ist kaputt.", "exampleTranslation": "My smartphone is broken.", "difficulty": 1, "emoji": "📱", "mnemonic": "'Smartphone' = same!", "cognate": true },
+        { "id": "b1_tech_002", "word": "die App", "translation": "app", "article": "die", "partOfSpeech": "noun", "example": "Diese App ist sehr nützlich.", "exampleTranslation": "This app is very useful.", "difficulty": 1, "emoji": "📲", "mnemonic": "'App' = same!", "cognate": true },
+        { "id": "b1_tech_003", "word": "herunterladen", "translation": "to download", "partOfSpeech": "verb", "example": "Ich lade die Datei herunter.", "exampleTranslation": "I download the file.", "difficulty": 2, "emoji": "⬇️", "mnemonic": "'Herunter-laden' = load down!" },
+        { "id": "b1_tech_004", "word": "hochladen", "translation": "to upload", "partOfSpeech": "verb", "example": "Ich lade das Foto hoch.", "exampleTranslation": "I upload the photo.", "difficulty": 2, "emoji": "⬆️", "mnemonic": "'Hoch-laden' = load up!" },
+        { "id": "b1_tech_005", "word": "das Passwort", "translation": "password", "article": "das", "partOfSpeech": "noun", "example": "Ich habe mein Passwort vergessen.", "exampleTranslation": "I forgot my password.", "difficulty": 1, "emoji": "🔐", "mnemonic": "'Passwort' = 'password' - same!", "cognate": true },
+        { "id": "b1_tech_006", "word": "der Bildschirm", "translation": "screen", "article": "der", "partOfSpeech": "noun", "example": "Der Bildschirm ist zu klein.", "exampleTranslation": "The screen is too small.", "difficulty": 2, "emoji": "🖥️", "mnemonic": "'Bild' = picture + 'Schirm' = shield = screen!" },
+        { "id": "b1_tech_007", "word": "die Datei", "translation": "file", "article": "die", "partOfSpeech": "noun", "example": "Ich kann die Datei nicht öffnen.", "exampleTranslation": "I can't open the file.", "difficulty": 2, "emoji": "📁", "mnemonic": "'Datei' = data file!" },
+        { "id": "b1_tech_008", "word": "speichern", "translation": "to save", "partOfSpeech": "verb", "example": "Vergiss nicht, zu speichern!", "exampleTranslation": "Don't forget to save!", "difficulty": 2, "emoji": "💾", "mnemonic": "'Speichern' = to store/save!" },
+        { "id": "b1_tech_009", "word": "löschen", "translation": "to delete", "partOfSpeech": "verb", "example": "Ich habe die Nachricht gelöscht.", "exampleTranslation": "I deleted the message.", "difficulty": 2, "emoji": "🗑️", "mnemonic": "'Löschen' = to extinguish/delete!" },
+        { "id": "b1_tech_010", "word": "die Verbindung", "translation": "connection", "article": "die", "partOfSpeech": "noun", "example": "Die Internetverbindung ist langsam.", "exampleTranslation": "The internet connection is slow.", "difficulty": 2, "emoji": "🔗", "mnemonic": "'Ver-binden' = to connect!" },
+        { "id": "b1_tech_011", "word": "aktualisieren", "translation": "to update", "partOfSpeech": "verb", "example": "Du musst die Software aktualisieren.", "exampleTranslation": "You need to update the software.", "difficulty": 2, "emoji": "🔄", "mnemonic": "'Aktualisieren' = to make current!" },
+        { "id": "b1_tech_012", "word": "das Netzwerk", "translation": "network", "article": "das", "partOfSpeech": "noun", "example": "Das Netzwerk funktioniert nicht.", "exampleTranslation": "The network isn't working.", "difficulty": 2, "emoji": "🌐", "mnemonic": "'Netz' = net + 'Werk' = work!" }
+      ]
+    },
+    "relationships": {
+      "name": "Relationships & Life",
+      "description": "Personal relationships and life events",
+      "icon": "❤️",
+      "words": [
+        { "id": "b1_rel_001", "word": "die Beziehung", "translation": "relationship", "article": "die", "partOfSpeech": "noun", "example": "Wir haben eine gute Beziehung.", "exampleTranslation": "We have a good relationship.", "difficulty": 2, "emoji": "💑", "mnemonic": "'Beziehung' = connection/relation!" },
+        { "id": "b1_rel_002", "word": "sich verlieben", "translation": "to fall in love", "partOfSpeech": "verb", "example": "Ich habe mich in ihn verliebt.", "exampleTranslation": "I fell in love with him.", "difficulty": 2, "emoji": "😍", "mnemonic": "'Ver-lieben' = to fall into love!" },
+        { "id": "b1_rel_003", "word": "heiraten", "translation": "to marry", "partOfSpeech": "verb", "example": "Sie werden nächstes Jahr heiraten.", "exampleTranslation": "They will marry next year.", "difficulty": 2, "emoji": "💒", "mnemonic": "Think 'heir-aten' = to make heirs!" },
+        { "id": "b1_rel_004", "word": "sich scheiden lassen", "translation": "to get divorced", "partOfSpeech": "verb", "example": "Sie haben sich scheiden lassen.", "exampleTranslation": "They got divorced.", "difficulty": 3, "emoji": "💔", "mnemonic": "'Scheiden' = to separate!" },
+        { "id": "b1_rel_005", "word": "der Partner", "translation": "partner", "article": "der", "partOfSpeech": "noun", "example": "Mein Partner unterstützt mich.", "exampleTranslation": "My partner supports me.", "difficulty": 1, "emoji": "🤝", "mnemonic": "'Partner' = same!", "cognate": true },
+        { "id": "b1_rel_006", "word": "schwanger", "translation": "pregnant", "partOfSpeech": "adjective", "example": "Sie ist schwanger.", "exampleTranslation": "She is pregnant.", "difficulty": 2, "emoji": "🤰", "mnemonic": "'Schwanger' = carrying weight!" },
+        { "id": "b1_rel_007", "word": "die Geburt", "translation": "birth", "article": "die", "partOfSpeech": "noun", "example": "Die Geburt war unkompliziert.", "exampleTranslation": "The birth was uncomplicated.", "difficulty": 2, "emoji": "👶", "mnemonic": "'Geburt' = 'birth' - similar!" },
+        { "id": "b1_rel_008", "word": "sich trennen", "translation": "to separate/break up", "partOfSpeech": "verb", "example": "Sie haben sich getrennt.", "exampleTranslation": "They broke up.", "difficulty": 2, "emoji": "💔", "mnemonic": "'Trennen' = to separate!" },
+        { "id": "b1_rel_009", "word": "die Freundschaft", "translation": "friendship", "article": "die", "partOfSpeech": "noun", "example": "Unsere Freundschaft ist stark.", "exampleTranslation": "Our friendship is strong.", "difficulty": 2, "emoji": "🤗", "mnemonic": "'Freund' = friend + '-schaft' = -ship!" },
+        { "id": "b1_rel_010", "word": "vertrauen", "translation": "to trust", "partOfSpeech": "verb", "example": "Ich vertraue dir.", "exampleTranslation": "I trust you.", "difficulty": 2, "emoji": "🤞", "mnemonic": "'Ver-trauen' = to believe in!" }
+      ]
+    },
+    "economy_money": {
+      "name": "Economy & Money",
+      "description": "Financial and economic vocabulary",
+      "icon": "💰",
+      "words": [
+        { "id": "b1_econ_001", "word": "die Wirtschaft", "translation": "economy", "article": "die", "partOfSpeech": "noun", "example": "Die Wirtschaft wächst.", "exampleTranslation": "The economy is growing.", "difficulty": 2, "emoji": "📈", "mnemonic": "'Wirtschaft' = business/economy!" },
+        { "id": "b1_econ_002", "word": "das Konto", "translation": "account", "article": "das", "partOfSpeech": "noun", "example": "Ich eröffne ein Konto.", "exampleTranslation": "I'm opening an account.", "difficulty": 1, "emoji": "🏦", "mnemonic": "'Konto' = 'account' - similar!", "cognate": true },
+        { "id": "b1_econ_003", "word": "sparen", "translation": "to save (money)", "partOfSpeech": "verb", "example": "Ich spare für einen Urlaub.", "exampleTranslation": "I'm saving for a vacation.", "difficulty": 1, "emoji": "🐷", "mnemonic": "'Sparen' = to spare/save!" },
+        { "id": "b1_econ_004", "word": "ausgeben", "translation": "to spend", "partOfSpeech": "verb", "example": "Ich gebe zu viel Geld aus.", "exampleTranslation": "I spend too much money.", "difficulty": 2, "emoji": "💸", "mnemonic": "'Aus-geben' = to give out!" },
+        { "id": "b1_econ_005", "word": "die Schulden", "translation": "debts", "article": "die", "partOfSpeech": "noun", "example": "Er hat keine Schulden.", "exampleTranslation": "He has no debts.", "difficulty": 2, "emoji": "📉", "mnemonic": "'Schulden' = what you owe!" },
+        { "id": "b1_econ_006", "word": "leihen", "translation": "to lend/borrow", "partOfSpeech": "verb", "example": "Kannst du mir Geld leihen?", "exampleTranslation": "Can you lend me money?", "difficulty": 2, "emoji": "💵", "mnemonic": "'Leihen' = to loan!" },
+        { "id": "b1_econ_007", "word": "die Rechnung", "translation": "bill/invoice", "article": "die", "partOfSpeech": "noun", "example": "Die Rechnung, bitte!", "exampleTranslation": "The bill, please!", "difficulty": 1, "emoji": "🧾", "mnemonic": "'Rechnung' = reckoning/calculation!" },
+        { "id": "b1_econ_008", "word": "der Preis", "translation": "price", "article": "der", "partOfSpeech": "noun", "example": "Der Preis ist zu hoch.", "exampleTranslation": "The price is too high.", "difficulty": 1, "emoji": "🏷️", "mnemonic": "'Preis' = 'price' - same!", "cognate": true },
+        { "id": "b1_econ_009", "word": "die Steuer", "translation": "tax", "article": "die", "partOfSpeech": "noun", "example": "Die Steuern sind hoch in Deutschland.", "exampleTranslation": "Taxes are high in Germany.", "difficulty": 2, "emoji": "📊", "mnemonic": "'Steuer' = steering/control = taxes!" },
+        { "id": "b1_econ_010", "word": "investieren", "translation": "to invest", "partOfSpeech": "verb", "example": "Er investiert in Aktien.", "exampleTranslation": "He invests in stocks.", "difficulty": 2, "emoji": "📈", "mnemonic": "'Investieren' = 'invest' - same!", "cognate": true }
+      ]
     }
   },
-  "totalWords": 106,
-  "estimatedStudyTime": "15-20 hours"
+  "totalWords": 148,
+  "estimatedStudyTime": "18-24 hours"
 }

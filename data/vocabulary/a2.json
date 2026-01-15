@@ -2018,8 +2018,87 @@
           "cognate": false
         }
       ]
+    },
+    "weather": {
+      "name": "Weather & Seasons",
+      "description": "Talk about weather and seasons",
+      "icon": "🌤️",
+      "words": [
+        { "id": "a2_weather_001", "word": "das Wetter", "translation": "weather", "article": "das", "partOfSpeech": "noun", "example": "Wie ist das Wetter heute?", "exampleTranslation": "How is the weather today?", "difficulty": 1, "emoji": "🌤️", "mnemonic": "'Wetter' = 'weather' - same!", "cognate": true },
+        { "id": "a2_weather_002", "word": "die Sonne", "translation": "sun", "article": "die", "partOfSpeech": "noun", "example": "Die Sonne scheint.", "exampleTranslation": "The sun is shining.", "difficulty": 1, "emoji": "☀️", "mnemonic": "'Sonne' = 'sun' - similar!", "cognate": true },
+        { "id": "a2_weather_003", "word": "der Regen", "translation": "rain", "article": "der", "partOfSpeech": "noun", "example": "Der Regen hört nicht auf.", "exampleTranslation": "The rain doesn't stop.", "difficulty": 1, "emoji": "🌧️", "mnemonic": "'Regen' = 'rain' - same root!", "cognate": true },
+        { "id": "a2_weather_004", "word": "der Schnee", "translation": "snow", "article": "der", "partOfSpeech": "noun", "example": "Im Winter fällt Schnee.", "exampleTranslation": "In winter, snow falls.", "difficulty": 1, "emoji": "❄️", "mnemonic": "'Schnee' = 'snow' - similar!", "cognate": true },
+        { "id": "a2_weather_005", "word": "der Wind", "translation": "wind", "article": "der", "partOfSpeech": "noun", "example": "Der Wind ist stark.", "exampleTranslation": "The wind is strong.", "difficulty": 1, "emoji": "💨", "mnemonic": "'Wind' = 'wind' - same!", "cognate": true },
+        { "id": "a2_weather_006", "word": "die Wolke", "translation": "cloud", "article": "die", "partOfSpeech": "noun", "example": "Dunkle Wolken kommen.", "exampleTranslation": "Dark clouds are coming.", "difficulty": 1, "emoji": "☁️", "mnemonic": "Wolke sounds like 'walk' in clouds!", "cognate": false },
+        { "id": "a2_weather_007", "word": "der Frühling", "translation": "spring", "article": "der", "partOfSpeech": "noun", "example": "Im Frühling blühen die Blumen.", "exampleTranslation": "In spring, flowers bloom.", "difficulty": 1, "emoji": "🌸", "mnemonic": "'Früh' = early - early year!", "cognate": false },
+        { "id": "a2_weather_008", "word": "der Sommer", "translation": "summer", "article": "der", "partOfSpeech": "noun", "example": "Der Sommer ist heiß.", "exampleTranslation": "Summer is hot.", "difficulty": 1, "emoji": "🌞", "mnemonic": "'Sommer' = 'summer' - same!", "cognate": true },
+        { "id": "a2_weather_009", "word": "der Herbst", "translation": "autumn/fall", "article": "der", "partOfSpeech": "noun", "example": "Im Herbst fallen die Blätter.", "exampleTranslation": "In autumn, leaves fall.", "difficulty": 1, "emoji": "🍂", "mnemonic": "'Herbst' like 'harvest' time!", "cognate": true },
+        { "id": "a2_weather_010", "word": "der Winter", "translation": "winter", "article": "der", "partOfSpeech": "noun", "example": "Der Winter ist kalt.", "exampleTranslation": "Winter is cold.", "difficulty": 1, "emoji": "⛄", "mnemonic": "'Winter' = 'winter' - same!", "cognate": true },
+        { "id": "a2_weather_011", "word": "heiß", "translation": "hot", "partOfSpeech": "adjective", "example": "Es ist sehr heiß heute.", "exampleTranslation": "It's very hot today.", "difficulty": 1, "emoji": "🥵", "mnemonic": "'Heiß' = 'hot' - sounds like 'heiss'!", "cognate": true },
+        { "id": "a2_weather_012", "word": "kalt", "translation": "cold", "partOfSpeech": "adjective", "example": "Es ist kalt draußen.", "exampleTranslation": "It's cold outside.", "difficulty": 1, "emoji": "🥶", "mnemonic": "'Kalt' = 'cold' - same root!", "cognate": true },
+        { "id": "a2_weather_013", "word": "regnen", "translation": "to rain", "partOfSpeech": "verb", "example": "Es regnet seit Stunden.", "exampleTranslation": "It's been raining for hours.", "difficulty": 1, "emoji": "🌧️", "mnemonic": "'Regnen' = to rain!", "cognate": true },
+        { "id": "a2_weather_014", "word": "schneien", "translation": "to snow", "partOfSpeech": "verb", "example": "Es schneit!", "exampleTranslation": "It's snowing!", "difficulty": 1, "emoji": "🌨️", "mnemonic": "'Schneien' = to snow!", "cognate": true },
+        { "id": "a2_weather_015", "word": "der Sturm", "translation": "storm", "article": "der", "partOfSpeech": "noun", "example": "Ein Sturm kommt.", "exampleTranslation": "A storm is coming.", "difficulty": 2, "emoji": "⛈️", "mnemonic": "'Sturm' = 'storm' - same!", "cognate": true }
+      ]
+    },
+    "directions": {
+      "name": "Directions & Navigation",
+      "description": "Find your way around",
+      "icon": "🧭",
+      "words": [
+        { "id": "a2_dir_001", "word": "links", "translation": "left", "partOfSpeech": "adverb", "example": "Biegen Sie links ab.", "exampleTranslation": "Turn left.", "difficulty": 1, "emoji": "⬅️", "mnemonic": "'Links' sounds like 'left'!", "cognate": false },
+        { "id": "a2_dir_002", "word": "rechts", "translation": "right", "partOfSpeech": "adverb", "example": "Das Café ist rechts.", "exampleTranslation": "The café is on the right.", "difficulty": 1, "emoji": "➡️", "mnemonic": "'Rechts' = 'right'!", "cognate": true },
+        { "id": "a2_dir_003", "word": "geradeaus", "translation": "straight ahead", "partOfSpeech": "adverb", "example": "Gehen Sie geradeaus.", "exampleTranslation": "Go straight ahead.", "difficulty": 1, "emoji": "⬆️", "mnemonic": "'Gerade' = straight + 'aus' = out!", "cognate": false },
+        { "id": "a2_dir_004", "word": "die Straße", "translation": "street", "article": "die", "partOfSpeech": "noun", "example": "Die Straße ist lang.", "exampleTranslation": "The street is long.", "difficulty": 1, "emoji": "🛣️", "mnemonic": "'Straße' = 'street' - similar!", "cognate": true },
+        { "id": "a2_dir_005", "word": "die Ecke", "translation": "corner", "article": "die", "partOfSpeech": "noun", "example": "An der Ecke ist eine Bank.", "exampleTranslation": "There's a bank on the corner.", "difficulty": 1, "emoji": "📐", "mnemonic": "Think 'edge/corner'!", "cognate": false },
+        { "id": "a2_dir_006", "word": "die Kreuzung", "translation": "intersection", "article": "die", "partOfSpeech": "noun", "example": "An der Kreuzung müssen Sie warten.", "exampleTranslation": "You must wait at the intersection.", "difficulty": 2, "emoji": "✖️", "mnemonic": "'Kreuz' = cross - crossing point!", "cognate": false },
+        { "id": "a2_dir_007", "word": "die Ampel", "translation": "traffic light", "article": "die", "partOfSpeech": "noun", "example": "Die Ampel ist rot.", "exampleTranslation": "The traffic light is red.", "difficulty": 1, "emoji": "🚦", "mnemonic": "Think 'lamp-el' = lamp/light!", "cognate": false },
+        { "id": "a2_dir_008", "word": "der Weg", "translation": "way/path", "article": "der", "partOfSpeech": "noun", "example": "Der Weg ist nicht weit.", "exampleTranslation": "The way is not far.", "difficulty": 1, "emoji": "🛤️", "mnemonic": "'Weg' = 'way' - same!", "cognate": true },
+        { "id": "a2_dir_009", "word": "abbiegen", "translation": "to turn", "partOfSpeech": "verb", "example": "Hier müssen Sie abbiegen.", "exampleTranslation": "You must turn here.", "difficulty": 2, "emoji": "↩️", "mnemonic": "'Ab-biegen' = to bend off/turn!", "cognate": false },
+        { "id": "a2_dir_010", "word": "überqueren", "translation": "to cross", "partOfSpeech": "verb", "example": "Überqueren Sie die Straße.", "exampleTranslation": "Cross the street.", "difficulty": 2, "emoji": "🚶", "mnemonic": "'Über' = over + 'queren' = cross!", "cognate": false },
+        { "id": "a2_dir_011", "word": "die Brücke", "translation": "bridge", "article": "die", "partOfSpeech": "noun", "example": "Die Brücke ist alt.", "exampleTranslation": "The bridge is old.", "difficulty": 1, "emoji": "🌉", "mnemonic": "'Brücke' = 'bridge' - similar!", "cognate": true },
+        { "id": "a2_dir_012", "word": "der Platz", "translation": "square/place", "article": "der", "partOfSpeech": "noun", "example": "Wir treffen uns am Platz.", "exampleTranslation": "We meet at the square.", "difficulty": 1, "emoji": "🏛️", "mnemonic": "'Platz' = 'place' - same!", "cognate": true }
+      ]
+    },
+    "social": {
+      "name": "Social & Events",
+      "description": "Social situations and events",
+      "icon": "🎉",
+      "words": [
+        { "id": "a2_social_001", "word": "die Party", "translation": "party", "article": "die", "partOfSpeech": "noun", "example": "Die Party war super!", "exampleTranslation": "The party was great!", "difficulty": 1, "emoji": "🎉", "mnemonic": "'Party' = 'party' - same!", "cognate": true },
+        { "id": "a2_social_002", "word": "die Einladung", "translation": "invitation", "article": "die", "partOfSpeech": "noun", "example": "Danke für die Einladung!", "exampleTranslation": "Thanks for the invitation!", "difficulty": 1, "emoji": "💌", "mnemonic": "'Ein-ladung' = loading in = invite!", "cognate": false },
+        { "id": "a2_social_003", "word": "einladen", "translation": "to invite", "partOfSpeech": "verb", "example": "Ich lade dich ein.", "exampleTranslation": "I invite you.", "difficulty": 2, "emoji": "📨", "mnemonic": "'Ein-laden' = to load/bring in!", "cognate": false },
+        { "id": "a2_social_004", "word": "feiern", "translation": "to celebrate", "partOfSpeech": "verb", "example": "Wir feiern meinen Geburtstag.", "exampleTranslation": "We celebrate my birthday.", "difficulty": 1, "emoji": "🥳", "mnemonic": "Think 'fair/festival' = celebrate!", "cognate": false },
+        { "id": "a2_social_005", "word": "das Geschenk", "translation": "gift/present", "article": "das", "partOfSpeech": "noun", "example": "Das Geschenk ist für dich.", "exampleTranslation": "The gift is for you.", "difficulty": 1, "emoji": "🎁", "mnemonic": "'Geschenk' = something given!", "cognate": false },
+        { "id": "a2_social_006", "word": "schenken", "translation": "to give (as gift)", "partOfSpeech": "verb", "example": "Was soll ich ihr schenken?", "exampleTranslation": "What should I give her?", "difficulty": 1, "emoji": "🎁", "mnemonic": "'Schenken' = to gift!", "cognate": false },
+        { "id": "a2_social_007", "word": "Herzlichen Glückwunsch", "translation": "congratulations", "partOfSpeech": "phrase", "example": "Herzlichen Glückwunsch zum Geburtstag!", "exampleTranslation": "Happy birthday! (lit. Heartfelt wishes)", "difficulty": 2, "emoji": "🎊", "mnemonic": "'Herzlich' = hearty + 'Glückwunsch' = luck wish!", "cognate": false },
+        { "id": "a2_social_008", "word": "die Hochzeit", "translation": "wedding", "article": "die", "partOfSpeech": "noun", "example": "Die Hochzeit ist im Juni.", "exampleTranslation": "The wedding is in June.", "difficulty": 1, "emoji": "💒", "mnemonic": "'Hoch-zeit' = high time = special occasion!", "cognate": false },
+        { "id": "a2_social_009", "word": "der Gast", "translation": "guest", "article": "der", "partOfSpeech": "noun", "example": "Der Gast kommt um acht.", "exampleTranslation": "The guest arrives at eight.", "difficulty": 1, "emoji": "🧑", "mnemonic": "'Gast' = 'guest' - same!", "cognate": true },
+        { "id": "a2_social_010", "word": "treffen", "translation": "to meet", "partOfSpeech": "verb", "example": "Wir treffen uns morgen.", "exampleTranslation": "We meet tomorrow.", "difficulty": 1, "emoji": "🤝", "mnemonic": "Think 'treff' point = meeting point!", "cognate": false },
+        { "id": "a2_social_011", "word": "sich verabreden", "translation": "to make plans/date", "partOfSpeech": "verb", "example": "Wollen wir uns verabreden?", "exampleTranslation": "Shall we make plans?", "difficulty": 2, "emoji": "📅", "mnemonic": "'Ver-ab-reden' = to talk about meeting!", "cognate": false },
+        { "id": "a2_social_012", "word": "der Termin", "translation": "appointment", "article": "der", "partOfSpeech": "noun", "example": "Ich habe einen Termin.", "exampleTranslation": "I have an appointment.", "difficulty": 1, "emoji": "📆", "mnemonic": "'Termin' = 'term/time' - appointment!", "cognate": true }
+      ]
+    },
+    "sports_fitness": {
+      "name": "Sports & Fitness",
+      "description": "Stay active and healthy",
+      "icon": "🏋️",
+      "words": [
+        { "id": "a2_sport_001", "word": "der Fußball", "translation": "soccer/football", "article": "der", "partOfSpeech": "noun", "example": "Ich spiele gern Fußball.", "exampleTranslation": "I like to play soccer.", "difficulty": 1, "emoji": "⚽", "mnemonic": "'Fuß' = foot + 'Ball' = ball!", "cognate": true },
+        { "id": "a2_sport_002", "word": "das Tennis", "translation": "tennis", "article": "das", "partOfSpeech": "noun", "example": "Tennis macht Spaß.", "exampleTranslation": "Tennis is fun.", "difficulty": 1, "emoji": "🎾", "mnemonic": "'Tennis' = 'tennis' - same!", "cognate": true },
+        { "id": "a2_sport_003", "word": "das Fitnessstudio", "translation": "gym", "article": "das", "partOfSpeech": "noun", "example": "Ich gehe ins Fitnessstudio.", "exampleTranslation": "I go to the gym.", "difficulty": 1, "emoji": "🏋️", "mnemonic": "'Fitness-studio' - same!", "cognate": true },
+        { "id": "a2_sport_004", "word": "laufen", "translation": "to run", "partOfSpeech": "verb", "example": "Ich laufe jeden Morgen.", "exampleTranslation": "I run every morning.", "difficulty": 1, "emoji": "🏃", "mnemonic": "Think 'walk/run' - laufen!", "cognate": false },
+        { "id": "a2_sport_005", "word": "trainieren", "translation": "to train/work out", "partOfSpeech": "verb", "example": "Ich trainiere dreimal pro Woche.", "exampleTranslation": "I work out three times a week.", "difficulty": 1, "emoji": "💪", "mnemonic": "'Trainieren' = 'train' - same!", "cognate": true },
+        { "id": "a2_sport_006", "word": "gewinnen", "translation": "to win", "partOfSpeech": "verb", "example": "Unser Team hat gewonnen!", "exampleTranslation": "Our team won!", "difficulty": 1, "emoji": "🏆", "mnemonic": "'Gewinnen' sounds like 'gain/win'!", "cognate": true },
+        { "id": "a2_sport_007", "word": "verlieren", "translation": "to lose", "partOfSpeech": "verb", "example": "Wir haben leider verloren.", "exampleTranslation": "Unfortunately, we lost.", "difficulty": 1, "emoji": "😔", "mnemonic": "Think 'for-loren' = lost!", "cognate": false },
+        { "id": "a2_sport_008", "word": "der Spieler", "translation": "player", "article": "der", "partOfSpeech": "noun", "example": "Der Spieler ist sehr gut.", "exampleTranslation": "The player is very good.", "difficulty": 1, "emoji": "🧑‍🤝‍🧑", "mnemonic": "'Spieler' = player!", "cognate": false },
+        { "id": "a2_sport_009", "word": "die Mannschaft", "translation": "team", "article": "die", "partOfSpeech": "noun", "example": "Die Mannschaft trainiert hart.", "exampleTranslation": "The team trains hard.", "difficulty": 2, "emoji": "👥", "mnemonic": "'Mann-schaft' = group of men/people!", "cognate": false },
+        { "id": "a2_sport_010", "word": "das Stadion", "translation": "stadium", "article": "das", "partOfSpeech": "noun", "example": "Das Stadion ist voll.", "exampleTranslation": "The stadium is full.", "difficulty": 1, "emoji": "🏟️", "mnemonic": "'Stadion' = 'stadium' - same!", "cognate": true },
+        { "id": "a2_sport_011", "word": "der Ball", "translation": "ball", "article": "der", "partOfSpeech": "noun", "example": "Wirf mir den Ball!", "exampleTranslation": "Throw me the ball!", "difficulty": 1, "emoji": "🏀", "mnemonic": "'Ball' = 'ball' - same!", "cognate": true },
+        { "id": "a2_sport_012", "word": "das Spiel", "translation": "game/match", "article": "das", "partOfSpeech": "noun", "example": "Das Spiel beginnt um 15 Uhr.", "exampleTranslation": "The game starts at 3 PM.", "difficulty": 1, "emoji": "🎮", "mnemonic": "'Spiel' = play/game!", "cognate": true }
+      ]
     }
   },
-  "totalWords": 152,
-  "estimatedStudyTime": "12-18 hours"
+  "totalWords": 203,
+  "estimatedStudyTime": "15-22 hours"
 }
