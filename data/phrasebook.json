@@ -1,0 +1,209 @@
+{
+  "title": "Reise & Beruf — Trip & Work Assist",
+  "subtitle": "Formal, respectful German for your stay at DBFZ Leipzig",
+  "categories": [
+    {
+      "id": "greetings_formal",
+      "name": "Greetings & Introductions",
+      "icon": "🤝",
+      "blurb": "Formal greetings (Sie-form). In Saxony, 'Guten Tag' is the safe, polite default.",
+      "phrases": [
+        { "de": "Guten Morgen!", "en": "Good morning!", "pron": "GOO-ten MOR-gen", "note": "Until about 11 a.m." },
+        { "de": "Guten Tag!", "en": "Good day / Hello (formal)", "pron": "GOO-ten TAAK", "note": "Safest all-day greeting in a professional setting." },
+        { "de": "Guten Abend!", "en": "Good evening!", "pron": "GOO-ten AH-bent", "note": "From early evening." },
+        { "de": "Hallo zusammen!", "en": "Hello everyone!", "pron": "HA-lo tsoo-ZA-men", "note": "Friendly greeting to a group of colleagues." },
+        { "de": "Freut mich, Sie kennenzulernen.", "en": "Pleased to meet you.", "pron": "FROYT mish, zee KEN-en-tsoo-LER-nen", "note": "The polite phrase for a first introduction." },
+        { "de": "Ich heiße Lucas Nakamura.", "en": "My name is Lucas Nakamura.", "pron": "ish HY-suh Lucas", "note": "" },
+        { "de": "Ich bin der neue Kollege aus Brasilien.", "en": "I'm the new colleague from Brazil.", "pron": "ish bin dair NOY-uh ko-LAY-guh ows bra-ZEE-lee-en", "note": "" },
+        { "de": "Ich arbeite im Bereich Biomasse und Biotechnologie.", "en": "I work in the field of biomass and biotechnology.", "pron": "ish AR-by-tuh im buh-RYSH bio-MA-suh oont bio-tekh-no-lo-GEE", "note": "" },
+        { "de": "Schön, hier zu sein.", "en": "Nice to be here.", "pron": "shurn, heer tsoo zyne", "note": "" },
+        { "de": "Wie geht es Ihnen?", "en": "How are you? (formal)", "pron": "vee gait es EE-nen", "note": "Use 'Ihnen' (formal), not 'dir', with colleagues." },
+        { "de": "Danke, gut. Und Ihnen?", "en": "Fine, thanks. And you?", "pron": "DAN-kuh, goot. oont EE-nen", "note": "" },
+        { "de": "Auf Wiedersehen!", "en": "Goodbye (formal)", "pron": "owf VEE-der-zay-en", "note": "" },
+        { "de": "Bis morgen!", "en": "See you tomorrow!", "pron": "bis MOR-gen", "note": "" },
+        { "de": "Schönen Feierabend!", "en": "Have a nice end of the workday!", "pron": "SHUR-nen FY-er-ah-bent", "note": "A warm, very German way to say goodbye after work." },
+        { "de": "Schönes Wochenende!", "en": "Have a nice weekend!", "pron": "SHUR-nes VO-khen-en-duh", "note": "" }
+      ]
+    },
+    {
+      "id": "workplace",
+      "name": "At DBFZ — Office & Colleagues",
+      "icon": "🏢",
+      "blurb": "Everyday phrases for the lab and office. Polite, formal forms.",
+      "phrases": [
+        { "de": "Können Sie mir bitte helfen?", "en": "Could you please help me?", "pron": "KUR-nen zee meer BIT-uh HEL-fen", "note": "" },
+        { "de": "Sprechen Sie Englisch?", "en": "Do you speak English?", "pron": "SHPRE-shen zee ENG-lish", "note": "Most researchers do, but asking in German is appreciated." },
+        { "de": "Ich lerne noch Deutsch.", "en": "I'm still learning German.", "pron": "ish LER-nuh nokh doytch", "note": "A friendly icebreaker — people will be patient and kind." },
+        { "de": "Entschuldigung, das habe ich nicht verstanden.", "en": "Sorry, I didn't understand that.", "pron": "ent-SHOOL-di-goong, das HA-buh ish nisht fer-SHTAN-den", "note": "" },
+        { "de": "Können Sie das bitte wiederholen?", "en": "Could you repeat that, please?", "pron": "KUR-nen zee das BIT-uh VEE-der-ho-len", "note": "" },
+        { "de": "Können Sie bitte etwas langsamer sprechen?", "en": "Could you speak a little more slowly, please?", "pron": "KUR-nen zee BIT-uh ET-vas LANG-za-mer SHPRE-shen", "note": "" },
+        { "de": "Wo finde ich das Labor / die Toilette / die Kantine?", "en": "Where do I find the lab / restroom / canteen?", "pron": "vo FIN-duh ish das la-BOR / dee twa-LET-uh / dee kan-TEE-nuh", "note": "" },
+        { "de": "Wo ist das Büro von Herrn/Frau …?", "en": "Where is the office of Mr./Ms. …?", "pron": "vo ist das bü-RO fon hairn / frow", "note": "Use Herr + surname / Frau + surname." },
+        { "de": "Ich habe eine Frage.", "en": "I have a question.", "pron": "ish HA-buh INE-uh FRA-guh", "note": "" },
+        { "de": "Ich schicke Ihnen die Daten per E-Mail.", "en": "I'll send you the data by email.", "pron": "ish SHIK-uh EE-nen dee DA-ten pair ee-mail", "note": "" },
+        { "de": "Vielen Dank für Ihre Hilfe.", "en": "Thank you very much for your help.", "pron": "FEE-len dank für EE-ruh HIL-fuh", "note": "" },
+        { "de": "Kein Problem.", "en": "No problem.", "pron": "kyne pro-BLAYM", "note": "" }
+      ]
+    },
+    {
+      "id": "meetings",
+      "name": "Meetings & Presentations",
+      "icon": "📊",
+      "blurb": "Phrases for project meetings, seminars, and presenting your work.",
+      "phrases": [
+        { "de": "Wann beginnt das Meeting?", "en": "When does the meeting start?", "pron": "van buh-GINT das meeting", "note": "" },
+        { "de": "Darf ich kurz etwas sagen?", "en": "May I say something briefly?", "pron": "darf ish koorts ET-vas ZA-gen", "note": "" },
+        { "de": "Ich würde gerne meine Arbeit vorstellen.", "en": "I would like to present my work.", "pron": "ish VÜR-duh GAIR-nuh MY-nuh AR-byte FOR-shtel-en", "note": "" },
+        { "de": "Könnten Sie das bitte näher erklären?", "en": "Could you explain that in more detail?", "pron": "KURN-ten zee das BIT-uh NAY-er er-KLAY-ren", "note": "" },
+        { "de": "Das ist eine gute Frage.", "en": "That's a good question.", "pron": "das ist INE-uh GOO-tuh FRA-guh", "note": "" },
+        { "de": "Ich stimme zu.", "en": "I agree.", "pron": "ish SHTIM-uh tsoo", "note": "" },
+        { "de": "Können wir einen Termin vereinbaren?", "en": "Can we arrange an appointment?", "pron": "KUR-nen veer INE-en ter-MEEN fer-INE-ba-ren", "note": "" },
+        { "de": "Ich melde mich bei Ihnen.", "en": "I'll get back to you.", "pron": "ish MEL-duh mish by EE-nen", "note": "" },
+        { "de": "Vielen Dank für Ihre Aufmerksamkeit.", "en": "Thank you for your attention.", "pron": "FEE-len dank für EE-ruh OWF-mairk-zam-kite", "note": "Standard way to close a presentation." }
+      ]
+    },
+    {
+      "id": "science",
+      "name": "Biomass & Biotechnology",
+      "icon": "🧪",
+      "blurb": "Field vocabulary for your work at DBFZ. Nouns shown with their article.",
+      "phrases": [
+        { "de": "die Biomasse", "en": "biomass", "pron": "dee bio-MA-suh", "note": "" },
+        { "de": "die Biotechnologie", "en": "biotechnology", "pron": "dee bio-tekh-no-lo-GEE", "note": "" },
+        { "de": "die Bioenergie", "en": "bioenergy", "pron": "dee BIO-e-ner-gee", "note": "" },
+        { "de": "der nachwachsende Rohstoff", "en": "renewable raw material", "pron": "dair NAKH-vak-sen-duh RO-shtof", "note": "Lit. 'regrowing raw material'." },
+        { "de": "die erneuerbare Energie", "en": "renewable energy", "pron": "dee er-NOY-er-ba-ruh e-ner-GEE", "note": "" },
+        { "de": "die Nachhaltigkeit", "en": "sustainability", "pron": "dee NAKH-hal-tish-kite", "note": "A core value — and a great word to know at DBFZ." },
+        { "de": "das Biogas", "en": "biogas", "pron": "das BIO-gas", "note": "" },
+        { "de": "die anaerobe Vergärung", "en": "anaerobic digestion / fermentation", "pron": "dee an-a-e-RO-buh fer-GAY-roong", "note": "" },
+        { "de": "die Pyrolyse", "en": "pyrolysis", "pron": "dee pü-ro-LÜ-zuh", "note": "" },
+        { "de": "die Verbrennung", "en": "combustion", "pron": "dee fer-BREN-oong", "note": "" },
+        { "de": "der Biokraftstoff", "en": "biofuel", "pron": "dair BIO-kraft-shtof", "note": "" },
+        { "de": "das Substrat", "en": "substrate", "pron": "das zoop-STRAHT", "note": "" },
+        { "de": "der Reststoff", "en": "residual material / residue", "pron": "dair REST-shtof", "note": "" },
+        { "de": "die Kreislaufwirtschaft", "en": "circular economy", "pron": "dee KRYZE-lowf-veert-shaft", "note": "" },
+        { "de": "die Treibhausgasemissionen", "en": "greenhouse gas emissions", "pron": "dee TRYBE-hows-gas-e-mis-yo-nen", "note": "" },
+        { "de": "der Wirkungsgrad", "en": "efficiency (ratio)", "pron": "dair VEER-koongs-graht", "note": "" },
+        { "de": "die Forschung", "en": "research", "pron": "dee FOR-shoong", "note": "" },
+        { "de": "die Probe", "en": "sample", "pron": "dee PRO-buh", "note": "" },
+        { "de": "der Versuch", "en": "experiment / trial", "pron": "dair fer-ZOOKH", "note": "" },
+        { "de": "die Messung", "en": "measurement", "pron": "dee MES-oong", "note": "" },
+        { "de": "die Auswertung", "en": "analysis / evaluation (of data)", "pron": "dee OWS-vair-toong", "note": "" },
+        { "de": "Ich forsche an Biomasse und Biokraftstoffen.", "en": "I research biomass and biofuels.", "pron": "ish FOR-shuh an bio-MA-suh oont BIO-kraft-shto-fen", "note": "" },
+        { "de": "Mein Schwerpunkt ist Biotechnologie.", "en": "My focus is biotechnology.", "pron": "myne SHVAIR-poonkt ist bio-tekh-no-lo-GEE", "note": "" },
+        { "de": "Wir untersuchen die Vergärung von Reststoffen.", "en": "We study the fermentation of residues.", "pron": "veer oon-ter-ZOO-khen dee fer-GAY-roong fon REST-shto-fen", "note": "" }
+      ]
+    },
+    {
+      "id": "smalltalk",
+      "name": "Small Talk & Politeness",
+      "icon": "💬",
+      "blurb": "The little words that make you sound warm and respectful.",
+      "phrases": [
+        { "de": "Bitte.", "en": "Please / You're welcome.", "pron": "BIT-uh", "note": "Does double duty for both." },
+        { "de": "Danke schön. / Vielen Dank.", "en": "Thank you (very much).", "pron": "DAN-kuh shurn / FEE-len dank", "note": "" },
+        { "de": "Gern geschehen.", "en": "You're welcome / My pleasure.", "pron": "gairn guh-SHAY-en", "note": "" },
+        { "de": "Entschuldigung.", "en": "Excuse me / Sorry.", "pron": "ent-SHOOL-di-goong", "note": "Use to get attention or apologize." },
+        { "de": "Es tut mir leid.", "en": "I'm sorry.", "pron": "es toot meer lyte", "note": "" },
+        { "de": "Alles gut.", "en": "It's all good / No worries.", "pron": "A-les goot", "note": "" },
+        { "de": "Wie war Ihr Wochenende?", "en": "How was your weekend?", "pron": "vee var eer VO-khen-en-duh", "note": "Classic Monday small talk." },
+        { "de": "Woher kommen Sie?", "en": "Where are you from?", "pron": "vo-HAIR KO-men zee", "note": "" },
+        { "de": "Ich komme aus Brasilien.", "en": "I'm from Brazil.", "pron": "ish KO-muh ows bra-ZEE-lee-en", "note": "" },
+        { "de": "Mir gefällt es hier in Leipzig.", "en": "I like it here in Leipzig.", "pron": "meer guh-FELT es heer in LYPE-tsish", "note": "Leipzig is pronounced 'LYPE-tsish'." }
+      ]
+    },
+    {
+      "id": "gift",
+      "name": "Giving Your Gift 🥜",
+      "icon": "🎁",
+      "blurb": "Phrases for presenting your Paçoca (Pacoquinha) to the team. Tip: offer it to the group, and mention it contains peanuts (Erdnüsse) in case of allergies.",
+      "phrases": [
+        { "de": "Ich habe Ihnen etwas aus Brasilien mitgebracht.", "en": "I brought you something from Brazil.", "pron": "ish HA-buh EE-nen ET-vas ows bra-ZEE-lee-en MIT-guh-brakht", "note": "" },
+        { "de": "Das ist eine kleine Aufmerksamkeit aus meiner Heimat.", "en": "This is a small token from my home country.", "pron": "das ist INE-uh KLY-nuh OWF-mairk-zam-kite ows MY-ner HY-mat", "note": "A modest, gracious way to present a gift." },
+        { "de": "Das ist eine typisch brasilianische Süßigkeit.", "en": "This is a typical Brazilian sweet.", "pron": "das ist INE-uh TÜ-pish bra-zi-lee-AH-ni-shuh ZÜ-sish-kite", "note": "" },
+        { "de": "Sie wird aus Erdnüssen gemacht.", "en": "It's made from peanuts.", "pron": "zee veert ows AIRT-nü-sen guh-MAKHT", "note": "Important to mention for allergies." },
+        { "de": "Ich hoffe, sie schmeckt Ihnen.", "en": "I hope you like the taste.", "pron": "ish HO-fuh, zee shmekt EE-nen", "note": "" },
+        { "de": "Greifen Sie zu!", "en": "Help yourself!", "pron": "GRY-fen zee tsoo", "note": "" },
+        { "de": "Lassen Sie es sich schmecken!", "en": "Enjoy it! / Bon appétit!", "pron": "LA-sen zee es zish SHME-ken", "note": "" }
+      ]
+    },
+    {
+      "id": "restaurant",
+      "name": "Café, Kantine & Restaurant",
+      "icon": "🍽️",
+      "blurb": "Lunch in the Kantine or dinner out. Bonus: many places are cash-only — carry euros.",
+      "phrases": [
+        { "de": "Einen Tisch für eine Person, bitte.", "en": "A table for one, please.", "pron": "INE-en tish für INE-uh per-ZOHN, BIT-uh", "note": "" },
+        { "de": "Die Speisekarte, bitte.", "en": "The menu, please.", "pron": "dee SHPY-zuh-kar-tuh, BIT-uh", "note": "" },
+        { "de": "Ich hätte gern einen Kaffee.", "en": "I'd like a coffee.", "pron": "ish HET-uh gairn INE-en ka-FAY", "note": "'Ich hätte gern…' is the polite way to order." },
+        { "de": "Ich nehme das Tagesgericht.", "en": "I'll take the dish of the day.", "pron": "ish NAY-muh das TA-ges-guh-risht", "note": "" },
+        { "de": "Was können Sie empfehlen?", "en": "What can you recommend?", "pron": "vas KUR-nen zee emp-FAY-len", "note": "" },
+        { "de": "Ich esse kein Fleisch.", "en": "I don't eat meat.", "pron": "ish E-suh kyne flysh", "note": "'Ich bin Vegetarier/Veganer' = I'm vegetarian/vegan." },
+        { "de": "Guten Appetit!", "en": "Enjoy your meal!", "pron": "GOO-ten a-puh-TEET", "note": "Say it before everyone starts eating." },
+        { "de": "Prost!", "en": "Cheers!", "pron": "prohst", "note": "Make eye contact when you clink glasses!" },
+        { "de": "Zahlen, bitte.", "en": "The bill, please.", "pron": "TSA-len, BIT-uh", "note": "" },
+        { "de": "Kann ich mit Karte zahlen?", "en": "Can I pay by card?", "pron": "kan ish mit KAR-tuh TSA-len", "note": "Ask first — smaller places may be cash-only." },
+        { "de": "Stimmt so.", "en": "Keep the change.", "pron": "shtimt zo", "note": "Tipping ~5–10% is normal; round up and say this." },
+        { "de": "Zum Mitnehmen, bitte.", "en": "To go / takeaway, please.", "pron": "tsoom MIT-nay-men, BIT-uh", "note": "" }
+      ]
+    },
+    {
+      "id": "getting_around",
+      "name": "Getting Around Leipzig",
+      "icon": "🚊",
+      "blurb": "Leipzig's trams and buses (LVB) are excellent. Buy and validate a ticket — controls are frequent.",
+      "phrases": [
+        { "de": "Wie komme ich zum DBFZ?", "en": "How do I get to the DBFZ?", "pron": "vee KO-muh ish tsoom day-bay-eff-tset", "note": "" },
+        { "de": "Wo ist die nächste Straßenbahnhaltestelle?", "en": "Where is the nearest tram stop?", "pron": "vo ist dee NAYKS-tuh SHTRA-sen-bahn-hal-tuh-shtel-uh", "note": "" },
+        { "de": "Welche Linie fährt zum Hauptbahnhof?", "en": "Which line goes to the main station?", "pron": "VEL-shuh LEE-nee-uh fairt tsoom HOWPT-bahn-hohf", "note": "Leipzig Hbf is one of Europe's largest stations." },
+        { "de": "Eine Fahrkarte, bitte.", "en": "A ticket, please.", "pron": "INE-uh FAR-kar-tuh, BIT-uh", "note": "" },
+        { "de": "Fährt dieser Bus nach …?", "en": "Does this bus go to …?", "pron": "fairt DEE-zer boos nakh", "note": "" },
+        { "de": "Wo ist der nächste Supermarkt?", "en": "Where's the nearest supermarket?", "pron": "vo ist dair NAYKS-tuh ZOO-per-markt", "note": "Shops close Sundays — buy groceries Saturday." },
+        { "de": "Wie weit ist es zu Fuß?", "en": "How far is it on foot?", "pron": "vee vyte ist es tsoo foos", "note": "" },
+        { "de": "Ich habe mich verlaufen.", "en": "I'm lost.", "pron": "ish HA-buh mish fer-LOW-fen", "note": "" },
+        { "de": "Können Sie mir das auf der Karte zeigen?", "en": "Can you show me on the map?", "pron": "KUR-nen zee meer das owf dair KAR-tuh TSY-gen", "note": "" }
+      ]
+    },
+    {
+      "id": "emergencies",
+      "name": "Help & Emergencies",
+      "icon": "🆘",
+      "blurb": "Hopefully unused — but good to have. Emergency number is 112 (ambulance/fire), 110 (police).",
+      "phrases": [
+        { "de": "Können Sie mir helfen?", "en": "Can you help me?", "pron": "KUR-nen zee meer HEL-fen", "note": "" },
+        { "de": "Es ist ein Notfall.", "en": "It's an emergency.", "pron": "es ist ine NOHT-fal", "note": "" },
+        { "de": "Ich brauche einen Arzt.", "en": "I need a doctor.", "pron": "ish BROW-khuh INE-en artst", "note": "" },
+        { "de": "Rufen Sie bitte einen Krankenwagen!", "en": "Please call an ambulance!", "pron": "ROO-fen zee BIT-uh INE-en KRAN-ken-va-gen", "note": "" },
+        { "de": "Ich fühle mich nicht gut.", "en": "I don't feel well.", "pron": "ish FÜ-luh mish nisht goot", "note": "" },
+        { "de": "Wo ist die nächste Apotheke?", "en": "Where is the nearest pharmacy?", "pron": "vo ist dee NAYKS-tuh a-po-TAY-kuh", "note": "Apotheke = pharmacy (medicine); Drogerie = toiletries." },
+        { "de": "Ich habe meinen Pass verloren.", "en": "I've lost my passport.", "pron": "ish HA-buh MY-nen pas fer-LO-ren", "note": "" }
+      ]
+    }
+  ],
+  "etiquette": [
+    { "icon": "⏰", "title": "Be punctual — always", "tip": "Punctuality is a sign of respect in Germany. Aim to arrive 5 minutes early for meetings; if you'll be even slightly late, send a quick message." },
+    { "icon": "🎩", "title": "Use 'Sie' and surnames first", "tip": "Address colleagues as 'Sie' with Herr/Frau + surname (and Dr./Prof. titles in academia) until they offer the informal 'du'. Let the senior person or host offer 'du' first." },
+    { "icon": "🤝", "title": "A firm, brief handshake", "tip": "Shake hands with a firm grip and direct eye contact when meeting someone, and often again when leaving. Greet the room when you enter ('Guten Tag')." },
+    { "icon": "🗣️", "title": "Directness isn't rudeness", "tip": "Germans value honest, direct communication. Frank feedback is meant constructively, not personally — and they'll appreciate clear, straightforward answers from you too." },
+    { "icon": "🔇", "title": "Quiet Sundays (Ruhetag)", "tip": "Sundays are rest days: most shops are closed and loud activities (drilling, loud music) are frowned upon. Buy groceries by Saturday." },
+    { "icon": "♻️", "title": "Recycling is taken seriously", "tip": "Separate your waste: paper, packaging (Gelber Sack), glass (by color), bio, and residual. Bottles/cans often have a deposit (Pfand) — return them at the supermarket machine." },
+    { "icon": "💶", "title": "Carry cash", "tip": "Many cafés, bakeries and smaller shops are cash-only or have a card minimum. Keep some euros and coins on you, especially for lunch." },
+    { "icon": "🚶", "title": "Wait for the green man", "tip": "Crossing on a red pedestrian light is frowned upon — especially with children around. Just wait; it's a small but noticed courtesy." },
+    { "icon": "🎫", "title": "Always have a valid ticket", "tip": "On trams and buses, validate your ticket and keep it. Ticket controls are frequent and fare-dodging ('Schwarzfahren') brings an on-the-spot fine." },
+    { "icon": "🍻", "title": "Eye contact when you toast", "tip": "When clinking glasses ('Prost!'), look the other person in the eye — skipping it is considered bad luck and a bit rude." },
+    { "icon": "🌅", "title": "Respect 'Feierabend'", "tip": "The end of the workday and free time are respected. Don't expect work replies in the evening or on weekends, and enjoy your own downtime too." },
+    { "icon": "🌱", "title": "Show genuine interest in sustainability", "tip": "Environmental topics matter deeply here — and especially at DBFZ. Curiosity about their research and Germany's energy transition (Energiewende) goes a long way." }
+  ],
+  "gifts": [
+    { "icon": "🥜", "title": "Paçoca / Pacoquinha — great choice!", "note": "A peanut sweet is uniquely Brazilian and easy to share. Bring a box/pack for the whole team rather than one person, present it modestly, and mention it contains peanuts (Erdnüsse) for anyone with allergies. Don't expect it to be opened in front of you." },
+    { "icon": "☕", "title": "Brazilian coffee", "note": "Brazilian coffee is well regarded and a natural conversation starter with German colleagues, who take coffee seriously. A nice bag of specialty beans is always welcome." },
+    { "icon": "🍬", "title": "Other regional sweets", "note": "Brigadeiro, pé-de-moleque, cocada, or guaraná candies travel well and are easy to share. Shelf-stable, no-fridge-needed treats are ideal for an office." },
+    { "icon": "🥃", "title": "A small bottle of cachaça", "note": "A miniature of good cachaça (e.g. for a team to try) is a fun, distinctly Brazilian gift for adults — modest in size so it doesn't feel like an obligation." },
+    { "icon": "🎨", "title": "Something from your region / Unicamp", "note": "A small handicraft or a token representing Campinas/Unicamp adds a personal, thoughtful touch and gives you a story to tell." }
+  ],
+  "tips": [
+    "Tap any phrase to hear it spoken in German.",
+    "Use the search box to find a phrase fast while you're out.",
+    "Practice the 'Greetings' and 'Gift' sections before you arrive — they'll matter on day one."
+  ]
+}

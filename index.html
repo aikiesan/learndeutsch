@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="css/landing.css">
     <link rel="stylesheet" href="css/cozy.css">
     <link rel="stylesheet" href="css/mobile.css">
+    <link rel="stylesheet" href="css/phrasebook.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -103,6 +104,16 @@
                             </button>
                         </div>
                     </div>
+
+                    <!-- Germany Trip Assist Banner -->
+                    <button class="trip-banner" id="trip-assist-banner">
+                        <span class="trip-banner-flag">🇩🇪</span>
+                        <span class="trip-banner-text">
+                            <span class="trip-banner-title">Germany Trip Assist</span>
+                            <span class="trip-banner-desc">Formal phrases, biomass &amp; biotech words, etiquette &amp; gift tips for DBFZ Leipzig</span>
+                        </span>
+                        <span class="trip-banner-arrow">→</span>
+                    </button>
 
                     <!-- Learning Paths -->
                     <div class="learning-paths">
@@ -458,6 +469,17 @@
                     </div>
                 </section>
 
+                <!-- Trip & Work Assist Section -->
+                <section id="assist" class="section">
+                    <div class="section-header">
+                        <button class="back-btn" data-section="dashboard">← Back</button>
+                        <h2>🇩🇪 Trip Assist</h2>
+                    </div>
+                    <div id="assist-content" class="assist-content">
+                        <!-- Populated by phrasebook.js -->
+                    </div>
+                </section>
+
                 <!-- Progress Section -->
                 <section id="progress" class="section">
                     <div class="section-header">
@@ -577,6 +599,10 @@
                 <span class="nav-icon">📊</span>
                 <span class="nav-label">Stats</span>
             </button>
+            <button class="nav-item" data-section="assist">
+                <span class="nav-icon">🇩🇪</span>
+                <span class="nav-label">Trip</span>
+            </button>
             <button class="nav-item" data-section="settings">
                 <span class="nav-icon">⚙️</span>
                 <span class="nav-label">Settings</span>
@@ -633,6 +659,7 @@
     <script src="js/progress-map.js"></script>
     <script src="js/analytics.js"></script>
     <script src="js/fun-utils.js"></script>
+    <script src="js/phrasebook.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>

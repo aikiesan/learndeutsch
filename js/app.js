@@ -150,6 +150,12 @@ class LearnDeutschApp {
             this.navigateToSection('grammar');
         });
 
+        // Germany Trip Assist banner
+        document.getElementById('trip-assist-banner')?.addEventListener('click', () => {
+            window.soundManager?.play('whoosh');
+            this.navigateToSection('assist');
+        });
+
         document.getElementById('sentence-builder')?.addEventListener('click', () => {
             window.soundManager?.play('whoosh');
             this.navigateToSection('practice');
@@ -345,6 +351,9 @@ class LearnDeutschApp {
                 break;
             case 'grammar':
                 this.initGrammarSection();
+                break;
+            case 'assist':
+                window.phrasebookManager?.render();
                 break;
             case 'progress':
                 this.initProgressSection();
