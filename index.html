@@ -6,6 +6,9 @@
     <title>LearnDeutsch - Master German Vocabulary</title>
     <meta name="description" content="Learn German vocabulary the fun way with interactive quizzes, typing practice, and gamified lessons">
 
+    <!-- PWA Manifest (installable + offline) -->
+    <link rel="manifest" href="manifest.json">
+
     <!-- Mobile App Meta Tags -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -661,5 +664,15 @@
     <script src="js/fun-utils.js"></script>
     <script src="js/phrasebook.js"></script>
     <script src="js/app.js"></script>
+
+    <!-- Register service worker for offline support -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .catch((err) => console.warn('Service worker registration failed:', err));
+            });
+        }
+    </script>
 </body>
 </html>

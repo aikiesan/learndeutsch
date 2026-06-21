@@ -40,6 +40,9 @@ class PhrasebookManager {
         container.innerHTML = `
             <div class="assist-intro">
                 <p class="assist-subtitle">${this.data.subtitle || ''}</p>
+                <button class="btn-cheatsheet" id="assist-cheatsheet-btn">
+                    📄 Day-One Cheat Sheet <span class="btn-cheatsheet-hint">· print or save offline</span>
+                </button>
             </div>
 
             <div class="assist-search">
@@ -99,6 +102,111 @@ class PhrasebookManager {
             if (input) input.value = '';
             this.renderPanel();
         });
+
+        document.getElementById('assist-cheatsheet-btn')?.addEventListener('click', () => {
+            window.soundManager?.play('whoosh');
+            this.openCheatSheet();
+        });
+    }
+
+    /** The essentials you'll want on day one — works offline and prints cleanly. */
+    cheatSheetGroups() {
+        return [
+            {
+                heading: 'First Hellos & Your Introduction',
+                items: [
+                    'Guten Tag!',
+                    'Freut mich, Sie kennenzulernen.',
+                    'Ich bin der neue Kollege aus Brasilien.',
+                    'Ich arbeite im Bereich Biomasse und Biotechnologie.',
+                    'Ich lerne noch Deutsch.',
+                    'Sprechen Sie Englisch?',
+                    'Vielen Dank für Ihre Hilfe.',
+                    'Auf Wiedersehen!'
+                ]
+            },
+            {
+                heading: 'Giving Your Gift 🥜',
+                items: [
+                    'Ich habe Ihnen etwas aus Brasilien mitgebracht.',
+                    'Das ist eine typisch brasilianische Süßigkeit.',
+                    'Sie wird aus Erdnüssen gemacht.',
+                    'Ich hoffe, sie schmeckt Ihnen.'
+                ]
+            },
+            {
+                heading: 'Getting By',
+                items: [
+                    'Wo finde ich das Labor / die Toilette / die Kantine?',
+                    'Wie komme ich zum DBFZ?',
+                    'Eine Fahrkarte, bitte.',
+                    'Zahlen, bitte.',
+                    'Können Sie mir helfen?',
+                    'Es ist ein Notfall.'
+                ]
+            }
+        ];
+    }
+
+    findPhrase(de) {
+        return this.allPhrases().find(p => p.de === de) || { de, en: '', pron: '' };
+    }
+
+    openCheatSheet() {
+        // Remove any existing overlay first
+        document.getElementById('cheatsheet-overlay')?.remove();
+
+        const groupsHtml = this.cheatSheetGroups().map(group => `
+            <div class="cs-group">
+                <h3 class="cs-group-heading">${this.escape(group.heading)}</h3>
+                ${group.items.map(de => {
+                    const p = this.findPhrase(de);
+                    return `
+                        <div class="cs-row">
+                            <div class="cs-de">${this.escape(p.de)}</div>
+                            <div class="cs-en">${this.escape(p.en)}</div>
+                            ${p.pron ? `<div class="cs-pron">🗣️ ${this.escape(p.pron)}</div>` : ''}
+                        </div>
+                    `;
+                }).join('')}
+            </div>
+        `).join('');
+
+        const overlay = document.createElement('div');
+        overlay.className = 'cheatsheet-overlay';
+        overlay.id = 'cheatsheet-overlay';
+        overlay.innerHTML = `
+            <div class="cheatsheet-print">
+                <div class="cs-actions">
+                    <button class="btn btn-outline" id="cs-close">← Back</button>
+                    <button class="btn btn-primary" id="cs-print">🖨️ Print / Save PDF</button>
+                </div>
+                <div class="cs-paper">
+                    <h2 class="cs-title">🇩🇪 Day-One Cheat Sheet</h2>
+                    <p class="cs-sub">My first day at DBFZ Leipzig · keep on your phone</p>
+                    ${groupsHtml}
+                    <div class="cs-group cs-numbers">
+                        <h3 class="cs-group-heading">Emergency Numbers</h3>
+                        <div class="cs-row"><div class="cs-de">112</div><div class="cs-en">Ambulance &amp; Fire</div></div>
+                        <div class="cs-row"><div class="cs-de">110</div><div class="cs-en">Police</div></div>
+                    </div>
+                    <p class="cs-footer">Tip: at a toast say “Prost!” with eye contact · carry cash · be 5 min early.</p>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(overlay);
+        document.body.classList.add('cheatsheet-open');
+
+        document.getElementById('cs-close')?.addEventListener('click', () => this.closeCheatSheet());
+        document.getElementById('cs-print')?.addEventListener('click', () => window.print());
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) this.closeCheatSheet();
+        });
+    }
+
+    closeCheatSheet() {
+        document.getElementById('cheatsheet-overlay')?.remove();
+        document.body.classList.remove('cheatsheet-open');
     }
 
     /** Build a flat list of all phrases (with category) for searching. */

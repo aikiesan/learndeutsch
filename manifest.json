@@ -1,0 +1,19 @@
+{
+  "name": "LearnDeutsch — German Learning",
+  "short_name": "LearnDeutsch",
+  "description": "Learn German vocabulary, plus an offline phrasebook for your trip to Germany.",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FDF6EC",
+  "theme_color": "#E8A87C",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

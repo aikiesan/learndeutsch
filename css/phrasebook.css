@@ -310,3 +310,114 @@
     .bottom-nav .nav-label { font-size: 0.55rem; }
     .bottom-nav .nav-icon { font-size: 1.2rem; }
 }
+
+/* --- Day-One Cheat Sheet button ------------------------------------------- */
+.btn-cheatsheet {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: var(--space-3);
+    padding: 10px 16px;
+    border: 2px solid #DD0000;
+    border-radius: var(--border-radius-md, 12px);
+    background: var(--bg-card);
+    color: #DD0000;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.18s ease, color 0.18s ease;
+}
+
+.btn-cheatsheet:hover { background: #DD0000; color: #fff; }
+
+.btn-cheatsheet-hint { font-weight: 500; opacity: 0.8; font-size: 0.78rem; }
+
+.btn-cheatsheet:hover .btn-cheatsheet-hint { opacity: 0.95; }
+
+/* --- Cheat sheet overlay -------------------------------------------------- */
+.cheatsheet-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: rgba(0, 0, 0, 0.45);
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    padding: var(--space-4);
+    -webkit-overflow-scrolling: touch;
+}
+
+.cheatsheet-print {
+    width: 100%;
+    max-width: 640px;
+    margin: auto;
+}
+
+.cs-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
+    position: sticky;
+    top: 0;
+}
+
+.cs-actions .btn { flex: 1; }
+
+.cs-paper {
+    background: #fff;
+    color: #1a1a1a;
+    border-radius: var(--border-radius-lg, 16px);
+    padding: var(--space-5, 28px) var(--space-5, 28px) var(--space-4);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.cs-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 2px; color: #1a1a1a; }
+
+.cs-sub { font-size: 0.85rem; color: #666; margin-bottom: var(--space-4); }
+
+.cs-group { margin-bottom: var(--space-4); }
+
+.cs-group-heading {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #DD0000;
+    border-bottom: 2px solid #FFCC00;
+    padding-bottom: 4px;
+    margin-bottom: var(--space-3);
+}
+
+.cs-row { margin-bottom: var(--space-3); }
+
+.cs-de { font-size: 1.02rem; font-weight: 700; color: #000; line-height: 1.3; }
+
+.cs-en { font-size: 0.88rem; color: #444; }
+
+.cs-pron { font-size: 0.78rem; color: #888; font-style: italic; }
+
+.cs-numbers .cs-row { display: flex; gap: var(--space-3); align-items: baseline; }
+.cs-numbers .cs-de { min-width: 48px; }
+
+.cs-footer {
+    margin-top: var(--space-4);
+    padding-top: var(--space-3);
+    border-top: 1px dashed #ccc;
+    font-size: 0.8rem;
+    color: #666;
+    font-style: italic;
+}
+
+/* --- Print: show only the cheat sheet ------------------------------------- */
+@media print {
+    body.cheatsheet-open > *:not(.cheatsheet-overlay) { display: none !important; }
+    .cheatsheet-overlay {
+        position: static;
+        background: #fff;
+        padding: 0;
+        display: block;
+        overflow: visible;
+    }
+    .cs-actions { display: none !important; }
+    .cs-paper { box-shadow: none; border-radius: 0; padding: 0; }
+    .cs-group { page-break-inside: avoid; }
+}
