@@ -1,0 +1,133 @@
+{
+  "title": "Think in German — Pattern Drills",
+  "description": "Formulaic substitution drills. The sentence frame stays the same; only one slot changes. Repeat each pattern until it comes out without thinking — that's how you start thinking in German.",
+  "patterns": [
+    {
+      "id": "ordering",
+      "icon": "☕",
+      "name": "Ordering things",
+      "frame_de": "Ich hätte gern {x}, bitte.",
+      "frame_en": "I would like {x}, please.",
+      "tip": "Your go-to polite way to ask for anything in a café, bakery or canteen.",
+      "slots": [
+        { "de": "einen Kaffee", "en": "a coffee" },
+        { "de": "einen Tee", "en": "a tea" },
+        { "de": "ein Wasser", "en": "a water" },
+        { "de": "ein Brötchen", "en": "a bread roll" },
+        { "de": "die Speisekarte", "en": "the menu" },
+        { "de": "die Rechnung", "en": "the bill" }
+      ]
+    },
+    {
+      "id": "finding",
+      "icon": "📍",
+      "name": "Finding places",
+      "frame_de": "Wo ist {x}?",
+      "frame_en": "Where is {x}?",
+      "tip": "Point at a map or just ask. Works for any place around you.",
+      "slots": [
+        { "de": "die Toilette", "en": "the restroom" },
+        { "de": "der Bahnhof", "en": "the train station" },
+        { "de": "die Haltestelle", "en": "the (tram/bus) stop" },
+        { "de": "der Ausgang", "en": "the exit" },
+        { "de": "der Aufzug", "en": "the elevator" },
+        { "de": "die Kantine", "en": "the canteen" }
+      ]
+    },
+    {
+      "id": "naming",
+      "icon": "👉",
+      "name": "Naming what's around you",
+      "frame_de": "Das ist {x}.",
+      "frame_en": "That is {x}.",
+      "tip": "Look around and label things in German — out loud if you can.",
+      "slots": [
+        { "de": "mein Kollege", "en": "my colleague" },
+        { "de": "mein Platz", "en": "my seat" },
+        { "de": "eine gute Idee", "en": "a good idea" },
+        { "de": "kein Problem", "en": "no problem" },
+        { "de": "sehr interessant", "en": "very interesting" },
+        { "de": "wunderbar", "en": "wonderful" }
+      ]
+    },
+    {
+      "id": "states",
+      "icon": "🙋",
+      "name": "Saying how you are (haben)",
+      "frame_de": "Ich habe {x}.",
+      "frame_en": "I have / I'm {x}.",
+      "tip": "German uses 'haben' for many states: Ich habe Hunger = I'm hungry.",
+      "slots": [
+        { "de": "Hunger", "en": "hungry" },
+        { "de": "Durst", "en": "thirsty" },
+        { "de": "eine Frage", "en": "a question" },
+        { "de": "keine Zeit", "en": "no time" },
+        { "de": "einen Termin", "en": "an appointment" },
+        { "de": "eine Idee", "en": "an idea" }
+      ]
+    },
+    {
+      "id": "needs",
+      "icon": "🆘",
+      "name": "Saying what you need",
+      "frame_de": "Ich brauche {x}.",
+      "frame_en": "I need {x}.",
+      "tip": "Perfect for getting help politely and directly.",
+      "slots": [
+        { "de": "Hilfe", "en": "help" },
+        { "de": "eine Pause", "en": "a break" },
+        { "de": "mehr Zeit", "en": "more time" },
+        { "de": "einen Stift", "en": "a pen" },
+        { "de": "das WLAN-Passwort", "en": "the wifi password" },
+        { "de": "einen Arzt", "en": "a doctor" }
+      ]
+    },
+    {
+      "id": "going",
+      "icon": "🚶",
+      "name": "Saying where you're going",
+      "frame_de": "Ich gehe {x}.",
+      "frame_en": "I'm going {x}.",
+      "tip": "Narrate your day: where are you heading next?",
+      "slots": [
+        { "de": "nach Hause", "en": "home" },
+        { "de": "zur Arbeit", "en": "to work" },
+        { "de": "in die Stadt", "en": "into town" },
+        { "de": "zum Mittagessen", "en": "to lunch" },
+        { "de": "ins Labor", "en": "into the lab" },
+        { "de": "spazieren", "en": "for a walk" }
+      ]
+    },
+    {
+      "id": "feelings",
+      "icon": "😊",
+      "name": "Saying how you feel",
+      "frame_de": "Ich fühle mich {x}.",
+      "frame_en": "I feel {x}.",
+      "tip": "Check in with yourself in German — a small daily habit.",
+      "slots": [
+        { "de": "gut", "en": "good" },
+        { "de": "müde", "en": "tired" },
+        { "de": "wohl", "en": "comfortable / at ease" },
+        { "de": "nicht so gut", "en": "not so good" },
+        { "de": "bereit", "en": "ready" },
+        { "de": "besser", "en": "better" }
+      ]
+    },
+    {
+      "id": "searching",
+      "icon": "🔍",
+      "name": "Saying what you're looking for",
+      "frame_de": "Ich suche {x}.",
+      "frame_en": "I'm looking for {x}.",
+      "tip": "Lost something or someone? This frame has you covered.",
+      "slots": [
+        { "de": "meinen Schlüssel", "en": "my key" },
+        { "de": "den Eingang", "en": "the entrance" },
+        { "de": "die Adresse", "en": "the address" },
+        { "de": "einen Supermarkt", "en": "a supermarket" },
+        { "de": "die Bushaltestelle", "en": "the bus stop" }
+      ]
+    }
+  ]
+}

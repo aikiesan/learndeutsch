@@ -3,7 +3,7 @@
  * Makes the app fully usable offline — essential when travelling with patchy signal.
  * Bump CACHE_VERSION whenever assets change to force clients to update.
  */
-const CACHE_VERSION = 'learndeutsch-v1';
+const CACHE_VERSION = 'learndeutsch-v2';
 
 // Core assets to pre-cache on install. Paths are relative to the SW scope (repo root).
 const CORE_ASSETS = [
@@ -19,6 +19,7 @@ const CORE_ASSETS = [
     'css/cozy.css',
     'css/mobile.css',
     'css/phrasebook.css',
+    'css/patterns.css',
     'js/utils.js',
     'js/storage.js',
     'js/gamification.js',
@@ -31,8 +32,10 @@ const CORE_ASSETS = [
     'js/analytics.js',
     'js/fun-utils.js',
     'js/phrasebook.js',
+    'js/patterns.js',
     'js/app.js',
     'data/phrasebook.json',
+    'data/patterns.json',
     'data/fill-the-gap.json',
     'data/vocabulary/a1.json',
     'data/vocabulary/a2.json',
