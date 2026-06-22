@@ -205,5 +205,119 @@
     "Tap any phrase to hear it spoken in German.",
     "Use the search box to find a phrase fast while you're out.",
     "Practice the 'Greetings' and 'Gift' sections before you arrive — they'll matter on day one."
-  ]
+  ],
+  "guides": {
+    "culture": {
+      "name": "German Culture",
+      "icon": "🇩🇪",
+      "intro": "The unwritten rules and everyday culture that help you read the room at work and in daily life.",
+      "groups": [
+        {
+          "heading": "Work culture",
+          "items": [
+            { "icon": "⏱️", "title": "Punctual & planned", "note": "Meetings start exactly on time and follow an agenda. Decisions are made thoroughly ('Gründlichkeit') rather than quickly — being well-prepared earns respect." },
+            { "icon": "🗂️", "title": "Direct & structured", "note": "Communication is clear and to the point; disagreement is normal and not personal. Say what you mean, back it with reasoning, and people will trust you." },
+            { "icon": "🍽️", "title": "'Mahlzeit!'", "note": "Around midday in offices and canteens, colleagues greet each other with 'Mahlzeit!' (literally 'mealtime'). Just say it back — it's a friendly lunchtime hello." },
+            { "icon": "🌅", "title": "Feierabend is sacred", "note": "When the workday ends, it ends. Evenings, weekends and your ~30 days of holiday are protected. Don't expect (or send) work emails after hours." }
+          ]
+        },
+        {
+          "heading": "Food & drink",
+          "items": [
+            { "icon": "🍞", "title": "Bread is serious", "note": "Germany has hundreds of bread types and a bakery ('Bäckerei') on every corner. A cold supper of bread, cheese and cold cuts ('Abendbrot') is a classic evening meal." },
+            { "icon": "💧", "title": "Water comes sparkling", "note": "Order 'Wasser mit Gas' (sparkling) or 'ohne Gas' (still). Tap water ('Leitungswasser') is rarely served in restaurants — bottled is the norm and you pay for it." },
+            { "icon": "🍺", "title": "Beer & the Reinheitsgebot", "note": "The 1516 'beer purity law' still shapes German brewing pride. Regions have their own styles — try the local one and toast with eye contact." },
+            { "icon": "🎂", "title": "You bring your own cake", "note": "On your birthday, you bring cake or treats for your colleagues — not the other way around. A nice way to break the ice in a new team." }
+          ]
+        },
+        {
+          "heading": "Everyday life",
+          "items": [
+            { "icon": "🤫", "title": "Quiet hours (Ruhezeit)", "note": "Expect quiet roughly 22:00–06:00 and all day Sunday: no drilling, vacuuming or loud music. It's law in many buildings, not just courtesy." },
+            { "icon": "🔐", "title": "Privacy matters", "note": "Germany is strict about data and privacy (it shaped the EU's GDPR). Ask before photographing people, and don't be surprised by cash-first, low-tracking habits." },
+            { "icon": "📅", "title": "Watch the holidays", "note": "On public holidays ('Feiertage') almost everything closes, like a Sunday. Saxony even has its own holiday, Buß- und Bettag in November — check a calendar so a closed supermarket doesn't catch you out." },
+            { "icon": "👋", "title": "Tschüss vs. Auf Wiedersehen", "note": "'Auf Wiedersehen' is the formal goodbye; 'Tschüss' is the everyday casual one. In the south you'll also hear 'Servus'; in the north 'Moin'." }
+          ]
+        }
+      ]
+    },
+    "leipzig": {
+      "name": "Leipzig",
+      "icon": "🎵",
+      "intro": "Your home base. A green, creative boomtown in Saxony — Bach's city, a hero of 1989, and a hub for Germany's shift away from coal (right up DBFZ's alley).",
+      "groups": [
+        {
+          "heading": "Good to know",
+          "items": [
+            { "icon": "🏙️", "title": "Saxony's largest city", "note": "Leipzig is the biggest city in Saxony (though Dresden is the state capital). It's booming and creative — locals half-jokingly call it 'Hypezig' or 'the new Berlin'." },
+            { "icon": "🕊️", "title": "City of the Peaceful Revolution", "note": "The Monday Demonstrations at the Nikolaikirche in 1989 ('Wir sind das Volk' — 'We are the people') helped bring down the Wall. Leipzig is proud to be the 'Heldenstadt' (City of Heroes)." },
+            { "icon": "🚉", "title": "A giant Hauptbahnhof", "note": "Leipzig's main station is one of Europe's largest by floor area — a sightseeing-and-shopping destination in itself, and 1h10–1h15 to Berlin by ICE." }
+          ]
+        },
+        {
+          "heading": "For your work at DBFZ",
+          "items": [
+            { "icon": "🔬", "title": "Where DBFZ sits", "note": "The Deutsches Biomasseforschungszentrum is in the northeast of the city (Torgauer Straße area), reachable by tram/bus. It's a federal research centre for biomass and bioenergy." },
+            { "icon": "⚡", "title": "Coal country going green", "note": "Leipzig sits in the Central German lignite mining district. The 'Strukturwandel' (structural shift away from coal) makes the region a living lab for bioenergy — great context for your research and small talk." },
+            { "icon": "🏞️", "title": "Lakes from old mines", "note": "South of the city, former open-pit coal mines have been flooded into the 'Neuseenland' lakes (e.g. Cospudener See). A vivid, local example of post-coal transformation — and a lovely weekend swim spot." }
+          ]
+        },
+        {
+          "heading": "Music, art & history",
+          "items": [
+            { "icon": "🎼", "title": "Bach's Thomaskirche", "note": "Johann Sebastian Bach was cantor at St. Thomas Church, where the famous Thomanerchor boys' choir still sings. The Gewandhaus orchestra is world-class, and Wagner was born here." },
+            { "icon": "🎨", "title": "Spinnerei in Plagwitz", "note": "A former cotton mill turned art complex, home to the acclaimed 'New Leipzig School' (Neo Rauch). The canal-laced Plagwitz/Karl-Heine area is the creative quarter." },
+            { "icon": "🗿", "title": "Völkerschlachtdenkmal", "note": "The colossal Monument to the Battle of the Nations marks the 1813 defeat of Napoleon at Leipzig. Worth the climb for the view." }
+          ]
+        },
+        {
+          "heading": "Eat, drink & go out",
+          "items": [
+            { "icon": "🍺", "title": "Gose, the local sour beer", "note": "Leipzig's traditional 'Gose' is a slightly sour, salty wheat beer — try it at a historic 'Gosenschänke'. Saxons are also historic coffee-lovers ('Kaffeesachsen')." },
+            { "icon": "🐦", "title": "Leipziger Lerche", "note": "A sweet shortcrust pastry with marzipan and jam, named after a banned songbird dish. A charming local treat to bring back to the office." },
+            { "icon": "🍷", "title": "'Karli' & Auerbachs Keller", "note": "Karl-Liebknecht-Straße ('Karli') in the Südvorstadt is the buzzy bar-and-restaurant street. For history, dine at Auerbachs Keller, the cellar restaurant featured in Goethe's 'Faust'." }
+          ]
+        }
+      ]
+    },
+    "berlin": {
+      "name": "Berlin",
+      "icon": "🐻",
+      "intro": "The capital, ~1h15 away by fast train — an easy weekend. International, creative and steeped in 20th-century history. English gets you far here.",
+      "groups": [
+        {
+          "heading": "Good to know",
+          "items": [
+            { "icon": "🏛️", "title": "Capital & a city-state", "note": "Berlin is both the national capital and its own federal state. It's famously 'arm aber sexy' (poor but sexy) — less polished than Munich, but endlessly creative and welcoming to newcomers." },
+            { "icon": "🚇", "title": "Getting around (BVG)", "note": "U-Bahn, S-Bahn, trams and buses share one ticket; the U-Bahn runs all night on weekends. Most central sights are in fare zones A/B; airport BER is in zone C. Validate your ticket." },
+            { "icon": "🌃", "title": "Spätis & late life", "note": "Late-night corner shops ('Spätis') are a Berlin institution for snacks and drinks when supermarkets are shut. The city stays open late — and Sundays revolve around brunch and flea markets." }
+          ]
+        },
+        {
+          "heading": "History you can walk through",
+          "items": [
+            { "icon": "🧱", "title": "The Wall's traces", "note": "See the open-air East Side Gallery (painted Wall murals), the sobering Berlin Wall Memorial at Bernauer Straße, and Checkpoint Charlie. The Brandenburg Gate is the reunification symbol." },
+            { "icon": "🏛️", "title": "Reichstag & Museum Island", "note": "Climb the Reichstag's glass dome (free, but book ahead). UNESCO-listed Museum Island holds the Nefertiti bust and more — note the Pergamon Museum's main hall is closed for a long renovation, so check before you go." },
+            { "icon": "🕯️", "title": "Memorials of conscience", "note": "The Memorial to the Murdered Jews of Europe and the Topography of Terror confront the Nazi era directly. Visited respectfully, they're among the most moving sites in Europe." }
+          ]
+        },
+        {
+          "heading": "Neighbourhoods (Kieze)",
+          "items": [
+            { "icon": "🎨", "title": "Kreuzberg & Neukölln", "note": "Multicultural, street-art-covered and full of nightlife and great cheap eats. The heart of alternative Berlin and its huge Turkish-German community." },
+            { "icon": "🎶", "title": "Friedrichshain", "note": "Clubs and the RAW-Gelände (a former rail yard turned party complex). Gritty, young and loud — the engine room of Berlin's nightlife." },
+            { "icon": "☕", "title": "Prenzlauer Berg & Mitte", "note": "Prenzlauer Berg is leafy, café-filled and family-friendly; Mitte is the central, sightseeing core. Charlottenburg in the west is more classic and upscale." }
+          ]
+        },
+        {
+          "heading": "Eat, drink & go out",
+          "items": [
+            { "icon": "🌭", "title": "Currywurst & Döner", "note": "Two Berlin street-food icons: currywurst (sausage with curry-ketchup) and the döner kebab, which was popularised here. Cheap, everywhere, and genuinely good." },
+            { "icon": "🍩", "title": "Ask for a 'Pfannkuchen'", "note": "The jam doughnut the rest of Germany calls a 'Berliner', Berliners themselves call a 'Pfannkuchen'. Order it that way for instant local credibility." },
+            { "icon": "🔊", "title": "Club culture (handle with care)", "note": "Berlin's techno scene is UNESCO-recognised. Clubs like Berghain have strict doors and a firm no-photos rule — phones away, be relaxed and respectful, and go late." }
+          ]
+        }
+      ]
+    }
+  }
 }

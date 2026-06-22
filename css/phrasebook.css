@@ -143,6 +143,12 @@
     border-color: #DD0000;
 }
 
+.assist-tab-guide.active {
+    background: #1a1a2e;
+    border-color: #1a1a2e;
+    color: #FFCC00;
+}
+
 .assist-tab-icon { font-size: 1.3rem; }
 
 .assist-tab-name { font-size: 0.72rem; font-weight: 600; white-space: nowrap; }

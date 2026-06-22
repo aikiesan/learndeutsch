@@ -66,6 +66,12 @@ class PhrasebookManager {
                     <span class="assist-tab-icon">🎁</span>
                     <span class="assist-tab-name">Gift Ideas</span>
                 </button>
+                ${this.data.guides ? Object.entries(this.data.guides).map(([key, g]) => `
+                    <button class="assist-tab assist-tab-guide ${this.activeCategory === key ? 'active' : ''}" data-category="${key}">
+                        <span class="assist-tab-icon">${g.icon}</span>
+                        <span class="assist-tab-name">${g.name}</span>
+                    </button>
+                `).join('') : ''}
             </div>
 
             <div class="assist-panel" id="assist-panel"></div>
@@ -255,6 +261,11 @@ class PhrasebookManager {
             return;
         }
 
+        if (this.data.guides && this.data.guides[this.activeCategory]) {
+            panel.innerHTML = this.renderGuide(this.data.guides[this.activeCategory]);
+            return;
+        }
+
         const cat = this.data.categories.find(c => c.id === this.activeCategory);
         if (!cat) return;
 
@@ -265,6 +276,26 @@ class PhrasebookManager {
             </div>
         `;
         this.attachPhraseActions(panel);
+    }
+
+    renderGuide(guide) {
+        return `
+            ${guide.intro ? `<p class="assist-blurb">${this.escape(guide.intro)}</p>` : ''}
+            ${guide.groups.map(group => `
+                <h3 class="assist-section-heading">${this.escape(group.heading)}</h3>
+                <div class="tip-grid">
+                    ${group.items.map(item => `
+                        <div class="tip-card">
+                            <div class="tip-icon">${item.icon}</div>
+                            <div class="tip-body">
+                                <h4 class="tip-title">${this.escape(item.title)}</h4>
+                                <p class="tip-text">${this.escape(item.note)}</p>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `).join('')}
+        `;
     }
 
     renderTipGrid(items, heading, isGift = false) {

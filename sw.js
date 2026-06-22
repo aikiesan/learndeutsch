@@ -3,7 +3,7 @@
  * Makes the app fully usable offline — essential when travelling with patchy signal.
  * Bump CACHE_VERSION whenever assets change to force clients to update.
  */
-const CACHE_VERSION = 'learndeutsch-v2';
+const CACHE_VERSION = 'learndeutsch-v3';
 
 // Core assets to pre-cache on install. Paths are relative to the SW scope (repo root).
 const CORE_ASSETS = [
